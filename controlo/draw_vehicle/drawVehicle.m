@@ -3,7 +3,7 @@
     % process inputs to function
     pn       = uu(1);       % inertial North position     
     pe       = uu(2);       % inertial East position
-    pd       = uu(3);           
+    pd       = uu(3);       % inercial Down position    
     u        = uu(4);       
     v        = uu(5);       
     w        = uu(6);       
@@ -28,6 +28,7 @@
         vehicle_handle = drawVehicleBody(Vertices,Faces,facecolors,...
                                                pn,pe,pd,phi,theta,psi,...
                                                [],'normal');
+                                           
         title('Vehicle')
         xlabel('East')
         ylabel('North')
@@ -40,7 +41,7 @@
     else 
         drawVehicleBody(Vertices,Faces,facecolors,...
                            pn,pe,pd,phi,theta,psi,...
-                           vehicle_handle);
+                           vehicle_handle);           
     end
  end
 
@@ -51,17 +52,18 @@
 %=======================================================================
 %
 function handle = drawVehicleBody(V,F,facecolors,pn,pe,pd,phi,theta,psi,...
-                                     handle,mode)
-                                 
+                                     handle,mode)                      
+  
   V = rotate(V, phi, theta, psi);  % rotate vehicle
+  
   V = translate(V, pn, pe, pd);  % translate vehicle
   % transform vertices from NED to XYZ (for matlab rendering)
-  R = [...
+  xyzNED = [...
       0, 1, 0;...
       1, 0, 0;...
       0, 0, -1;...
       ];
-  V = R*V;
+  V = xyzNED*V;
   
   if isempty(handle)
   handle = patch('Vertices', V', 'Faces', F,...
@@ -75,7 +77,7 @@ function handle = drawVehicleBody(V,F,facecolors,pn,pe,pd,phi,theta,psi,...
   
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%
+
 function pts=rotate(pts,phi,theta,psi)
 
   % define rotation matrix (right handed)
@@ -95,15 +97,14 @@ function pts=rotate(pts,phi,theta,psi)
     % note that R above either leaves the vector alone or rotates
     % a vector in a left handed rotation.  We want to rotate all
     % points in a right handed rotation, so we must transpose
-  R = R';
+    % R = R';
 
   % rotate vertices  
   pts = R*pts;
   
 end
-% end rotateVert
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % translate vertices by pn, pe, pd
 function pts = translate(pts,pn,pe,pd)
 
@@ -111,15 +112,13 @@ function pts = translate(pts,pn,pe,pd)
   
 end
 
-% end translate
-
 
 %=======================================================================
 % defineVehicleBody
 %=======================================================================
 function [V,F,facecolors] = defineVehicleBody
- % Define the vertices (physical location of vertices
-     V = [...
+    
+V = [...
         1 1 0;... % point 1
         1 -1 0;... % point 2
         -1 -1 0;... % point 3
@@ -159,5 +158,5 @@ function [V,F,facecolors] = defineVehicleBody
          mycyan;... % top
          mycyan;... % Copy-paste code here to remove the line numbers...
      ];
+ 
 end
-  
