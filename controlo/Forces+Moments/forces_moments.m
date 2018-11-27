@@ -32,12 +32,12 @@ function out = forces_moments(x, delta, wind, P)
     w_ns    = wind(1); % steady wind - North
     w_es    = wind(2); % steady wind - East
     w_ds    = wind(3); % steady wind - Down
-%     u_wg    = wind(4); % gust along body x-axis
-%     v_wg    = wind(5); % gust along body y-axis    
-%     w_wg    = wind(6); % gust along body z-axis
+    u_wg    = wind(4); % gust along body x-axis
+    v_wg    = wind(5); % gust along body y-axis    
+    w_wg    = wind(6); % gust along body z-axis
 
     %No gusts
-    u_wg = 0; v_wg = 0; w_wg = 0;
+%     u_wg = 0; v_wg = 0; w_wg = 0;
         
     %% Compute air data
             

@@ -9,13 +9,13 @@ P.wind_e = 0;
 P.wind_d = 0;
 
 %% Gust generation - Check Table 4.1 from book (Dryden gust model params)
-P.sigma_u = 0;
-P.sigma_v = 0;
-P.sigma_w = 0;
-P.Va0 = 1;
-P.L_u = 1;
-P.L_v = 1;
-P.L_w = 1;
+P.sigma_u = 1.06;
+P.sigma_v = 1.06;
+P.sigma_w = 0.7;
+P.Va0 = 10;
+P.L_u = 200;
+P.L_v = 200;
+P.L_w = 50;
 P.Ts = 0.1; %Zero-hold sample time
 
 %% Initial Conditions (inertial position, ground speesvmsvnd, attitude)

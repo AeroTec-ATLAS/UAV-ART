@@ -33,7 +33,7 @@
         ylabel('North')
         zlabel('-Down')
         view(55.2,28.6)  % set the view angle for figure
-        axis([-30,30,-30,100,0,60]);
+        axis([-100,100,-100,100,0,60]);
         hold on
         
     % at every other time step, redraw base and rod
