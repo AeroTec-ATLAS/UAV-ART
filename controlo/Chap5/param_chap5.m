@@ -1,3 +1,5 @@
+P.gravity = 9.8;
+   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Params for Aersonade UAV
 %physical parameters of airframe
@@ -7,9 +9,7 @@ P.Jy   = 1.135;
 P.Jz   = 1.759;
 P.Jxz  = .1204;
 
-% gammas
-
-P.g = P.Jx*P.Jz - P.Jxz^2;
+P.g = P.Jx*Jz - P.Jxz^2;
 P.g1 = P.Jxz*(P.Jx - P.Jy + P.Jz)/P.g;
 P.g2 = (P.Jz*(P.Jz - P.Jy) + P.Jxz^2)/P.g;
 P.g3 = P.Jz/P.g;
@@ -18,7 +18,6 @@ P.g5 = (P.Jz - P.Jx)/P.Jy;
 P.g6 = P.Jxz/P.Jy;
 P.g7 = ((P.Jx - P.Jy)*P.Jx + P.Jxz^2)/P.g;
 P.g8 = P.Jx/P.g;
-
 
 % aerodynamic coefficients
 P.S_wing        = 0.55;
@@ -67,6 +66,12 @@ P.M             = 50;
 P.epsilon       = 0.1592;
 P.alpha0        = 0.4712;
 
+% combination of coefficients
+P.C_p_0 = P.g3*C_ell_0 + P.g4*C_n_0;
+P.C_p_beta = P.g3*P.C_ell_beta + P.g4*C_n_beta;
+P.C_p_p = P.g3*P.C_ell_p + P.g4*P.C_n_p;
+P.C_p_delta_a = P.g3*P.C_ell_delta_a + P.g4*P.C_n_delta_a;
+
 % wind parameters
 P.wind_n = 0;%3;
 P.wind_e = 0;%2;
@@ -78,15 +83,12 @@ P.sigma_u = 1.06;
 P.sigma_v = 1.06;
 P.sigma_w = .7;
 
-%
-P.gravity = 9.81;
-
 
 % compute trim conditions using 'mavsim_chap5_trim.slx'
 % initial airspeed
-P.Va0 = 35;
-gamma = 0; %5*pi/180;  % desired flight path angle (radians)
-R     = inf;         % desired radius (m) - use (+) for right handed orbit, 
+P.Va0 = 17;
+gamma = 5*pi/180;  % desired flight path angle (radians)
+R     = 150;         % desired radius (m) - use (+) for right handed orbit, 
 
 % autopilot sample rate
 P.Ts = 0.01;
@@ -94,7 +96,7 @@ P.Ts = 0.01;
 % first cut at initial conditions
 P.pn0    = 0;  % initial North position
 P.pe0    = 0;  % initial East position
-P.pd0    = -30;  % initial Down position (negative altitude)
+P.pd0    = 0;  % initial Down position (negative altitude)
 P.u0     = P.Va0; % initial velocity along body x-axis
 P.v0     = 0;  % initial velocity along body y-axis
 P.w0     = 0;  % initial velocity along body z-axis
@@ -106,7 +108,7 @@ P.q0     = 0;  % initial body frame pitch rate
 P.r0     = 0;  % initial body frame yaw rate
 
                     %                          (-) for left handed orbit
-
+                    
 % run trim commands
 [x_trim, u_trim]=compute_trim('mavsim_trim',P.Va0,gamma,R);
 P.u_trim = u_trim;
@@ -114,9 +116,9 @@ P.x_trim = x_trim;
 
 % set initial conditions to trim conditions
 % initial conditions
-%P.pn0    = x_trim(1);  % initial North position
-%P.pe0    = x_trim(2);  % initial East position
-%P.pd0    = x_trim(3);  % initial Down position (negative altitude)
+P.pn0    = 0;  % initial North position
+P.pe0    = 0;  % initial East position
+P.pd0    = 0;  % initial Down position (negative altitude)
 P.u0     = x_trim(4);  % initial velocity along body x-axis
 P.v0     = x_trim(5);  % initial velocity along body y-axis
 P.w0     = x_trim(6);  % initial velocity along body z-axis
