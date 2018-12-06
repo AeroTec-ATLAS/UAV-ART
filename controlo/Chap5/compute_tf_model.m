@@ -18,11 +18,11 @@ function [T_phi_delta_a,T_chi_phi,T_theta_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,
     a_theta2 = -P.rho*Va_trim^2*P.c^2*P.S_wing*P.C_m_alpha/2*P.Jy;
     a_theta3 = P.rho*Va_trim^2*P.c^2*P.S_wing*P.C_m_delta_e/2*P.Jy;
     
-    a_beta1 = -P.rho*Va_trim*P.S_wing*C_Y_beta/2*P.mass;
-    a_beta2 = P.rho*Va_trim*P.S_wing*C_Y_delta_r/2*P.mass;
+    a_beta1 = -P.rho*Va_trim*P.S_wing*P.C_Y_beta/2*P.mass;
+    a_beta2 = P.rho*Va_trim*P.S_wing*P.C_Y_delta_r/2*P.mass;
     
     a_V1 = P.rho*Va_trim*P.S_wing*(P.C_D_0 + P.C_D_alpha*alpha_trim + ...
-                    P.C_D_delta_e*delta_e_trim) + P.rho*S_prop*Va_trim;
+                    P.C_D_delta_e*delta_e_trim) + P.rho*P.S_prop*Va_trim;
                 
     a_V2 = P.rho*P.S_prop*P.C_prop*P.k_motor^2*delta_t_trim;
     

@@ -67,8 +67,8 @@ P.epsilon       = 0.1592;
 P.alpha0        = 0.4712;
 
 % combination of coefficients
-P.C_p_0 = P.g3*P.C_ell_0 + P.g4*C_n_0;
-P.C_p_beta = P.g3*P.C_ell_beta + P.g4*C_n_beta;
+P.C_p_0 = P.g3*P.C_ell_0 + P.g4*P.C_n_0;
+P.C_p_beta = P.g3*P.C_ell_beta + P.g4*P.C_n_beta;
 P.C_p_p = P.g3*P.C_ell_p + P.g4*P.C_n_p;
 P.C_p_delta_a = P.g3*P.C_ell_delta_a + P.g4*P.C_n_delta_a;
 
