@@ -7,9 +7,9 @@ P.mass = 25;
 P.Jx   = 0.8244;
 P.Jy   = 1.135;
 P.Jz   = 1.759;
-P.Jxz  = .1204;
+P.Jxz  = 0.1204;
 
-P.g = P.Jx*Jz - P.Jxz^2;
+P.g = P.Jx*P.Jz - P.Jxz^2;
 P.g1 = P.Jxz*(P.Jx - P.Jy + P.Jz)/P.g;
 P.g2 = (P.Jz*(P.Jz - P.Jy) + P.Jxz^2)/P.g;
 P.g3 = P.Jz/P.g;
@@ -67,8 +67,8 @@ P.epsilon       = 0.1592;
 P.alpha0        = 0.4712;
 
 % combination of coefficients
-P.C_p_0 = P.g3*C_ell_0 + P.g4*C_n_0;
-P.C_p_beta = P.g3*P.C_ell_beta + P.g4*C_n_beta;
+P.C_p_0 = P.g3*P.C_ell_0 + P.g4*P.C_n_0;
+P.C_p_beta = P.g3*P.C_ell_beta + P.g4*P.C_n_beta;
 P.C_p_p = P.g3*P.C_ell_p + P.g4*P.C_n_p;
 P.C_p_delta_a = P.g3*P.C_ell_delta_a + P.g4*P.C_n_delta_a;
 
@@ -130,10 +130,10 @@ P.q0     = x_trim(11);  % initial body frame pitch rate
 P.r0     = x_trim(12);  % initial body frame yaw rate
 
 % compute different transfer functions
-[T_phi_delta_a,T_chi_phi,T_theta_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_v_delta_r]...
+[T_phi_delta_a, T_p_delta_a, T_chi_phi,T_theta_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_v_delta_r]...
     = compute_tf_model(x_trim,u_trim,P);
 
 % linearize the equations of motion around trim conditions
 [A_lon, B_lon, A_lat, B_lat] = compute_ss_model('mavsim_trim',x_trim,u_trim);
 
-
+[k_p_roll, k_d_roll, k_i_roll] = getGains(P);
