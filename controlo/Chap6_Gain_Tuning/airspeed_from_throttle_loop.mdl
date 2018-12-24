@@ -1,14 +1,63 @@
 Model {
-  Name			  "pitch_loop"
+  Name			  "airspeed_from_throttle_loop"
   Version		  9.0
   SavedCharacterEncoding  "ISO-8859-1"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.29"
+    ComputedModelVersion    "1.53"
     NumModelReferences	    0
-    NumTestPointedSignals   0
+    NumTestPointedSignals   7
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Commanded Airspeed"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Airspeed Dynamics"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Integrator"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/P"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Pitch Loop "
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Saturation"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Sum1"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
     NumProvidedFunctions    0
     NumRequiredFunctions    0
     NumResetEvents	    0
@@ -16,10 +65,16 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 1
+    NumExternalFileReferences 2
     ExternalFileReference {
       Reference		      "cstblocks/LTI System"
-      Path		      "pitch_loop/Pitch Loop /Pitch Dynamics"
+      Path		      "airspeed_from_throttle_loop/Airspeed from Throtle/Airspeed Dynamics"
+      SID		      "31"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "cstblocks/LTI System"
+      Path		      "airspeed_from_throttle_loop/Airspeed from Throtle/Pitch Loop /Pitch Dynamics"
       SID		      "1"
       Type		      "LIBRARY_BLOCK"
     }
@@ -74,11 +129,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"21"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1402.0, 646.0]
-	ZoomFactor		[1.87]
-	Offset			[0.0, 0.0]
+	ZoomFactor		[2.0]
+	Offset			[284.40000000000009, 77.699999999999932]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -112,9 +167,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 23 14:04:42 2018"
-  RTWModifiedTimeStamp	  467424185
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Mon Dec 24 13:20:46 2018"
+  RTWModifiedTimeStamp	  467558425
+  ModelVersionFormat	  "1.%<AutoIncrement:53>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -166,12 +221,12 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "pitch_loop"
+    model_		    "airspeed_from_throttle_loop"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "pitch_loop"
+      Cell		      "airspeed_from_throttle_loop"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -179,6 +234,163 @@ Model {
       Dimension		      1
       Cell		      []
       PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
+  Object {
+    $PropName		    "InstrumentedSignals"
+    $ObjectID		    8
+    $ClassName		    "Simulink.HMI.InstrumentedSignals"
+    Array {
+      Type		      "Struct"
+      Dimension		      7
+      MATStruct {
+	UUID			"ec8d4122-2b4b-4d70-a657-bec748b16386"
+	BlockPath_		"Airspeed from Throtle/Airspeed Dynamics"
+	SID_			"31"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"3dfc9e3b-6143-4afd-a965-5eeaf61a0765"
+	BlockPath_		"Airspeed from Throtle/Commanded Airspeed"
+	SID_			"66"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"35b12e1b-e9fa-4c74-84b6-8ecf78cb143f"
+	BlockPath_		"Airspeed from Throtle/Integrator"
+	SID_			"37"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"4185b122-f3ea-4c04-91d2-fc142759352b"
+	BlockPath_		"Airspeed from Throtle/P"
+	SID_			"35"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"652342ab-a733-40df-b055-42507d2e6d6a"
+	BlockPath_		"Airspeed from Throtle/Saturation"
+	SID_			"74"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"6dc5c7ec-4139-4a41-bc0d-a14063470413"
+	BlockPath_		"Airspeed from Throtle/Sum1"
+	SID_			"34"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"d120ced0-7e05-4f73-9ee8-7b66350d5d8b"
+	BlockPath_		"Airspeed from Throtle/Pitch Loop "
+	SID_			"21"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      PropName		      "Persistence"
     }
   }
   ExtModeBatchMode	  off
@@ -209,7 +421,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
+      $ObjectID		      9
       Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
@@ -217,12 +429,12 @@ Model {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
-	  StopTime		  "10"
+	  StopTime		  "30"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -256,7 +468,7 @@ Model {
 	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -297,7 +509,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -359,7 +571,7 @@ Model {
 	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -474,7 +686,7 @@ Model {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -522,7 +734,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -541,7 +753,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -571,7 +783,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -655,7 +867,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -741,7 +953,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
+	      $ObjectID		      19
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -839,7 +1051,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  19
+	  $ObjectID		  20
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -889,11 +1101,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    8
+    $ObjectID		    9
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    20
+    $ObjectID		    21
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1128,9 +1340,9 @@ Model {
     }
   }
   System {
-    Name		    "pitch_loop"
+    Name		    "airspeed_from_throttle_loop"
     Location		    [0, 23, 1440, 845]
-    Open		    off
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1142,30 +1354,22 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "175"
+    ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "29"
-    Block {
-      BlockType		      Constant
-      Name		      "Constant"
-      SID		      "19"
-      Position		      [370, 240, 400, 270]
-      ZOrder		      30
-      Value		      "0"
-    }
+    SIDHighWatermark	    "84"
     Block {
       BlockType		      SubSystem
-      Name		      "Pitch Loop\n"
-      SID		      "21"
-      Ports		      [3, 1]
-      Position		      [455, 158, 615, 272]
-      ZOrder		      32
+      Name		      "Airspeed from Throtle"
+      SID		      "60"
+      Ports		      [5, 1]
+      Position		      [620, 155, 790, 275]
+      ZOrder		      49
       RequestExecContextInheritance off
       Variant		      off
       System {
-	Name			"Pitch Loop\n"
+	Name			"Airspeed from Throtle"
 	Location		[0, 23, 1440, 845]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1177,21 +1381,24 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"187"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
-	  Name			  "Commanded Pitch"
-	  SID			  "23"
-	  Position		  [120, 208, 150, 222]
-	  ZOrder		  33
+	  Name			  "Commanded\nAirspeed"
+	  SID			  "66"
+	  Position		  [-80, 173, -50, 187]
+	  ZOrder		  51
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "Disturbances\n1"
-	  SID			  "26"
-	  Position		  [598, 90, 612, 120]
-	  ZOrder		  36
+	  Name			  "Distrubances\nPitch 1"
+	  SID			  "67"
+	  Position		  [213, -30, 227, 0]
+	  ZOrder		  49
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1200,10 +1407,10 @@ Model {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "Disturbances\n2\n"
-	  SID			  "22"
-	  Position		  [368, 90, 382, 120]
-	  ZOrder		  32
+	  Name			  "Disturbances\nPitch 2"
+	  SID			  "68"
+	  Position		  [118, -30, 132, 0]
+	  ZOrder		  50
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1211,28 +1418,77 @@ Model {
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "D"
-	  SID			  "2"
-	  Position		  [490, 265, 530, 305]
-	  ZOrder		  2
+	  BlockType		  Inport
+	  Name			  "Disturbances\nAirspeed"
+	  SID			  "69"
+	  Position		  [523, -30, 537, 0]
+	  ZOrder		  48
+	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  Gain			  "G.k_d_pitch"
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Pitch Input"
+	  SID			  "80"
+	  Position		  [13, -30, 27, 0]
+	  ZOrder		  55
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Airspeed Dynamics"
+	  SID			  "31"
+	  Ports			  [1, 1]
+	  Position		  [570, 122, 665, 158]
+	  ZOrder		  34
+	  LibraryVersion	  "1.338"
+	  SourceBlock		  "cstblocks/LTI System"
+	  SourceType		  "LTI Block"
+	  SourceProductName	  "Control System Toolbox"
+	  SourceProductBaseCode	  "CT"
+	  ContentPreviewEnabled	  off
+	  sys			  "T_Va"
+	  IC			  "[]"
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  SID			  "79"
+	  Position		  [445, 35, 475, 65]
+	  ZOrder		  54
+	  Gain			  "-G.a_V3"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Gain
-	  Name			  "Distubances 2\nGain"
-	  SID			  "14"
-	  Position		  [357, 155, 393, 180]
-	  ZOrder		  25
-	  BlockRotation		  270
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  Gain			  "1/G.a_theta3"
+	  Name			  "Gain2"
+	  SID			  "81"
+	  Position		  [390, 165, 420, 195]
+	  ZOrder		  56
+	  Gain			  "G.a_V2"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "I"
+	  SID			  "36"
+	  Position		  [105, 110, 135, 140]
+	  ZOrder		  39
+	  Gain			  "G.k_i_throttle_airspeed"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1240,59 +1496,394 @@ Model {
 	Block {
 	  BlockType		  Integrator
 	  Name			  "Integrator"
-	  SID			  "4"
+	  SID			  "37"
 	  Ports			  [1, 1]
-	  Position		  [690, 200, 720, 230]
-	  ZOrder		  4
+	  Position		  [155, 110, 185, 140]
+	  ZOrder		  40
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Gain
-	  Name			  "P\n"
-	  SID			  "6"
-	  Position		  [245, 197, 280, 233]
-	  ZOrder		  6
-	  Gain			  "G.k_p_pitch"
+	  Name			  "P"
+	  SID			  "35"
+	  Position		  [125, 165, 155, 195]
+	  ZOrder		  38
+	  Gain			  "G.k_p_throttle_airspeed"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "Pitch Dynamics"
-	  SID			  "1"
-	  Ports			  [1, 1]
-	  Position		  [475, 197, 570, 233]
-	  ZOrder		  1
-	  LibraryVersion	  "1.338"
-	  SourceBlock		  "cstblocks/LTI System"
-	  SourceType		  "LTI Block"
-	  SourceProductName	  "Control System Toolbox"
-	  SourceProductBaseCode	  "CT"
-	  ContentPreviewEnabled	  off
-	  sys			  "T_theta_dot_delta_e"
-	  IC			  "[]"
+	  BlockType		  SubSystem
+	  Name			  "Pitch Loop\n"
+	  SID			  "21"
+	  Ports			  [3, 1]
+	  Position		  [260, -7, 420, 107]
+	  ZOrder		  32
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  Port {
+	    PortNumber		    1
+	  }
+	  System {
+	    Name		    "Pitch Loop\n"
+	    Location		    [0, 23, 1440, 845]
+	    Open		    off
+	    PortBlocksUseCompactNotation off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "175"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Disturbances\n1"
+	      SID		      "26"
+	      Position		      [598, 90, 612, 120]
+	      ZOrder		      36
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Disturbances\n2\n"
+	      SID		      "22"
+	      Position		      [368, 90, 382, 120]
+	      ZOrder		      32
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Commanded Pitch"
+	      SID		      "23"
+	      Position		      [120, 208, 150, 222]
+	      ZOrder		      33
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "D"
+	      SID		      "2"
+	      Position		      [490, 265, 530, 305]
+	      ZOrder		      2
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Gain		      "G.k_d_pitch"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Distubances 2\nGain"
+	      SID		      "14"
+	      Position		      [357, 155, 393, 180]
+	      ZOrder		      25
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Gain		      "1/G.a_theta3"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Integrator
+	      Name		      "Integrator"
+	      SID		      "4"
+	      Ports		      [1, 1]
+	      Position		      [690, 200, 720, 230]
+	      ZOrder		      4
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "P\n"
+	      SID		      "6"
+	      Position		      [245, 197, 280, 233]
+	      ZOrder		      6
+	      Gain		      "G.k_p_pitch"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Pitch Dynamics"
+	      SID		      "1"
+	      Ports		      [1, 1]
+	      Position		      [475, 197, 570, 233]
+	      ZOrder		      1
+	      LibraryVersion	      "1.338"
+	      SourceBlock	      "cstblocks/LTI System"
+	      SourceType	      "LTI Block"
+	      SourceProductName	      "Control System Toolbox"
+	      SourceProductBaseCode   "CT"
+	      ContentPreviewEnabled   off
+	      sys		      "T_theta_dot_delta_e"
+	      IC		      "[]"
+	    }
+	    Block {
+	      BlockType		      Saturate
+	      Name		      "Saturation"
+	      SID		      "20"
+	      Ports		      [1, 1]
+	      Position		      [420, 200, 450, 230]
+	      ZOrder		      31
+	      InputPortMap	      "u0"
+	      UpperLimit	      "G.delta_e_max"
+	      LowerLimit	      "-G.delta_a_max"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "3"
+	      Ports		      [2, 1]
+	      Position		      [305, 205, 325, 225]
+	      ZOrder		      3
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      SID		      "5"
+	      Ports		      [2, 1]
+	      Position		      [205, 205, 225, 225]
+	      ZOrder		      5
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|+-"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum2"
+	      SID		      "13"
+	      Ports		      [2, 1]
+	      Position		      [365, 205, 385, 225]
+	      ZOrder		      24
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum3"
+	      SID		      "25"
+	      Ports		      [2, 1]
+	      Position		      [595, 205, 615, 225]
+	      ZOrder		      35
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "-+|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum4"
+	      SID		      "27"
+	      Ports		      [2, 1]
+	      Position		      [650, 205, 670, 225]
+	      ZOrder		      37
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "++|"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Pitch Output"
+	      SID		      "24"
+	      Position		      [775, 208, 805, 222]
+	      ZOrder		      34
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "Integrator"
+	      SrcPort		      1
+	      Points		      [17, 0]
+	      Branch {
+		ZOrder			50
+		DstBlock		"Pitch Output"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			23
+		Points			[0, 107; -527, 0]
+		DstBlock		"Sum1"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      DstBlock		      "P\n"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      38
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      39
+	      SrcBlock		      "Distubances 2\nGain"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      48
+	      SrcBlock		      "Disturbances\n2\n"
+	      SrcPort		      1
+	      DstBlock		      "Distubances 2\nGain"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      47
+	      SrcBlock		      "Saturation"
+	      SrcPort		      1
+	      DstBlock		      "Pitch Dynamics"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      69
+	      SrcBlock		      "P\n"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      71
+	      SrcBlock		      "D"
+	      SrcPort		      1
+	      Points		      [-170, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      73
+	      SrcBlock		      "Pitch Dynamics"
+	      SrcPort		      1
+	      DstBlock		      "Sum3"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      74
+	      SrcBlock		      "Disturbances\n1"
+	      SrcPort		      1
+	      Points		      [0, 24]
+	      Branch {
+		ZOrder			83
+		Points			[55, 0]
+		DstBlock		"Sum4"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			82
+		DstBlock		"Sum3"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      75
+	      SrcBlock		      "Sum3"
+	      SrcPort		      1
+	      Points		      [9, 0]
+	      Branch {
+		ZOrder			80
+		Points			[0, 70]
+		DstBlock		"D"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			78
+		DstBlock		"Sum4"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      76
+	      SrcBlock		      "Sum4"
+	      SrcPort		      1
+	      DstBlock		      "Integrator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      86
+	      SrcBlock		      "Sum2"
+	      SrcPort		      1
+	      DstBlock		      "Saturation"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      89
+	      SrcBlock		      "Commanded Pitch"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Saturate
 	  Name			  "Saturation"
-	  SID			  "20"
+	  SID			  "74"
 	  Ports			  [1, 1]
-	  Position		  [420, 200, 450, 230]
-	  ZOrder		  31
+	  Position		  [290, 165, 320, 195]
+	  ZOrder		  53
 	  InputPortMap		  "u0"
-	  UpperLimit		  "G.delta_e_max"
-	  LowerLimit		  "-G.delta_a_max"
+	  UpperLimit		  "1"
+	  LowerLimit		  "0"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum"
-	  SID			  "3"
-	  Ports			  [2, 1]
-	  Position		  [305, 205, 325, 225]
-	  ZOrder		  3
+	  SID			  "30"
+	  Ports			  [3, 1]
+	  Position		  [520, 130, 540, 150]
+	  ZOrder		  33
 	  ShowName		  off
 	  IconShape		  "round"
-	  Inputs		  "|+-"
+	  Inputs		  "+++|"
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1300,10 +1891,27 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum1"
-	  SID			  "5"
+	  SID			  "34"
 	  Ports			  [2, 1]
-	  Position		  [205, 205, 225, 225]
-	  ZOrder		  5
+	  Position		  [195, 170, 215, 190]
+	  ZOrder		  37
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	  Port {
+	    PortNumber		    1
+	  }
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum2"
+	  SID			  "39"
+	  Ports			  [2, 1]
+	  Position		  [10, 170, 30, 190]
+	  ZOrder		  42
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|+-"
@@ -1312,250 +1920,261 @@ Model {
 	  SaturateOnIntegerOverflow off
 	}
 	Block {
-	  BlockType		  Sum
-	  Name			  "Sum2"
-	  SID			  "13"
-	  Ports			  [2, 1]
-	  Position		  [365, 205, 385, 225]
-	  ZOrder		  24
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum3"
-	  SID			  "25"
-	  Ports			  [2, 1]
-	  Position		  [595, 205, 615, 225]
-	  ZOrder		  35
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "-+|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum4"
-	  SID			  "27"
-	  Ports			  [2, 1]
-	  Position		  [650, 205, 670, 225]
-	  ZOrder		  37
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
 	  BlockType		  Outport
-	  Name			  "Pitch Output"
-	  SID			  "24"
-	  Position		  [775, 208, 805, 222]
-	  ZOrder		  34
+	  Name			  "Airspeed Out"
+	  SID			  "70"
+	  Position		  [785, 133, 815, 147]
+	  ZOrder		  52
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  11
-	  SrcBlock		  "Integrator"
-	  SrcPort		  1
-	  Points		  [17, 0]
-	  Branch {
-	    ZOrder		    50
-	    DstBlock		    "Pitch Output"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    23
-	    Points		    [0, 107; -527, 0]
-	    DstBlock		    "Sum1"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  15
-	  SrcBlock		  "Sum1"
-	  SrcPort		  1
-	  DstBlock		  "P\n"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  38
-	  SrcBlock		  "Sum"
-	  SrcPort		  1
-	  DstBlock		  "Sum2"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  39
-	  SrcBlock		  "Distubances 2\nGain"
-	  SrcPort		  1
-	  DstBlock		  "Sum2"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  48
-	  SrcBlock		  "Disturbances\n2\n"
-	  SrcPort		  1
-	  DstBlock		  "Distubances 2\nGain"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  47
-	  SrcBlock		  "Saturation"
-	  SrcPort		  1
-	  DstBlock		  "Pitch Dynamics"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  69
-	  SrcBlock		  "P\n"
-	  SrcPort		  1
-	  DstBlock		  "Sum"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  71
-	  SrcBlock		  "D"
-	  SrcPort		  1
-	  Points		  [-170, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  73
-	  SrcBlock		  "Pitch Dynamics"
-	  SrcPort		  1
-	  DstBlock		  "Sum3"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  74
-	  SrcBlock		  "Disturbances\n1"
-	  SrcPort		  1
-	  Points		  [0, 24]
-	  Branch {
-	    ZOrder		    83
-	    Points		    [55, 0]
-	    DstBlock		    "Sum4"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    82
-	    DstBlock		    "Sum3"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  75
-	  SrcBlock		  "Sum3"
-	  SrcPort		  1
-	  Points		  [9, 0]
-	  Branch {
-	    ZOrder		    80
-	    Points		    [0, 70]
-	    DstBlock		    "D"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    78
-	    DstBlock		    "Sum4"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  76
-	  SrcBlock		  "Sum4"
+	  ZOrder		  70
+	  SrcBlock		  "I"
 	  SrcPort		  1
 	  DstBlock		  "Integrator"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  86
+	  ZOrder		  65
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Airspeed Dynamics"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  78
+	  SrcBlock		  "Airspeed Dynamics"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    ZOrder		    164
+	    DstBlock		    "Airspeed Out"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    79
+	    Points		    [0, 92; -675, 0]
+	    DstBlock		    "Sum2"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  ZOrder		  71
+	  SrcBlock		  "Integrator"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  69
+	  SrcBlock		  "P"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  161
+	  SrcBlock		  "Distrubances\nPitch 1"
+	  SrcPort		  1
+	  Points		  [0, 5]
+	  DstBlock		  "Pitch Loop\n"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  184
+	  SrcBlock		  "Disturbances\nAirspeed"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  75
 	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  Points		  [47, 0]
+	  Branch {
+	    ZOrder		    77
+	    DstBlock		    "P"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    76
+	    Points		    [0, -55]
+	    DstBlock		    "I"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  159
+	  SrcBlock		  "Commanded\nAirspeed"
+	  SrcPort		  1
+	  DstBlock		  "Sum2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  162
+	  SrcBlock		  "Disturbances\nPitch 2"
+	  SrcPort		  1
+	  Points		  [0, 45]
+	  DstBlock		  "Pitch Loop\n"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  165
+	  SrcBlock		  "Sum1"
 	  SrcPort		  1
 	  DstBlock		  "Saturation"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  89
-	  SrcBlock		  "Commanded Pitch"
+	  ZOrder		  180
+	  SrcBlock		  "Pitch Loop\n"
 	  SrcPort		  1
-	  DstBlock		  "Sum1"
+	  DstBlock		  "Gain1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  181
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
+	  Points		  [7, 0; 0, 78]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  182
+	  SrcBlock		  "Gain2"
+	  SrcPort		  1
+	  Points		  [63, 0; 0, -28]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  185
+	  SrcBlock		  "Pitch Input"
+	  SrcPort		  1
+	  Points		  [0, 85]
+	  DstBlock		  "Pitch Loop\n"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  186
+	  SrcBlock		  "Saturation"
+	  SrcPort		  1
+	  DstBlock		  "Gain2"
 	  DstPort		  1
 	}
       }
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      "73"
+      Position		      [540, 175, 570, 205]
+      ZOrder		      52
+      Value		      "0.2"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant1"
+      SID		      "75"
+      Position		      [540, 265, 570, 295]
+      ZOrder		      53
+      Value		      "0"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant2"
+      SID		      "84"
+      Position		      [540, 225, 570, 255]
+      ZOrder		      58
+      Value		      "0.1"
     }
     Block {
       BlockType		      Scope
       Name		      "Scope"
       SID		      "9"
       Ports		      [1]
-      Position		      [645, 199, 675, 231]
+      Position		      [840, 199, 870, 231]
       ZOrder		      9
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDisplays',{struct('Mi"
-      "nYLimReal','-0.10746','MaxYLimReal','0.96711','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.96711','Leg"
-      "endVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.68627"
-      "4509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529"
-      "411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647"
-      "058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLa"
-      "bel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Pitch Loop '}},'Show"
-      "Content',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-0.10746','MaxYLimReal','0.96711',"
-      "'YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.96711','LegendVisibility','off','XGrid',true,'YGrid',true"
-      ",'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922"
-      "],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.06666666666666"
-      "67;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.05882352941176"
-      "47 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true,'PreviousAu"
-      "toscale','X'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Position',"
-      "[105 126 1215 644])"
+      "nYLimReal','-4.58271','MaxYLimReal','39.63342','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','39.63342','L"
+      "egendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686"
+      "274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.6235"
+      "29411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.7176"
+      "47058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<Signal"
+      "Label>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames',{{'Airspeed from Thro"
+      "tle'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-4.58271','MaxYLimReal"
+      "','39.63342','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','39.63342','LegendVisibility','off','XGrid',tru"
+      "e,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.6"
+      "86274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0."
+      "0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0."
+      "0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',tr"
+      "ue,'PreviousAutoscale','X'),extmgr.Configuration('Tools','Measurements',true,'Version','2017b','Measurements',st"
+      "ruct('tcursors',struct('XCoordinates',[1.09285714285715 1.05],'YCoordinates',[2.71048845541125 1.37312477966146]"
+      ",'CursorChannels',[1 1],'WaveformCursors',true,'ShowHorizontal',false,'ShowVertical',true,'LockCursorSpacing',fa"
+      "lse,'SnapToData',false,'SettingsPanelOpen',0,'MeasurementsPanelOpen',1)))),'Version','2017b','Position',[252 59 "
+      "1006 698])"
       NumInputPorts	      "1"
     }
     Block {
       BlockType		      Step
       Name		      "Step"
-      SID		      "10"
-      Position		      [370, 160, 400, 190]
-      ZOrder		      10
+      SID		      "77"
+      Position		      [540, 135, 570, 165]
+      ZOrder		      55
+      After		      "35"
       SampleTime	      "0"
     }
     Line {
-      ZOrder		      48
-      SrcBlock		      "Constant"
-      SrcPort		      1
-      Points		      [19, 0]
-      Branch {
-	ZOrder			53
-	Points			[0, -40]
-	DstBlock		"Pitch Loop\n"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			52
-	DstBlock		"Pitch Loop\n"
-	DstPort			3
-      }
-    }
-    Line {
-      ZOrder		      50
-      SrcBlock		      "Pitch Loop\n"
+      ZOrder		      157
+      SrcBlock		      "Airspeed from Throtle"
       SrcPort		      1
       DstBlock		      "Scope"
       DstPort		      1
     }
     Line {
-      ZOrder		      51
+      ZOrder		      159
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      Points		      [23, 0]
+      Branch {
+	ZOrder			180
+	Points			[0, 25]
+	DstBlock		"Airspeed from Throtle"
+	DstPort			3
+      }
+      Branch {
+	ZOrder			163
+	DstBlock		"Airspeed from Throtle"
+	DstPort			2
+      }
+    }
+    Line {
+      ZOrder		      169
       SrcBlock		      "Step"
       SrcPort		      1
-      DstBlock		      "Pitch Loop\n"
+      Points		      [20, 0; 0, 15]
+      DstBlock		      "Airspeed from Throtle"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      165
+      SrcBlock		      "Constant1"
+      SrcPort		      1
+      Points		      [20, 0; 0, -15]
+      DstBlock		      "Airspeed from Throtle"
+      DstPort		      5
+    }
+    Line {
+      ZOrder		      176
+      SrcBlock		      "Constant2"
+      SrcPort		      1
+      DstBlock		      "Airspeed from Throtle"
+      DstPort		      4
     }
   }
 }

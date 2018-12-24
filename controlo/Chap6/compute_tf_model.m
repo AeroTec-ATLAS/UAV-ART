@@ -22,9 +22,9 @@ function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e,T_h_theta,T_h_Va,T
     a_beta2 = P.rho*Va_trim*P.S_wing*P.C_Y_delta_r/(2*P.mass);
     
     a_V1 = P.rho*Va_trim*P.S_wing*(P.C_D_0 + P.C_D_alpha*alpha_trim + ...
-                    P.C_D_delta_e*delta_e_trim) + P.rho*P.S_prop*Va_trim;
+                    P.C_D_delta_e*delta_e_trim)/P.mass + P.rho*P.S_prop*Va_trim/P.mass;
                 
-    a_V2 = P.rho*P.S_prop*P.C_prop*P.k_motor^2*delta_t_trim;
+    a_V2 = P.rho*P.S_prop*P.C_prop*P.k_motor^2*delta_t_trim/P.mass;
     
     a_V3 = P.gravity*cos(theta_trim - chi_trim);
       

@@ -1,4 +1,4 @@
-function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_Va,T_v_delta_r,G]...
+function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_v_delta_r,G]...
     = compute_tf_model(x_trim,u_trim,P)
 
     % x_trim is the trimmed state,
@@ -22,7 +22,7 @@ function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta
     G.a_beta2 = P.rho*G.Va_trim*P.S_wing*P.C_Y_delta_r/(2*P.mass);
     
     G.a_V1 = P.rho*G.Va_trim*P.S_wing*(P.C_D_0 + P.C_D_alpha*alpha_trim + ...
-                    P.C_D_delta_e*delta_e_trim)/P.mass + P.rho*P.S_prop*P.C_prop*G.Va_trim/P.mass;
+                    P.C_D_delta_e*delta_e_trim)/P.m + P.rho*P.S_prop*G.Va_trim/P.mass;
                 
     G.a_V2 = P.rho*P.S_prop*P.C_prop*P.k_motor^2*delta_t_trim/P.mass;
    
@@ -41,7 +41,6 @@ function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta
     T_Va_delta_t    = tf(G.a_V2,[1,G.a_V1]);
     %T_Va_theta      = tf(-G.a_V3,[1,G.a_V1]);
     T_Va_theta      = tf(-G.a_V3,[1,G.a_V1]);
-    T_Va            = tf(1,[1,G.a_V1]);
     T_v_delta_r     = tf(G.a_beta2,[1,G.a_beta1]);
 
 end
