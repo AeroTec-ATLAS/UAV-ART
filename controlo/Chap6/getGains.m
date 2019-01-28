@@ -1,5 +1,4 @@
 function G = getGains(P,G)
-    
     %% Roll gains
     
     G.delta_a_max = pi/4;
@@ -26,6 +25,8 @@ function G = getGains(P,G)
 % Conclusion -> the smalest k_i_roll is the better provided that disturbances are rejected 
     
     G.k_i_roll = 0.6;
+    
+    
     
     %% Course angle
     
@@ -84,12 +85,12 @@ function G = getGains(P,G)
     
     %% Airspedd from throttle
     
-    bandwidth_airspeed_pitch = bandwidth_pitch/11;
+    bandwidth_airspeed_throttle = bandwidth_pitch/7.6;
     
-    damping_airspeed_pitch = 1.6;
+    damping_airspeed_throttle = 1.3;
     
-    G.k_p_pitch_airspeed = (G.a_V1-2*damping_airspeed_pitch*bandwidth_airspeed_pitch)/(k_theta_DC*P.gravity);
-    G.k_i_pitch_airspeed = -bandwidth_airspeed_pitch^2/(k_theta_DC*P.gravity);
+    G.k_p_throttle_airspeed = (-G.a_V1+2*damping_airspeed_throttle*bandwidth_airspeed_throttle)/(G.a_V2);
+    G.k_i_throttle_airspeed = bandwidth_airspeed_throttle^2/(G.a_V2);
     
 end 
 

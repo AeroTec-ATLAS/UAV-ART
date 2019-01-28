@@ -3,6 +3,7 @@ P.gravity = 9.8;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Params for Aersonade UAV
 %physical parameters of airframe
+
 P.mass = 25;
 P.Jx   = 0.8244;
 P.Jy   = 1.135;
@@ -87,8 +88,8 @@ P.sigma_w = .7;
 % compute trim conditions using 'mavsim_chap5_trim.slx'
 % initial airspeed
 P.Va0 = 35;
-gamma = 5*pi/180;  % desired flight path angle (radians)
-R     = 150;         % desired radius (m) - use (+) for right handed orbit, 
+gamma = 0;  % desired flight path angle (radians)
+R     = inf;         % desired radius (m) - use (+) for right handed orbit, 
 
 % autopilot sample rate
 P.Ts = 0.01;
@@ -107,8 +108,7 @@ P.p0     = 0;  % initial body frame roll rate
 P.q0     = 0;  % initial body frame pitch rate
 P.r0     = 0;  % initial body frame yaw rate
 
-                    %                          (-) for left handed orbit
-                    
+                    %                          (-) for left handed orbit                   
 % run trim commands
 [x_trim, u_trim]=compute_trim('mavsim_trim',P.Va0,gamma,R);
 P.u_trim = u_trim;
@@ -130,10 +130,12 @@ P.q0     = x_trim(11);  % initial body frame pitch rate
 P.r0     = x_trim(12);  % initial body frame yaw rate
 
 % compute different transfer functions
-[T_phi_delta_a, T_chi_phi,T_theta_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_v_delta_r]...
+[T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta_e,T_h_theta,T_h_Va,T_Va_delta_t,T_Va_theta,T_Va,T_v_delta_r,G]...
     = compute_tf_model(x_trim,u_trim,P);
 
 % linearize the equations of motion around trim conditions
-[A_lon, B_lon, A_lat, B_lat] = compute_ss_model('mavsim_trim',x_trim,u_trim);
+% Acho que o Tiago desistiu
+%[A_lon, B_lon, A_lat, B_lat] = compute_ss_model('mavsim_trim',x_trim,u_trim)
 
-[k_p_roll, k_d_roll, k_i_roll] = getGains(P);
+G = getGains(P,G);
+
