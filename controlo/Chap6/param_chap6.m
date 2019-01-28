@@ -118,7 +118,7 @@ P.x_trim = x_trim;
 % initial conditions
 P.pn0    = 0;  % initial North position
 P.pe0    = 0;  % initial East position
-P.pd0    = 0;  % initial Down position (negative altitude)
+P.pd0    = -800;  % initial Down position (negative altitude)
 P.u0     = x_trim(4);  % initial velocity along body x-axis
 P.v0     = x_trim(5);  % initial velocity along body y-axis
 P.w0     = x_trim(6);  % initial velocity along body z-axis
@@ -137,5 +137,17 @@ P.r0     = x_trim(12);  % initial body frame yaw rate
 % Acho que o Tiago desistiu
 %[A_lon, B_lon, A_lat, B_lat] = compute_ss_model('mavsim_trim',x_trim,u_trim)
 
-G = getGains(P,G);
+P = getGains(P,G);
+
+% AUTOPILOT CONST
+
+P.altitude_take_off_zone = 100;
+P.altitude_hold_zone = 100;
+
+P.theta_c_climb = pi/6;
+
+%DEBUGGING
+
+
+
 
