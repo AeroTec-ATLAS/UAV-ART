@@ -31,7 +31,7 @@ function [T_phi_delta_a,T_p_delta_a,T_chi_phi,T_theta_delta_e, T_theta_dot_delta
       
     % define transfer functions
   
-    T_phi_delta_a   = tf(G.a_phi2,[1,G.a_phi1,0]);
+    T_phi_delta_a   = tf(G.a_phi2,[1,G.a_phi1,0])
     T_p_delta_a   = tf(G.a_phi2,[1,G.a_phi1]);
     T_chi_phi       = tf(P.gravity/G.Va_trim,[1,0]);
     T_theta_delta_e = tf(G.a_theta3,[1,G.a_theta1,G.a_theta2]);
