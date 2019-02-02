@@ -6,9 +6,30 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.29"
+    ComputedModelVersion    "1.30"
     NumModelReferences	    0
-    NumTestPointedSignals   0
+    NumTestPointedSignals   3
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "pitch_loop/Pitch Loop /Commanded Pitch"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "pitch_loop/Pitch Loop /Integrator"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "pitch_loop/Pitch Loop /Saturation"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
     NumProvidedFunctions    0
     NumRequiredFunctions    0
     NumResetEvents	    0
@@ -61,7 +82,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[8]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -74,11 +95,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"21"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1402.0, 646.0]
-	ZoomFactor		[1.87]
-	Offset			[0.0, 0.0]
+	ZoomFactor		[1.25]
+	Offset			[-126.62857142857143, -93.028571428571382]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -112,9 +133,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 23 14:04:42 2018"
-  RTWModifiedTimeStamp	  467424185
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Sat Feb 02 11:44:37 2019"
+  RTWModifiedTimeStamp	  471008518
+  ModelVersionFormat	  "1.%<AutoIncrement:30>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -181,6 +202,79 @@ Model {
       PropName		      "logAsSpecifiedByModelsSSIDs_"
     }
   }
+  Object {
+    $PropName		    "InstrumentedSignals"
+    $ObjectID		    8
+    $ClassName		    "Simulink.HMI.InstrumentedSignals"
+    Array {
+      Type		      "Struct"
+      Dimension		      3
+      MATStruct {
+	UUID			"e66c3e0b-e53f-4c76-9941-291a87f7b6fd"
+	BlockPath_		"Pitch Loop /Commanded Pitch"
+	SID_			"23"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"76aed07c-1e48-440e-8e95-e8f535cd91f0"
+	BlockPath_		"Pitch Loop /Saturation"
+	SID_			"20"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"cd2aeb39-80bf-4c24-8e01-c28722cb3c59"
+	BlockPath_		"Pitch Loop /Integrator"
+	SID_			"4"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      PropName		      "Persistence"
+    }
+  }
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -209,7 +303,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
+      $ObjectID		      9
       Version		      "1.17.1"
       DisabledProps	      []
       Description	      ""
@@ -217,7 +311,7 @@ Model {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -256,7 +350,7 @@ Model {
 	  DecoupledContinuousIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -297,7 +391,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -359,7 +453,7 @@ Model {
 	  DifferentSizesBufferReuse off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -474,7 +568,7 @@ Model {
 	  UnitDatabase		  ""
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -522,7 +616,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -541,7 +635,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  ""
@@ -571,7 +665,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "1.17.1"
 	  Array {
 	    Type		    "Cell"
@@ -655,7 +749,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -741,7 +835,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
+	      $ObjectID		      19
 	      Version		      "1.17.1"
 	      Array {
 		Type			"Cell"
@@ -839,7 +933,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  19
+	  $ObjectID		  20
 	  Version		  "1.17.1"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -889,11 +983,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    8
+    $ObjectID		    9
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    20
+    $ObjectID		    21
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1130,7 +1224,7 @@ Model {
   System {
     Name		    "pitch_loop"
     Location		    [0, 23, 1440, 845]
-    Open		    off
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1142,7 +1236,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "175"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "29"
     Block {
@@ -1165,7 +1259,7 @@ Model {
       System {
 	Name			"Pitch Loop\n"
 	Location		[0, 23, 1440, 845]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1177,7 +1271,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"187"
+	ZoomFactor		"189"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Commanded Pitch"
@@ -1185,6 +1279,9 @@ Model {
 	  Position		  [120, 208, 150, 222]
 	  ZOrder		  33
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Inport
@@ -1244,6 +1341,9 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [690, 200, 720, 230]
 	  ZOrder		  4
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Gain
@@ -1282,6 +1382,9 @@ Model {
 	  InputPortMap		  "u0"
 	  UpperLimit		  "G.delta_e_max"
 	  LowerLimit		  "-G.delta_a_max"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Sum
@@ -1524,6 +1627,7 @@ Model {
       SID		      "10"
       Position		      [370, 160, 400, 190]
       ZOrder		      10
+      After		      "pi/9"
       SampleTime	      "0"
     }
     Line {

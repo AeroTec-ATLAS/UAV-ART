@@ -6,9 +6,9 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.39"
+    ComputedModelVersion    "1.43"
     NumModelReferences	    0
-    NumTestPointedSignals   7
+    NumTestPointedSignals   4
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "course_loop/Course Loop/Commanded Course"
@@ -18,21 +18,7 @@ Model {
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "course_loop/Course Loop/I"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
       FullBlockPath	      "course_loop/Course Loop/LTI System"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "course_loop/Course Loop/P"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -51,13 +37,6 @@ Model {
       MaxPoints		      5000
       Decimation	      2
     }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "course_loop/Course Loop/Sum1"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
     NumProvidedFunctions    0
     NumRequiredFunctions    0
     NumResetEvents	    0
@@ -65,7 +44,13 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 2
+    NumExternalFileReferences 3
+    ExternalFileReference {
+      Reference		      "simulink/Sources/Band-Limited\nWhite Noise"
+      Path		      "course_loop/Band-Limited White Noise"
+      SID		      "59"
+      Type		      "LIBRARY_BLOCK"
+    }
     ExternalFileReference {
       Reference		      "cstblocks/LTI System"
       Path		      "course_loop/Course Loop/LTI System"
@@ -129,11 +114,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"33"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1402.0, 646.0]
 	ZoomFactor		[1.5]
-	Offset			[0.0, 0.0]
+	Offset			[-0.45851528384270068, 17.465793304221279]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -167,9 +152,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Dec 22 22:04:42 2018"
-  RTWModifiedTimeStamp	  467417081
-  ModelVersionFormat	  "1.%<AutoIncrement:39>"
+  LastModifiedDate	  "Sat Feb 02 11:33:52 2019"
+  RTWModifiedTimeStamp	  471008032
+  ModelVersionFormat	  "1.%<AutoIncrement:43>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -242,28 +227,7 @@ Model {
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      7
-      MATStruct {
-	UUID			"e49f261d-a145-4fcb-ac4f-77f25612d9ce"
-	BlockPath_		"Course Loop/Sum1"
-	SID_			"26"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
+      Dimension		      4
       MATStruct {
 	UUID			"62b9607c-f65b-4f1a-a195-4cfaebaeca63"
 	BlockPath_		"Course Loop/Roll Loop "
@@ -331,48 +295,6 @@ Model {
 	UUID			"b73a3f52-ae14-4f07-93ce-9a7ecdd2b448"
 	BlockPath_		"Course Loop/Saturation"
 	SID_			"57"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"6c6bce82-a8bd-4115-b592-9f8b3e95c50e"
-	BlockPath_		"Course Loop/I"
-	SID_			"29"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"f76bd1c3-a0aa-46d1-abbe-896c8e1876d9"
-	BlockPath_		"Course Loop/P"
-	SID_			"27"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
 	LogicalPortIndex_	[0.0]
@@ -1350,7 +1272,7 @@ Model {
   System {
     Name		    "course_loop"
     Location		    [0, 23, 1440, 845]
-    Open		    off
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1362,16 +1284,34 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "175"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "58"
+    SIDHighWatermark	    "61"
+    Block {
+      BlockType		      Reference
+      Name		      "Band-Limited\nWhite Noise"
+      SID		      "59"
+      Ports		      [0, 1]
+      Position		      [105, 205, 135, 235]
+      ZOrder		      57
+      LibraryVersion	      "1.401"
+      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+      SourceType	      "Band-Limited White Noise."
+      SourceProductName	      "Simulink"
+      SourceProductBaseCode   "SL"
+      ContentPreviewEnabled   off
+      Cov		      "[0.1]"
+      Ts		      "0.1"
+      seed		      "[23341]"
+      VectorParams1D	      on
+    }
     Block {
       BlockType		      Constant
-      Name		      "Constant"
-      SID		      "58"
-      Position		      [130, 185, 160, 215]
-      ZOrder		      56
-      Value		      "4"
+      Name		      "Constant1"
+      SID		      "60"
+      Position		      [105, 260, 135, 290]
+      ZOrder		      58
+      Value		      "8"
     }
     Block {
       BlockType		      SubSystem
@@ -1385,7 +1325,7 @@ Model {
       System {
 	Name			"Course Loop"
 	Location		[0, 23, 1440, 845]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1430,9 +1370,6 @@ Model {
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Integrator
@@ -1472,9 +1409,6 @@ Model {
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -1800,8 +1734,8 @@ Model {
 	  Position		  [380, 195, 410, 225]
 	  ZOrder		  49
 	  InputPortMap		  "u0"
-	  UpperLimit		  "pi/4"
-	  LowerLimit		  "-pi/4"
+	  UpperLimit		  "pi/6"
+	  LowerLimit		  "-pi/6"
 	  Port {
 	    PortNumber		    1
 	  }
@@ -1834,9 +1768,6 @@ Model {
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Sum
@@ -2044,53 +1975,24 @@ Model {
       NumInputPorts	      "1"
     }
     Block {
-      BlockType		      Scope
-      Name		      "Scope1"
-      SID		      "45"
-      Ports		      [1]
-      Position		      [535, 314, 565, 346]
-      ZOrder		      48
-      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
-      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
-      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain"
-      "',true,'SerializedDisplays',{struct('MinYLimReal','-0.12816','MaxYLimReal','0.49771','YLabelReal','','MinYLimMag"
-      "','0.00000','MaxYLimMag','0.49771','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
-      "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
-      "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
-      "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
-      " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
-      "',1,'LineNames',{{'Sum'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-0."
-      "12816','MaxYLimReal','0.49771','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','0.49771','LegendVisibility',"
-      "'off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.68"
-      "6274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.1607"
-      "8431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.07"
-      "45098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Pl"
-      "ot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Measurements',struct('tcursors',struct('X"
-      "Coordinates',[4.24486803519063 6.48826979472143],'YCoordinates',[-0.0648286968702084 -0.0499498651265813],'Curso"
-      "rChannels',[1 1],'WaveformCursors',true,'ShowHorizontal',false,'ShowVertical',true,'LockCursorSpacing',false,'Sn"
-      "apToData',false,'SettingsPanelOpen',0,'MeasurementsPanelOpen',1)),'Version','2017b')),'Version','2017b','Positio"
-      "n',[237 254 994 451])"
-      NumInputPorts	      "1"
-    }
-    Block {
       BlockType		      Step
       Name		      "Step"
       SID		      "43"
-      Position		      [130, 245, 160, 275]
+      Position		      [195, 245, 225, 275]
       ZOrder		      46
-      After		      "0.4363"
+      After		      "pi/6"
       SampleTime	      "0"
     }
     Block {
       BlockType		      Sum
       Name		      "Sum"
-      SID		      "46"
+      SID		      "61"
       Ports		      [2, 1]
-      Position		      [485, 320, 505, 340]
-      ZOrder		      49
+      Position		      [155, 190, 175, 210]
+      ZOrder		      59
       ShowName		      off
       IconShape		      "round"
-      Inputs		      "-+|"
+      Inputs		      "|++"
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -2099,45 +2001,35 @@ Model {
       ZOrder		      78
       SrcBlock		      "Step"
       SrcPort		      1
-      Points		      [38, 0]
-      Branch {
-	ZOrder			101
-	Points			[0, 70]
-	DstBlock		"Sum"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			84
-	DstBlock		"Course Loop"
-	DstPort			2
-      }
+      DstBlock		      "Course Loop"
+      DstPort		      2
     }
     Line {
       ZOrder		      79
       SrcBlock		      "Course Loop"
       SrcPort		      1
-      Points		      [35, 0]
-      Branch {
-	ZOrder			81
-	DstBlock		"Sum"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			80
-	DstBlock		"Scope"
-	DstPort			1
-      }
-    }
-    Line {
-      ZOrder		      86
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      DstBlock		      "Scope1"
+      DstBlock		      "Scope"
       DstPort		      1
     }
     Line {
-      ZOrder		      104
-      SrcBlock		      "Constant"
+      ZOrder		      108
+      SrcBlock		      "Band-Limited\nWhite Noise"
+      SrcPort		      1
+      Points		      [5, 0; 0, -20]
+      DstBlock		      "Sum"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      109
+      SrcBlock		      "Constant1"
+      SrcPort		      1
+      Points		      [25, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      110
+      SrcBlock		      "Sum"
       SrcPort		      1
       DstBlock		      "Course Loop"
       DstPort		      1

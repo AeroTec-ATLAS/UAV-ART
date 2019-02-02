@@ -6,12 +6,33 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.40"
+    ComputedModelVersion    "1.45"
     NumModelReferences	    0
-    NumTestPointedSignals   1
+    NumTestPointedSignals   4
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "altitude_from_pitch_loop/Altitude from Pitch/Commanded Altitude"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "altitude_from_pitch_loop/Altitude from Pitch/Altitude Dynamics"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "altitude_from_pitch_loop/Altitude from Pitch/Pitch Loop "
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "altitude_from_pitch_loop/Altitude from Pitch/Saturation"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -23,7 +44,7 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 2
+    NumExternalFileReferences 5
     ExternalFileReference {
       Reference		      "cstblocks/LTI System"
       Path		      "altitude_from_pitch_loop/Altitude from Pitch/Altitude Dynamics"
@@ -34,6 +55,24 @@ Model {
       Reference		      "cstblocks/LTI System"
       Path		      "altitude_from_pitch_loop/Altitude from Pitch/Pitch Loop /Pitch Dynamics"
       SID		      "1"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "simulink/Sources/Band-Limited\nWhite Noise"
+      Path		      "altitude_from_pitch_loop/Band-Limited White Noise"
+      SID		      "79"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "simulink/Sources/Band-Limited\nWhite Noise"
+      Path		      "altitude_from_pitch_loop/Band-Limited White Noise1"
+      SID		      "80"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "simulink/Sources/Band-Limited\nWhite Noise"
+      Path		      "altitude_from_pitch_loop/Band-Limited White Noise2"
+      SID		      "81"
       Type		      "LIBRARY_BLOCK"
     }
     OrderedModelArguments   1
@@ -74,7 +113,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -125,9 +164,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Dec 23 14:23:15 2018"
-  RTWModifiedTimeStamp	  467475681
-  ModelVersionFormat	  "1.%<AutoIncrement:40>"
+  LastModifiedDate	  "Sat Feb 02 11:58:13 2019"
+  RTWModifiedTimeStamp	  471009492
+  ModelVersionFormat	  "1.%<AutoIncrement:45>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -200,11 +239,74 @@ Model {
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      1
+      Dimension		      4
       MATStruct {
 	UUID			"a4d0b6c4-c62e-47c0-a288-bcb13b24c9b0"
 	BlockPath_		"Altitude from Pitch/Altitude Dynamics"
 	SID_			"31"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"7aed2d01-2cbf-41de-ba53-89bf0e59b1f7"
+	BlockPath_		"Altitude from Pitch/Saturation"
+	SID_			"74"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"b87acfc5-c961-42a2-9376-872bff66a722"
+	BlockPath_		"Altitude from Pitch/Commanded Altitude"
+	SID_			"66"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"185058c5-e470-4a77-a2f7-408a02cf9079"
+	BlockPath_		"Altitude from Pitch/Pitch Loop "
+	SID_			"21"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
 	LogicalPortIndex_	[0.0]
@@ -266,7 +368,7 @@ Model {
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "40"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -1112,15 +1214,6 @@ Model {
       Floating		      off
     }
     Block {
-      BlockType		      Step
-      Time		      "1"
-      Before		      "0"
-      After		      "1"
-      SampleTime	      "-1"
-      VectorParams1D	      on
-      ZeroCross		      on
-    }
-    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -1188,13 +1281,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "175"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "78"
+    SIDHighWatermark	    "81"
     Block {
       BlockType		      SubSystem
       Name		      "Altitude from Pitch"
       SID		      "60"
       Ports		      [4, 1]
-      Position		      [620, 155, 790, 275]
+      Position		      [645, 155, 815, 275]
       ZOrder		      49
       RequestExecContextInheritance off
       Variant		      off
@@ -1213,7 +1306,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"163"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Commanded\nAltitude"
@@ -1221,6 +1314,9 @@ Model {
 	  Position		  [-80, 173, -50, 187]
 	  ZOrder		  51
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Inport
@@ -1331,6 +1427,9 @@ Model {
 	  ZOrder		  32
 	  RequestExecContextInheritance	off
 	  Variant		  off
+	  Port {
+	    PortNumber		    1
+	  }
 	  System {
 	    Name		    "Pitch Loop\n"
 	    Location		    [0, 23, 1440, 845]
@@ -1346,7 +1445,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "187"
+	    ZoomFactor		    "189"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Disturbances\n1"
@@ -1671,6 +1770,9 @@ Model {
 	  InputPortMap		  "u0"
 	  UpperLimit		  "pi/4"
 	  LowerLimit		  "-pi/4"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Sum
@@ -1845,20 +1947,66 @@ Model {
       }
     }
     Block {
-      BlockType		      Constant
-      Name		      "Constant"
-      SID		      "73"
-      Position		      [540, 200, 570, 230]
-      ZOrder		      52
-      Value		      "0.2"
+      BlockType		      Reference
+      Name		      "Band-Limited\nWhite Noise"
+      SID		      "79"
+      Ports		      [0, 1]
+      Position		      [560, 245, 590, 275]
+      ZOrder		      56
+      LibraryVersion	      "1.401"
+      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+      SourceType	      "Band-Limited White Noise."
+      SourceProductName	      "Simulink"
+      SourceProductBaseCode   "SL"
+      ContentPreviewEnabled   off
+      Cov		      "[0.05]"
+      Ts		      "0.1"
+      seed		      "[23341]"
+      VectorParams1D	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Band-Limited\nWhite Noise1"
+      SID		      "80"
+      Ports		      [0, 1]
+      Position		      [475, 165, 505, 195]
+      ZOrder		      57
+      LibraryVersion	      "1.401"
+      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+      SourceType	      "Band-Limited White Noise."
+      SourceProductName	      "Simulink"
+      SourceProductBaseCode   "SL"
+      ContentPreviewEnabled   off
+      Cov		      "[0.05]"
+      Ts		      "0.1"
+      seed		      "[23551]"
+      VectorParams1D	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Band-Limited\nWhite Noise2"
+      SID		      "81"
+      Ports		      [0, 1]
+      Position		      [465, 225, 495, 255]
+      ZOrder		      58
+      LibraryVersion	      "1.401"
+      SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
+      SourceType	      "Band-Limited White Noise."
+      SourceProductName	      "Simulink"
+      SourceProductBaseCode   "SL"
+      ContentPreviewEnabled   off
+      Cov		      "[0.05]"
+      Ts		      "0.1"
+      seed		      "[87587]"
+      VectorParams1D	      on
     }
     Block {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      "75"
-      Position		      [540, 245, 570, 275]
+      Position		      [575, 155, 605, 185]
       ZOrder		      53
-      Value		      "pi/30"
+      Value		      "10"
     }
     Block {
       BlockType		      Scope
@@ -1889,16 +2037,6 @@ Model {
       "61 56 1006 698])"
       NumInputPorts	      "1"
     }
-    Block {
-      BlockType		      Step
-      Name		      "Step"
-      SID		      "77"
-      Position		      [540, 155, 570, 185]
-      ZOrder		      55
-      Time		      "50"
-      After		      "2"
-      SampleTime	      "0"
-    }
     Line {
       ZOrder		      157
       SrcBlock		      "Altitude from Pitch"
@@ -1907,36 +2045,34 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      159
-      SrcBlock		      "Constant"
+      ZOrder		      172
+      SrcBlock		      "Band-Limited\nWhite Noise2"
       SrcPort		      1
-      Points		      [23, 0]
-      Branch {
-	ZOrder			164
-	Points			[0, 15]
-	DstBlock		"Altitude from Pitch"
-	DstPort			3
-      }
-      Branch {
-	ZOrder			163
-	Points			[0, -15]
-	DstBlock		"Altitude from Pitch"
-	DstPort			2
-      }
+      Points		      [70, 0; 0, -10]
+      DstBlock		      "Altitude from Pitch"
+      DstPort		      3
     }
     Line {
-      ZOrder		      165
+      ZOrder		      173
+      SrcBlock		      "Band-Limited\nWhite Noise1"
+      SrcPort		      1
+      Points		      [18, 0; 0, 20]
+      DstBlock		      "Altitude from Pitch"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      174
       SrcBlock		      "Constant1"
       SrcPort		      1
       DstBlock		      "Altitude from Pitch"
-      DstPort		      4
+      DstPort		      1
     }
     Line {
-      ZOrder		      169
-      SrcBlock		      "Step"
+      ZOrder		      175
+      SrcBlock		      "Band-Limited\nWhite Noise"
       SrcPort		      1
       DstBlock		      "Altitude from Pitch"
-      DstPort		      1
+      DstPort		      4
     }
   }
 }

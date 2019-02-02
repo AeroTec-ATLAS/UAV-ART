@@ -4,29 +4,29 @@ function G = getGains(P,G)
     G.delta_a_max = pi/6;
     e_phi_max = pi/12;
     
-    G.k_p_roll = 1.2;
+    G.k_p_roll = 1;
  
     bandwidth_roll = sqrt(abs(G.a_phi2)*G.k_p_roll);
-    damping_roll = 0.9;
+    damping_roll = 1.4;
     
     G.k_d_roll = (2*damping_roll*bandwidth_roll-G.a_phi1)/G.a_phi2;
     
 
     
-    s = tf('s');
-    tf_roll = G.a_phi2/(s*(s^2 + (G.a_phi1 + G.a_phi2*G.k_d_roll)*s + ...
-              G.a_phi2*G.k_p_roll));
-          
-    rlocus(tf_roll);
-    
-    
-    %G.k_i_roll = 0.6;
-    G.k_i_roll = 0.2;
+%     s = tf('s');
+%     tf_roll = G.a_phi2/(s*(s^2 + (G.a_phi1 + G.a_phi2*G.k_d_roll)*s + ...
+%               G.a_phi2*G.k_p_roll));
+%           
+%     rlocus(tf_roll);
+%     
+%     
+%     %G.k_i_roll = 0.6;
+    G.k_i_roll = 0.4;
     
    
     %% Course angle
     
-    bandwidth_course = bandwidth_roll/38;
+    bandwidth_course = bandwidth_roll/50;
     damping_course = 1.8;
     
     G.k_p_course = 2*damping_course*bandwidth_course*G.Va_trim/P.gravity;
@@ -47,7 +47,7 @@ function G = getGains(P,G)
     
      %% Pitch
     
-    G.delta_e_max = pi/4;
+    G.delta_e_max = pi/6;
     e_theta_max = pi/18;
     
     damping_pitch = 0.85;
@@ -63,7 +63,7 @@ function G = getGains(P,G)
     %% Altitude from pitch
     
     bandwidth_altitude_pitch = bandwidth_pitch/35;
-    
+ 
     damping_altitude_pitch = 4;
     
     G.k_i_pitch_altitude = bandwidth_altitude_pitch^2/(k_theta_DC*G.Va_trim);
