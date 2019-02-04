@@ -56,12 +56,12 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,chi,phi,thet
     %----------------------------------------------------------
     % lateral autopilot
     if t==0
-        phi_c   = course_hold(chi_c, chi, 1, P.G.k_p_course, P.G.k_i_course, -pi/4, pi/4, P.Ts);
+        phi_c   = course_hold(chi_c, chi, 1, P.G.k_p_course, P.G.k_i_course, -pi/7.2, pi/7.2, P.Ts);
         %delta_r = sideslip_hold(beta, 1,  P.G.k_p_sideslip, P.G.k_i_sideslip, -P.G.delta_r_max, P.G.delta_r_max, P.Ts);
         delta_r = 0;
         delta_a = roll_hold(phi_c, phi, 1, p, P.G.k_p_roll, P.G.k_i_roll, P.G.k_d_roll, -P.G.delta_a_max, P.G.delta_a_max, P.Ts);
     else
-        phi_c   = course_hold(chi_c, chi, 0, P.G.k_p_course ,P.G.k_i_course, -pi/4, pi/4, P.Ts);
+        phi_c   = course_hold(chi_c, chi, 0, P.G.k_p_course ,P.G.k_i_course, -pi/7.2, pi/7.2, P.Ts);
         %delta_r = sideslip_hold(beta, 0,  P.G.k_p_sideslip, P.G.k_i_sideslip, -P.G.delta_r_max, P.G.delta_r_max, P.Ts);
         delta_r = 0;
         delta_a = roll_hold(phi_c, phi, 0, p, P.G.k_p_roll, P.G.k_i_roll, P.G.k_d_roll, -P.G.delta_a_max, P.G.delta_a_max, P.Ts);
@@ -104,20 +104,20 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,chi,phi,thet
     % implement state machine
     switch altitude_state
         case 1  % in take-off zone 
-            delta_t = 0.5;
-            theta_c = P.theta_c_climb;
+            delta_t = P.throttle_take_off;
+            theta_c = P.theta_c_climb*(1-exp(-t));
             
         case 2  % climb zone
-            delta_t = 0.5;
-            theta_c = airspeed_pitch_hold(Va_c, Va, flag, P.G.k_p_pitch_airspeed, P.G.k_i_pitch_airspeed, -pi/4, pi/4, P.Ts);
+            delta_t = P.throttle_take_off;
+            theta_c = airspeed_pitch_hold(Va_c, Va, flag, P.G.k_p_pitch_airspeed, P.G.k_i_pitch_airspeed, -pi/6, pi/6, P.Ts);
            
         case 3 % descend zone
             delta_t = 0;
-            theta_c = airspeed_pitch_hold(Va_c, Va, flag, P.G.k_p_pitch_airspeed, P.G.k_i_pitch_airspeed, -pi/4, pi/4, P.Ts);
+            theta_c = airspeed_pitch_hold(Va_c, Va, flag, P.G.k_p_pitch_airspeed, P.G.k_i_pitch_airspeed, -pi/6, pi/6, P.Ts);
             
         case 4 % altitude hold zone
             delta_t = airspeed_throtle_hold(Va_c, Va, P.u_trim(4), flag, P.G.k_p_throttle_airspeed, P.G.k_i_throttle_airspeed, 0 , 1, P.Ts); 
-            theta_c = altitude_pitch_hold(h_c, h, flag, P.G.k_p_pitch_altitude, P.G.k_i_pitch_altitude, -pi/4, pi/4, P.Ts);            
+            theta_c = altitude_pitch_hold(h_c, h, flag, P.G.k_p_pitch_altitude, P.G.k_i_pitch_altitude, -pi/6, pi/6, P.Ts);            
     end
     
      delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, P.G.k_d_pitch, -P.G.delta_e_max, P.G.delta_e_max);
@@ -212,7 +212,7 @@ function u = roll_hold(y_c, y, flag, p_rate, kp, ki, kd, lowLim, upLim, Ts)
     
     error = y_c - y;
     i = i + (Ts/2)*(error + p);
-    p= error;
+    p = error;
     
     u = sat(kp*p+ki*i-kd*p_rate, upLim, lowLim);
     

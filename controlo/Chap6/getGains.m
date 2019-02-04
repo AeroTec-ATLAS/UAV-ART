@@ -1,7 +1,7 @@
-function G = getGains(P,G)
+function P = getGains(P,G)
     %% Roll gains
     
-    G.delta_a_max = pi/6;
+    G.delta_a_max = pi/9;
     e_phi_max = pi/12;
     
     G.k_p_roll = 1;
@@ -26,7 +26,7 @@ function G = getGains(P,G)
    
     %% Course angle
     
-    bandwidth_course = bandwidth_roll/50;
+    bandwidth_course = bandwidth_roll/10;
     damping_course = 1.8;
     
     G.k_p_course = 2*damping_course*bandwidth_course*G.Va_trim/P.gravity;
@@ -61,9 +61,9 @@ function G = getGains(P,G)
     
     %% Altitude from pitch
     
-    bandwidth_altitude_pitch = bandwidth_pitch/35;
+    bandwidth_altitude_pitch = bandwidth_pitch/38;
  
-    damping_altitude_pitch = 4;
+    damping_altitude_pitch = 2;
     
     G.k_i_pitch_altitude = bandwidth_altitude_pitch^2/(k_theta_DC*G.Va_trim);
     G.k_p_pitch_altitude = 2*damping_altitude_pitch*bandwidth_altitude_pitch/(k_theta_DC*G.Va_trim);
@@ -80,12 +80,14 @@ function G = getGains(P,G)
     
     %% Airspedd from throttle
     
-    bandwidth_airspeed_throttle = 0.7863;
-    damping_airspeed_throttle = 1.3;
+    bandwidth_airspeed_throttle = 0.2;
+    damping_airspeed_throttle = 1.4;
     
     G.k_p_throttle_airspeed = (-G.a_V1+2*damping_airspeed_throttle*bandwidth_airspeed_throttle)/(G.a_V2);
     G.k_i_throttle_airspeed = bandwidth_airspeed_throttle^2/(G.a_V2);
     
+    %G.k_p_throttle_airspeed = 0;
+    %G.k_i_throttle_airspeed = 0;
      %% Save in struct P
     
     P.G = G;
