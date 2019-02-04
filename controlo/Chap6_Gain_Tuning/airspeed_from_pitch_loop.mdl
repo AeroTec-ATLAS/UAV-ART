@@ -6,9 +6,9 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.49"
+    ComputedModelVersion    "1.51"
     NumModelReferences	    0
-    NumTestPointedSignals   7
+    NumTestPointedSignals   4
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/Commanded Airspeed"
@@ -25,20 +25,6 @@ Model {
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/Integrator"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/P"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
       FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/Pitch Loop "
       LogSignal		      1
       MaxPoints		      5000
@@ -47,13 +33,6 @@ Model {
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/Saturation"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "airspeed_from_pitch_loop/Airspeed from Pitch/Sum1"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -107,7 +86,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 23.0, 1440.0, 822.0]
+      Location		      [0.0, 23.0, 1440.0, 823.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -116,7 +95,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[8]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -129,11 +108,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"60"
-	Extents			[1402.0, 646.0]
-	ZoomFactor		[1.4858948471202507]
-	Offset			[-104.00005685953425, -72.377427902110639]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1402.0, 647.0]
+	ZoomFactor		[2.0]
+	Offset			[354.0, 68.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -153,7 +132,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABzAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACE/////wAAAAAAAAAA/////wEAAAD2/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAF6/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOh/////wAAAAAAAAAA/"
@@ -167,9 +146,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 24 12:46:56 2018"
-  RTWModifiedTimeStamp	  467556290
-  ModelVersionFormat	  "1.%<AutoIncrement:49>"
+  LastModifiedDate	  "Mon Feb 04 10:01:49 2019"
+  RTWModifiedTimeStamp	  471175309
+  ModelVersionFormat	  "1.%<AutoIncrement:51>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -242,7 +221,7 @@ Model {
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      7
+      Dimension		      4
       MATStruct {
 	UUID			"ec8d4122-2b4b-4d70-a657-bec748b16386"
 	BlockPath_		"Airspeed from Pitch/Airspeed Dynamics Commanded Theta"
@@ -286,72 +265,9 @@ Model {
 	}
       }
       MATStruct {
-	UUID			"35b12e1b-e9fa-4c74-84b6-8ecf78cb143f"
-	BlockPath_		"Airspeed from Pitch/Integrator"
-	SID_			"37"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"4185b122-f3ea-4c04-91d2-fc142759352b"
-	BlockPath_		"Airspeed from Pitch/P"
-	SID_			"35"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
 	UUID			"652342ab-a733-40df-b055-42507d2e6d6a"
 	BlockPath_		"Airspeed from Pitch/Saturation"
 	SID_			"74"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"6dc5c7ec-4139-4a41-bc0d-a14063470413"
-	BlockPath_		"Airspeed from Pitch/Sum1"
-	SID_			"34"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
 	LogicalPortIndex_	[0.0]
@@ -434,7 +350,7 @@ Model {
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
-	  StopTime		  "30"
+	  StopTime		  "60"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -1341,8 +1257,8 @@ Model {
   }
   System {
     Name		    "airspeed_from_pitch_loop"
-    Location		    [0, 23, 1440, 845]
-    Open		    off
+    Location		    [0, 23, 1440, 846]
+    Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1356,7 +1272,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "84"
+    SIDHighWatermark	    "86"
     Block {
       BlockType		      SubSystem
       Name		      "Airspeed from Pitch"
@@ -1368,8 +1284,8 @@ Model {
       Variant		      off
       System {
 	Name			"Airspeed from Pitch"
-	Location		[0, 23, 1440, 845]
-	Open			on
+	Location		[0, 23, 1440, 846]
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1500,9 +1416,6 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [130, 110, 160, 140]
 	  ZOrder		  40
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Gain
@@ -1514,9 +1427,6 @@ Model {
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -1901,9 +1811,6 @@ Model {
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Sum
@@ -2121,10 +2028,34 @@ Model {
       BlockType		      Step
       Name		      "Step"
       SID		      "77"
-      Position		      [540, 150, 570, 180]
+      Position		      [455, 95, 485, 125]
       ZOrder		      55
-      After		      "5"
+      After		      "10"
       SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Step
+      Name		      "Step1"
+      SID		      "85"
+      Position		      [455, 150, 485, 180]
+      ZOrder		      59
+      Time		      "30"
+      After		      "10"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      "86"
+      Ports		      [2, 1]
+      Position		      [550, 100, 570, 120]
+      ZOrder		      60
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "|++"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Line {
       ZOrder		      157
@@ -2152,13 +2083,6 @@ Model {
       }
     }
     Line {
-      ZOrder		      169
-      SrcBlock		      "Step"
-      SrcPort		      1
-      DstBlock		      "Airspeed from Pitch"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      165
       SrcBlock		      "Constant1"
       SrcPort		      1
@@ -2173,6 +2097,29 @@ Model {
       Points		      [8, 0; 0, -10]
       DstBlock		      "Airspeed from Pitch"
       DstPort		      4
+    }
+    Line {
+      ZOrder		      180
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      Points		      [25, 0; 0, 55]
+      DstBlock		      "Airspeed from Pitch"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      181
+      SrcBlock		      "Step1"
+      SrcPort		      1
+      Points		      [70, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      183
+      SrcBlock		      "Step"
+      SrcPort		      1
+      DstBlock		      "Sum"
+      DstPort		      1
     }
   }
 }

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.45"
+    ComputedModelVersion    "1.47"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
@@ -164,9 +164,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Feb 02 11:58:13 2019"
-  RTWModifiedTimeStamp	  471009492
-  ModelVersionFormat	  "1.%<AutoIncrement:45>"
+  LastModifiedDate	  "Mon Feb 04 09:51:18 2019"
+  RTWModifiedTimeStamp	  471174677
+  ModelVersionFormat	  "1.%<AutoIncrement:47>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1281,7 +1281,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "175"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "81"
+    SIDHighWatermark	    "82"
     Block {
       BlockType		      SubSystem
       Name		      "Altitude from Pitch"
@@ -1951,7 +1951,7 @@ Model {
       Name		      "Band-Limited\nWhite Noise"
       SID		      "79"
       Ports		      [0, 1]
-      Position		      [560, 245, 590, 275]
+      Position		      [385, 270, 415, 300]
       ZOrder		      56
       LibraryVersion	      "1.401"
       SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -1969,7 +1969,7 @@ Model {
       Name		      "Band-Limited\nWhite Noise1"
       SID		      "80"
       Ports		      [0, 1]
-      Position		      [475, 165, 505, 195]
+      Position		      [385, 185, 415, 215]
       ZOrder		      57
       LibraryVersion	      "1.401"
       SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -1987,7 +1987,7 @@ Model {
       Name		      "Band-Limited\nWhite Noise2"
       SID		      "81"
       Ports		      [0, 1]
-      Position		      [465, 225, 495, 255]
+      Position		      [385, 225, 415, 255]
       ZOrder		      58
       LibraryVersion	      "1.401"
       SourceBlock	      "simulink/Sources/Band-Limited\nWhite Noise"
@@ -1999,6 +1999,14 @@ Model {
       Ts		      "0.1"
       seed		      "[87587]"
       VectorParams1D	      on
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      "82"
+      Position		      [565, 215, 595, 245]
+      ZOrder		      59
+      Value		      "0"
     }
     Block {
       BlockType		      Constant
@@ -2045,22 +2053,6 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      172
-      SrcBlock		      "Band-Limited\nWhite Noise2"
-      SrcPort		      1
-      Points		      [70, 0; 0, -10]
-      DstBlock		      "Altitude from Pitch"
-      DstPort		      3
-    }
-    Line {
-      ZOrder		      173
-      SrcBlock		      "Band-Limited\nWhite Noise1"
-      SrcPort		      1
-      Points		      [18, 0; 0, 20]
-      DstBlock		      "Altitude from Pitch"
-      DstPort		      2
-    }
-    Line {
       ZOrder		      174
       SrcBlock		      "Constant1"
       SrcPort		      1
@@ -2068,11 +2060,27 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      175
-      SrcBlock		      "Band-Limited\nWhite Noise"
+      ZOrder		      176
+      SrcBlock		      "Constant"
       SrcPort		      1
-      DstBlock		      "Altitude from Pitch"
-      DstPort		      4
+      Points		      [11, 0]
+      Branch {
+	ZOrder			181
+	Points			[0, -30]
+	DstBlock		"Altitude from Pitch"
+	DstPort			2
+      }
+      Branch {
+	ZOrder			179
+	DstBlock		"Altitude from Pitch"
+	DstPort			3
+      }
+      Branch {
+	ZOrder			182
+	Points			[0, 30]
+	DstBlock		"Altitude from Pitch"
+	DstPort			4
+      }
     }
   }
 }

@@ -6,9 +6,9 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.53"
+    ComputedModelVersion    "1.54"
     NumModelReferences	    0
-    NumTestPointedSignals   7
+    NumTestPointedSignals   4
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Commanded Airspeed"
@@ -25,20 +25,6 @@ Model {
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Integrator"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/P"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
       FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Pitch Loop "
       LogSignal		      1
       MaxPoints		      5000
@@ -47,13 +33,6 @@ Model {
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Saturation"
-      LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      ""
-      FullBlockPath	      "airspeed_from_throttle_loop/Airspeed from Throtle/Sum1"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -107,7 +86,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 23.0, 1440.0, 822.0]
+      Location		      [0.0, 23.0, 1440.0, 823.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -131,7 +110,7 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1402.0, 646.0]
+	Extents			[1402.0, 647.0]
 	ZoomFactor		[2.0]
 	Offset			[284.40000000000009, 77.699999999999932]
       }
@@ -153,7 +132,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABzAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACE/////wAAAAAAAAAA/////wEAAAD2/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAF6/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOh/////wAAAAAAAAAA/"
@@ -167,9 +146,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Dec 24 13:20:46 2018"
-  RTWModifiedTimeStamp	  467558425
-  ModelVersionFormat	  "1.%<AutoIncrement:53>"
+  LastModifiedDate	  "Mon Feb 04 10:13:25 2019"
+  RTWModifiedTimeStamp	  471176004
+  ModelVersionFormat	  "1.%<AutoIncrement:54>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -242,7 +221,7 @@ Model {
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      7
+      Dimension		      4
       MATStruct {
 	UUID			"ec8d4122-2b4b-4d70-a657-bec748b16386"
 	BlockPath_		"Airspeed from Throtle/Airspeed Dynamics"
@@ -286,72 +265,9 @@ Model {
 	}
       }
       MATStruct {
-	UUID			"35b12e1b-e9fa-4c74-84b6-8ecf78cb143f"
-	BlockPath_		"Airspeed from Throtle/Integrator"
-	SID_			"37"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"4185b122-f3ea-4c04-91d2-fc142759352b"
-	BlockPath_		"Airspeed from Throtle/P"
-	SID_			"35"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
 	UUID			"652342ab-a733-40df-b055-42507d2e6d6a"
 	BlockPath_		"Airspeed from Throtle/Saturation"
 	SID_			"74"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[1024.0]
-	TargetBufferedStreaming_ [0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-      }
-      MATStruct {
-	UUID			"6dc5c7ec-4139-4a41-bc0d-a14063470413"
-	BlockPath_		"Airspeed from Throtle/Sum1"
-	SID_			"34"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
 	LogicalPortIndex_	[0.0]
@@ -1341,7 +1257,7 @@ Model {
   }
   System {
     Name		    "airspeed_from_throttle_loop"
-    Location		    [0, 23, 1440, 845]
+    Location		    [0, 23, 1440, 846]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1356,7 +1272,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "84"
+    SIDHighWatermark	    "85"
     Block {
       BlockType		      SubSystem
       Name		      "Airspeed from Throtle"
@@ -1368,7 +1284,7 @@ Model {
       Variant		      off
       System {
 	Name			"Airspeed from Throtle"
-	Location		[0, 23, 1440, 845]
+	Location		[0, 23, 1440, 846]
 	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -1381,7 +1297,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"149"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Commanded\nAirspeed"
@@ -1458,6 +1374,7 @@ Model {
 	  IC			  "[]"
 	  Port {
 	    PortNumber		    1
+	    DataLogging		    on
 	  }
 	}
 	Block {
@@ -1500,9 +1417,6 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [155, 110, 185, 140]
 	  ZOrder		  40
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Gain
@@ -1514,9 +1428,6 @@ Model {
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -1901,9 +1812,6 @@ Model {
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
-	  Port {
-	    PortNumber		    1
-	  }
 	}
 	Block {
 	  BlockType		  Sum
@@ -2035,14 +1943,6 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  181
-	  SrcBlock		  "Gain1"
-	  SrcPort		  1
-	  Points		  [7, 0; 0, 78]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
 	  ZOrder		  182
 	  SrcBlock		  "Gain2"
 	  SrcPort		  1
@@ -2087,7 +1987,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "84"
-      Position		      [540, 225, 570, 255]
+      Position		      [460, 225, 490, 255]
       ZOrder		      58
       Value		      "0.1"
     }
@@ -2170,7 +2070,7 @@ Model {
       DstPort		      5
     }
     Line {
-      ZOrder		      176
+      ZOrder		      186
       SrcBlock		      "Constant2"
       SrcPort		      1
       DstBlock		      "Airspeed from Throtle"

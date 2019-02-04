@@ -43,7 +43,6 @@ function G = getGains(P,G)
    
     G.k_p_sideslip = (G.delta_r_max/sideslip_max);
     G.k_i_sideslip = bandwidth_sideslip^2/abs(G.a_beta2);
-    G.k_i_sideslip = 180;
     
      %% Pitch
     

@@ -6,12 +6,33 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.30"
+    ComputedModelVersion    "1.31"
     NumModelReferences	    0
-    NumTestPointedSignals   1
+    NumTestPointedSignals   4
     TestPointedSignal {
       SignalName	      ""
       FullBlockPath	      "sidesplip_loop/Sideslip Loop "
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "sidesplip_loop/Sideslip Loop /Commanded Sideslip"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "sidesplip_loop/Sideslip Loop /Rudder Saturation"
+      LogSignal		      1
+      MaxPoints		      5000
+      Decimation	      2
+    }
+    TestPointedSignal {
+      SignalName	      ""
+      FullBlockPath	      "sidesplip_loop/Sideslip Loop /Sideslip Dynamics"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -59,7 +80,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 23.0, 1440.0, 822.0]
+      Location		      [0.0, 23.0, 1440.0, 823.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -74,18 +95,18 @@ Model {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[0]
+	Visible			[1]
       }
       Object {
 	$PropName		"EditorsInfo"
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1402.0, 676.0]
-	ZoomFactor		[1.7499999999999998]
-	Offset			[134.97272306981068, 63.711280628756413]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"21"
+	Extents			[1402.0, 647.0]
+	ZoomFactor		[2.1032791982587482]
+	Offset			[94.906227256186355, 52.207406297739482]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -105,7 +126,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABzAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAWgAAACwgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACE/////wAAAAAAAAAA/////wEAAAD2/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAF6/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOh/////wAAAAAAAAAA/"
@@ -119,9 +140,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Dec 22 23:00:36 2018"
-  RTWModifiedTimeStamp	  467420434
-  ModelVersionFormat	  "1.%<AutoIncrement:30>"
+  LastModifiedDate	  "Mon Feb 04 10:15:04 2019"
+  RTWModifiedTimeStamp	  471176099
+  ModelVersionFormat	  "1.%<AutoIncrement:31>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -194,11 +215,74 @@ Model {
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      1
+      Dimension		      4
       MATStruct {
 	UUID			"98791168-e2d4-4a5c-be3e-3adc51646148"
 	BlockPath_		"Sideslip Loop "
 	SID_			"21"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"56a11597-4d24-437b-ad8e-f323fce23962"
+	BlockPath_		"Sideslip Loop /Rudder Saturation"
+	SID_			"20"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"be395284-52b0-4e7d-aa44-a072b7d86f98"
+	BlockPath_		"Sideslip Loop /Commanded Sideslip"
+	SID_			"23"
+	SubPath_		""
+	OutputPortIndex_	[1.0]
+	LogicalPortIndex_	[0.0]
+	SignalName_		""
+	SubSysPath_		""
+	Decimation_		[1.0]
+	MaxPoints_		[1024.0]
+	TargetBufferedStreaming_ [0.0]
+	DomainType_		""
+	Array {
+	  Type			  "Struct"
+	  Dimension		  1
+	  MATStruct {
+	  }
+	  PropName		  "DomainParams_"
+	}
+      }
+      MATStruct {
+	UUID			"65c66519-d23b-4a47-986c-54eee8809c98"
+	BlockPath_		"Sideslip Loop /Sideslip Dynamics"
+	SID_			"1"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
 	LogicalPortIndex_	[0.0]
@@ -1158,8 +1242,8 @@ Model {
   }
   System {
     Name		    "sidesplip_loop"
-    Location		    [0, 23, 1440, 845]
-    Open		    on
+    Location		    [0, 23, 1440, 846]
+    Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1232,8 +1316,8 @@ Model {
       }
       System {
 	Name			"Sideslip Loop\n"
-	Location		[0, 23, 1440, 845]
-	Open			off
+	Location		[0, 23, 1440, 846]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1245,7 +1329,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"202"
+	ZoomFactor		"210"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Disturbances\n"
@@ -1265,6 +1349,9 @@ Model {
 	  ZOrder		  33
 	  Port			  "2"
 	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Gain
@@ -1306,6 +1393,9 @@ Model {
 	  InputPortMap		  "u0"
 	  UpperLimit		  "pi/4"
 	  LowerLimit		  "-pi/4"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Reference
@@ -1322,6 +1412,9 @@ Model {
 	  ContentPreviewEnabled	  off
 	  sys			  "T_v_delta_r"
 	  IC			  "[]"
+	  Port {
+	    PortNumber		    1
+	  }
 	}
 	Block {
 	  BlockType		  Sum
