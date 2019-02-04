@@ -86,11 +86,5 @@ function G = getGains(P,G)
     G.k_p_throttle_airspeed = (-G.a_V1+2*damping_airspeed_throttle*bandwidth_airspeed_throttle)/(G.a_V2);
     G.k_i_throttle_airspeed = bandwidth_airspeed_throttle^2/(G.a_V2);
     
-     %% Save in struct P
-    
-    P.G = G;
-    
-
-    
 end 
 
