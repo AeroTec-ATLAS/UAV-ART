@@ -26,7 +26,7 @@ function P = getGains(P,G)
    
     %% Course angle
     
-    bandwidth_course = bandwidth_roll/10;
+    bandwidth_course = bandwidth_roll/25;
     damping_course = 1.8;
     
     G.k_p_course = 2*damping_course*bandwidth_course*G.Va_trim/P.gravity;

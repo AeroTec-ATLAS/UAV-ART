@@ -74,8 +74,8 @@ P.C_p_p = P.g3*P.C_ell_p + P.g4*P.C_n_p;
 P.C_p_delta_a = P.g3*P.C_ell_delta_a + P.g4*P.C_n_delta_a;
 
 % wind parameters
-P.wind_n = 3;
-P.wind_e = 2;
+P.wind_n = 0;
+P.wind_e = 0;
 P.wind_d = 0;
 P.L_u = 200;
 P.L_v = 200;

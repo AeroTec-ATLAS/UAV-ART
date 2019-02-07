@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.43"
+    ComputedModelVersion    "1.44"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
@@ -152,9 +152,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "leonardopedroso"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Feb 02 11:33:52 2019"
-  RTWModifiedTimeStamp	  471008032
-  ModelVersionFormat	  "1.%<AutoIncrement:43>"
+  LastModifiedDate	  "Thu Feb 07 11:54:53 2019"
+  RTWModifiedTimeStamp	  471441288
+  ModelVersionFormat	  "1.%<AutoIncrement:44>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -2026,13 +2026,6 @@ Model {
       Points		      [25, 0]
       DstBlock		      "Sum"
       DstPort		      2
-    }
-    Line {
-      ZOrder		      110
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      DstBlock		      "Course Loop"
-      DstPort		      1
     }
   }
 }
