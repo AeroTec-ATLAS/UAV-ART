@@ -3,47 +3,39 @@
 
 #include <stdint.h>
 
-#define NOISE_SENS 4
-
 class ReceptorFilter {
  public:
-  Recetor(void (*newAction)(void)) {
-    lastSignal = false;
+  ReceptorFilter(int newNoiseLimit) {
+    noiseLimit = newNoiseLimit;
+
     lastSequence = false;
     numEqualSignals = 0;
-
-    action = newAction;
   }
 
-  void setAction(void (*newAction)(void)) { action = newAction; }
+  void receiveAndExecute(bool newSignal, void (*action)(void)) {
+    // If a sequence of noiseLimit 1's is detected after one of 0's, registers
+    // it and executes action. If a sequence of noiseLimit 0's is detected after
+    // one of 1's, registers it
 
-  // If a sequence of 1's superior to the noise limit is detected, executes the
-  // action
-  void executeOnConfirmation(bool newSignal) {
-    if ((newSignal == lastSignal || numEqualSignals == 0) &&
-        newSignal != lastSequence)
-      numEqualSignals++;
-    else
+    if (newSignal == lastSequence)
       numEqualSignals = 0;
+    else
+      numEqualSignals++;
 
-    if (numEqualSignals == NOISE_SENS) {
+    if (numEqualSignals == noiseLimit) {
       lastSequence = newSignal;
       numEqualSignals = 0;
 
       if (newSignal)
-        action();
+        (*action)();
     }
-
-    lastSignal = newSignal;
   }
 
  private:
-  uint8_t numEqualSignals;
-  bool lastSignal;
-  bool lastSequence;  // Last really trustable value (last sequence of
-                      // NOISE_SENS equal signals)
+  uint8_t noiseLimit;
 
-  void (*action)(void);
+  uint8_t numEqualSignals;
+  bool lastSequence;  // Last sequence's elements value
 };
 
 #endif
