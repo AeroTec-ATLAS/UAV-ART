@@ -13,3 +13,15 @@ Ligar computador e Raspberry Pi
 Copiar ficheiros do computador para o Raspberry Pi
 1 - Abre uma janela de comandos na pasta que contém o ficheiro a copiar (no Windows, abre a pasta, clica Shift+<Botão do lado direito do rato> e seleciona "Abrir janela de comandos aqui")
 2 - Escreve "scp <nome do ficheiro incluindo extensão (.txt, por exemplo> pi@<endereço IP>:<caminho para a pasta no Pi a partir da pasta do utilizador>"
+
+Adicionar ligação Wi-fi ao Raspberry Pi através de uma ligação Wi-fi já existente
+1 - Escreve "sudo nano /etc/wpa_supplicant/wpa_supplicant.conf" no terminal do pi
+2 - No final do ficheiro que se abre na linha de comandos, adiciona
+"network={
+  ssid="<ssid a que te pretendes ligar>"
+  psk="<password da rede a que te queres ligar>"
+}"
+3 - Salva to ficheiro clicando Ctrl+X e depois y e Enter.
+4 - Escreve "wpa_cli -i wlan0 reconfigure"
+5 - Abre o Fing quando ligado à rede desejada, procura pelo RPI
+6 - Liga-te a ele utilizando "ssh pi@<IP do RPI>"
