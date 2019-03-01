@@ -25,7 +25,3 @@ Adicionar ligação Wi-fi ao Raspberry Pi através de uma ligação Wi-fi já ex
 4 - Escreve "wpa_cli -i wlan0 reconfigure"
 5 - Abre o Fing quando ligado à rede desejada, procura pelo RPI
 6 - Liga-te a ele utilizando "ssh pi@<IP do RPI>"
-
-Compilar ficheiros utilizando a biblioteca wiringPi.h
-1 - Fazer include da biblioteca no ficheiro
-2 - Adicionar -lwiringPi ao compilar o ficheiro
