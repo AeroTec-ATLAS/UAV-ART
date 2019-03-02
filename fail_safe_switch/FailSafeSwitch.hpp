@@ -17,7 +17,7 @@ typedef struct timeval TRANSITION_TIME;
 class FailSafeSwitch {
  public:
   FailSafeSwitch() {
-    isPilotCommanding = true;  // No início do voo, o comando será do piloto
+    isPilotCommanding = true;  // In flight beginning, the pilot is in command
     numEqualSignals = 0;
 
     lastTransition = TRANSITION_TIME{0, 0};
@@ -37,8 +37,8 @@ class FailSafeSwitch {
 
     gettimeofday(&curr, NULL);
 
-    // The new command is interpreted as being or not above a specified period
-    // of transmission
+    // The new command is interpreted as the signal reading being or not above a
+    // specified period of transmission
     bool newCommand = (curr.tv_sec - lastTransition.tv_sec) * 10e6 +
                           curr.tv_usec - lastTransition.tv_usec >=
                       PPM_LH_BARRIER;
