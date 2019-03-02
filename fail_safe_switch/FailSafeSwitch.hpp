@@ -26,9 +26,11 @@ class FailSafeSwitch {
 
     pinMode(RECEIVER_PIN, INPUT);
     pinMode(TRI_STATE_PIN, OUTPUT);
+
+    digitalWrite(TRI_STATE_PIN, LOW);
   }
 
-  void startOfTransmission() { gettimeofday(&lastTransition, NULL); }
+  void startOfTrans() { gettimeofday(&lastTransition, NULL); }
 
   void handleCommand() {
     TRANSITION_TIME curr;
