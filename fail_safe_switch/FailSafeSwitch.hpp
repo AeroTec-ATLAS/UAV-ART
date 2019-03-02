@@ -8,8 +8,8 @@
 
 #define RECEIVER_PIN 22
 #define TRI_STATE_PIN 29
-#define NOISE_LIMIT 15
 
+#define NOISE_LIMIT 15
 #define PPM_LH_BARRIER 1500
 
 typedef struct timeval TRANSITION_TIME;
