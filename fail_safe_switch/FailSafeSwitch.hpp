@@ -17,10 +17,10 @@ typedef struct timeval TRANSITION_TIME;
 class FailSafeSwitch {
  public:
   FailSafeSwitch() {
-    hasStarted = false;
-
-    isPilotCommanding = true;  // TO DO como deve ser inicializado
+    isPilotCommanding = true;  // No início do voo, o comando será do piloto
     numEqualSignals = 0;
+
+    lastTransition = TRANSITION_TIME{0, 0};
 
     wiringPiSetup();
 
@@ -28,67 +28,41 @@ class FailSafeSwitch {
     pinMode(TRI_STATE_PIN, OUTPUT);
   }
 
-  void receiveAndSwitch() {
-    updateSignalStates();
+  void startOfTransmission() { gettimeofday(&lastTransition, NULL); }
 
-    if (currState) {
-      if (lastState == 0)
-        // If it receives a HIGH and received a LOW, a positive transition
-        // occurred and time is registered
-        gettimeofday(&lastTransition, NULL);
-    } else if (lastState == 1) {
-      // If it receives a LOW and received a HIGH, a negative transition
-      // occurred
-      bool newCommand = getCommand();
+  void handleCommand() {
+    TRANSITION_TIME curr;
 
-      // If the new signal imposes a change
-      if (newCommand != isPilotCommanding)
-        numEqualSignals++;
-      else
-        numEqualSignals = 0;
+    gettimeofday(&curr, NULL);
 
-      // If the new signal is confirmed via repetition of signals
-      if (numEqualSignals == NOISE_LIMIT) {
-        isPilotCommanding = newCommand;
-        numEqualSignals = 0;
+    // The new command is interpreted as being or not above a specified period
+    // of transmission
+    bool newCommand = (curr.tv_sec - lastTransition.tv_sec) * 10e6 +
+                          curr.tv_usec - lastTransition.tv_usec >=
+                      PPM_LH_BARRIER;
 
-        digitalWrite(TRI_STATE_PIN, newCommand);
-      }
+    // If the new command imposes a change
+    if (newCommand != isPilotCommanding)
+      numEqualSignals++;
+    else
+      numEqualSignals = 0;
+
+    // If the new command is confirmed via repetition of signals
+    if (numEqualSignals == NOISE_LIMIT) {
+      // Executes command
+      digitalWrite(TRI_STATE_PIN, newCommand);
+
+      // Resets auxilary variables
+      isPilotCommanding = newCommand;
+      numEqualSignals = 0;
     }
   }
 
  private:
-  bool hasStarted;
-
-  bool lastState;
-  bool currState;
-
   TRANSITION_TIME lastTransition;
 
   uint8_t numEqualSignals;
   bool isPilotCommanding;
-
-  void updateSignalStates() {
-    if (!hasStarted) {
-      lastState = digitalRead(RECEIVER_PIN);
-      currState = digitalRead(RECEIVER_PIN);
-    } else {
-      lastState = currState;
-      currState = digitalRead(RECEIVER_PIN);
-    }
-  }
-
-  bool getCommand() {
-    TRANSITION_TIME curr;
-    uint32_t period;
-    bool newCommand;
-
-    gettimeofday(&curr, NULL);
-
-    period = (curr.tv_sec - lastTransition.tv_sec) * 10e6 + curr.tv_usec -
-             lastTransition.tv_usec;
-    newCommand = period >= PPM_LH_BARRIER;
-  }
 };
 
 #endif
