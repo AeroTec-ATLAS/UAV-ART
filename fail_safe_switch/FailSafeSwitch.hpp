@@ -12,7 +12,7 @@
 #define NOISE_LIMIT 15
 #define PPM_LH_BARRIER 1500
 
-typedef struct timeval TRANSITION_TIME;
+typedef struct timeval TRANSITION;
 
 class FailSafeSwitch {
  public:
@@ -20,28 +20,29 @@ class FailSafeSwitch {
     isPilotCommanding = true;  // In flight beginning, the pilot is in command
     numEqualSignals = 0;
 
-    lastTransition = TRANSITION_TIME{0, 0};
+    last = TRANSITION{0, 0};
 
     wiringPiSetup();
 
     pinMode(RECEIVER_PIN, INPUT);
     pinMode(TRI_STATE_PIN, OUTPUT);
 
-    digitalWrite(TRI_STATE_PIN, LOW);
+    digitalWrite(TRI_STATE_PIN, HIGH);
   }
 
-  void startOfTrans() { gettimeofday(&lastTransition, NULL); }
+  void startOfTrans() { gettimeofday(&last, NULL); }
 
   void handleCommand() {
-    TRANSITION_TIME curr;
+    TRANSITION curr;
+    TRANSITION diff;
 
     gettimeofday(&curr, NULL);
 
-    // The new command is interpreted as the signal reading being or not above a
-    // specified period of transmission
-    bool newCommand = (curr.tv_sec - lastTransition.tv_sec) * 10e6 +
-                          curr.tv_usec - lastTransition.tv_usec >=
-                      PPM_LH_BARRIER;
+    timersub(&last, &curr, &diff);  // Saves current time - last time in diff
+
+    // The new command is interpreted as the signal reading being or not
+    // above a specified period of transmission
+    bool newCommand = diff.tv_sec * 10e6 + diff.tv_usec >= PPM_LH_BARRIER;
 
     // If the new command imposes a change
     if (newCommand != isPilotCommanding)
@@ -61,7 +62,7 @@ class FailSafeSwitch {
   }
 
  private:
-  TRANSITION_TIME lastTransition;
+  TRANSITION last;
 
   uint8_t numEqualSignals;
   bool isPilotCommanding;
