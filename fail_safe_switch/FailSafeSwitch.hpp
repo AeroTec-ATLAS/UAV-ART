@@ -5,9 +5,7 @@
 #include <stdio.h>
 #include <sys/time.h> // Add -lrt to compilation command
 #include <wiringPi.h> // Add -lwiringPi to compilation command
-
-#define RECEIVER_PIN 22
-#define TRI_STATE_PIN 29
+#include "pins.hpp"
 
 #define NOISE_LIMIT 15
 #define PPM_LH_BARRIER 1500
@@ -26,13 +24,15 @@ public:
 
     wiringPiSetup();
 
-    pinMode(RECEIVER_PIN, INPUT);
     pinMode(TRI_STATE_PIN, OUTPUT);
 
     digitalWrite(TRI_STATE_PIN, HIGH);
   }
 
-  void startOfTrans() { gettimeofday(&last, NULL); }
+  void startOfTrans()
+  {
+    gettimeofday(&last, NULL);
+  }
 
   void handleCommand()
   {
@@ -57,7 +57,8 @@ public:
     if (numEqualSignals == NOISE_LIMIT)
     {
       // Executes command
-      digitalWrite(TRI_STATE_PIN, newCommand);
+      //digitalWrite(TRI_STATE_PIN, newCommand);
+      printf("%d\n", newCommand);
 
       // Resets auxilary variables
       isPilotCommanding = newCommand;
