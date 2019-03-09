@@ -3,8 +3,8 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include <sys/time.h> // Add -lrt to compilation command
-#include <wiringPi.h> // Add -lwiringPi to compilation command
+#include <sys/time.h>  // Add -lrt to compilation command
+#include <wiringPi.h>  // Add -lwiringPi to compilation command
 #include "pins.hpp"
 
 #define NOISE_LIMIT 15
@@ -12,12 +12,10 @@
 
 typedef struct timeval TRANSITION;
 
-class FailSafeSwitch
-{
-public:
-  FailSafeSwitch()
-  {
-    isPilotCommanding = true; // In flight beginning, the pilot is in command
+class FailSafeSwitch {
+ public:
+  FailSafeSwitch() {
+    isPilotCommanding = true;  // In flight beginning, the pilot is in command
     numEqualSignals = 0;
 
     last = TRANSITION{0, 0};
@@ -29,19 +27,15 @@ public:
     digitalWrite(TRI_STATE_PIN, HIGH);
   }
 
-  void startOfTrans()
-  {
-    gettimeofday(&last, NULL);
-  }
+  void startOfTrans() { gettimeofday(&last, NULL); }
 
-  void handleCommand()
-  {
+  void handleCommand() {
     TRANSITION curr;
     TRANSITION diff;
 
     gettimeofday(&curr, NULL);
 
-    timersub(&last, &curr, &diff); // Saves current time - last time in diff
+    timersub(&last, &curr, &diff);  // Saves current time - last time in diff
 
     // The new command is interpreted as the signal reading being or not
     // above a specified period of transmission
@@ -54,10 +48,9 @@ public:
       numEqualSignals = 0;
 
     // If the new command is confirmed via repetition of signals
-    if (numEqualSignals == NOISE_LIMIT)
-    {
+    if (numEqualSignals == NOISE_LIMIT) {
       // Executes command
-      //digitalWrite(TRI_STATE_PIN, newCommand);
+      // digitalWrite(TRI_STATE_PIN, newCommand);
       printf("%d\n", newCommand);
 
       // Resets auxilary variables
@@ -66,7 +59,7 @@ public:
     }
   }
 
-private:
+ private:
   TRANSITION last;
 
   uint8_t numEqualSignals;
