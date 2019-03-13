@@ -4,10 +4,10 @@ Ligar computador e "headless" Raspberry Pi  pela primeira vez
 1 - Faz download do Raspbian Lite em torrent ou diretamente zip
 2 - Instala o software de escrita de imagem de OS chamado balenaEtcher
 3 - Flasha o cartão SD com o software e a imagem cujo download fizeste
-4 - Cria na pasta principal do SD um ficheiro sem extensão designado "ssh"
+4 - Cria na pasta principal da partição boot do SD um ficheiro sem extensão designado "ssh"
 5 - Liga um cabo de ethernet ao router e ao Pi e coloca o cartão SD no Pi
 6 - Liga-o à corrente
-7 - Instala a aplicação Fling no telemóvel que está disponível para Android e
+7 - Instala a aplicação Fing no telemóvel que está disponível para Android e
 iOS
 8 - Liga-te com o teu telemóvel à rede cuja Ethernet entra no Pi
 9 - Faz search no Fing nessa rede clicando no botão de reiniciar na parte 

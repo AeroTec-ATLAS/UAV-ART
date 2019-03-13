@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <sys/time.h>  // Add -lrt to compilation command
 #include <wiringPi.h>  // Add -lwiringPi to compilation command
-#include "pins.hpp"
+#include "Pi_pins.hpp"
 
 #define NOISE_LIMIT 15
 #define PPM_LH_BARRIER 1500
