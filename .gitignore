@@ -1,0 +1,13 @@
+# MATLAB autosave files
+*.slx.autosave
+*.mdl.r2017b
+*.slxc
+*.asv
+
+# folders and misc files
+controlo/autopilot/slprj/
+controlo/autopilot/trim/slprj/
+controlo/autopilot/trim/gain_tuning/slprj/
+controlo/autopilot/old/
+
+
