@@ -17,7 +17,7 @@ from chap3.mav_dynamics import mavDynamics
 
 
 # initialize the visualization
-VIDEO = True  # True==write video, False==don't write video
+VIDEO = False  # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
 data_view = dataViewer()  # initialize view of data plots
 if VIDEO is True:
