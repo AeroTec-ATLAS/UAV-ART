@@ -17,7 +17,7 @@ from chap3.mav_dynamics import mavDynamics
 
 
 # initialize the visualization
-VIDEO = False  # True==write video, False==don't write video
+VIDEO = True  # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
 data_view = dataViewer()  # initialize view of data plots
 if VIDEO is True:
@@ -33,7 +33,6 @@ mav = mavDynamics(SIM.ts_simulation)
 sim_time = SIM.start_time
 
 # main simulation loop
-print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
     # -------vary forces and moments to check dynamics-------------
     fx = 10
@@ -58,7 +57,7 @@ while sim_time < SIM.end_time:
 
     #-------increment time-------------
     sim_time += SIM.ts_simulation
-
+input("Press any key to exit...")
 if VIDEO is True:
     video.close()
 

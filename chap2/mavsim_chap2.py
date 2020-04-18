@@ -49,7 +49,7 @@ while sim_time < SIM.end_time:
     # -------increment time-------------
     sim_time += SIM.ts_simulation
 
-print("Press Ctrl-Q to exit...")
+input("Press any key to exit...")
 if VIDEO is True:
     video.close()
 
