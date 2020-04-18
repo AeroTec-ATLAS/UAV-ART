@@ -21,6 +21,7 @@ class mavViewer():
         self.window.setWindowTitle('MAV Viewer')
         self.window.setGeometry(0, 0, 1000, 1000)  # args: upper_left_x, upper_right_y, width, height
         grid = gl.GLGridItem()  # make a grid to represent the ground
+        grid.setSize(100,100,100) # set the span of the grid 
         grid.scale(20, 20, 20)  # set the size of the grid (distance between each line)
         self.window.addItem(grid)  # add grid to viewer
         self.window.setCameraPosition(distance=200) # distance from center of plot to camera
