@@ -99,6 +99,10 @@ KV = 145.                   # from datasheet RPM/V
 KQ = (1. / KV) * 60. / (2. * np.pi)  # KQ in N-m/A, V-s/rad
 R_motor = 0.042              # ohms
 i0 = 1.5                     # no-load (zero-torque) current (A)
+K_motor = 80
+K_tp = 0
+K_omega = 0
+C_prop = 1.0
 
 
 # Inputs

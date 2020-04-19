@@ -12,6 +12,7 @@ part of mavPySim
 import sys
 sys.path.append('..')
 import numpy as np
+import math
 
 # load message types
 from message_types.msg_state import msgState
@@ -47,9 +48,9 @@ class mavDynamics:
         self._update_velocity_data()
         # store forces to avoid recalculation in the sensors function
         self._forces = np.array([[], [], []])
-        self._Va =
-        self._alpha =
-        self._beta =
+        self._Va = math.sqrt(state.item(3)**2 +  state.item(4)**2 + state.item(5)**2) #
+        self._alpha = numpy.arctan2(state.item(5), state.item(3))
+        self._beta = numpy.arcsin(state.item(4)/ self._Va)
         # initialize true_state message
         self.true_state = msgState()
 
@@ -121,26 +122,34 @@ class mavDynamics:
         m = forces_moments.item(4)
         n = forces_moments.item(5)
 
+        #transforma os quarterniões em angulos de euler de modo a calcular as variaveis cinematicas
+        phi, theta, psi = Quaternion2Euler(self._state[6:10])
         # position kinematics
-        pn_dot =
-        pe_dot =
-        pd_dot =
+        pn_dot = ((math.cos(theta)) * (math.cos(psi)) * u +
+                  ((math.sin(phi)) * (math.sin(theta)) * (math.cos(psi)) - (math.cos(phi)) * (math.sin(psi))) * v +
+                  ((math.cos(phi)) * (math.sin(theta)) * (math.cos(psi)) + (math.sin(phi)) * (math.sin(psi))) * w)
+
+        pe_dot = ((math.cos(theta)) * (math.sin(psi)) * u +
+                  ((math.sin(phi)) * (math.sin(theta)) * (math.sin(psi)) + (math.cos(phi)) * (math.cos(psi))) * v +
+                  ((math.cos(phi)) * (math.sin(theta)) * (math.sin(psi)) - (math.sin(phi)) * (math.cos(psi))) * w)
+
+        pd_dot = ((-math.sin(theta)) * u + ((math.sin(phi)) * (math.cos(theta))) * v + (
+                    (math.cos(phi)) * (math.cos(theta))) * w)
 
         # position dynamics
-        u_dot =
-        v_dot =
-        w_dot =
+        u_dot = (r * v - q * w) + (1 / MAV.mass) * fx
+        v_dot = (p * w - r * u) + (1 / MAV.mass) * fy
+        w_dot = (q * u - p * v) + (1 / MAV.mass) * fz
 
         # rotational kinematics
-        e0_dot =
-        e1_dot =
-        e2_dot =
-        e3_dot =
+        phi_dot = p + ((math.sin(phi)) * (math.tan(theta))) * q + ((math.cos(phi)) * (math.tan(theta))) * r
+        theta_dot = (math.cos(phi)) * q + (-math.sin(phi)) * r
+        psi_dot = ((math.sin(phi)) / (math.cos(theta))) * q + ((math.cos(phi)) / (math.cos(theta))) * r
 
         # rotational dynamics
-        p_dot =
-        q_dot =
-        r_dot =
+        p_dot = (self.GMS.item(1)) * p * q - (self.GMS.item(2)) * q * r
+        q_dot = (self.GMS.item(5)) * p * r - (self.GMS.item(6)) * ((p ** 2) - (r ** 2))
+        r_dot = (self.GMS.item(7)) * p * q - (self.GMS.item(1)) * q * r
 
         # collect the derivative of the states
         x_dot = np.array([[pn_dot, pe_dot, pd_dot, u_dot, v_dot, w_dot,
@@ -150,9 +159,9 @@ class mavDynamics:
     def _update_velocity_data(self, wind=np.zeros((6,1))):
         steady_state = wind[0:3]
         gust = wind[3:6]
-        self._Va =
-        self._alpha =
-        self._beta =
+        self._Va = math.sqrt(state.item(3)**2 +  state.item(4)**2 + state.item(5)**2) #
+        self._alpha = numpy.arctan2(state.item(5), state.item(3))
+        self._beta = numpy.arcsin(state.item(4)/ self._Va)
 
     def _forces_moments(self, delta):
         """
@@ -170,12 +179,25 @@ class mavDynamics:
         delta_r = delta.item(2)
         delta_t = delta.item(3)
 
-        fx =
-        fy =
-        fz =
-        Mx =
-        My =
-        Mz =
+        Massa = MAV.mass
+        g= MAV.gravity
+        S_prop= (MAV.D_prop/2)*math.pi
+
+        f_grav = np.array ([-Massa*g* math.sin(theta),
+                            Massa*g* math.cos(theta)*math.sin(phi),
+                            Massa*g* math.cos(theta)*math.cos(phi)])
+
+        f_prop = np.array ([0.5 * MAV.rho * S_prop *MAV.C_prop*((MAV.K_motor*delta_t)**2-self._Va**2),
+                    0,
+                    0])
+
+        fresultante = f_grav + f_prop
+        fx = fresultante[0]
+        fy = fresultante[1]
+        fz = fresultante[2]
+        Mx =0
+        My =0
+        Mz =0
 
         self._forces[0] = fx
         self._forces[1] = fy
@@ -183,7 +205,8 @@ class mavDynamics:
         return np.array([[fx, fy, fz, Mx, My, Mz]]).T
 
     def _motor_thrust_torque(self, Va, delta_t):
-
+        T_p = -MAV.K_tp*(MAV.K_omega*delta_t)
+        #Ainda falta o Q_p mas nao sei como calcular
         return T_p, Q_p
 
 
