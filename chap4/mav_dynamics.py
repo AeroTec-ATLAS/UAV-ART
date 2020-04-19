@@ -147,9 +147,9 @@ class mavDynamics:
         psi_dot = ((math.sin(phi)) / (math.cos(theta))) * q + ((math.cos(phi)) / (math.cos(theta))) * r
 
         # rotational dynamics
-        p_dot = (self.GMS.item(1)) * p * q - (self.GMS.item(2)) * q * r
-        q_dot = (self.GMS.item(5)) * p * r - (self.GMS.item(6)) * ((p ** 2) - (r ** 2))
-        r_dot = (self.GMS.item(7)) * p * q - (self.GMS.item(1)) * q * r
+        p_dot = MAV.gamma1 * p * q - MAV.gamma2 * q * r + MAV.gamma3 * l + MAV.gamma4 * n
+        q_dot = MAV.gamma5 * p * r - MAV.gamma6 * (p ** 2 - r ** 2) + m / MAV.Jy
+        r_dot = MAV.gamma7 * p * q - MAV.gamma1 * q * r + MAV.gamma4 * l + MAV.gamma8 * n
 
         # collect the derivative of the states
         x_dot = np.array([[pn_dot, pe_dot, pd_dot, u_dot, v_dot, w_dot,
