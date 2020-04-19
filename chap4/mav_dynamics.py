@@ -48,9 +48,9 @@ class mavDynamics:
         self._update_velocity_data()
         # store forces to avoid recalculation in the sensors function
         self._forces = np.array([[], [], []])
-        self._Va = math.sqrt(state.item(3)**2 +  state.item(4)**2 + state.item(5)**2) #
-        self._alpha = numpy.arctan2(state.item(5), state.item(3))
-        self._beta = numpy.arcsin(state.item(4)/ self._Va)
+        self._Va = math.sqrt(self._state.item(3)**2 +  self._state.item(4)**2 + self._state.item(5)**2) #
+        self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
+        self._beta = np.arcsin(self._state.item(4)/ self._Va)
         # initialize true_state message
         self.true_state = msgState()
 
@@ -133,8 +133,8 @@ class mavDynamics:
                   ((math.sin(phi)) * (math.sin(theta)) * (math.sin(psi)) + (math.cos(phi)) * (math.cos(psi))) * v +
                   ((math.cos(phi)) * (math.sin(theta)) * (math.sin(psi)) - (math.sin(phi)) * (math.cos(psi))) * w)
 
-        pd_dot = ((-math.sin(theta)) * u + ((math.sin(phi)) * (math.cos(theta))) * v + (
-                    (math.cos(phi)) * (math.cos(theta))) * w)
+        pd_dot = ((-math.sin(theta)) * u + ((math.sin(phi)) * (math.cos(theta))) * v + 
+                  ((math.cos(phi)) * (math.cos(theta))) * w)
 
         # position dynamics
         u_dot = (r * v - q * w) + (1 / MAV.mass) * fx
@@ -147,9 +147,9 @@ class mavDynamics:
         psi_dot = ((math.sin(phi)) / (math.cos(theta))) * q + ((math.cos(phi)) / (math.cos(theta))) * r
 
         # rotational dynamics
-        p_dot = (self.GMS.item(1)) * p * q - (self.GMS.item(2)) * q * r
-        q_dot = (self.GMS.item(5)) * p * r - (self.GMS.item(6)) * ((p ** 2) - (r ** 2))
-        r_dot = (self.GMS.item(7)) * p * q - (self.GMS.item(1)) * q * r
+        p_dot = MAV.gamma1 * p * q - MAV.gamma2 * q * r + MAV.gamma3 * l + MAV.gamma4 * n
+        q_dot = MAV.gamma5 * p * r - MAV.gamma6 * (p ** 2 - r ** 2) + m / MAV.Jy
+        r_dot = MAV.gamma7 * p * q - MAV.gamma1 * q * r + MAV.gamma4 * l + MAV.gamma8 * n
 
         # collect the derivative of the states
         x_dot = np.array([[pn_dot, pe_dot, pd_dot, u_dot, v_dot, w_dot,
@@ -159,9 +159,9 @@ class mavDynamics:
     def _update_velocity_data(self, wind=np.zeros((6,1))):
         steady_state = wind[0:3]
         gust = wind[3:6]
-        self._Va = math.sqrt(state.item(3)**2 +  state.item(4)**2 + state.item(5)**2) #
-        self._alpha = numpy.arctan2(state.item(5), state.item(3))
-        self._beta = numpy.arcsin(state.item(4)/ self._Va)
+        self._Va = math.sqrt(self._state.item(3)**2 +  self._state.item(4)**2 + self._state.item(5)**2) #
+        self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
+        self._beta = np.arcsin(self._state.item(4)/ self._Va)
 
     def _forces_moments(self, delta):
         """
