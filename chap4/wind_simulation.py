@@ -13,9 +13,9 @@ class windSimulation:
         # steady state wind defined in the inertial frame
         self._steady_state = np.array([[0., 0., 0.]]).T
 
-        self.u_w =
-        self.v_w =
-        self.w_w =
+        self.u_w = 0 
+        self.v_w = 0
+        self.w_w = 0
         self._Ts = Ts
 
     def update(self):
