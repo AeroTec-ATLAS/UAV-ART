@@ -18,7 +18,7 @@ import math
 from message_types.msg_state import msgState
 
 import parameters.aerosonde_parameters as MAV
-from tools.rotations import Quaternion2Rotation, Quaternion2Euler
+from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation
 
 
 class mavDynamics:
@@ -31,26 +31,25 @@ class mavDynamics:
         # self.true_state is a 19x1 vector that is estimated and used by the autopilot to control the aircraft:
         # true_state = [pn, pe, h, Va, alpha, beta, phi, theta, chi, p, q, r, Vg, wn, we, psi, gyro_bx, gyro_by, gyro_bz]
         self._state = np.array([[MAV.pn0],  # (0)
-                               [MAV.pe0],   # (1)
-                               [MAV.pd0],   # (2)
-                               [MAV.u0],    # (3)
-                               [MAV.v0],    # (4)
-                               [MAV.w0],    # (5)
-                               [MAV.e0],    # (6)
-                               [MAV.e1],    # (7)
-                               [MAV.e2],    # (8)
-                               [MAV.e3],    # (9)
-                               [MAV.p0],    # (10)
-                               [MAV.q0],    # (11)
-                               [MAV.r0]])   # (12)
+                                [MAV.pe0],  # (1)
+                                [MAV.pd0],  # (2)
+                                [MAV.u0],  # (3)
+                                [MAV.v0],  # (4)
+                                [MAV.w0],  # (5)
+                                [MAV.phi0],  # (6)
+                                [MAV.theta0],  # (7)
+                                [MAV.psi0],  # (8)
+                                [MAV.p0],  # (9)
+                                [MAV.q0],  # (10)
+                                [MAV.r0]])  # (11)
         # store wind data for fast recall since it is used at various points in simulation
         self._wind = np.array([[0.], [0.], [0.]])  # wind in NED frame in meters/sec
         self._update_velocity_data()
         # store forces to avoid recalculation in the sensors function
         self._forces = np.array([[], [], []])
-        self._Va = math.sqrt(self._state.item(3)**2 +  self._state.item(4)**2 + self._state.item(5)**2) #
+        self._Va = math.sqrt(self._state.item(3)**2 + self._state.item(4)**2 + self._state.item(5)**2)
         self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
-        self._beta = np.arcsin(self._state.item(4)/ self._Va)
+        self._beta = np.arcsin(self._state.item(4) / self._Va)
         # initialize true_state message
         self.true_state = msgState()
 
@@ -69,21 +68,21 @@ class mavDynamics:
         # Integrate ODE using Runge-Kutta RK4 algorithm
         time_step = self._ts_simulation
         k1 = self._derivatives(self._state, forces_moments)
-        k2 = self._derivatives(self._state + time_step/2.*k1, forces_moments)
-        k3 = self._derivatives(self._state + time_step/2.*k2, forces_moments)
-        k4 = self._derivatives(self._state + time_step*k3, forces_moments)
-        self._state += time_step/6 * (k1 + 2*k2 + 2*k3 + k4)
+        k2 = self._derivatives(self._state + time_step / 2. * k1, forces_moments)
+        k3 = self._derivatives(self._state + time_step / 2. * k2, forces_moments)
+        k4 = self._derivatives(self._state + time_step * k3, forces_moments)
+        self._state += time_step / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
 
         # normalize the quaternion
         e0 = self._state.item(6)
         e1 = self._state.item(7)
         e2 = self._state.item(8)
         e3 = self._state.item(9)
-        normE = np.sqrt(e0**2+e1**2+e2**2+e3**2)
-        self._state[6][0] = self._state.item(6)/normE
-        self._state[7][0] = self._state.item(7)/normE
-        self._state[8][0] = self._state.item(8)/normE
-        self._state[9][0] = self._state.item(9)/normE
+        normE = np.sqrt(e0**2 + e1**2 + e2**2 + e3**2)
+        self._state[6][0] = self._state.item(6) / normE
+        self._state[7][0] = self._state.item(7) / normE
+        self._state[8][0] = self._state.item(8) / normE
+        self._state[9][0] = self._state.item(9) / normE
 
         # update the airspeed, angle of attack, and side slip angles using new state
         self._update_velocity_data(wind)
@@ -101,19 +100,18 @@ class mavDynamics:
         for the dynamics xdot = f(x, u), returns f(x, u)
         """
         # extract the states
-        # pn = state.item(0)
-        # pe = state.item(1)
-        # pd = state.item(2)
+        pn = state.item(0)
+        pe = state.item(1)
+        pd = state.item(2)
         u = state.item(3)
         v = state.item(4)
         w = state.item(5)
-        e0 = state.item(6)
-        e1 = state.item(7)
-        e2 = state.item(8)
-        e3 = state.item(9)
-        p = state.item(10)
-        q = state.item(11)
-        r = state.item(12)
+        phi = state.item(6)
+        theta = state.item(7)
+        psi = state.item(8)
+        p = state.item(9)
+        q = state.item(10)
+        r = state.item(11)
         #   extract forces/moments
         fx = forces_moments.item(0)
         fy = forces_moments.item(1)
@@ -122,8 +120,8 @@ class mavDynamics:
         m = forces_moments.item(4)
         n = forces_moments.item(5)
 
-        #transforma os quarterniões em angulos de euler de modo a calcular as variaveis cinematicas
-        phi, theta, psi = Quaternion2Euler(self._state[6:10])
+        # transforma os quarterniões em angulos de euler de modo a calcular as variaveis cinematicas
+        #phi, theta, psi = Quaternion2Euler(self._state[6:10])
         # position kinematics
         pn_dot = ((math.cos(theta)) * (math.cos(psi)) * u +
                   ((math.sin(phi)) * (math.sin(theta)) * (math.cos(psi)) - (math.cos(phi)) * (math.sin(psi))) * v +
@@ -133,7 +131,7 @@ class mavDynamics:
                   ((math.sin(phi)) * (math.sin(theta)) * (math.sin(psi)) + (math.cos(phi)) * (math.cos(psi))) * v +
                   ((math.cos(phi)) * (math.sin(theta)) * (math.sin(psi)) - (math.sin(phi)) * (math.cos(psi))) * w)
 
-        pd_dot = ((-math.sin(theta)) * u + ((math.sin(phi)) * (math.cos(theta))) * v + 
+        pd_dot = ((-math.sin(theta)) * u + ((math.sin(phi)) * (math.cos(theta))) * v +
                   ((math.cos(phi)) * (math.cos(theta))) * w)
 
         # position dynamics
@@ -153,15 +151,15 @@ class mavDynamics:
 
         # collect the derivative of the states
         x_dot = np.array([[pn_dot, pe_dot, pd_dot, u_dot, v_dot, w_dot,
-                           e0_dot, e1_dot, e2_dot, e3_dot, p_dot, q_dot, r_dot]]).T
+                           phi_dot, theta_dot, psi_dot, p_dot, q_dot, r_dot]]).T
         return x_dot
 
-    def _update_velocity_data(self, wind=np.zeros((6,1))):
+    def _update_velocity_data(self, wind=np.zeros((6, 1))):
         steady_state = wind[0:3]
         gust = wind[3:6]
-        self._Va = math.sqrt(self._state.item(3)**2 +  self._state.item(4)**2 + self._state.item(5)**2) #
+        self._Va = math.sqrt(self._state.item(3)**2 + self._state.item(4)**2 + self._state.item(5)**2)
         self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
-        self._beta = np.arcsin(self._state.item(4)/ self._Va)
+        self._beta = np.arcsin(self._state.item(4) / self._Va)
 
     def _forces_moments(self, delta):
         """
@@ -180,24 +178,24 @@ class mavDynamics:
         delta_t = delta.item(3)
 
         Massa = MAV.mass
-        g= MAV.gravity
-        S_prop= (MAV.D_prop/2)*math.pi
+        g = MAV.gravity
+        S_prop = (MAV.D_prop / 2) * math.pi
 
-        f_grav = np.array ([-Massa*g* math.sin(theta),
-                            Massa*g* math.cos(theta)*math.sin(phi),
-                            Massa*g* math.cos(theta)*math.cos(phi)])
+        f_grav = np.array([-Massa * g * math.sin(theta),
+                           Massa * g * math.cos(theta) * math.sin(phi),
+                           Massa * g * math.cos(theta) * math.cos(phi)])
 
-        f_prop = np.array ([0.5 * MAV.rho * S_prop *MAV.C_prop*((MAV.K_motor*delta_t)**2-self._Va**2),
-                    0,
-                    0])
+        f_prop = np.array([0.5 * MAV.rho * S_prop * MAV.C_prop * ((MAV.K_motor * delta_t)**2 - self._Va**2),
+                           0,
+                           0])
 
         fresultante = f_grav + f_prop
         fx = fresultante[0]
         fy = fresultante[1]
         fz = fresultante[2]
-        Mx =0
-        My =0
-        Mz =0
+        Mx = 0
+        My = 0
+        Mz = 0
 
         self._forces[0] = fx
         self._forces[1] = fy
@@ -205,30 +203,30 @@ class mavDynamics:
         return np.array([[fx, fy, fz, Mx, My, Mz]]).T
 
     def _motor_thrust_torque(self, Va, delta_t):
-        T_p = -MAV.K_tp*(MAV.K_omega*delta_t)
-        #Ainda falta o Q_p mas nao sei como calcular
+        T_p = -MAV.K_tp * (MAV.K_omega * delta_t)
+        # Ainda falta o Q_p mas nao sei como calcular
         return T_p, Q_p
-
 
     def _update_true_state(self):
         # update the class structure for the true state:
         #   [pn, pe, h, Va, alpha, beta, phi, theta, chi, p, q, r, Vg, wn, we, psi, gyro_bx, gyro_by, gyro_bz]
-        phi, theta, psi = Quaternion2Euler(self._state[6:10])
-        pdot = Quaternion2Rotation(self._state[6:10]) @ self._state[3:6]
+        #phi, theta, psi = Quaternion2Euler(self._state[6:10])
+        #pdot = Quaternion2Rotation(self._state[6:10]) @ self._state[3:6]
+        pdot = Euler2Rotation(self._state[6:9]) @ self._state[3:6]
         self.true_state.pn = self._state.item(0)
         self.true_state.pe = self._state.item(1)
         self.true_state.h = -self._state.item(2)
         self.true_state.Va = self._Va
         self.true_state.alpha = self._alpha
         self.true_state.beta = self._beta
-        self.true_state.phi = phi
-        self.true_state.theta = theta
-        self.true_state.psi = psi
+        self.true_state.phi = self._state.item(6)
+        self.true_state.theta = self._state.item(7)
+        self.true_state.psi = self._state.item(8)
         self.true_state.Vg = np.linalg.norm(pdot)
         self.true_state.gamma = np.arcsin(pdot.item(2) / self.true_state.Vg)
         self.true_state.chi = np.arctan2(pdot.item(1), pdot.item(0))
-        self.true_state.p = self._state.item(10)
-        self.true_state.q = self._state.item(11)
-        self.true_state.r = self._state.item(12)
+        self.true_state.p = self._state.item(9)
+        self.true_state.q = self._state.item(10)
+        self.true_state.r = self._state.item(11)
         self.true_state.wn = self._wind.item(0)
         self.true_state.we = self._wind.item(1)
