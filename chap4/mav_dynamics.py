@@ -220,12 +220,13 @@ class mavDynamics:
                       MAV.c * (MAV.C_m_0 + MAV.C_m_alpha * alpha + MAV.C_m_q * MAV.c / (2 * Va) * q + MAV.C_m_delta_e * delta_e),
                       MAV.b * (MAV.C_n_0 + MAV.C_n_beta * beta + MAV.C_n_p * MAV.b / (2 * Va) * p + MAV.C_n_r * MAV.b / (2 * Va) * r + MAV.C_n_delta_a * delta_a + MAV.C_n_delta_r * delta_r)])
 
-        f_prop = np.array([0.5 * MAV.rho * S_prop * MAV.C_prop * ((MAV.K_motor * delta_t)**2 - Va**2),
+        T_p, Q_p = self._motor_thrust_torque(Va, delta_t)
+        f_prop = np.array([T_p,
                            0,
-                           0])
-        m_prop = np.array([-MAV.K_tp * (MAV.K_omega * delta_t)**2,
+                           0]).T
+        m_prop = np.array([Q_p,
                            0,
-                           0])
+                           0]).T
 
         f_sum = f_grav + f_aero + f_prop
         moments = m_aero + m_prop
@@ -242,8 +243,14 @@ class mavDynamics:
         return np.array([[fx, fy, fz, l, m, n]]).T
 
     def _motor_thrust_torque(self, Va, delta_t):
-        T_p = -MAV.K_tp * (MAV.K_omega * delta_t)
-        # Ainda falta o Q_p mas nao sei como calcular
+        V_in = MAV.V_max * delta_t
+        a = MAV.rho * MAV.D_prop**5 / (2 * math.pi)**2 * MAV.C_Q0
+        b = MAV.rho * MAV.D_prop**4 / (2 * math.pi) * MAV.C_Q1 * Va + MAV.KQ**2 / MAV.R_motor
+        c = MAV.rho * MAV.D_prop**3 * MAV.C_Q2 * Va**2 - MAV.KQ / MAV.R_motor * V_in + MAV.KQ * MAV.i0
+        sigma_p = (-b + math.sqrt(b**2 - 4 * a * c)) / (2 * a)
+
+        T_p = MAV.rho * MAV.C_T0 * MAV.D_prop**4 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_T1 * Va * MAV.D_prop**3 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_T2 * MAV.D_prop**2 * Va**2
+        Q_p = MAV.rho * MAV.C_Q0 * MAV.D_prop**5 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_Q1 * Va * MAV.D_prop**4 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_Q2 * MAV.D_prop**3 * Va**2
         return T_p, Q_p
 
     def _update_true_state(self):
