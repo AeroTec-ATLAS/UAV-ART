@@ -28,6 +28,7 @@ if VIDEO is True:
 
 # initialize elements of the architecture
 wind = windSimulation(SIM.ts_simulation)
+wind._steady_state = np.array([[10., 0., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
 
 # initialize the simulation time
@@ -50,7 +51,7 @@ while sim_time < SIM.end_time:
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
     # -------update viewer-------------
-    if sim_time-plot_time > SIM.ts_plotting:
+    if sim_time - plot_time > SIM.ts_plotting:
         mav_view.update(mav.true_state)  # plot body of MAV
         plot_time = sim_time
     data_view.update(mav.true_state,  # true states
@@ -65,7 +66,3 @@ while sim_time < SIM.end_time:
 
 if VIDEO is True:
     video.close()
-
-
-
-

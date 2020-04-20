@@ -16,7 +16,7 @@ class windSimulation:
         # steady state wind defined in the inertial frame
         self._steady_state = np.array([[0., 0., 0.]]).T
 
-        steadyStateInBody = Euler2Rotation2(MAV.phi0,MAV.theta0,MAV.psi0) @ self._steady_state
+        steadyStateInBody = Euler2Rotation2(MAV.phi0, MAV.theta0, MAV.psi0) @ self._steady_state
         self.u_w = steadyStateInBody.item(0)
         self.v_w = steadyStateInBody.item(1)
         self.w_w = steadyStateInBody.item(2)
@@ -29,5 +29,11 @@ class windSimulation:
         '''gust = np.array([[self.u_w.update(np.random.randn())],
                          [self.v_w.update(np.random.randn())],
                          [self.w_w.update(np.random.randn())]])'''
-        gust = np.array([[0.],[0.],[0.]])
+        gust = np.array([[np.random.randn()], [0.], [0.]])
+        steadyStateInBody = Euler2Rotation2(MAV.phi0, MAV.theta0, MAV.psi0) @ self._steady_state
+        self.u_w = steadyStateInBody.item(0) + gust[0]
+        self.v_w = steadyStateInBody.item(1) + gust[1]
+        self.w_w = steadyStateInBody.item(2) + gust[2]
+        #print('STEADY WIND: ' + str(self._steady_state.item(0)) + ' , ' + str(self._steady_state.item(1)) + ' , ' + str(self._steady_state.item(2)))
+        #print('GUSTS: ' + str(gust[0]) + ' , ' + str(gust[1]) + ' , ' + str(gust[2]))
         return np.concatenate((self._steady_state, gust))

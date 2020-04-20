@@ -18,7 +18,7 @@ import math
 from message_types.msg_state import msgState
 
 import parameters.aerosonde_parameters as MAV
-from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation
+from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation, Euler2Rotation2
 
 
 class mavDynamics:
@@ -62,6 +62,8 @@ class mavDynamics:
             wind is the wind vector in inertial coordinates
             Ts is the time step between function calls.
         """
+        gustInInertial = Euler2Rotation(self._state.item(6), self._state.item(7), self._state.item(8)) @ wind[3:6]
+        self._wind = wind[0:3] + gustInInertial
         # get forces and moments acting on rigid bod
         forces_moments = self._forces_moments(delta)
 
@@ -157,9 +159,16 @@ class mavDynamics:
     def _update_velocity_data(self, wind=np.zeros((6, 1))):
         steady_state = wind[0:3]
         gust = wind[3:6]
-        self._Va = math.sqrt(self._state.item(3)**2 + self._state.item(4)**2 + self._state.item(5)**2)
-        self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
-        self._beta = np.arcsin(self._state.item(4) / self._Va)
+        steadyStateInBody = Euler2Rotation2(MAV.phi0, MAV.theta0, MAV.psi0) @ steady_state
+        u_w = steadyStateInBody.item(0) + gust.item(0)
+        v_w = steadyStateInBody.item(1) + gust.item(1)
+        w_w = steadyStateInBody.item(2) + gust.item(2)
+        u_r = self._state.item(3) - u_w
+        v_r = self._state.item(4) - v_w
+        w_r = self._state.item(5) - w_w
+        self._Va = math.sqrt(u_r**2 + v_r**2 + w_r**2)
+        self._alpha = np.arctan2(w_r, u_r)
+        self._beta = np.arcsin(v_r / self._Va)
 
     def _forces_moments(self, delta):
         """
