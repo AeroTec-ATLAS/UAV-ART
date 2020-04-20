@@ -1,11 +1,11 @@
 """
-mavDynamics 
+mavDynamics
     - this file implements the dynamic equations of motion for MAV
     - use unit quaternion for the attitude state
-    
-part of mavPySim 
+
+part of mavPySim
     - Beard & McLain, PUP, 2012
-    - Update history:  
+    - Update history:
         12/20/2018 - RWB
         2/24/2020
 """
@@ -121,7 +121,7 @@ class mavDynamics:
         n = forces_moments.item(5)
 
         # transforma os quarterniões em angulos de euler de modo a calcular as variaveis cinematicas
-        #phi, theta, psi = Quaternion2Euler(self._state[6:10])
+        # phi, theta, psi = Quaternion2Euler(self._state[6:10])
         # position kinematics
         pn_dot = ((math.cos(theta)) * (math.cos(psi)) * u +
                   ((math.sin(phi)) * (math.sin(theta)) * (math.cos(psi)) - (math.cos(phi)) * (math.sin(psi))) * v +
@@ -173,36 +173,64 @@ class mavDynamics:
         p = self._state.item(9)
         q = self._state.item(10)
         r = self._state.item(11)
+        Va = self._Va
+        alpha = self._alpha
+        beta = self._beta
 
         delta_e = delta.item(0)
         delta_a = delta.item(1)
         delta_r = delta.item(2)
         delta_t = delta.item(3)
 
-        Massa = MAV.mass
+        mass = MAV.mass
         g = MAV.gravity
-        S_prop = (MAV.D_prop / 2) * math.pi
 
-        f_grav = np.array([-Massa * g * math.sin(theta),
-                           Massa * g * math.cos(theta) * math.sin(phi),
-                           Massa * g * math.cos(theta) * math.cos(phi)])
+        sigma = (1 + math.exp(-MAV.M * (alpha - MAV.alpha0)) + math.exp(MAV.M * (alpha + MAV.alpha0))) / \
+                ((1 + math.exp(-MAV.M * (alpha - MAV.alpha0))) * (1 + math.exp(MAV.M * (alpha + MAV.alpha0))))
+        C_L = (1 - sigma) * (MAV.C_L_0 + MAV.C_L_alpha * alpha) + sigma * 2 * np.sign(alpha) * ((math.sin(alpha))**2) * math.cos(alpha)
+        C_D = MAV.C_D_p + (MAV.C_L_0 + MAV.C_L_alpha * alpha)**2 / (math.pi * MAV.e * MAV.AR)
+        C_X = -C_D * math.cos(alpha) + C_L * math.sin(alpha)
+        C_X_q = -MAV.C_D_q * math.cos(alpha) + MAV.C_L_q * math.sin(alpha)
+        C_X_delta_e = -MAV.C_D_delta_e * math.cos(alpha) + MAV.C_L_delta_e * math.sin(alpha)
+        C_Z = -C_D * math.sin(alpha) - C_L * math.cos(alpha)
+        C_Z_q = -MAV.C_D_q * math.sin(alpha) - MAV.C_L_q * math.cos(alpha)
+        C_Z_delta_e = -MAV.C_D_delta_e * math.sin(alpha) - MAV.C_L_delta_e * math.cos(alpha)
 
-        f_prop = np.array([0.5 * MAV.rho * S_prop * MAV.C_prop * ((MAV.K_motor * delta_t)**2 - self._Va**2),
+        S_prop = math.pi * (MAV.D_prop / 2)**2
+
+        f_grav = np.array([-mass * g * math.sin(theta),
+                           mass * g * math.cos(theta) * math.sin(phi),
+                           mass * g * math.cos(theta) * math.cos(phi)])
+
+        f_aero = 0.5 * MAV.rho * (Va**2) * MAV.S_wing * \
+            np.array([C_X + C_X_q * MAV.c / (2 * Va) * q + C_X_delta_e * delta_e,
+                      MAV.C_Y_0 + MAV.C_Y_beta * beta + MAV.C_Y_p * MAV.b / (2 * Va) * p + MAV.C_Y_r * MAV.b / (2 * Va) * r + MAV.C_Y_delta_a * delta_a + MAV.C_Y_delta_r * delta_r,
+                      C_Z + C_Z_q * MAV.c / (2 * Va) * q + C_Z_delta_e * delta_e])
+        m_aero = 0.5 * MAV.rho * (Va**2) * MAV.S_wing * \
+            np.array([MAV.b * (MAV.C_ell_0 + MAV.C_ell_beta * beta + MAV.C_ell_p * MAV.b / (2 * Va) * p + MAV.C_ell_r * MAV.b / (2 * Va) * r + MAV.C_ell_delta_a * delta_a + MAV.C_ell_delta_r * delta_r),
+                      MAV.c * (MAV.C_m_0 + MAV.C_m_alpha * alpha + MAV.C_m_q * MAV.c / (2 * Va) * q + MAV.C_m_delta_e * delta_e),
+                      MAV.b * (MAV.C_n_0 + MAV.C_n_beta * beta + MAV.C_n_p * MAV.b / (2 * Va) * p + MAV.C_n_r * MAV.b / (2 * Va) * r + MAV.C_n_delta_a * delta_a + MAV.C_n_delta_r * delta_r)])
+
+        f_prop = np.array([0.5 * MAV.rho * S_prop * MAV.C_prop * ((MAV.K_motor * delta_t)**2 - Va**2),
+                           0,
+                           0])
+        m_prop = np.array([-MAV.K_tp * (MAV.K_omega * delta_t)**2,
                            0,
                            0])
 
-        fresultante = f_grav + f_prop
-        fx = fresultante[0]
-        fy = fresultante[1]
-        fz = fresultante[2]
-        Mx = 0
-        My = 0
-        Mz = 0
+        f_sum = f_grav + f_aero + f_prop
+        moments = m_aero + m_prop
+        fx = f_sum[0]
+        fy = f_sum[1]
+        fz = f_sum[2]
+        l = moments[0]
+        m = moments[1]
+        n = moments[2]
 
         self._forces[0] = fx
         self._forces[1] = fy
         self._forces[2] = fz
-        return np.array([[fx, fy, fz, Mx, My, Mz]]).T
+        return np.array([[fx, fy, fz, l, m, n]]).T
 
     def _motor_thrust_torque(self, Va, delta_t):
         T_p = -MAV.K_tp * (MAV.K_omega * delta_t)
@@ -212,8 +240,8 @@ class mavDynamics:
     def _update_true_state(self):
         # update the class structure for the true state:
         #   [pn, pe, h, Va, alpha, beta, phi, theta, chi, p, q, r, Vg, wn, we, psi, gyro_bx, gyro_by, gyro_bz]
-        #phi, theta, psi = Quaternion2Euler(self._state[6:10])
-        #pdot = Quaternion2Rotation(self._state[6:10]) @ self._state[3:6]
+        # phi, theta, psi = Quaternion2Euler(self._state[6:10])
+        # pdot = Quaternion2Rotation(self._state[6:10]) @ self._state[3:6]
         pdot = Euler2Rotation(self._state[6], self._state[7], self._state[8]) @ self._state[3:6]
         self.true_state.pn = self._state.item(0)
         self.true_state.pe = self._state.item(1)
