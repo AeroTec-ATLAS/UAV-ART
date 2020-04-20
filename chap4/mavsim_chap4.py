@@ -28,7 +28,7 @@ if VIDEO is True:
 
 # initialize elements of the architecture
 wind = windSimulation(SIM.ts_simulation)
-wind._steady_state = np.array([[10., 0., 0.]]).T  # Steady wind in NED frame
+wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
 
 # initialize the simulation time
@@ -36,7 +36,6 @@ sim_time = SIM.start_time
 plot_time = sim_time
 
 # main simulation loop
-print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
     # -------set control surfaces-------------
     delta_e = -0.2
@@ -47,7 +46,7 @@ while sim_time < SIM.end_time:
     # transpose to make it a column vector
 
     # -------physical system-------------
-    current_wind = wind.update()  # get the new wind vector
+    current_wind = wind.update(mav.true_state.Va)  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
     # -------update viewer-------------
@@ -63,6 +62,8 @@ while sim_time < SIM.end_time:
 
     # -------increment time-------------
     sim_time += SIM.ts_simulation
-
+    if mav.true_state.h <= 0:  # Touches the ground
+        break
+input("Press any key to exit...")
 if VIDEO is True:
     video.close()
