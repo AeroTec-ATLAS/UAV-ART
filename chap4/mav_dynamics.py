@@ -74,7 +74,7 @@ class mavDynamics:
         self._state += time_step / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
 
         # normalize the quaternion
-        e0 = self._state.item(6)
+        '''e0 = self._state.item(6)
         e1 = self._state.item(7)
         e2 = self._state.item(8)
         e3 = self._state.item(9)
@@ -82,7 +82,7 @@ class mavDynamics:
         self._state[6][0] = self._state.item(6) / normE
         self._state[7][0] = self._state.item(7) / normE
         self._state[8][0] = self._state.item(8) / normE
-        self._state[9][0] = self._state.item(9) / normE
+        self._state[9][0] = self._state.item(9) / normE'''
 
         # update the airspeed, angle of attack, and side slip angles using new state
         self._update_velocity_data(wind)
@@ -167,10 +167,12 @@ class mavDynamics:
         :param delta: np.matrix(delta_a, delta_e, delta_r, delta_t)
         :return: Forces and Moments on the UAV np.matrix(Fx, Fy, Fz, Ml, Mn, Mm)
         """
-        phi, theta, psi = Quaternion2Euler(self._state[6:10])
-        p = self._state.item(10)
-        q = self._state.item(11)
-        r = self._state.item(12)
+        phi = self._state.item(6)
+        theta = self._state.item(7)
+        psi = self._state.item(8)
+        p = self._state.item(9)
+        q = self._state.item(10)
+        r = self._state.item(11)
 
         delta_e = delta.item(0)
         delta_a = delta.item(1)
@@ -212,7 +214,7 @@ class mavDynamics:
         #   [pn, pe, h, Va, alpha, beta, phi, theta, chi, p, q, r, Vg, wn, we, psi, gyro_bx, gyro_by, gyro_bz]
         #phi, theta, psi = Quaternion2Euler(self._state[6:10])
         #pdot = Quaternion2Rotation(self._state[6:10]) @ self._state[3:6]
-        pdot = Euler2Rotation(self._state[6:9]) @ self._state[3:6]
+        pdot = Euler2Rotation(self._state[6], self._state[7], self._state[8]) @ self._state[3:6]
         self.true_state.pn = self._state.item(0)
         self.true_state.pe = self._state.item(1)
         self.true_state.h = -self._state.item(2)

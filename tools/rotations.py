@@ -16,6 +16,10 @@ def Euler2Rotation(phi, theta, psi):
                   [-s_theta, s_phi * c_theta, c_phi * c_theta]])
     return R
 
+def Euler2Rotation2(phi, theta, psi):
+    # Transfroms Euler angles into a rotation matrix R, for a inertial to body rotation
+    return Euler2Rotation(phi, theta, psi).T
+
 
 def Euler2Quaternion(phi, theta, psi):
     e0 = cos(psi / 2) * cos(theta / 2) * cos(phi / 2) + sin(psi / 2) * sin(theta / 2) * sin(phi / 2)
