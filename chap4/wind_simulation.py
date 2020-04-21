@@ -17,37 +17,25 @@ class windSimulation:
     def __init__(self, Ts):
         # steady state wind defined in the inertial frame
         self._steady_state = np.array([[0., 0., 0.]]).T
-
-        steadyStateInBody = Euler2Rotation2(MAV.phi0, MAV.theta0, MAV.psi0) @ self._steady_state
-        self.u_w = steadyStateInBody.item(0)
-        self.v_w = steadyStateInBody.item(1)
-        self.w_w = steadyStateInBody.item(2)
-        self._Ts = Ts
-
-    def update(self, Va):
-        # returns a six vector.
-        #   The first three elements are the steady state wind in the inertial frame
-        #   The second three elements are the gust in the body frame
-        '''gust = np.array([[self.u_w.update(np.random.randn())],
-                         [self.v_w.update(np.random.randn())],
-                         [self.w_w.update(np.random.randn())]])'''
-        '''
+        # Gust model parameters from table 4.1
         L_u = 200
         L_v = 200
         L_w = 50
         sigma_u = 1.06
         sigma_v = 1.06
         sigma_w = 0.7
+        Va0 = MAV.Va0  # Reference value for airspeed
+        self.u_w_g = transferFunction(sigma_u * sqrt(2 * Va0 / L_u) ** np.array([[1]]), sigma_u * sqrt(2 * Va0 / L_u) * np.array([[1, Va0 / L_u]]), Ts)
+        self.v_w_g = transferFunction(sigma_v * sqrt(3 * Va0 / L_v) ** np.array([[1, Va0 / (sqrt(3) * L_v)]]), sigma_v * sqrt(3 * Va0 / L_v) ** np.array([[1, 2 * Va0 / L_v, (Va0 / L_v)**2]]), Ts)
+        self.w_w_g = transferFunction(sigma_w * sqrt(3 * Va0 / L_w) * np.array([[1, Va0 / (sqrt(3) * L_w)]]), sigma_w * sqrt(3 * Va0 / L_w) * np.array([[1, 2 * Va0 / L_w, (Va0 / L_w)**2]]), Ts)
+        self._Ts = Ts
 
-        gust = np.array([[sigma_u * sqrt(2 * Va / L_u) * transferFunction(np.array([[1]]), np.array([[1, Va / L_u]]), SIM.ts_plotting)],
-                         [sigma_v * sqrt(3 * Va / L_v) * transferFunction(np.array([[1, Va / (sqrt(3) * L_v)]]), np.array([[1, 2 * Va / L_v, (Va / L_v)**2]]), SIM.ts_plotting)],
-                         [sigma_w * sqrt(3 * Va / L_w) * transferFunction(np.array([[1, Va / (sqrt(3) * L_w)]]), np.array([[1, 2 * Va / L_w, (Va / L_w)**2]]), SIM.ts_plotting)]])
-        '''
-        gust = np.array([[np.random.randn() * self._steady_state.item(0) / 20],
-                         [np.random.randn() * self._steady_state.item(1) / 20],
-                         [np.random.randn() * self._steady_state.item(2) / 20]])
-        steadyStateInBody = Euler2Rotation2(MAV.phi0, MAV.theta0, MAV.psi0) @ self._steady_state
-        self.u_w = steadyStateInBody.item(0) + gust.item(0)
-        self.v_w = steadyStateInBody.item(1) + gust.item(1)
-        self.w_w = steadyStateInBody.item(2) + gust.item(2)
+    def update(self):
+        # returns a six vector.
+        #   The first three elements are the steady state wind in the inertial frame
+        #   The second three elements are the gust in the body frame
+        gust = np.array([[self.u_w_g.update(np.random.randn())],
+                         [self.v_w_g.update(np.random.randn())],
+                         [self.w_w_g.update(np.random.randn())]])
+        #gust = np.array([[0.],[0.],[0.]])
         return np.concatenate((self._steady_state, gust))

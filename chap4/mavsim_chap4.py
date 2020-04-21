@@ -46,7 +46,7 @@ while sim_time < SIM.end_time:
     # transpose to make it a column vector
 
     # -------physical system-------------
-    current_wind = wind.update(mav.true_state.Va)  # get the new wind vector
+    current_wind = wind.update()  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
     # -------update viewer-------------
