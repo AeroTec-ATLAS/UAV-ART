@@ -39,9 +39,9 @@ plot_time = sim_time
 while sim_time < SIM.end_time:
     # -------set control surfaces-------------
     delta_e = -0.2
-    delta_a = 0.0
+    delta_a = 0.002
     delta_r = 0.005
-    delta_t = 0.5
+    delta_t = 0.6
     delta = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
     # transpose to make it a column vector
 
