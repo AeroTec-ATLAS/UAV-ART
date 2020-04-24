@@ -19,10 +19,10 @@
 % details on the autopilot arquitecture.
 % Go to http://uavbook.byu.edu/doku.php?id=start to obtain the files
 % necessary to solve the exercises suggested in the book and other 
-% resources. In this page a link to the book's repository in Github is
-% provided https://magiccvs.byu.edu/gitlab/uavbook/mavsim_template_file.
+% resources.
 
 clear
+close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Load structure with the physical parameters of the aircraft, its
 % aerodynamic coefficients, initial conditions, wind parameters, controller
@@ -35,7 +35,7 @@ load anim/aircraft
 
 addpath('anim','util')
 
-T = 30; % simulation time in seconds
+T = 50; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,8 +50,8 @@ t = 0:P.Ts:T;
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-h_ref = 100*ones(length(t),1); % height (m)
-chi_ref = 0*pi/180*ones(length(t),1); % course angle (rad)
+h_ref = 100*ones(length(t),1) + randn(length(t),1); % height (m)
+chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
 Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 
 reference = [t' Va_ref h_ref chi_ref];

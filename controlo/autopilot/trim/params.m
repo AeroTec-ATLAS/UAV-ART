@@ -18,6 +18,7 @@
 % This script outputs a MAT file with the structure P which is later to be 
 % used in the simulation.
 
+addpath('../util')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 P.rho = 1.2682;
 P.gravity = 9.8;
@@ -93,6 +94,7 @@ P.g8 = P.Jx/P.g;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % aerodynamic coefficients
+% Cruise speed Va \approx 35 m/s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % wings
@@ -207,5 +209,5 @@ P.r0     = x_trim(12);  % initial body frame yaw rate
 G = compute_tf_model(x_trim,u_trim,P);
 P = getGains(P,G);
 
-save('params.mat','P');
-clear
+% save('params.mat','P');
+% clear
