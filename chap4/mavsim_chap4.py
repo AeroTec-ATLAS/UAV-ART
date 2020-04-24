@@ -15,11 +15,13 @@ from chap2.mav_viewer import mavViewer
 from chap3.data_viewer import dataViewer
 from chap4.mav_dynamics import mavDynamics
 from chap4.wind_simulation import windSimulation
+from tools.log import log
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
 data_view = dataViewer()  # initialize view of data plots
+logFile = log('dados_log.txt')
 if VIDEO is True:
     from chap2.video_writer import videoWriter
     video = videoWriter(video_name="chap4_video.avi",
@@ -35,13 +37,18 @@ mav = mavDynamics(SIM.ts_simulation)
 sim_time = SIM.start_time
 plot_time = sim_time
 
+delta_e = -0.2
+delta_a = 0.00
+delta_r = 0.0
+delta_t = 0.6
+
 # main simulation loop
 while sim_time < SIM.end_time:
     # -------set control surfaces-------------
-    delta_e = -0.2
-    delta_a = 0.002
-    delta_r = 0.005
-    delta_t = 0.6
+    delta_e += 0.001 * (np.random.random() - 0.5)
+    delta_a += 0.001 * (np.random.random() - 0.5)
+    delta_r += 0.001 * (np.random.random() - 0.5)
+    delta_t += 0.001 * (np.random.random() - 0.5)
     delta = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
     # transpose to make it a column vector
 
@@ -57,6 +64,7 @@ while sim_time < SIM.end_time:
                      mav.true_state,  # estimated states
                      mav.true_state,  # commanded states
                      SIM.ts_simulation)
+    logFile.addEntry(mav.true_state, delta, sim_time)
     if VIDEO is True:
         video.update(sim_time)
 
@@ -64,6 +72,7 @@ while sim_time < SIM.end_time:
     sim_time += SIM.ts_simulation
     if mav.true_state.h <= 0:  # Touches the ground
         break
+logFile.closeLog()
 input("Press any key to exit...")
 if VIDEO is True:
     video.close()
