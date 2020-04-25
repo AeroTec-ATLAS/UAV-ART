@@ -253,8 +253,6 @@ class mavDynamics:
         Q_p = -MAV.K_tp * (MAV.K_omega * delta_t)**2
         #T_p = MAV.rho * MAV.C_T0 * MAV.D_prop**4 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_T1 * Va * MAV.D_prop**3 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_T2 * MAV.D_prop**2 * Va**2
         #Q_p = MAV.rho * MAV.C_Q0 * MAV.D_prop**5 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_Q1 * Va * MAV.D_prop**4 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_Q2 * MAV.D_prop**3 * Va**2
-        print('T_p= '+str(T_p))
-        print('Q_p= '+str(Q_p))
         return T_p, Q_p
 
     def _update_true_state(self):
