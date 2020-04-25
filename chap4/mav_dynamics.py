@@ -230,12 +230,12 @@ class mavDynamics:
 
         f_sum = f_grav + f_aero + f_prop
         moments = m_aero + m_prop
-        fx = f_sum[0]
-        fy = f_sum[1]
-        fz = f_sum[2]
-        l = moments[0]
-        m = moments[1]
-        n = moments[2]
+        fx = f_sum.item(0)
+        fy = f_sum.item(1)
+        fz = f_sum.item(2)
+        l = moments.item(0)
+        m = moments.item(1)
+        n = moments.item(2)
 
         self._forces[0] = fx
         self._forces[1] = fy

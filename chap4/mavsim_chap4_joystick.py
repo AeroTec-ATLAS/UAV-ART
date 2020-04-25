@@ -57,7 +57,7 @@ while sim_time < SIM.end_time:
     pygame.event.pump()
     delta_e = -sideStick.get_axis(1) * np.radians(45/2)
     delta_a = sideStick.get_axis(0) * np.radians(45/2)
-    delta_r = -rudder.get_axis(2) * np.radians(45/2)
+    delta_r = rudder.get_axis(2) * np.radians(45/2)
     delta_t = (thrustLever.get_axis(4) + 1) / 2
     # -------set control surfaces-------------
     #delta_e += 0.001 * (np.random.random() - 0.5)
