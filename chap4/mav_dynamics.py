@@ -249,8 +249,12 @@ class mavDynamics:
         c = MAV.rho * MAV.D_prop**3 * MAV.C_Q2 * Va**2 - MAV.KQ / MAV.R_motor * V_in + MAV.KQ * MAV.i0
         sigma_p = (-b + math.sqrt(b**2 - 4 * a * c)) / (2 * a)
 
-        T_p = MAV.rho * MAV.C_T0 * MAV.D_prop**4 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_T1 * Va * MAV.D_prop**3 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_T2 * MAV.D_prop**2 * Va**2
-        Q_p = MAV.rho * MAV.C_Q0 * MAV.D_prop**5 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_Q1 * Va * MAV.D_prop**4 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_Q2 * MAV.D_prop**3 * Va**2
+        T_p = 0.5 * MAV.rho * MAV.S_prop * MAV.C_prop * ((MAV.K_motor * delta_t)**2 - Va**2)
+        Q_p = -MAV.K_tp * (MAV.K_omega * delta_t)**2
+        #T_p = MAV.rho * MAV.C_T0 * MAV.D_prop**4 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_T1 * Va * MAV.D_prop**3 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_T2 * MAV.D_prop**2 * Va**2
+        #Q_p = MAV.rho * MAV.C_Q0 * MAV.D_prop**5 / (4 * math.pi**2) * sigma_p**2 + MAV.rho * MAV.C_Q1 * Va * MAV.D_prop**4 / (2 * math.pi) * sigma_p + MAV.rho * MAV.C_Q2 * MAV.D_prop**3 * Va**2
+        print('T_p= '+str(T_p))
+        print('Q_p= '+str(Q_p))
         return T_p, Q_p
 
     def _update_true_state(self):

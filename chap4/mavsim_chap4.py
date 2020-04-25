@@ -40,7 +40,7 @@ plot_time = sim_time
 delta_e = -0.2
 delta_a = 0.00
 delta_r = 0.0
-delta_t = 0.6
+delta_t = 0.3
 
 # main simulation loop
 while sim_time < SIM.end_time:
