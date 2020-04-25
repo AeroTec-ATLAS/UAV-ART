@@ -150,7 +150,7 @@ P.C_n_delta_r   = -0.032;
 
 % P.epsilon       = 0.1592; %aircraft's efficiency factor
 
-% sigmoid function paramteers for incorporating the effects of stall in the
+% sigmoid function parameters for incorporating the effects of stall in the
 % lift coefficient.
 % P.M             = 50; %transition rate
 % P.alpha0        = 0.4712; %cutoff
@@ -209,5 +209,5 @@ P.r0     = x_trim(12);  % initial body frame yaw rate
 G = compute_tf_model(x_trim,u_trim,P);
 P = getGains(P,G);
 
-% save('params.mat','P');
-% clear
+save('params.mat','P');
+clear

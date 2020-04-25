@@ -52,6 +52,7 @@ t = 0:P.Ts:T;
 
 h_ref = 100*ones(length(t),1) + randn(length(t),1); % height (m)
 chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
+% chi_ref = 0*ones(length(t),1);
 Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 
 reference = [t' Va_ref h_ref chi_ref];
