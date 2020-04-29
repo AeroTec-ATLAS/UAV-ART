@@ -142,22 +142,128 @@ grid on
 
 figure
 subplot(3,1,1)
-plot(t,180/pi*delta(:,1),'Linewidth',1.5)
-ylabel('\delta_e [deg]')
+plot(t,F_aero(:,3),'Linewidth',1.5)
+ylabel('F_L [N]')
 hold on
-title('Control surfaces','Fontsize',11)
+title('Aerodynamic Forces expressed in \{B\}','Fontsize',11)
 grid on
 
 subplot(3,1,2)
-plot(t,180/pi*delta(:,2),'Linewidth',1.5)
-ylabel('\delta_a [deg]')
+plot(t,F_aero(:,1),'Linewidth',1.5)
+ylabel('F_D [N]')
 hold on
 grid on
 
 subplot(3,1,3)
+plot(t,F_aero(:,2),'Linewidth',1.5) 
+ylabel('F_Y [N]')
+xlabel('Time [s]')
+hold on
+grid on
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+subplot(3,1,1)
+plot(t,T_aero(:,1),'Linewidth',1.5)
+ylabel('l [N.m]')
+hold on
+title('Aerodynamic Moments expressed in \{B\}','Fontsize',11)
+grid on
+
+subplot(3,1,2)
+plot(t,T_aero(:,3),'Linewidth',1.5)
+ylabel('m [N.m]')
+hold on
+grid on
+
+subplot(3,1,3)
+plot(t,T_aero(:,2),'Linewidth',1.5) 
+ylabel('n [N.m]')
+xlabel('Time [s]')
+hold on
+grid on
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+subplot(3,1,1)
+plot(t,F_body(:,1),'Linewidth',1.5)
+ylabel('f_x [N]')
+hold on
+title('Total Force expressed in \{B\}','Fontsize',11)
+grid on
+
+subplot(3,1,2)
+plot(t,F_body(:,2),'Linewidth',1.5)
+ylabel('f_y [N]')
+hold on
+grid on
+
+subplot(3,1,3)
+plot(t,F_body(:,3),'Linewidth',1.5) 
+ylabel('f_z [N]')
+xlabel('Time [s]')
+hold on
+grid on
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+subplot(3,1,1)
+plot(t,T_body(:,1),'Linewidth',1.5)
+ylabel('l [N.m]')
+hold on
+title('Total Moments expressed in \{B\}','Fontsize',11)
+grid on
+
+subplot(3,1,2)
+plot(t,T_body(:,2),'Linewidth',1.5)
+ylabel('m [N.m]')
+hold on
+grid on
+
+subplot(3,1,3)
+plot(t,T_body(:,3),'Linewidth',1.5) 
+ylabel('n [N.m]')
+xlabel('Time [s]')
+hold on
+grid on
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+subplot(2,2,1)
+plot(t,180/pi*delta(:,1),'Linewidth',1.5)
+ylabel('\delta_e [deg]')
+xlabel('Time [s]')
+hold on
+title('Elevator','Fontsize',11)
+grid on
+
+subplot(2,2,2)
+plot(t,180/pi*delta(:,2),'Linewidth',1.5)
+ylabel('\delta_a [deg]')
+xlabel('Time [s]')
+hold on
+title('Airelons','Fontsize',11)
+grid on
+
+subplot(2,2,3)
+plot(t,180/pi*delta(:,3),'Linewidth',1.5)
+ylabel('\delta_r [deg]')
+xlabel('Time [s]')
+hold on
+title('Rudder','Fontsize',11)
+grid on
+
+subplot(2,2,4)
 plot(t,delta(:,4),'Linewidth',1.5)
 ylabel('\delta_t')
 xlabel('Time [s]')
 hold on
+title('Throttle','Fontsize',11)
 grid on
 

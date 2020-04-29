@@ -67,9 +67,13 @@ P.wind_d = 0;
 P.L_u     = 200;
 P.L_v     = 200;
 P.L_w     = 50;
-P.sigma_u = 1.06; 
-P.sigma_v = 1.06;
-P.sigma_w = .7;
+% P.sigma_u = 1.06; 
+% P.sigma_v = 1.06;
+% P.sigma_w = .7;
+P.sigma_u = 0; 
+P.sigma_v = 0;
+P.sigma_w = 0;
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,7 +113,7 @@ P.k_motor       = 80;
 P.k_T_P         = 0;
 P.k_Omega       = 0;
 
-% P.e           = 0.9; %Oswald efficiency factor
+P.e           = 0.9; %Oswald efficiency factor
 
 P.C_L_0         = 0.28;
 P.C_L_alpha     = 3.45;

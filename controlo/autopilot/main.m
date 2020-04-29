@@ -33,9 +33,9 @@ load trim/params
 load anim/aircraft
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-addpath('anim','util')
+addpath('anim','util','trim')
 
-T = 50; % simulation time in seconds
+T = 30; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,9 +50,11 @@ t = 0:P.Ts:T;
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-h_ref = 100*ones(length(t),1) + randn(length(t),1); % height (m)
-chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
-% chi_ref = 0*ones(length(t),1);
+h_ref = 200*ones(length(t),1); % height (m)
+% h_ref(2001:4001) = 50*ones(2001,1);
+% chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
+chi_ref = 0*ones(length(t),1);
+% chi_ref(3001:5001) = 170*pi/180*ones(2001,1);
 Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 
 reference = [t' Va_ref h_ref chi_ref];
@@ -77,7 +79,15 @@ wind_data = airdata.signals.values(:,4:6); % [wn we wd]
 chi = atan2(Va.*sin(att(:,3))+wind_data(:,2), ...
                                     Va.*cos(att(:,3))+wind_data(:,1));
 
-delta = delta.signals.values;
+delta = delta.signals.values; % [delta_e delta_a delta_r delta_t]
+
+% Aerodynamic Forces and Moments (expressed in the body frame)
+F_aero = aero.signals.values(:,1:3); % [Lift Drag Fy]
+T_aero = aero.signals.values(:,4:6); % [L M N]
+
+% Total Forces and Moments (expressed in the body frame)
+F_body = FM.signals.values(:,1:3); % [fx fy fz]
+T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 drawAircraft(pos,att,V,F,facecolors,2e-3)
