@@ -6,7 +6,7 @@ mavSimPy
 """
 import sys
 sys.path.append('..')
-from chap2.mav_viewer import mavViewer
+from video.mav_viewer import mavViewer
 import parameters.simulation_parameters as SIM
 from message_types.msg_state import msgState
 
