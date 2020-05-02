@@ -1,7 +1,7 @@
 %Programa que lê os dados do ficheiro "dados_log.txt" para a 
 %structures array "data".
 
-fid = fopen('dados_1.txt','rt');
+fid = fopen('dados_5.txt','rt');
 
 if fid < 0
     disp('Erro na abertura do ficheiro "dados_log.txt"');
