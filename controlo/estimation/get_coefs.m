@@ -17,10 +17,8 @@ C_prop  = 1.0;
 
 
 %Obter as acelerações lineares e angulares 
-[u_dot,v_dot,w_dot] = compute_acceleration([data.time],[data.u],...
-                                                       [data.v],[data.w]);
-[p_dot,q_dot,r_dot] = compute_acceleration([data.time],[data.p],...
-                                                        [data.q],[data.r]);
+[u_dot,v_dot,w_dot] = compute_acceleration([data.time],[data.u],[data.v],[data.w]);
+[p_dot,q_dot,r_dot] = compute_acceleration([data.time],[data.p],[data.q],[data.r]);
 
 %Obter as forças aerodinâmicas
 [L,D,Y] = obter_forcas(data,m,g,rho,S_prop,k_motor,C_prop,u_dot,v_dot,w_dot);
@@ -58,7 +56,6 @@ C.C_m_0         = Coef_m(1);
 C.C_m_alpha     = Coef_m(2);
 C.C_m_q         = Coef_m(3);
 C.C_m_delta_e   = Coef_m(4);
-
 C.C_Y_0         = Coef_Y(1);
 C.C_Y_beta      = Coef_Y(2);
 C.C_Y_p         = Coef_Y(3);
@@ -81,98 +78,70 @@ C.C_n_delta_r   = Coef_n(6);
 
 % Diferenças finitas regressivas
 function [a_dot,b_dot,c_dot]=compute_acceleration(time,a,b,c)
-    
-    a_dot = zeros(1,length(time));
-    b_dot = zeros(1,length(time));
-    c_dot = zeros(1,length(time));
 
-    for i = 2:length(time) %O primeiro elemento será nulo
-        a_dot(i) = (a(i)-a(i-1))/(time(i)-time(i-1));
-        b_dot(i) = (b(i)-b(i-1))/(time(i)-time(i-1));
-        c_dot(i) = (c(i)-c(i-1))/(time(i)-time(i-1));
-    end
+for i = 2:length(time) %O primeiro elemento será nulo
+    %a_dot(i) = (a(i)-a(i-1))/(time(i)-time(i-1));
+    %b_dot(i) = (b(i)-b(i-1))/(time(i)-time(i-1));
+    %c_dot(i) = (c(i)-c(i-1))/(time(i)-time(i-1));
+    a_dot(i) = (a(i)-a(i-1))/0.01;
+    b_dot(i) = (b(i)-b(i-1))/0.01;
+    c_dot(i) = (c(i)-c(i-1))/0.01;
+end
 
 end
 
 % Adimensionalização das grandezas
 function C = calc_C (rho,data,S_wing,FM,k)
-    
-    C = zeros(1,length(data));
-
-    for i=1:length(data)
-         C(i) = FM(i)/ (0.5*rho*S_wing*((data(i).Va)^2)*k);  
-    end
-    
+for i=1:length(data)
+     C(i)= FM(i)/ (0.5*rho*S_wing*((data(i).Va)^2)*k);  
+end
 end
 
 %Obter L,D,Y
-% Comparar valores com os valores do log_wAero!
-function [L,D,Y] = obter_forcas(data,m,g,rho,S_prop,k_motor,C_prop,...
-                                                        u_dot,v_dot,w_dot)
+function [L,D,Y] = obter_forcas(data,m,g,rho,S_prop,k_motor,C_prop,u_dot,v_dot,w_dot)
 
-    X = zeros(1,length(data));
-    Y = zeros(1,length(data));
-    Z = zeros(1,length(data));
-    L = zeros(1,length(data));
-    D = zeros(1,length(data));
-
-    for i=1:length(data)
-
-    X(i) = m*(u_dot(i) - data(i).r*data(i).v + data(i).q*data(i).w + ...
-                                                    g*sin(data(i).theta));
-
-    Y(i) = m*(v_dot(i) - data(i).p*data(i).w + data(i).r*data(i).u - ...
-                                    g*cos(data(i).theta)*sin(data(i).phi));
-
-    Z(i) = m*(w_dot(i) - data(i).q*data(i).u + data(i).p*data(i).v - ...
-                                g*cos(data(i).theta)*cos(data(i).phi));
-
-    %Descontar a força de propulsão
-    X(i) = X(i) - 0.5*rho*S_prop*C_prop*((k_motor*data(i).RCch3)^2-...
-                                                            data(i).Va^2);
-
-    % Rotate lift and drag forces from the body frame to the stability frame
-    R_sb = [cos(data(i).AoA)   sin(data(i).AoA);...
-            -sin(data(i).AoA)  cos(data(i).AoA)];
-
-    F_matrix = R_sb*[X(i);Z(i)];
-
-    L(i) = - F_matrix(1);
-    D(i) = - F_matrix(2); 
-
-    end
+for i=1:length(data)
     
+X(i) = m*(u_dot(i) - data(i).r*data(i).v + data(i).q*data(i).w + g*sin(data(i).theta));
+    
+Y(i) = m*(v_dot(i) - data(i).p*data(i).w + data(i).r*data(i).u - g*cos(data(i).theta)*sin(data(i).phi));
+    
+Z(i) = m*(w_dot(i) - data(i).q*data(i).u + data(i).p*data(i).v - g*cos(data(i).theta)*cos(data(i).phi));
+
+%Descontar a força de propulsão
+X(i) = X(i) - 0.5*rho*S_prop*C_prop*((k_motor*data(i).RCch3)^2-data(i).Va^2);
+
+% Rotate lift and drag forces from the stability frame to the body frame
+R_sb = [cos(data(i).AoA)   -sin(data(i).AoA);...
+        sin(data(i).AoA)   cos(data(i).AoA)];
+ 
+F_matrix = inv(R_sb)*[X(i);Z(i)];
+ 
+L(i) = - F_matrix(1);
+D(i) = - F_matrix(2); 
+
+end    
 end
 
 %Obter ell,m,n
 function [ell,m,n] = obter_momentos(data,Ixx,Iyy,Izz,Ixz,p_dot,q_dot,r_dot)
 
-    ell = zeros(1,length(data));
-    m = zeros(1,length(data));
-    n = zeros(1,length(data));
-
-    for i=1:length(data)
-
-        ell(i) = Ixx*p_dot(i) - Ixz*(r_dot(i) + data(i).p*data(i).q) ...
-                                        - (Iyy - Izz)*data(i).q*data(i).r;
-
-        m(i)   = Iyy*q_dot(i) - Ixz*(data(i).r^2 - data(i).p^2) - ...
-                                        (Izz - Ixx)*data(i).r*data(i).p;
-
-        n(i)   = Izz*r_dot(i) - Ixz*(p_dot(i) - data(i).q*data(i).r) - ...
-                                    (Ixx - Iyy)*data(i).p*data(i).q;
-
-    end    
+for i=1:length(data)
+    
+ell(i) = Ixx*p_dot(i) - Ixz*(r_dot(i) + data(i).p*data(i).q) - (Iyy - Izz)*data(i).q*data(i).r;
+    
+m(i)   = Iyy*q_dot(i) - Ixz*(data(i).r^2 - data(i).p^2) - (Izz - Ixx)*data(i).r*data(i).p;
+    
+n(i)   = Izz*r_dot(i) - Ixz*(p_dot(i) - data(i).q*data(i).r) - (Ixx - Iyy)*data(i).p*data(i).q;
+    
+end    
 
 end
 
 % Mínimos quadrados
 
-function [Coef,D] = NRLS(Y,X)
-
-    Coef = (X*X')\X*Y';
-    D = det(X*X');
-    
+function Coef = NRLS(Y,X)
+Coef = inv(X*X')*X*Y';
 end
 
 %ch1 -> delta_a
@@ -183,37 +152,26 @@ end
 %Obter coeficientes longitudinais
 function [Coef] = obter_coefs_long(C, data)
 
-    Unit = ones(1,length(data));
-
-%     for i=1:length(data)    
-%        Unit(i)= 1;     
-%     end
-
-    X = [Unit;data.AoA;data.q;data.RCch2];
-    Y = C;
-
-    [Coef,~] = NRLS(Y,X);
-    
-%     Return error
-%     err = norm(Y - X*Coef);
-
+for i=1:length(data)    
+   Unit(i)= 1;     
 end
 
+X = [Unit;data.AoA;data.q;data.RCch2];
+Y = [C];
+
+Coef = NRLS(Y,X);
+
+end
 %Obter coeficientes laterais
 function [Coef] = obter_coefs_lat(C, data)
 
-    Unit = ones(1,length(data));
+for i=1:length(data)    
+   Unit(i)= 1;    
+end
 
-%     for i=1:length(data)
-%        Unit(i)= 1;    
-%     end
+X = [Unit;data.beta;data.p;data.r;data.RCch1;data.RCch4];
+Y = [C];
 
-    X = [Unit;data.beta;data.p;data.r;data.RCch1;data.RCch4];
-    Y = C;
-
-    [Coef,~] = NRLS(Y,X);
-    
-%     Return error
-%     err = norm(Y - X*Coef);
+Coef = NRLS(Y,X);
 
 end
