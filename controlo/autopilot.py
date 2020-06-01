@@ -34,7 +34,7 @@ class autopilot:
         #inicialize message        
               
 		self.commanded_state = msgState()
-		self.msgDelta= msgDelta()
+		self.delta= msgDelta()
 		
 		
 	def update(self, cmd, state, ts_control):			
@@ -119,8 +119,8 @@ class autopilot:
 
 		# construct output and commanded states
 			
-		delta = np.array([[delta_e], [delta_a], [delta_r], [delta_t]])
-		self.msgDelta.from_array(delta)
+		u = np.array([[delta_e], [delta_a], [delta_r], [delta_t]])
+		self.delta.from_array(u)
         
 		self.commanded_state.h = cmd.altitude_command
 		self.commanded_state.Va = cmd.airspeed_command
@@ -129,4 +129,4 @@ class autopilot:
 		self.commanded_state.chi = cmd.course_command
         
         
-		return delta, self.commanded_state
+		return self.delta, self.commanded_state

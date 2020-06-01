@@ -186,10 +186,10 @@ class mavDynamics:
         alpha = self._alpha
         beta = self._beta
 
-        delta_e = delta.item(0)
-        delta_a = delta.item(1)
-        delta_r = delta.item(2)
-        delta_t = delta.item(3)
+        delta_e = delta.elevator
+        delta_a = delta.aileron
+        delta_r = delta.rudder
+        delta_t = delta.throttle
 
         mass = MAV.mass
         g = MAV.gravity

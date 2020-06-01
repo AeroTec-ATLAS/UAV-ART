@@ -16,6 +16,7 @@ from kinematics.data_viewer import dataViewer
 from dynamics.mav_dynamics import mavDynamics
 from dynamics.wind_simulation import windSimulation
 from tools.log import log
+from message_types.msg_delta import msgDelta
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
@@ -32,6 +33,7 @@ if VIDEO is True:
 wind = windSimulation(SIM.ts_simulation)
 wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
+delta = msgDelta()
 
 # initialize the simulation time
 sim_time = SIM.start_time
@@ -49,7 +51,8 @@ while sim_time < SIM.end_time:
     delta_a += 0.001 * (np.random.random() - 0.5)
     delta_r += 0.001 * (np.random.random() - 0.5)
     delta_t += 0.001 * (np.random.random() - 0.5)
-    delta = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
+    u = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
+    delta.from_array(u)
     # transpose to make it a column vector
 
     # -------physical system-------------
@@ -64,14 +67,14 @@ while sim_time < SIM.end_time:
                      mav.true_state,  # estimated states
                      mav.true_state,  # commanded states
                      SIM.ts_simulation)
-    logFile.addEntry(mav.true_state, delta, sim_time)
+    logFile.addEntry(mav.true_state, u, sim_time)
     if VIDEO is True:
         video.update(sim_time)
 
     # -------increment time-------------
     sim_time += SIM.ts_simulation
-    if mav.true_state.h <= 0:  # Touches the ground
-        break
+    #if mav.true_state.h <= 0:  # Touches the ground
+        #break
 logFile.closeLog()
 input("Press any key to exit...")
 if VIDEO is True:
