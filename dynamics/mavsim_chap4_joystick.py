@@ -16,6 +16,7 @@ from kinematics.data_viewer import dataViewer
 from dynamics.mav_dynamics import mavDynamics
 from dynamics.wind_simulation import windSimulation
 from tools.log import log
+from message_types.msg_delta import msgDelta
 import pygame
 
 pygame.display.init()
@@ -47,10 +48,7 @@ mav = mavDynamics(SIM.ts_simulation)
 sim_time = SIM.start_time
 plot_time = sim_time
 
-delta_e = 0.
-delta_a = 0.
-delta_r = 0.
-delta_t = 0.
+delta=msgDelta()
 
 # main simulation loop
 while sim_time < SIM.end_time:
@@ -64,7 +62,7 @@ while sim_time < SIM.end_time:
     #delta_a += 0.001 * (np.random.random() - 0.5)
     #delta_r += 0.001 * (np.random.random() - 0.5)
     #delta_t += 0.001 * (np.random.random() - 0.5)
-    delta = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
+    delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
     # transpose to make it a column vector
 
     # -------physical system-------------

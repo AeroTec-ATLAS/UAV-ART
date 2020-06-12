@@ -16,7 +16,7 @@ from dynamics.mav_dynamics import mavDynamics
 from dynamics.wind_simulation import windSimulation
 from controlo.autopilot import autopilot
 from tools.signals import signals
-
+from tools.autopilot_Command import autopilotCommand
 # initialize the visualization
 VIDEO = False # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
@@ -27,6 +27,7 @@ if VIDEO is True:
 
 # initialize elements of the architecture
 wind = windSimulation(SIM.ts_simulation)
+wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
 ctrl = autopilot(SIM.ts_simulation)
 previous_t = 0
@@ -40,17 +41,18 @@ h_command = signals(dc_offset=100.0, amplitude=30.0, start_time=0.0, frequency=0
 
 chi_command = signals(dc_offset=np.radians(180), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
 
+commandWindow=autopilotCommand()
 # initialize the simulation time
 sim_time = SIM.start_time
-
 # main simulation loop
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
-
 	# -------autopilot commands-------------
-	commands.airspeed_command = Va_command.square(sim_time)
-	commands.course_command = chi_command.square(sim_time)
-	commands.altitude_command = h_command.square(sim_time)
+	commandWindow.root.update_idletasks()
+	commandWindow.root.update()
+	commands.airspeed_command = commandWindow.slideVa.get() #Va_command.square(sim_time)
+	commands.course_command = commandWindow.slideChi.get() #chi_command.square(sim_time)
+	commands.altitude_command = commandWindow.slideH.get() #h_command.square(sim_time)
 
     # -------controller-------------
 	estimated_state = mav.true_state  # uses true states in the control
