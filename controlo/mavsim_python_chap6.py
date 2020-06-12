@@ -29,14 +29,14 @@ if VIDEO is True:
 wind = windSimulation(SIM.ts_simulation)
 mav = mavDynamics(SIM.ts_simulation)
 ctrl = autopilot(SIM.ts_simulation)
-
+previous_t = 0
 # autopilot commands
 from message_types.msg_autopilot import msgAutopilot
 commands = msgAutopilot()
 
-Va_command = signals(dc_offset=25.0, amplitude=3.0, start_time=2.0, frequency=0.01)
+Va_command = signals(dc_offset=35.0, amplitude=3.0, start_time=2.0, frequency=0.01)
 
-h_command = signals(dc_offset=100.0, amplitude=10.0, start_time=0.0, frequency=0.02)
+h_command = signals(dc_offset=100.0, amplitude=30.0, start_time=0.0, frequency=0.02)
 
 chi_command = signals(dc_offset=np.radians(180), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
 
@@ -48,13 +48,14 @@ print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
 
 	# -------autopilot commands-------------
-	commands.airspeed_command = 35#Va_command.square(sim_time)
-	commands.course_command = 0#chi_command.square(sim_time)
-	commands.altitude_command = 100#h_command.square(sim_time)
+	commands.airspeed_command = Va_command.square(sim_time)
+	commands.course_command = chi_command.square(sim_time)
+	commands.altitude_command = h_command.square(sim_time)
 
     # -------controller-------------
 	estimated_state = mav.true_state  # uses true states in the control
-	delta, commanded_state = ctrl.update(commands, estimated_state, SIM.ts_simulation)
+	delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
+	previous_t = delta.throttle
 	
     # -------physical system-------------
 	current_wind = wind.update()  # get the new wind vector
