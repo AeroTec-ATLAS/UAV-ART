@@ -17,6 +17,16 @@ from dynamics.wind_simulation import windSimulation
 from controlo.autopilot import autopilot
 from tools.signals import signals
 from tools.autopilot_Command import autopilotCommand
+import pygame
+
+pygame.display.init()
+pygame.joystick.init()
+sideStick = pygame.joystick.Joystick(1)
+sideStick.init()
+thrustLever = pygame.joystick.Joystick(2)
+thrustLever.init()
+rudder = pygame.joystick.Joystick(4)
+rudder.init()
 # initialize the visualization
 VIDEO = False # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
@@ -41,12 +51,20 @@ h_command = signals(dc_offset=100.0, amplitude=30.0, start_time=0.0, frequency=0
 
 chi_command = signals(dc_offset=np.radians(180), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
 
+autopilot=True
 commandWindow=autopilotCommand()
 # initialize the simulation time
 sim_time = SIM.start_time
 # main simulation loop
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
+	pygame.event.pump()
+	if sideStick.get_button(1):
+		autopilot=False
+		commandWindow.setAutopilot(autopilot)
+	elif sideStick.get_button(3):
+		autopilot=True
+		commandWindow.setAutopilot(autopilot)
 	# -------autopilot commands-------------
 	commandWindow.root.update_idletasks()
 	commandWindow.root.update()
@@ -57,8 +75,13 @@ while sim_time < SIM.end_time:
     # -------controller-------------
 	estimated_state = mav.true_state  # uses true states in the control
 	delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
+	if (not autopilot):
+		delta_e = -sideStick.get_axis(1) * np.radians(45/2) 
+		delta_a = sideStick.get_axis(0) * np.radians(45/2) 
+		delta_r = rudder.get_axis(2) * np.radians(45/2) 
+		delta_t = (thrustLever.get_axis(4) + 1) / 2 
+		delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
 	previous_t = delta.throttle
-	
     # -------physical system-------------
 	current_wind = wind.update()  # get the new wind vector
 	mav.update(delta, current_wind)  # propagate the MAV dynamics
