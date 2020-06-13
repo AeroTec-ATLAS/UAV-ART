@@ -17,23 +17,16 @@ from dynamics.wind_simulation import windSimulation
 from controlo.autopilot import autopilot
 from tools.signals import signals
 from tools.autopilot_Command import autopilotCommand
-import pygame
+from tools.joystick_Input import joystick
 
-pygame.display.init()
-pygame.joystick.init()
-sideStick = pygame.joystick.Joystick(1)
-sideStick.init()
-thrustLever = pygame.joystick.Joystick(2)
-thrustLever.init()
-rudder = pygame.joystick.Joystick(4)
-rudder.init()
+controlJoystick = joystick()
 # initialize the visualization
-VIDEO = False # True==write video, False==don't write video
+VIDEO = False  # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
 data_view = dataViewer()  # initialize view of data plots
 if VIDEO is True:
-	from video.video_writer import videoWriter
-	video = videoWriter(video_name="chap6_video.avi", bounding_box=(0, 0, 1000, 1000), output_rate=SIM.ts_video)
+    from video.video_writer import videoWriter
+    video = videoWriter(video_name="chap6_video.avi", bounding_box=(0, 0, 1000, 1000), output_rate=SIM.ts_video)
 
 # initialize elements of the architecture
 wind = windSimulation(SIM.ts_simulation)
@@ -51,55 +44,42 @@ h_command = signals(dc_offset=100.0, amplitude=30.0, start_time=0.0, frequency=0
 
 chi_command = signals(dc_offset=np.radians(180), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
 
-autopilot=True
-commandWindow=autopilotCommand()
+commandWindow = autopilotCommand()
 # initialize the simulation time
 sim_time = SIM.start_time
 # main simulation loop
-print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
-	pygame.event.pump()
-	if sideStick.get_button(1):
-		autopilot=False
-		commandWindow.setAutopilot(autopilot)
-	elif sideStick.get_button(3):
-		autopilot=True
-		commandWindow.setAutopilot(autopilot)
-	# -------autopilot commands-------------
-	commandWindow.root.update_idletasks()
-	commandWindow.root.update()
-	commands.airspeed_command = commandWindow.slideVa.get() #Va_command.square(sim_time)
-	commands.course_command = commandWindow.slideChi.get() #chi_command.square(sim_time)
-	commands.altitude_command = commandWindow.slideH.get() #h_command.square(sim_time)
+    delta_e, delta_a, delta_r, delta_t, autopilot = controlJoystick.getInputs()
+    if autopilot != 2:
+        commandWindow.setAutopilot(autopilot)
 
-    # -------controller-------------
-	estimated_state = mav.true_state  # uses true states in the control
-	delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
-	if (not autopilot):
-		delta_e = -sideStick.get_axis(1) * np.radians(45/2) 
-		delta_a = sideStick.get_axis(0) * np.radians(45/2) 
-		delta_r = rudder.get_axis(2) * np.radians(45/2) 
-		delta_t = (thrustLever.get_axis(4) + 1) / 2 
-		delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
-	previous_t = delta.throttle
-    # -------physical system-------------
-	current_wind = wind.update()  # get the new wind vector
-	mav.update(delta, current_wind)  # propagate the MAV dynamics
+    # -------autopilot commands-------------
+    commandWindow.root.update_idletasks()
+    commandWindow.root.update()
+    commands.airspeed_command = commandWindow.slideVa.get()  # Va_command.square(sim_time)
+    commands.course_command = commandWindow.slideChi.get()  # chi_command.square(sim_time)
+    commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
 
-    # -------update viewer-------------
-	mav_view.update(mav.true_state)  # plot body of MAV
-	data_view.update(mav.true_state, # true states 
-	estimated_state, # estimated states
-	commanded_state, # commanded states
-	SIM.ts_simulation)
-	if VIDEO is True:
-		video.update(sim_time)
-    # -------increment time-------------
-	sim_time += SIM.ts_simulation
+# -------controller-------------
+    estimated_state = mav.true_state  # uses true states in the control
+    delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
+    if (not commandWindow.autopilot):
+        delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
+    previous_t = delta.throttle
+# -------physical system-------------
+    current_wind = wind.update()  # get the new wind vector
+    mav.update(delta, current_wind)  # propagate the MAV dynamics
 
-	if VIDEO is True:
-		video.close()
-		
-		
-		
-		
+# -------update viewer-------------
+    mav_view.update(mav.true_state)  # plot body of MAV
+    data_view.update(mav.true_state,  # true states
+                     estimated_state,  # estimated states
+                     commanded_state,  # commanded states
+                     SIM.ts_simulation)
+    if VIDEO is True:
+        video.update(sim_time)
+# -------increment time-------------
+    sim_time += SIM.ts_simulation
+input("Press any key to exit...")
+if VIDEO is True:
+    video.close()
