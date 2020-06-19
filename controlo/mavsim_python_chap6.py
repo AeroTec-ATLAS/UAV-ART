@@ -61,25 +61,29 @@ while sim_time < SIM.end_time:
     commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
 
 # -------controller-------------
-    estimated_state = mav.true_state  # uses true states in the control
-    delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
-    if (not commandWindow.autopilot):
-        delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
-    previous_t = delta.throttle
+    if not commandWindow.paused:
+        estimated_state = mav.true_state  # uses true states in the control
+        delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
+        if (not commandWindow.autopilot):
+            delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
+        previous_t = delta.throttle
 # -------physical system-------------
-    current_wind = wind.update()  # get the new wind vector
-    mav.update(delta, current_wind)  # propagate the MAV dynamics
+        current_wind = wind.update()  # get the new wind vector
+        mav.update(delta, current_wind)  # propagate the MAV dynamics
 
-# -------update viewer-------------
-    mav_view.update(mav.true_state)  # plot body of MAV
-    data_view.update(mav.true_state,  # true states
-                     estimated_state,  # estimated states
-                     commanded_state,  # commanded states
-                     SIM.ts_simulation)
+    # -------update viewer-------------
+        mav_view.update(mav.true_state)  # plot body of MAV
+        data_view.update(mav.true_state,  # true states
+                         estimated_state,  # estimated states
+                         commanded_state,  # commanded states
+                         SIM.ts_simulation)
     if VIDEO is True:
         video.update(sim_time)
 # -------increment time-------------
-    sim_time += SIM.ts_simulation
-input("Press any key to exit...")
+    if not commandWindow.paused:
+        sim_time += SIM.ts_simulation
+    if not commandWindow.open:
+        break
+input("Press any key to shutdown...")
 if VIDEO is True:
     video.close()

@@ -7,6 +7,7 @@ class joystick:
         pygame.display.init()
         pygame.joystick.init()
         self.customJoystick = customJoystick
+        self.connected = False
         if not customJoystick:
             for i in range(pygame.joystick.get_count()):
                 if pygame.joystick.Joystick(i).get_name() == 'Wireless Controller':
@@ -22,6 +23,9 @@ class joystick:
             self.rudder = pygame.joystick.Joystick(4)
             self.rudder.init()
             self.connected = True
+        if not self.connected:
+            print('No joystick/controller detected. Only autopilot will be available')
+            pygame.quit()
 
     def getInputs(self):
         if self.connected:

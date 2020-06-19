@@ -6,6 +6,10 @@ class autopilotCommand:
     def __init__(self, defaultVa=35, defaultChi=0, defaultH=100):
         self.root = tk.Tk()
         self.root.title('Autopilot Input')
+        self.paused = False
+        self.open = True
+        self.root.bind("p", self.pause)
+        self.root.bind("q", self.close)
         self.autopilotState = tk.Label(self.root, text='Autopilot ON', bg='green')
         self.slideVa = tk.Scale(self.root, from_=50, to=0, label='Va', length=150)
         self.slideChi = tk.Scale(self.root, from_=-180, to=180, orient=tk.HORIZONTAL, label='Chi', length=150)
@@ -25,3 +29,12 @@ class autopilotCommand:
             self.autopilotState.config(text='Autopilot ON', bg='green')
         else:
             self.autopilotState.config(text='Autopilot OFF', bg='red')
+
+    def pause(self, event):
+        if self.paused:
+            self.paused = False
+        else:
+            self.paused = True
+
+    def close(self, event):
+        self.open = False
