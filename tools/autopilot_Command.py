@@ -12,7 +12,7 @@ class autopilotCommand:
         self.root.bind("q", self.close)
         self.autopilotState = tk.Label(self.root, text='Autopilot ON', bg='green')
         self.slideVa = tk.Scale(self.root, from_=50, to=0, label='Va', length=150)
-        self.slideChi = tk.Scale(self.root, from_=-180, to=180, orient=tk.HORIZONTAL, label='Chi', length=150)
+        self.slideChi = tk.Scale(self.root, from_=-180, to=180, orient=tk.HORIZONTAL, label='Chi', length=360)
         self.slideH = tk.Scale(self.root, from_=200, to=0, label='Altitude', length=150)
         self.slideVa.set(defaultVa)
         self.slideChi.set(defaultChi)

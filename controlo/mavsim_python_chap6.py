@@ -57,7 +57,7 @@ while sim_time < SIM.end_time:
     commandWindow.root.update_idletasks()
     commandWindow.root.update()
     commands.airspeed_command = commandWindow.slideVa.get()  # Va_command.square(sim_time)
-    commands.course_command = commandWindow.slideChi.get()  # chi_command.square(sim_time)
+    commands.course_command = np.deg2rad(commandWindow.slideChi.get())  # chi_command.square(sim_time)
     commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
 
 # -------controller-------------
