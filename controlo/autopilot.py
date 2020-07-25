@@ -1,5 +1,7 @@
 """
-autopilot
+autopilot - Controlar automaticamente a dinâmica e atitude do aeromodelo.
+	Inputs: msgAutopilot; delta_throttle; mavDynamics.true_state; SIM.start_time
+	Outputs: msgState; msgDelta
 """
 
 import sys
@@ -31,7 +33,7 @@ class autopilot:
 		               
 		self.pitch_from_altitude = pidControl(kp=AP.altitude_kp, ki=AP.altitude_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit= -AP.delta_a_max, high_limit= AP.delta_a_max)
                                
-        #inicialize message        
+        # inicialize message        
               
 		self.commanded_state = msgState()
 		self.delta= msgDelta()
@@ -79,8 +81,7 @@ class autopilot:
 		# longitudinal autopilot
 		# saturate the altitude command
 		
-		#verificar o state pretendido
-		#implementar a state machine
+		#state machine
 		
 		#take_off_zone	
 		if h <= AP.altitude_take_off_zone: 
@@ -115,9 +116,10 @@ class autopilot:
 			delta_t = self.throttle_from_airspeed.update(previous_t, Va_c, Va, reset_flag); 
 				
 		delta_e = self.elevator_from_pitch.update_with_rate(theta_c, theta, q, reset_flag)
-			
-		print(delta_t)
+		
+		
 		print(AP.altitude_state)
+		print(delta_t)	
 		# construct output and commanded states
 			
 		u = np.array([[delta_e], [delta_a], [delta_r], [delta_t]])

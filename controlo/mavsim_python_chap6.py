@@ -38,7 +38,7 @@ Va_command = signals(dc_offset=35.0, amplitude=3.0, start_time=2.0, frequency=0.
 
 h_command = signals(dc_offset=100.0, amplitude=30.0, start_time=0.0, frequency=0.02)
 
-chi_command = signals(dc_offset=np.radians(180), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
+chi_command = signals(dc_offset=np.radians(100), amplitude=np.radians(45), start_time=5.0, frequency=0.015)
 
 # initialize the simulation time
 sim_time = SIM.start_time
@@ -48,9 +48,9 @@ print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
 
 	# -------autopilot commands-------------
-	commands.airspeed_command = Va_command.square(sim_time)
-	commands.course_command = chi_command.square(sim_time)
-	commands.altitude_command = h_command.square(sim_time)
+	commands.airspeed_command = 35#Va_command.square(sim_time)
+	commands.course_command = chi_command.square(sim_time) 
+	commands.altitude_command = 100#h_command.square(sim_time)
 
     # -------controller-------------
 	estimated_state = mav.true_state  # uses true states in the control

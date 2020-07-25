@@ -1,5 +1,5 @@
 """
-parameters
+parameters for the controller
 """
 
 import sys
