@@ -16,17 +16,10 @@ from kinematics.data_viewer import dataViewer
 from dynamics.mav_dynamics import mavDynamics
 from dynamics.wind_simulation import windSimulation
 from tools.log import log
-import pygame
+from message_types.msg_delta import msgDelta
+from tools.joystick_Input import joystick
 
-pygame.display.init()
-pygame.joystick.init()
-sideStick = pygame.joystick.Joystick(1)
-sideStick.init()
-thrustLever = pygame.joystick.Joystick(2)
-thrustLever.init()
-rudder = pygame.joystick.Joystick(4)
-rudder.init()
-
+controlJoystick = joystick(True)
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
 mav_view = mavViewer()  # initialize the mav viewer
@@ -47,24 +40,17 @@ mav = mavDynamics(SIM.ts_simulation)
 sim_time = SIM.start_time
 plot_time = sim_time
 
-delta_e = 0.
-delta_a = 0.
-delta_r = 0.
-delta_t = 0.
+delta = msgDelta()
 
 # main simulation loop
 while sim_time < SIM.end_time:
-    pygame.event.pump()
-    delta_e = -sideStick.get_axis(1) * np.radians(45/2)
-    delta_a = sideStick.get_axis(0) * np.radians(45/2)
-    delta_r = rudder.get_axis(2) * np.radians(45/2)
-    delta_t = (thrustLever.get_axis(4) + 1) / 2
+    delta_e, delta_a, delta_r, delta_t, autopilot = controlJoystick.getInputs()
     # -------set control surfaces-------------
     #delta_e += 0.001 * (np.random.random() - 0.5)
     #delta_a += 0.001 * (np.random.random() - 0.5)
     #delta_r += 0.001 * (np.random.random() - 0.5)
     #delta_t += 0.001 * (np.random.random() - 0.5)
-    delta = np.array([[delta_e, delta_a, delta_r, delta_t]]).T
+    delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
     # transpose to make it a column vector
 
     # -------physical system-------------
