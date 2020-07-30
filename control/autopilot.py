@@ -8,7 +8,7 @@ import sys
 sys.path.append('..')
 
 import numpy as np
-from pidControl	import pidControl
+from control.pidControl	import pidControl
 from parameters import control_parameters as AP
 from message_types.msg_state import msgState
 from message_types.msg_delta import msgDelta
