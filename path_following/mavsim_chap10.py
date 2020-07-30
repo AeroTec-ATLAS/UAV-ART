@@ -50,7 +50,7 @@ else:  # path.flag == 'orbit'
 
 # initialize the simulation time
 sim_time = SIM.start_time
-
+previous_t = 0
 # main simulation loop
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
@@ -63,8 +63,9 @@ while sim_time < SIM.end_time:
     #autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     #-------controller-------------
-    delta, commanded_state = ctrl.update(autopilot_commands, estimated_state)
-
+    delta, commanded_state = ctrl.update(autopilot_commands, estimated_state, previous_t, sim_time)
+    delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
+    previous_t = delta.throttle
     #-------physical system-------------
     current_wind = wind.update()  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
