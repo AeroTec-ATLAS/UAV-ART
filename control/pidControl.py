@@ -1,5 +1,9 @@
 """
-Controlador PID
+Controlador PID - Define um controlador multifacetado que funciona para cada um dos parâmetros do aeromodelo.
+	INIT_Input: kp, ki, kd da variável a controlar; sim_time; sigma; limites de satuação;
+	UPDATE_Input: prev_u (assegurar continuidade no delta_t); y_ref (valor de referência); y (valor atual); reset_flag;
+	UPDATE_WITH_RATE_Input: y_ref; y; ydot (primeira derivada da variável de controlo); reset_flag;
+	Output: u_sat (variável que representa o valor do próximo estado no controlo - já com saturações)
 """
 
 import sys

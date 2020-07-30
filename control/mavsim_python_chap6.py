@@ -53,12 +53,15 @@ while sim_time < SIM.end_time:
     if autopilot != 2:
         commandWindow.setAutopilot(autopilot)
 
-    # -------autopilot commands-------------
-    commandWindow.root.update_idletasks()
-    commandWindow.root.update()
-    commands.airspeed_command = commandWindow.slideVa.get()  # Va_command.square(sim_time)
-    commands.course_command = np.deg2rad(commandWindow.slideChi.get())  # chi_command.square(sim_time)
-    commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
+<<<<<<< HEAD
+	# -------autopilot commands-------------
+	commandWindow.root.update_idletasks()
+	commandWindow.root.update()
+	commands.airspeed_command = commandWindow.slideVa.get()  # Va_command.square(sim_time)
+	commands.course_command = np.deg2rad(commandWindow.slideChi.get())  # chi_command.square(sim_time)
+	commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
+
+>>>>>>>
 
 # -------controller-------------
     if not commandWindow.paused:
