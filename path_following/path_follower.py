@@ -3,7 +3,7 @@ from math import sin, cos, atan, atan2
 import sys
 
 sys.path.append('..')
-from message_types.msg_autopilot import msg_autopilot
+from message_types.msg_autopilot import msgAutopilot
 
 class path_follower:
     def __init__(self):
@@ -11,7 +11,7 @@ class path_follower:
         self.k_path =   # proportional gain for straight-line path following
         self.k_orbit =   # proportional gain for orbit following
         self.gravity = 9.8
-        self.autopilot_commands = msg_autopilot()  # message sent to autopilot
+        self.autopilot_commands = msgAutopilot()  # message sent to autopilot
 
     def update(self, path, state):
         if path.flag=='line':

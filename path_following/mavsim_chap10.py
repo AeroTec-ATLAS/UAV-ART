@@ -35,8 +35,8 @@ ctrl = autopilot(SIM.ts_simulation)
 path_follow = path_follower()
 
 # path definition
-from message_types.msg_path import msg_path
-path = msg_path()
+from message_types.msg_path import msgPath
+path = msgPath()
 path.flag = 'line'
 #path.flag = 'orbit'
 if path.flag == 'line':
