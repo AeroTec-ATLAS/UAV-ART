@@ -64,7 +64,6 @@ while sim_time < SIM.end_time:
 
     #-------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, estimated_state, previous_t, sim_time)
-    delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
     previous_t = delta.throttle
     #-------physical system-------------
     current_wind = wind.update()  # get the new wind vector
