@@ -9,20 +9,20 @@ sys.path.append('..')
 import numpy as np
 import parameters.simulation_parameters as SIM
 
-from chap3.data_viewer import data_viewer
-from chap4.wind_simulation import wind_simulation
-from chap6.autopilot import autopilot
+from kinematics.data_viewer import data_viewer
+from dynamics.wind_simulation import wind_simulation
+from control.autopilot import autopilot
 from chap7.mav_dynamics import mav_dynamics
 from chap8.observer import observer
-from chap10.path_follower import path_follower
-from chap10.path_viewer import path_viewer
+from path_following.path_follower import path_follower
+from path_following.path_viewer import path_viewer
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
 path_view = path_viewer()  # initialize the viewer
 data_view = data_viewer()  # initialize view of data plots
 if VIDEO == True:
-    from chap2.video_writer import video_writer
+    from video.video_writer import video_writer
     video = video_writer(video_name="chap10_video.avi",
                          bounding_box=(0, 0, 1000, 1000),
                          output_rate=SIM.ts_video)

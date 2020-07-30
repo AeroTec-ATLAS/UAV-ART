@@ -14,7 +14,7 @@ from video.mav_viewer import mavViewer
 from kinematics.data_viewer import dataViewer
 from dynamics.mav_dynamics import mavDynamics
 from dynamics.wind_simulation import windSimulation
-from controlo.autopilot import autopilot
+from control.autopilot import autopilot
 from tools.signals import signals
 from tools.autopilot_Command import autopilotCommand
 from tools.joystick_Input import joystick
