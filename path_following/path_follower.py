@@ -23,11 +23,11 @@ class path_follower:
     def _follow_straight_line(self, path, state):
         p = np.array([[state.pn, state.pe, -state.h]]).T
         r = path.line_origin
-        q = path.line_direction
+        q = path.line_direction / np.linalg.norm(path.line_direction)
         chi_q = atan2(path.line_direction.item(1), path.line_direction.item(0))
         chi_q = self._wrap(chi_q, state.chi)
         e_p = self._rotateToPath(chi_q) @ (p-r)
-        n = np.cross(q.T, np.array([[0, 0, -1]])).T / np.linalg.norm(np.outer(q, np.array([[0, 0, -1]]).T))
+        n = np.cross(q.T, np.array([[0, 0, 1]])).T / np.linalg.norm(np.outer(q.T, np.array([[0, 0, 1]])))
         s = e_p - np.inner(e_p, n) * n
 
         self.autopilot_commands.airspeed_command = path.airspeed
