@@ -30,9 +30,9 @@ class path_follower:
         n = np.cross(q.T, np.array([[0, 0, -1]])).T / np.linalg.norm(np.outer(q, np.array([[0, 0, -1]]).T))
         s = e_p - np.inner(e_p, n) * n
 
-        self.autopilot_commands.airspeed_command = 35
+        self.autopilot_commands.airspeed_command = path.airspeed
         self.autopilot_commands.course_command = chi_q-self.chi_inf*2/np.pi*atan(self.k_path*e_p.item(1))
-        self.autopilot_commands.altitude_command = -path.line_origin.item(2) + sqrt(s.item(0)**2+s.item(1)**2)*path.line_direction.item(2)/sqrt(path.line_direction.item(0)**2+path.line_direction.item(1)**2)
+        self.autopilot_commands.altitude_command = -r.item(2) - sqrt(s.item(0)**2+s.item(1)**2)*q.item(2)/sqrt(q.item(0)**2+q.item(1)**2)
         self.autopilot_commands.phi_feedforward = 0
 
     def _follow_orbit(self, path, state):

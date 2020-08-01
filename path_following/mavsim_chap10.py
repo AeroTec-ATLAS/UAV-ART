@@ -29,6 +29,7 @@ if VIDEO == True:
 
 # initialize elements of the architecture
 wind = windSimulation(SIM.ts_simulation)
+wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
 ctrl = autopilot(SIM.ts_simulation)
 #obsv = observer(SIM.ts_simulation)
@@ -43,6 +44,7 @@ if path.flag == 'line':
     path.line_origin = np.array([[0.0, 0.0, -100.0]]).T
     path.line_direction = np.array([[0.5, 1.0, 0.0]]).T
     path.line_direction = path.line_direction / np.linalg.norm(path.line_direction)
+    path.airspeed = 35
 else:  # path.flag == 'orbit'
     path.orbit_center = np.array([[0.0, 0.0, -100.0]]).T  # center of the orbit
     path.orbit_radius = 300.0  # radius of the orbit
