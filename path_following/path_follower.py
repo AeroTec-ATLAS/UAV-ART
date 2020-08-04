@@ -1,5 +1,5 @@
 import numpy as np
-from math import sin, cos, atan, atan2, sqrt
+from math import sin, cos, atan, atan2, sqrt, asin
 import sys
 
 sys.path.append('..')
@@ -7,16 +7,16 @@ from message_types.msg_autopilot import msgAutopilot
 
 class path_follower:
     def __init__(self):
-        self.chi_inf = np.pi/4  # approach angle for large distance from straight-line path
+        self.chi_inf = np.pi / 4  # approach angle for large distance from straight-line path
         self.k_path = 0.05  # proportional gain for straight-line path following
-        self.k_orbit = 0  # proportional gain for orbit following
+        self.k_orbit = 5  # proportional gain for orbit following
         self.gravity = 9.8
         self.autopilot_commands = msgAutopilot()  # message sent to autopilot
 
     def update(self, path, state):
-        if path.flag=='line':
+        if path.type=='line':
             self._follow_straight_line(path, state)
-        elif path.flag=='orbit':
+        elif path.type=='orbit':
             self._follow_orbit(path, state)
         return self.autopilot_commands
 
@@ -36,10 +36,25 @@ class path_follower:
         self.autopilot_commands.phi_feedforward = 0
 
     def _follow_orbit(self, path, state):
-        self.autopilot_commands.airspeed_command = 0
-        self.autopilot_commands.course_command = 0
-        self.autopilot_commands.altitude_command = 0
-        self.autopilot_commands.phi_feedforward = 0
+        Lambda = 0
+        c = path.orbit_center
+        rho = path.orbit_radius
+        if path.orbit_direction == 'CW':
+            Lambda = 1
+        elif path.orbit_direction == 'CCW':
+            Lambda = -1
+        p = np.array([[state.pn, state.pe, c.item(2)]]).T
+        d = np.linalg.norm(p - c)
+        phi = atan2(p.item(1)-c.item(1), p.item(0)-c.item(0))
+        phi = self._wrap(phi, state.chi)
+        self.autopilot_commands.airspeed_command = path.airspeed
+        self.autopilot_commands.course_command = phi + Lambda*(np.pi/2+atan(self.k_orbit*(d-rho)/rho))
+        self.autopilot_commands.altitude_command = -c.item(2)
+        R = rho
+        try:
+            self.autopilot_commands.phi_feedforward = Lambda*atan(((state.wn*cos(state.chi)+state.we*sin(state.chi))+sqrt(state.Va**2-(state.wn*sin(state.chi)-state.we*cos(state.chi))**2-state.wd**2))**2/(self.gravity*R*sqrt((state.Va**2-(state.wn*sin(state.chi)-state.we*cos(state.chi))**2-state.wd**2)/(state.Va**2-state.wd**2))))
+        except:
+            self.autopilot_commands.phi_feedforward = 0
 
     def _wrap(self, chi_c, chi):
         while chi_c-chi > np.pi:

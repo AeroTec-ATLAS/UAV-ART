@@ -22,16 +22,16 @@ class autopilot:
 		
 		self.aileron_from_roll = pidControl(kp=AP.roll_kp, ki=AP.roll_ki, kd=AP.roll_kd, Ts=ts_control, sigma= 0.05, low_limit = -AP.delta_a_max, high_limit = AP.delta_a_max)
 		
-		self.roll_from_course = pidControl(kp=AP.course_kp, ki=AP.course_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit = -AP.delta_a_max, high_limit=AP.delta_a_max)
+		self.roll_from_course = pidControl(kp=AP.course_kp, ki=AP.course_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit = -np.pi/7.2, high_limit=np.pi/7.2)
 		
         # instantiate longitudinal controllers
 		self.elevator_from_pitch = pidControl(kp=AP.pitch_kp, ki=0, kd=AP.pitch_kd, Ts=ts_control, sigma= 0.05, low_limit=-AP.delta_e_max , high_limit=AP.delta_e_max)
 		
 		self.throttle_from_airspeed = pidControl(kp=AP.airspeed_throttle_kp, ki=AP.airspeed_throttle_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit=0, high_limit= AP.throttle_max)
 		
-		self.pitch_from_airspeed = pidControl(kp=AP.airspeed_pitch_kp, ki=AP.airspeed_pitch_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit = -AP.delta_a_max, high_limit = AP.delta_a_max)   
+		self.pitch_from_airspeed = pidControl(kp=AP.airspeed_pitch_kp, ki=AP.airspeed_pitch_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit = -np.pi/6, high_limit = np.pi/6)   
 		               
-		self.pitch_from_altitude = pidControl(kp=AP.altitude_kp, ki=AP.altitude_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit= -AP.delta_a_max, high_limit= AP.delta_a_max)
+		self.pitch_from_altitude = pidControl(kp=AP.altitude_kp, ki=AP.altitude_ki, kd=0, Ts=ts_control, sigma= 0.05, low_limit= -np.pi/6, high_limit= np.pi/6)
                                
         # inicialize message        
               
@@ -75,6 +75,8 @@ class autopilot:
         # lateral autopilot
         
 		phi_c = self.roll_from_course.update(0, chi_c, chi, reset_flag)
+		if np.abs(phi_c) < 0.1 and cmd.phi_feedforward != 0:
+			phi_c = cmd.phi_feedforward
 		delta_a = self.aileron_from_roll.update_with_rate(phi_c, phi, p, reset_flag) 
 		delta_r = 0
 
