@@ -1,14 +1,17 @@
-%Programa que lê os dados do ficheiro ".txt" para a 
-%structures array "data".
+% UAV-ART // Aerotéc - Núcleo de estudantes de Engenharia Aeroespacial
+% Authors: - Hugo Pereira
+%          - Pedro Martins
+%          - Simão Caeiro
 
-%2020-05-21_23.07.txt - log que inclui apenas a parte longitudinal
-%dados_log3crudder.txt - log que inclui longitudinal + lateral
+% Program that reads the ".txt" file data to the structures array "data"
 
-% fid = fopen('2020-05-21_23.07.txt','rt');
-fid = fopen('dados_log3crudder.txt','rt');
+%2020-05-21_23.07.txt - longitudinal coefficients
+%dados_log3crudder.txt - longitudinal + lateral coefficients
+
+fid = fopen('2020-05-21_23.07.txt','rt');
 
 if fid < 0
-    disp('Erro na abertura do ficheiro ".txt"');
+    disp('Error opening the file ".txt"');
 else
     i = -1;
     while ~feof(fid)
@@ -56,7 +59,7 @@ else
             [value, remain]  =  strtok(remain);
             data(i).RCch4    =  str2num(value);
 
-%Forças e momentos aerodinâmicos (não são utilizados)
+% Aerodynamic forces and moments (not used)
 
             [value, remain]  =  strtok(remain);
             data(i).F_D      =  str2num(value);
