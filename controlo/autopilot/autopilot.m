@@ -148,18 +148,18 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,...
     end
     
     persistent delta_e
-%     delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, ...
-%                         P.G.k_d_pitch, -P.G.delta_e_max, P.G.delta_e_max);
-    
-    if t - 23 > 0
-        if ~mod(t,0.2)
-            delta_e = 0.1*randn;
-            delta_e = -abs(delta_e);
-        end
-    else
-        delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, ...
+    delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, ...
                         P.G.k_d_pitch, -P.G.delta_e_max, P.G.delta_e_max);
-    end
+    
+%     if t - 23 > 0
+%         if ~mod(t,0.2)
+%             delta_e = 0.1*randn;
+%             delta_e = -abs(delta_e);
+%         end
+%     else
+%         delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, ...
+%                         P.G.k_d_pitch, -P.G.delta_e_max, P.G.delta_e_max);
+%     end
 
     %----------------------------------------------------------
     % create outputs
