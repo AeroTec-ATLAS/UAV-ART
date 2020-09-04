@@ -35,7 +35,7 @@ load anim/aircraft
 
 addpath('anim','util','trim')
 
-T = 30; % simulation time in seconds
+T = 50; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,12 +50,22 @@ t = 0:P.Ts:T;
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-h_ref = 200*ones(length(t),1); % height (m)
+h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
+
+% for i = 1:length(t) %Os primeiros 2 elementos serão nulos
+%     
+%     h_ref(i)= 0.5*t(i);
+% end 
+
+% h_ref = 200*ones(length(t),1);
 % h_ref(2001:4001) = 50*ones(2001,1);
 % chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
-chi_ref = 0*ones(length(t),1);
+chi_ref = 10*pi/180*ones(length(t),1);
 % chi_ref(3001:5001) = 170*pi/180*ones(2001,1);
-Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
+% Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
+Va_ref = 30*ones(length(t),1);
+ 
+
 
 reference = [t' Va_ref h_ref chi_ref];
 
@@ -91,6 +101,6 @@ T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 drawAircraft(pos,att,V,F,facecolors,2e-3)
-% morePlots
+morePlots
 
 
