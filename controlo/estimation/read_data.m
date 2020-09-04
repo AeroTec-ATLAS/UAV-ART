@@ -1,10 +1,10 @@
-%Programa que lê os dados do ficheiro "dados_log.txt" para a 
+%Programa que lê os dados do ficheiro ".txt" para a 
 %structures array "data".
 
-fid = fopen('dados_5.txt','rt');
+fid = fopen('dados_log3crudder.txt','rt');
 
 if fid < 0
-    disp('Erro na abertura do ficheiro "dados_log.txt"');
+    disp('Erro na abertura do ficheiro ".txt"');
 else
     i = -1;
     while ~feof(fid)
@@ -26,11 +26,11 @@ else
             [value, remain]  =  strtok(remain);
             data(i).p        =  str2num(value);
             [value, remain]  =  strtok(remain);
-            data(i).pn       =  str2num(value);
+            data(i).lat      =  str2num(value);
             [value, remain]  =  strtok(remain);
-            data(i).pe       =  str2num(value);
+            data(i).long     =  str2num(value);
             [value, remain]  =  strtok(remain);
-            data(i).h        =  str2num(value);
+            data(i).alt      =  str2num(value);
             [value, remain]  =  strtok(remain);
             data(i).u        =  str2num(value);
             [value, remain]  =  strtok(remain);
@@ -51,6 +51,33 @@ else
             data(i).RCch3    =  str2num(value);
             [value, remain]  =  strtok(remain);
             data(i).RCch4    =  str2num(value);
+
+%Forças e momentos aerodinâmicos (não são utilizados)
+
+            [value, remain]  =  strtok(remain);
+            data(i).F_D      =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).F_Y      =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).F_L      =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).fx       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).fy       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).fz       =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).l_aero   =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).m_aero   =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).n_aero   =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).l        =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).m        =  str2num(value);
+            [value, remain]  =  strtok(remain);
+            data(i).n        =  str2num(value);
         end
     end
 end
