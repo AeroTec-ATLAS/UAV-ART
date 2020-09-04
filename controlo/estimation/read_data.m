@@ -1,6 +1,10 @@
 %Programa que lê os dados do ficheiro ".txt" para a 
 %structures array "data".
 
+%2020-05-21_23.07.txt - log que inclui apenas a parte longitudinal
+%dados_log3crudder.txt - log que inclui longitudinal + lateral
+
+% fid = fopen('2020-05-21_23.07.txt','rt');
 fid = fopen('dados_log3crudder.txt','rt');
 
 if fid < 0
