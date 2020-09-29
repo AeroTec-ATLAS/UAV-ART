@@ -1,0 +1,45 @@
+Passphrase: UAV_P1
+
+Ligar computador e "headless" Raspberry Pi  pela primeira vez
+1 - Faz download do Raspbian Lite em torrent ou diretamente zip
+2 - Instala o software de escrita de imagem de OS chamado balenaEtcher
+3 - Flasha o cartão SD com o software e a imagem cujo download fizeste
+4 - Cria na pasta principal da partição boot do SD um ficheiro sem extensão designado "ssh"
+5 - Liga um cabo de ethernet ao router e ao Pi e coloca o cartão SD no Pi
+6 - Liga-o à corrente
+7 - Instala a aplicação Fing no telemóvel que está disponível para Android e
+iOS
+8 - Liga-te com o teu telemóvel à rede cuja Ethernet entra no Pi
+9 - Faz search no Fing nessa rede clicando no botão de reiniciar na parte 
+superior do ecrã
+10 - Encontra o Pi e regista o seu ID
+11 - Para te ligares ao Pi, abre no computador uma janela de comando e escreve 
+"ssh pi@<ID que registaste>" e agora estás no seu terminal
+12 - Para o atualizar (importante e importante fazê-lo neste momento da 
+utilização), escreve "sudo apt-get update" e "sudo apt-get upgrade"
+
+Adicionar ligação Wi-fi (muito útil para ligar computador e Pi se o primeiro 
+possuir capacidade de hotspot)
+1 - Abre no computador uma janela de comando e escreve "ssh pi@<ID que 
+registaste>"
+2 - Escreve "sudo raspi-config" e segue os passos indicados
+
+Instalar wiringPi.h
+1 - Verifica se não está já instalada escrevendo no ssh do Pi "gpio -v" (se não 
+estiver, segue o caminho a)
+2a - No ssh do Pi (até em indicação em contrário, o terminal aqui utilizado 
+será este), escreve "sudo apt-get install git-core"
+3a - Escreve "cd" para instalar na pasta do utilizador
+4a - Escreve "git clone git://git.drogon.net/wiringPi" para clonar o 
+repositório para a pasta do utilizador
+5a - Escreve "cd wiringPi" para entrar nela
+6a - Escreve "git pull origin" para verificar se está atualizado
+7a - Escreve "./build" para se poder utilizar a biblioteca em qualquer ficheiro 
+recorrendo apenas a um include
+
+Copiar ficheiros do computador para o Raspberry Pi
+1 - Abre uma janela de comandos na pasta que contém o ficheiro a copiar (no 
+Windows, abre a pasta, clica Shift+<Botão do lado direito do rato> e seleciona 
+"Abrir janela de comandos aqui")
+2 - Escreve "scp <nome do ficheiro incluindo extensão (.txt, por exemplo> 
+pi@<endereço IP>:<caminho para a pasta no Pi a partir da pasta do utilizador>"

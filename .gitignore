@@ -139,3 +139,18 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+# MATLAB autosave files
+*.slx.autosave
+*.mdl.r2017b
+*.slxc
+*.asv
+
+# folders and misc files
+controlo/autopilot/slprj/
+controlo/autopilot/trim/slprj/
+controlo/autopilot/trim/gain_tuning/slprj/
+controlo/autopilot/old/
+controlo/autopilot/util/txt_logs/
+controlo/autopilot/util/txt_logs_wAero/
+
+
