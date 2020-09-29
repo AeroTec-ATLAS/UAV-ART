@@ -14,6 +14,7 @@ import pyqtgraph.Vector as Vector
 
 from tools.rotations import Euler2Rotation
 
+
 class path_viewer():
     def __init__(self):
         self.scale = 4000
@@ -22,14 +23,14 @@ class path_viewer():
         self.window = gl.GLViewWidget()  # initialize the view object
         self.window.setWindowTitle('Path Viewer')
         self.window.setGeometry(0, 0, 1000, 1000)  # args: upper_left_x, upper_right_y, width, height
-        grid = gl.GLGridItem() # make a grid to represent the ground
-        grid.scale(self.scale/20, self.scale/20, self.scale/20) # set the size of the grid (distance between each line)
-        self.window.addItem(grid) # add grid to viewer
+        grid = gl.GLGridItem()  # make a grid to represent the ground
+        grid.scale(self.scale / 20, self.scale / 20, self.scale / 20)  # set the size of the grid (distance between each line)
+        self.window.addItem(grid)  # add grid to viewer
         self.window.setCameraPosition(distance=self.scale, elevation=90, azimuth=0)
         self.window.setBackgroundColor('k')  # set background color to black
         self.window.show()  # display configured window
-        self.window.raise_() # bring window to the front
-        self.plot_initialized = False # has the mav been plotted yet?
+        self.window.raise_()  # bring window to the front
+        self.plot_initialized = False  # has the mav been plotted yet?
         # get points that define the non-rotated, non-translated mav and the mesh colors
         self.points, self.meshColors = self._get_mav_points()
 
@@ -62,7 +63,7 @@ class path_viewer():
 
         # initialize the drawing the first time update() is called
         if not self.plot_initialized:
-            if path.type=='line':
+            if path.type == 'line':
                 straight_line_object = self.straight_line_plot(path)
                 self.window.addItem(straight_line_object)  # add straight line to plot
             else:  # path.type=='orbit
@@ -70,7 +71,7 @@ class path_viewer():
                 self.window.addItem(orbit_object)
             # initialize drawing of triangular mesh.
             self.body = gl.GLMeshItem(vertexes=mesh,  # defines the triangular mesh (Nx3x3)
-                                      vertexColors=self.meshColors, # defines mesh colors (Nx1)
+                                      vertexColors=self.meshColors,  # defines mesh colors (Nx1)
                                       drawEdges=True,  # draw edges between mesh elements
                                       smooth=False,  # speeds up rendering
                                       computeNormals=False)  # speeds up rendering
@@ -83,7 +84,7 @@ class path_viewer():
             self.body.setMeshData(vertexes=mesh, vertexColors=self.meshColors)
 
         # update the center of the camera view to the mav location
-        #view_location = Vector(state.pe, state.pn, state.h)  # defined in ENU coordinates
+        # view_location = Vector(state.pe, state.pn, state.h)  # defined in ENU coordinates
         #self.window.opts['center'] = view_location
         # redraw
         self.app.processEvents()
@@ -97,7 +98,7 @@ class path_viewer():
 
     def _translate_points(self, points, translation):
         "Translate points by the vector translation"
-        translated_points = points + np.dot(translation, np.ones([1,points.shape[1]]))
+        translated_points = points + np.dot(translation, np.ones([1, points.shape[1]]))
         return translated_points
 
     def _get_mav_points(self):
@@ -118,7 +119,7 @@ class path_viewer():
         tail_l = unit_length
         tail_w = unit_length * 2
 
-        #points are in NED coordinates
+        # points are in NED coordinates
         #   define the points on the aircraft following diagram Fig 2.14
         points = np.array([[fuse_l1, 0, 0],  # point 1 [0]
                            [fuse_l2, fuse_w / 2.0, -fuse_h / 2.0],  # point 2 [1]
@@ -130,7 +131,7 @@ class path_viewer():
                            [-wing_l, wing_w / 2.0, 0],  # point 8 [7]
                            [-wing_l, -wing_w / 2.0, 0],  # point 9 [8]
                            [0, -wing_w / 2.0, 0],  # point 10 [9]
-                           [-fuse_l3 + tail_l, tail_w / 2.0, 0], # point 11 [10]
+                           [-fuse_l3 + tail_l, tail_w / 2.0, 0],  # point 11 [10]
                            [-fuse_l3, tail_w / 2.0, 0],  # point 12 [11]
                            [-fuse_l3, -tail_w / 2.0, 0],  # point 13 [12]
                            [-fuse_l3 + tail_l, -tail_w / 2.0, 0],   # point 14 [13]
@@ -169,7 +170,7 @@ class path_viewer():
         Each mesh face is defined by three 3D points
           (a rectangle requires two triangular mesh faces)
         """
-        points=points.T
+        points = points.T
         mesh = np.array([[points[0], points[1], points[2]],  # nose-top
                          [points[0], points[1], points[4]],  # nose-right
                          [points[0], points[3], points[4]],  # nose-bottom
@@ -183,7 +184,7 @@ class path_viewer():
                          [points[10], points[11], points[12]],  # horizontal tail
                          [points[10], points[12], points[13]],  # horizontal tail
                          [points[5], points[14], points[15]],  # vertical tail
-                        ])
+                         ])
         return mesh
 
     def straight_line_plot(self, path):
@@ -229,4 +230,3 @@ class path_viewer():
                                    antialias=True,
                                    mode='line_strip')
         return object
-

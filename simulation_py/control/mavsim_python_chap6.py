@@ -52,7 +52,7 @@ while sim_time < SIM.end_time:
     delta_e, delta_a, delta_r, delta_t, autopilot = controlJoystick.getInputs()
     if autopilot != 2:
         commandWindow.setAutopilot(autopilot)
-        
+
     # -------autopilot commands-------------
     commandWindow.root.update_idletasks()
     commandWindow.root.update()

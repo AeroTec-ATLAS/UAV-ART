@@ -6,7 +6,7 @@ import sys
 sys.path.append('..')
 
 import numpy as np
-import chap5.model_coef as TF
+import dynamics_linear.model_coef as TF
 import parameters.aerosonde_parameters as MAV
 
 gravity = MAV.gravity  # gravity constant

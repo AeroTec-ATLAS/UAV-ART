@@ -13,7 +13,7 @@ from kinematics.data_viewer import dataViewer
 from dynamics.wind_simulation import windSimulation
 from control.autopilot import autopilot
 from dynamics.mav_dynamics import mavDynamics
-#from chap8.observer import observer
+# from chap8.observer import observer
 from path_following.path_follower import path_follower
 from path_following.path_viewer import path_viewer
 
@@ -38,7 +38,7 @@ path_follow = path_follower()
 # path definition
 from message_types.msg_path import msgPath
 path = msgPath()
-#path.type = 'line'
+# path.type = 'line'
 path.type = 'orbit'
 if path.type == 'line':
     path.line_origin = np.array([[0.0, 0.0, -100.0]]).T
@@ -55,36 +55,33 @@ else:  # path.type == 'orbit'
 sim_time = SIM.start_time
 previous_t = 0
 # main simulation loop
-print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
-    #-------observer-------------
-    #measurements = mav.sensors()  # get sensor measurements
-    #estimated_state = obsv.update(measurements)  # estimate states from measurements
+    # -------observer-------------
+    # measurements = mav.sensors()  # get sensor measurements
+    # estimated_state = obsv.update(measurements)  # estimate states from measurements
     estimated_state = mav.true_state
-    #-------path follower-------------
+    # -------path follower-------------
     autopilot_commands = path_follow.update(path, estimated_state)
-    #autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
+    # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
-    #-------controller-------------
+    # -------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, estimated_state, previous_t, sim_time)
     previous_t = delta.throttle
-    #-------physical system-------------
+    # -------physical system-------------
     current_wind = wind.update()  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
-    #-------update viewer-------------
+    # -------update viewer-------------
     path_view.update(path, mav.true_state)  # plot path and MAV
-    data_view.update(mav.true_state, # true states
-                     estimated_state, # estimated states
-                     commanded_state, # commanded states
+    data_view.update(mav.true_state,  # true states
+                     estimated_state,  # estimated states
+                     commanded_state,  # commanded states
                      SIM.ts_simulation)
-    if VIDEO == True: video.update(sim_time)
+    if VIDEO == True:
+        video.update(sim_time)
 
-    #-------increment time-------------
+    # -------increment time-------------
     sim_time += SIM.ts_simulation
 
-if VIDEO == True: video.close()
-
-
-
-
+if VIDEO == True:
+    video.close()
