@@ -19,9 +19,8 @@ To run this simulation, run the _mavsim_chap7.py_ file located in the path_follo
 
 We thank everyone who has contributed to the project so far for their amazing work!
 
-![UAV](https://i.imgur.com/LkZeDza.png)
-![AeroTec](https://i.imgur.com/ZeA57xk.png)
-![IST](https://i.imgur.com/cDW8w96.png)
+![Logos](https://imgur.com/HNF4COq)
+
 
 
 
