@@ -1,7 +1,7 @@
 # UAV-ART (UAV Alameda Research Team)
 ## UAV-P1
 
-We are a university research team working on an autonomous, unmanned aircraft! We are a part of AeroTec (the Aerospace Engineering student's group of Instituto Superior Técnico in Lisbon). You can find more about us here: https://aerotec.pt/. We are divided into 4 different teams, Structures, Systems, Control and Vision. You can also find the differente CAD models for our aeromodels here: *LINK DA DRIVE*
+We are a university research team working on an autonomous, unmanned aircraft! We are a part of AeroTec (the Aerospace Engineering student's group of Instituto Superior Técnico in Lisbon). You can find more about us here: https://aerotec.pt/. We are divided into 4 different teams, Structures, Systems, Control and Vision.
 
 In this repository you can find the code that runs our aircraft, divided into three main sections, simualation_m (dedicated to the Matlab simulation of the UAV), simulation_py (dedicated to the Python simulation of the UAV), and vision (dedicated to the work of the vision team, which will later be integrated into the control of the aircraft). So far we have only tested our controller in a simulation environment, however, we expect to soon be able to test it on the aeromodel built by our structures team!
 
@@ -16,6 +16,9 @@ You can choose to run different simulations, but we recommend trying the two mai
 To run this simulation, run the _mavsim_chap6.py_ file located in the control folder. Should a PS4 controller be plugged in, you'll be able to control the aircraft and the autopilot switch with it. In this case, the left analog will control both the ailerons and the elevator, the right analog controls the rudder, the R2 button controls the throttle and the circle and triangle button, turn the autopilot off and on respectively. When the autopilot is on, the input to it can be defined in the window that will open along the simulation.
 #### Path following
 To run this simulation, run the _mavsim_chap7.py_ file located in the path_following folder. You can either follow a straight line path or an orbital path, and you can define the path to follow inside the _mavsim_chap7.py_ file.
+
+### Structures
+You can find the differente CAD models for our aeromodels here: *LINK DA DRIVE*
 
 We thank everyone who has contributed to the project so far for their amazing work!
 
