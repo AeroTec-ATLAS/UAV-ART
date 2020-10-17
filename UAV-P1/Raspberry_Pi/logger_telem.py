@@ -1,11 +1,13 @@
 #Send data by UDP
 # Connect to wifi hotspot and use ip: 10.3.141.1 port:10000
 network_mode = True
+local_ip='192.168.1.237'
+raspberry_ip='192.168.1.3'
 #Save Log Files
-logging_mode = True
+logging_mode = False
 
 #Display data in terminal window
-verbose = False
+verbose = True
 
 
 data_rate = 30      #ms
@@ -20,7 +22,10 @@ from datetime import datetime
 from dronekit import connect, VehicleMode
 
 def get_connection_string():
-    return '/dev/serial0'
+    if network_mode:
+        return local_ip +":14550"
+    else:
+        return '/dev/serial0'
 
 def pause():
      print("Waiting 2s")
@@ -39,23 +44,10 @@ def get_log_file():
 connection_string = get_connection_string()
 
 if network_mode:
-    import socket
-    import sys
-
-    # Create a UDP socket
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    # Bind the socket to the port
-    server_address = ("192.168.1.9", 10000)
-    print('starting up on {} port {}'.format(*server_address))
-    sock.bind(server_address)
-
-    print('\nwaiting for application')
-    data, address = sock.recvfrom(4098)
-    print(data.decode())
-
+    import subprocess
+    subprocess.Popen('startRaspConnection.bat '+raspberry_ip+' '+local_ip, creationflags=subprocess.CREATE_NEW_CONSOLE)
 # Connect to the Vehicle.
-print("Connecting to vehicle on: %s" % (connection_string,))
+print("Connecting to vehicle on: %s" % (connection_string))
 vehicle = connect(connection_string, wait_ready=True, baud=921600)
 
 # Get some vehicle attributes (state)
@@ -99,10 +91,6 @@ while 1:
             if logging_mode:
                 f.write(l+'\n')
             
-            if network_mode:
-                message = b.encode()
-                sock.sendto(message, address)
-                
             if verbose:
                 print(l)
             
@@ -115,10 +103,6 @@ while 1:
         break
 vehicle.armed = False
 print("\n|--- End of data stream ---|\n")
-
-# Close Socket
-if network_mode:
-    sock.close()
 
 # Close File
 if logging_mode:

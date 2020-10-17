@@ -4,12 +4,12 @@ sitl = False
 
 #Send data by UDP
 # Connect to wifi hotspot and use ip: 10.3.141.1 port:10000
-network_mode = True
+network_mode = False
 #Save Log Files
-logging_mode = True
+logging_mode = False
 
 #Display data in terminal window
-verbose = False
+verbose = True
 
 
 data_rate = 30      #ms
