@@ -1,7 +1,3 @@
-###########################
-#Run as Sitl (Simulator)
-sitl = False
-
 #Send data by UDP
 # Connect to wifi hotspot and use ip: 10.3.141.1 port:10000
 network_mode = True
@@ -23,15 +19,9 @@ from datetime import datetime
 # Import DroneKit-Python
 from dronekit import connect, VehicleMode
 
-def get_connection_string(sitl):
-    if sitl:
-        print( "Start simulator (SITL)")
-        sitl = dronekit_sitl.start_default()
-        sitl = dronekit_sitl.start_default()
-        return sitl.connection_string()
-    else:
-        return '/dev/serial0'
-        
+def get_connection_string():
+    return '/dev/serial0'
+
 def pause():
      print("Waiting 2s")
      sleep(2)
@@ -45,11 +35,24 @@ def get_log_file():
         print("File exists")
         pass
     return open('/'.join(fn),"w")
-    
-if sitl:
-    import dronekit_sitl
 
-connection_string = get_connection_string(sitl)
+connection_string = get_connection_string()
+
+if network_mode:
+    import socket
+    import sys
+
+    # Create a UDP socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    # Bind the socket to the port
+    server_address = ("192.168.1.9", 10000)
+    print('starting up on {} port {}'.format(*server_address))
+    sock.bind(server_address)
+
+    print('\nwaiting for application')
+    data, address = sock.recvfrom(4098)
+    print(data.decode())
 
 # Connect to the Vehicle.
 print("Connecting to vehicle on: %s" % (connection_string,))
@@ -66,25 +69,8 @@ print( " Mode: %s" % vehicle.mode.name )   # settable
 
 pause()
 
-if network_mode:
-    import socket
-    import sys
-
-    # Create a UDP socket
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    # Bind the socket to the port
-    server_address = ("10.3.141.1", 10000)
-    print('starting up on {} port {}'.format(*server_address))
-    sock.bind(server_address)
-
-    print('\nwaiting for application')
-    data, address = sock.recvfrom(4098)
-    print(data.decode())
-
 if logging_mode:
     f = get_log_file()
-    
 
 print("\n|-- Starting data stream --|\n")
 b = ""
@@ -130,8 +116,6 @@ while 1:
 vehicle.armed = False
 print("\n|--- End of data stream ---|\n")
 
-
-
 # Close Socket
 if network_mode:
     sock.close()
@@ -142,10 +126,6 @@ if logging_mode:
 
 # Close vehicle object before exiting script
 vehicle.close()
-
-# Shut down simulator
-if sitl:
-    sitl.stop()
 
 print("Completed")
 pause()
