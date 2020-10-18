@@ -2,7 +2,7 @@
 # Connect to wifi hotspot and use ip: 10.3.141.1 port:10000
 network_mode = True
 local_ip='192.168.1.237'
-raspberry_ip='192.168.1.3'
+raspberry_ip='192.168.1.14'
 #Save Log Files
 logging_mode = False
 

@@ -13,7 +13,9 @@ from telemetry.telemetry_Data import telemetryData
 
 # initialize messages
 state = msgState()  # instantiate state message
-telemetry=telemetryData('192.168.1.237','192.168.1.3')
+localIP='192.168.1.237'
+raspIP='192.168.1.14'
+telemetry=telemetryData(localIP,raspIP)
 vehicle=telemetry.vehicle
 # initialize viewers and video
 VIDEO = False  # True==write video, False==don't write video
@@ -30,12 +32,12 @@ sim_time = SIM.start_time
 # main simulation loop
 while sim_time < SIM.end_time:
     # -------vary states to check viewer-------------
-    state.phi=vehicle.attitude.roll
-    state.theta=vehicle.attitude.pitch
-    state.psi=vehicle.attitude.yaw 
-    state.h=vehicle.location.global_frame.alt
-    state.Vg=vehicle.groundspeed
-    state.chi=vehicle.heading
+    state.pn = vehicle.location.local_frame.north
+    state.pe = vehicle.location.local_frame.east
+    state.h = vehicle.location.global_frame.alt
+    state.phi = vehicle.attitude.roll
+    state.theta = vehicle.attitude.pitch
+    state.psi = vehicle.attitude.yaw 
 
     # -------update viewer and video-------------
     mav_view.update(state)
