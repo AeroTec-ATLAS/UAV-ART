@@ -1,5 +1,5 @@
 # UAV-ART (UAV Alameda Research Team)
-## UAV-P1
+## *Innovating the ART of flying*
 
 We are a university research team working on an autonomous, unmanned aircraft! We are a part of AeroTec (the Aerospace Engineering student's group of Instituto Superior Técnico in Lisbon). You can find more about us here: https://aerotec.pt/. We are divided into 4 different teams, Structures, Systems, Control and Vision.
 
@@ -17,8 +17,22 @@ To run this simulation, run the _mavsim_chap6.py_ file located in the control fo
 #### Path following
 To run this simulation, run the _mavsim_chap7.py_ file located in the path_following folder. You can either follow a straight line path or an orbital path, and you can define the path to follow inside the _mavsim_chap7.py_ file.
 
+### Vision
+Here you'll find different alogrithms developed by the team, which can later on be applied for control purposes
+#### SIFT 2
+This program shows the 40 best matches between two images.
+To run the program, select two images (lines 4 and 5), and run the Python file from terminal. 
+#### SIFT video tracking
+This program tracks the position of matched key points in a video. 
+The user can load video or use live webcam footage (line 33), then click on any pixel of any frame of the video, and the programs shows the 25 closest key points and their matches in the subsequent frames.
+To run the program, select a video or live webcam footage, and run the Python file from terminal. 
+#### SIFT video post
+Program that tracks the position of 6 matched key points in two videos. 
+The user loads videos (line 12), and the program shows the 6 (or less) best matches between the two videos.
+To run the program, select two videos, and run the Python file from terminal. 
+
 ### Structures
-You can find the differente CAD models for our aeromodels here: *LINK DA DRIVE*
+You can find the model for our aeromodel [here](https://viewer.autodesk.com/id/dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YTM2MHZpZXdlci90NjM3MzkxNTg4NDM0NTcwNDc4Xzc3N2RkZjkwLWM5M2ItNGViOS05NDRlLTVlNTQ3OTU4ZjY5NC5jb2xsYWJvcmF0aW9u?sheetId=OWNjYjFlZGQtZDQ0MC00ZTVmLTg0MTEtYWRkYjlkNzQxZjdm).
 
 We thank everyone who has contributed to the project so far for their amazing work!
 
