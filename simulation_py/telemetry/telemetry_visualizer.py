@@ -14,7 +14,7 @@ from telemetry.telemetry_Data import telemetryData
 # initialize messages
 state = msgState()  # instantiate state message
 localIP='192.168.1.237'
-raspIP='192.168.1.14'
+raspIP='192.168.1.17'
 telemetry=telemetryData(localIP,raspIP)
 vehicle=telemetry.vehicle
 # initialize viewers and video

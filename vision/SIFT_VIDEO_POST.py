@@ -9,7 +9,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 colors = [(0, 0, 255), (255, 0, 255), (255, 0, 145), (255, 0, 0), (0, 255, 0), (255, 255, 0)]
 
-names = ['/Users/arthurlago/Documents/UAV/CV/Videos-Post-Insta/IMG_4121.MOV', '/Users/arthurlago/Documents/UAV/CV/Videos-Post-Insta/IMG_4122.MOV']
+names = ['select video 1', 'select video 2']
 
 cap = [cv2.VideoCapture(i) for i in names]
 
@@ -40,13 +40,11 @@ while True:
                 for m,n in knn_matches1:
                     if m.distance < ratio_thresh * n.distance:
                         good1.append(m)
-                # print(good1)
 
                 i = 0
                 newkeypoints1 = []
                 newd1 = []
                 novalista = []
-                # print(len(good1))
                 while i < len(good1):
 
                     numero = good1[i].trainIdx
@@ -59,7 +57,6 @@ while True:
                     i=i+1
 
 
-                # print(novalista)
 
 
             if initial_state==0:
@@ -67,7 +64,6 @@ while True:
             if initial_state==1:
                newd1 = np.array(newd1, dtype=np.float32)
                knn_matches2 = matcher.knnMatch(newd1, d2, 2)
-            # if initial_state==1:q
             if initial_state==0:
                 ratio_thresh = 0.4
             if initial_state==1:
@@ -79,7 +75,6 @@ while True:
 
             if initial_state==0:
                 good2 = good2[:6]
-            # print(good2)
 
             img3 = np.hstack((frames[0], frames[1]))
 
@@ -144,29 +139,20 @@ while True:
                 newkeypoints2.append(keypoint2)
                 i=i+1
 
-            # print(firstd1)
-
-            # print(len(good2))
-            # print(len(newkeypoints1))
             if initial_state==1:
                 print(newlistacor)
-            # print('passou')
             i=0
             while i <len(newkeypointsK) and i<len(newkeypoints2):
-                # cor1 = random.randint(0, 255)
                 if initial_state==1:
                     aaaaa = newlistacor[i]
                 if initial_state==0:
                     aaaaa = i
                 frames[0]= cv2.circle(frames[0], (int(newkeypointsK[i].pt[0]), int(newkeypointsK[i].pt[1])), 30, colors[aaaaa], 20)
-                # cv2.putText(frames[0], (i+1), (int(newkeypointsK[i].pt[0])+20, int(newkeypointsK[i].pt[1])+20), font, 4, (255, 255, 255), 1, cv2.LINE_AA)
                 frames[1] = cv2.circle(frames[1], (int(newkeypoints2[i].pt[0]), int(newkeypoints2[i].pt[1])), 30, colors[aaaaa], 20)
-                # cv2.putText(frames[1], (i+1), (int(newkeypoints2[i].pt[0])+20, int(newkeypoints2[i].pt[1])+20), font, 1, (255, 255, 255), 1, cv2.LINE_AA)
                 print(i)
                 i=i+1
 
 
-            # print(initial_state)
             img3 = np.hstack((frames[0], frames[1]))
             cv2.namedWindow('Frame', cv2.WINDOW_GUI_NORMAL)
             cv2.imshow('Frame',img3)
