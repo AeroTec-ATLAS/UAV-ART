@@ -12,12 +12,12 @@ Our flight controller was designed taking into account the linearised aircraft d
 
 The design of the path-following controller is yet to be complete. At this stage, two guidance laws are being developed for tracking straight-line segments and constant-altitude circular orbits. These two basic blocks shall be later employed to synthesise more complex paths which pass through a set of pre-established waypoints.
 
-On board our aircraft we have (for the time being) a Raspberry Pi 3 Model B+, a Pixhawk (with a GPS antenna) and all other eletronic equipment required to power the motor and servos. All sensor data is gathered in the Pixhawk, which then routes this data through the TELEM2 port using Mavlink to the Raspberry Pi. This data is then processed in the Raspberry Pi, where our flight controller is running, and the servo inputs are calculated here. These are then converted to PWM signals, transmitted through the GPIO to the fail-safe board, and from there these signals go to each individual servo, in order to actuate the control surfaces. 
+On board our aircraft we have (for the time being) a Raspberry Pi 3 Model B+, a Pixhawk (with a GPS antenna and running the PX4 firmware) and all other eletronic equipment required to power the motor and servos. All sensor data is gathered in the Pixhawk, which then routes this data through the TELEM2 port using Mavlink to the Raspberry Pi. This data is then processed in the Raspberry Pi, where our flight controller is running, and the servo inputs are calculated here. These are then converted to PWM signals, transmitted through the GPIO to the fail-safe board, and from there these signals go to each individual servo, in order to actuate the control surfaces. 
 
 ### Structures
 You can find the model for our aeromodel [here](https://viewer.autodesk.com/id/dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YTM2MHZpZXdlci90NjM3MzkxNTg4NDM0NTcwNDc4Xzc3N2RkZjkwLWM5M2ItNGViOS05NDRlLTVlNTQ3OTU4ZjY5NC5jb2xsYWJvcmF0aW9u?sheetId=OWNjYjFlZGQtZDQ0MC00ZTVmLTg0MTEtYWRkYjlkNzQxZjdm).
 
-
+### Acknowledgements
 We express our uttermost sincere gratitude to those who made this project thrive. We would like to thank, in particular, Leonardo Pedroso for his invaluable contribution to the design of the autopilot, and João Canas for all his words of encouragement, advice, and support.
 
 ![Logos](https://i.imgur.com/HNF4COq.png)
