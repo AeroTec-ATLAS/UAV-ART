@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Spatial.gd" type="Script" id=1]
+[ext_resource path="res://default_env.tres" type="Environment" id=2]
+[ext_resource path="res://model/PLANE.obj" type="ArrayMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.999999, 9.30507e-09, -8.69262e-08, 0, 0.994319, 0.106438, 8.74227e-08, 0.106438, -0.99432, 0, 6.182, -23.84 )
+current = true
+fov = 45.0
+near = 1.0
+far = 1500.0
+
+[node name="Button" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 129.0
+margin_bottom = 65.0
+text = "STOP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 148.746
+margin_top = 10.0
+margin_right = 265.746
+margin_bottom = 65.0
+text = "Calibrate"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
+
+[node name="Parent" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Parent"]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, 0 )
+mesh = ExtResource( 3 )
+material/0 = null
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

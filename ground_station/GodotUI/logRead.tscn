@@ -1,0 +1,684 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Plane.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/logRead.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://scripts/GUI.gd" type="Script" id=4]
+[ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://default_theme.tres" type="Theme" id=7]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.432836, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 50 )
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -0.07
+initial_velocity_random = 0.26
+angular_velocity = 85.09
+angular_velocity_random = 0.65
+scale = 0.01
+scale_random = 0.19
+color_ramp = SubResource( 2 )
+hue_variation_random = 0.94
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 1, 1, 0.960784 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="OpenSimplexNoise" id=8]
+
+[sub_resource type="NoiseTexture" id=9]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.407843, 0.407843, 0.407843, 1 )
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = SubResource( 7 )
+roughness_texture = SubResource( 9 )
+
+[sub_resource type="PlaneMesh" id=11]
+material = SubResource( 10 )
+size = Vector2( 100000, 100000 )
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+params_line_width = 2.0
+params_point_size = 2.0
+albedo_color = Color( 1, 0, 0, 0.960784 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Plane" parent="." instance=ExtResource( 1 )]
+
+[node name="P1st" type="Camera" parent="Plane"]
+transform = Transform( -1, -3.9968e-15, -2.68221e-07, 0, 1, -1.49012e-08, 2.68221e-07, -1.49012e-08, -1, 0, -4.76837e-07, 9.53674e-07 )
+cull_mask = 5
+current = true
+fov = 60.0
+near = 2.0
+far = 3000.0
+
+[node name="P3rd" type="Camera" parent="Plane"]
+transform = Transform( -0.775142, -0.189898, 0.602572, -1.72021e-07, 0.953759, 0.300573, -0.631787, 0.232987, -0.739299, 8.597, 3.919, -11.036 )
+cull_mask = 7
+fov = 60.0
+far = 8192.0
+
+[node name="Particles" type="Particles" parent="Plane"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.31606 )
+layers = 4
+amount = 500
+lifetime = 3.0
+visibility_aabb = AABB( -27.3715, -12.708, -40.4006, 54.7429, 25.416, 80.8011 )
+local_coords = false
+draw_order = 2
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="GroundCam" type="Camera" parent="."]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -13.383, 4.089, -25.02 )
+cull_mask = 3
+fov = 66.3
+near = 3.0
+far = 2000.0
+script = ExtResource( 3 )
+
+[node name="Cameras" type="Spatial" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.364609
+margin_bottom = 0.364624
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="Control" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="center" type="Line2D" parent="GUI/HUD"]
+use_parent_material = true
+position = Vector2( 0, 5 )
+points = PoolVector2Array( -10, 5, 0, -5, 10, 5 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="center2" type="Line2D" parent="GUI/HUD/center"]
+show_behind_parent = true
+use_parent_material = true
+points = PoolVector2Array( -10, 5, 0, -5, 10, 5 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="horizon" type="Node2D" parent="GUI/HUD"]
+use_parent_material = true
+z_index = 4096
+
+[node name="pitch" type="Node2D" parent="GUI/HUD/horizon"]
+
+[node name="Line2D" type="Line2D" parent="GUI/HUD/horizon/pitch"]
+points = PoolVector2Array( -15, 0, -100, 0 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Line2D4" type="Line2D" parent="GUI/HUD/horizon/pitch/Line2D"]
+show_behind_parent = true
+points = PoolVector2Array( -15, 0, -100, 0 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="Line2D2" type="Line2D" parent="GUI/HUD/horizon/pitch"]
+rotation = -3.14159
+points = PoolVector2Array( -15, 0, -100, 0 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Line2D3" type="Line2D" parent="GUI/HUD/horizon/pitch/Line2D2"]
+show_behind_parent = true
+points = PoolVector2Array( -15, 0, -100, 0 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="alt" type="Line2D" parent="GUI/HUD/horizon"]
+points = PoolVector2Array( 150, 100, 120, 100, 120, -100, 150, -100 )
+width = 1.0
+default_color = Color( 0, 1, 0, 0.933333 )
+
+[node name="altLabel" type="Label" parent="GUI/HUD/horizon/alt"]
+margin_left = 160.0
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.658824 )
+text = "alt
+0.0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="alt2" type="Line2D" parent="GUI/HUD/horizon/alt"]
+show_behind_parent = true
+points = PoolVector2Array( 150, 100, 120, 100, 120, -100, 150, -100 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="speed" type="Line2D" parent="GUI/HUD/horizon"]
+points = PoolVector2Array( -150, -100, -120, -100, -120, 100, -150, 100 )
+width = 1.0
+default_color = Color( 0, 1, 0, 0.933333 )
+
+[node name="speedLabel" type="Label" parent="GUI/HUD/horizon/speed"]
+margin_left = -160.0
+margin_right = -160.0
+grow_horizontal = 0
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.780392 )
+text = "airspeed
+0.0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="speed2" type="Line2D" parent="GUI/HUD/horizon/speed"]
+show_behind_parent = true
+points = PoolVector2Array( -150, -100, -120, -100, -120, 100, -150, 100 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="ang" type="Line2D" parent="GUI/HUD/horizon"]
+points = PoolVector2Array( -10, 0, 10, 0 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="line" type="Line2D" parent="GUI/HUD/horizon/ang"]
+points = PoolVector2Array( 0, 0, 0, -7 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="ang2" type="Line2D" parent="GUI/HUD/horizon/ang"]
+show_behind_parent = true
+points = PoolVector2Array( -10, 0, 10, 0 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="line" type="Line2D" parent="GUI/HUD/horizon/ang/ang2"]
+points = PoolVector2Array( 0, 0, 0, -7 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="compass" type="Line2D" parent="GUI/HUD"]
+use_parent_material = true
+position = Vector2( 0, -250 )
+points = PoolVector2Array( -300, 30, -300, 0, 300, 0, 300, 30 )
+width = 2.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="N" type="Line2D" parent="GUI/HUD/compass"]
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Label" type="Label" parent="GUI/HUD/compass/N"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "N"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E" type="Line2D" parent="GUI/HUD/compass"]
+position = Vector2( 150, 0 )
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Label" type="Label" parent="GUI/HUD/compass/E"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "E"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="Line2D" parent="GUI/HUD/compass"]
+position = Vector2( -150, 0 )
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 1.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="Label" type="Label" parent="GUI/HUD/compass/W"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "W"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S1" type="Label" parent="GUI/HUD/compass"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -304.853
+margin_top = 32.582
+margin_right = -294.853
+margin_bottom = 46.582
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S2" type="Label" parent="GUI/HUD/compass"]
+use_parent_material = true
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 304.0
+margin_top = 32.582
+margin_right = 294.0
+margin_bottom = 46.582
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="indicator" type="Line2D" parent="GUI/HUD/compass"]
+use_parent_material = true
+points = PoolVector2Array( 0, 0, -10, -20, 10, -20, 0, 0 )
+width = 3.0
+default_color = Color( 0, 1, 0, 1 )
+
+[node name="indicator2" type="Line2D" parent="GUI/HUD/compass/indicator"]
+use_parent_material = true
+z_index = -1
+points = PoolVector2Array( 0, 0, -10, -20, 10, -20, 0, 0 )
+width = 4.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="compass2" type="Line2D" parent="GUI/HUD/compass"]
+show_behind_parent = true
+use_parent_material = true
+points = PoolVector2Array( -300, 30, -300, 0, 300, 0, 300, 30 )
+width = 4.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="N" type="Line2D" parent="GUI/HUD/compass/compass2"]
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="E" type="Line2D" parent="GUI/HUD/compass/compass2"]
+position = Vector2( 150, 0 )
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="W" type="Line2D" parent="GUI/HUD/compass/compass2"]
+position = Vector2( -150, 0 )
+scale = Vector2( 1.1, 1.1 )
+points = PoolVector2Array( 0, 0, 0, 20 )
+width = 3.0
+default_color = Color( 0, 0, 0, 0.368627 )
+
+[node name="playButton" type="Button" parent="GUI"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 95.0
+margin_bottom = 20.0
+text = "Play Controls"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="GUI"]
+visible = false
+margin_right = 501.0
+margin_bottom = 78.0
+theme = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="GUI/Panel"]
+anchor_left = 0.01
+anchor_top = 0.02
+anchor_right = 0.99
+anchor_bottom = 0.02
+mouse_default_cursor_shape = 10
+max_value = 10.0
+value = 5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spslider" type="HSlider" parent="GUI/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 202.0
+margin_top = -35.0
+margin_right = 364.0
+mouse_default_cursor_shape = 10
+min_value = -1.0
+max_value = 1.0
+step = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/Panel/spslider"]
+grow_horizontal = 2
+grow_vertical = 2
+text = "x0.1"
+
+[node name="Label2" type="Label" parent="GUI/Panel/spslider"]
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "x1"
+
+[node name="Label3" type="Label" parent="GUI/Panel/spslider"]
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "x10"
+
+[node name="Label4" type="Label" parent="GUI/Panel/spslider"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -143.372
+margin_top = -23.2704
+margin_right = -96.372
+margin_bottom = -1.27037
+grow_horizontal = 2
+grow_vertical = 2
+text = "Speed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="GUI/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_bottom = -7.0
+grow_vertical = 0
+text = "time (s): 60.00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playing" type="CheckButton" parent="GUI/Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Playing"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="GUI/Panel/playing"]
+autostart = true
+
+[node name="exitPlay" type="Button" parent="GUI/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_bottom = -5.0
+grow_vertical = 0
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rawButton" type="Button" parent="GUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_bottom = -10.0
+grow_vertical = 0
+theme = ExtResource( 7 )
+text = "View raw log"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rawLog" type="Panel" parent="GUI"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -525.0
+margin_right = 303.0
+grow_vertical = 0
+mouse_filter = 1
+theme = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info" type="Label" parent="GUI/rawLog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+theme = ExtResource( 7 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="closeLog" type="Button" parent="GUI/rawLog"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -5.0
+margin_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menuButton" type="Button" parent="GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -85.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 20.0
+grow_horizontal = 0
+text = "Show Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenu" type="Panel" parent="GUI"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -244.0
+margin_bottom = 138.0
+grow_horizontal = 0
+theme = ExtResource( 7 )
+
+[node name="CameraButton" type="Button" parent="GUI/PopupMenu"]
+margin_left = 6.0
+margin_top = 6.0
+text = "Switch Camera"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CamName" type="Label" parent="GUI/PopupMenu/CameraButton"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 7.0
+grow_vertical = 2
+text = "GroundCam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUDButton" type="CheckButton" parent="GUI/PopupMenu"]
+margin_left = 6.0
+margin_top = 40.0
+margin_right = 175.0
+margin_bottom = 74.0
+pressed = true
+text = "View HUD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="drawnline" type="CheckButton" parent="GUI/PopupMenu"]
+margin_left = 6.0
+margin_top = 72.0
+margin_right = 175.0
+margin_bottom = 106.0
+pressed = true
+text = "Draw Line"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mcam" type="CheckButton" parent="GUI/PopupMenu"]
+margin_left = 6.0
+margin_top = 104.0
+margin_right = 175.0
+margin_bottom = 133.0
+disabled = true
+text = "Manual Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exitMenu" type="Button" parent="GUI/PopupMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -5.0
+margin_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="floor" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28306, 0 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="line" type="ImmediateGeometry" parent="."]
+layers = 2
+material_override = SubResource( 12 )
+cast_shadow = 0
+[connection signal="pressed" from="GUI/playButton" to="GUI" method="_on_playButton_pressed"]
+[connection signal="value_changed" from="GUI/Panel/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="GUI/Panel/spslider" to="." method="_on_spslider_value_changed"]
+[connection signal="toggled" from="GUI/Panel/playing" to="." method="_on_playing_toggled"]
+[connection signal="timeout" from="GUI/Panel/playing/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="GUI/Panel/exitPlay" to="GUI" method="_on_exitPlay_pressed"]
+[connection signal="pressed" from="GUI/rawButton" to="GUI" method="_on_rawButton_pressed"]
+[connection signal="pressed" from="GUI/rawLog/closeLog" to="GUI" method="_on_closeLog_pressed"]
+[connection signal="pressed" from="GUI/menuButton" to="GUI" method="_on_menuButton_pressed"]
+[connection signal="pressed" from="GUI/PopupMenu/CameraButton" to="." method="_on_CameraButton_pressed"]
+[connection signal="toggled" from="GUI/PopupMenu/HUDButton" to="GUI" method="_on_HUDButton_toggled"]
+[connection signal="toggled" from="GUI/PopupMenu/drawnline" to="." method="_on_drawnline_toggled"]
+[connection signal="toggled" from="GUI/PopupMenu/mcam" to="GroundCam" method="_on_mcam_toggled"]
+[connection signal="pressed" from="GUI/PopupMenu/exitMenu" to="GUI" method="_on_exitMenu_pressed"]

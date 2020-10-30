@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="UAV UI"
+run/main_scene="res://Menu.tscn"
+boot_splash/image="res://images/UAV.png"
+boot_splash/bg_color=Color( 0.988235, 0.988235, 0.988235, 0 )
+config/icon="res://images/iconUAV.png"
+
+[display]
+
+window/size/width=1440
+window/size/height=810
+window/vsync/use_vsync=false
+window/stretch/aspect="keep"
+
+[gui]
+
+theme/custom="res://default_theme.tres"
+theme/custom_font="res://default_font.tres"
+
+[rendering]
+
+quality/filters/msaa=4
+environment/default_environment="res://default_env.tres"
