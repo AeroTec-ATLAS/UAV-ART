@@ -17,6 +17,7 @@ On board our aircraft we have (for the time being) a Raspberry Pi 3 Model B+, a 
 ### Structures
 You can find the model for our aeromodel [here](https://viewer.autodesk.com/id/dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YTM2MHZpZXdlci90NjM3MzkxNTg4NDM0NTcwNDc4Xzc3N2RkZjkwLWM5M2ItNGViOS05NDRlLTVlNTQ3OTU4ZjY5NC5jb2xsYWJvcmF0aW9u?sheetId=OWNjYjFlZGQtZDQ0MC00ZTVmLTg0MTEtYWRkYjlkNzQxZjdm).
 
+
 We express our uttermost sincere gratitude to those who made this project thrive. We would like to thank, in particular, Leonardo Pedroso for his invaluable contribution to the design of the autopilot, and João Canas for all his words of encouragement, advice, and support.
 
 ![Logos](https://i.imgur.com/HNF4COq.png)
