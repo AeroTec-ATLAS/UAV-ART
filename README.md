@@ -3,52 +3,21 @@
 
 We are a university research team working on an autonomous, unmanned aircraft! We are a part of AeroTec (the Aerospace Engineering student's group of Instituto Superior Técnico in Lisbon). You can find more about us here: https://aerotec.pt/. We are divided into 4 different teams, Structures, Systems, Control and Vision.
 
-In this repository you can find the code that runs our aircraft, divided into three main sections, simualation_m (dedicated to the Matlab simulation of the UAV), simulation_py (dedicated to the Python simulation of the UAV), and vision (dedicated to the work of the vision team, which will later be integrated into the control of the aircraft). So far we have only tested our controller in a simulation environment, however, we expect to soon be able to test it on the aeromodel built by our structures team!
+In this repository you can find the code that runs our aircraft, divided into three main sections, simualation_m (dedicated to the Matlab simulation of the UAV), simulation_py (dedicated to the Python simulation of the UAV), and vision (dedicated to the work of the vision team, which will later be integrated into the control of the aircraft). Inside each folder you'll find the README for those files. So far we have only tested our controller in a simulation environment, however, we expect to soon be able to test it on the aeromodel built by our structures team! You can see the progresses we've made in the past year in this short ["A Year in review"](https://youtu.be/h7s87GzxMtY).
 
 Most of our work is based on *Small Unmanned Aircraft* by R. Beard and T. McLain, whose repository can be consulted here: https://magiccvs.byu.edu/gitlab/uavbook/mavsim_template_files. You should also check out *DroneKit Python* (https://github.com/dronekit/dronekit-python) and *OpenCV* (https://opencv.org/).
 
-### simulation_m
-You can select different Matlab simulations, but we recommend trying the three main ones, 
-one where you can try the autopilot controller with an airspeed, heading and altitude command, 
-one where the autopilot will follow a path provided, or  one where you can estimate the aerodynamic 
-coefficients of a given model aircraft, using flight data.
-#### Autopilot
-To run this simulation, run the main.m file located in the control/autopilot folder. An animation will 
-run once the simulation is done.
-#### Estimation of Aerodynamic Coefficients
-To run this simulation, first you need to run read_data.m file located in the control/estimation folder. 
-Then you have to run get_coefs.m file located in the same folder. Additionally, in that folder, you can 
-analyse two different .txt files with flight data.
-#### Path following
-To run this Matlab simulation, run the .m file located in the control/path_following folder. 
-You can either follow a straight line path or an orbital path, and you can define the path 
-to follow inside the .m file. An animation will run once the simulation is done.
+### System Architecture
+Our flight controller was designed taking into account the linearised aircraft dynamics, and it is organised into two main blocks: the path-follower which given a desired path in three-dimensional space provides altitude, course, and airspeed references to another block, the autopilot, which ultimately inputs commands to the control surfaces and motor so as to follow the defined path. It is worth pointing out that our controller was designed based on the assumptions that it is run on a fixed wing aircraft, with no flaps, and with a "T" shaped tail. 
 
-### simulation_py
-You can choose to run different simulations, but we recommend trying the two main ones, one where you can try the autopilot controller with an airspeed, heading and altitude command as well as manual control of the aircraft, or one where the autopilot will follow a path provided.
-#### Controller
-To run this simulation, run the _autopilot_fail-safe_ file located in the control folder. Should a PS4 controller be plugged in, you'll be able to control the aircraft and the autopilot switch with it. In this case, the left analog will control both the ailerons and the elevator, the right analog controls the rudder, the R2 button controls the throttle and the circle and triangle button, turn the autopilot off and on respectively. When the autopilot is on, the input to it can be defined in the window that will open along the simulation.
-#### Path following
-To run this simulation, run the _path_following_simulation.py_ file located in the path_following folder. You can either follow a straight line path or an orbital path, and you can define the path to follow inside the _path_following_simulation.py_ file.
+The design of the path-following controller is yet to be complete. At this stage, two guidance laws are being developed for tracking straight-line segments and constant-altitude circular orbits. These two basic blocks shall be later employed to synthesise more complex paths which pass through a set of pre-established waypoints.
 
-### Vision
-Here you'll find different alogrithms developed by the team, which can later on be applied for control purposes
-#### SIFT 2
-This program shows the 40 best matches between two images.
-To run the program, select two images (lines 4 and 5), and run the Python file from terminal. 
-#### SIFT video tracking
-This program tracks the position of matched key points in a video. 
-The user can load video or use live webcam footage (line 33), then click on any pixel of any frame of the video, and the programs shows the 25 closest key points and their matches in the subsequent frames.
-To run the program, select a video or live webcam footage, and run the Python file from terminal. 
-#### SIFT video post
-Program that tracks the position of 6 matched key points in two videos. 
-The user loads videos (line 12), and the program shows the 6 (or less) best matches between the two videos.
-To run the program, select two videos, and run the Python file from terminal. 
+On board our aircraft we have (for the time being) a Raspberry Pi 3 Model B+, a Pixhawk (with a GPS antenna) and all other eletronic equipment required to power the motor and servos. All sensor data is gathered in the Pixhawk, which then routes this data through the TELEM2 port using Mavlink to the Raspberry Pi. This data is then processed in the Raspberry Pi, where our flight controller is running, and the servo inputs are calculated here. These are then converted to PWM signals, transmitted through the GPIO to the fail-safe board, and from there these signals go to each individual servo, in order to actuate the control surfaces. 
 
 ### Structures
 You can find the model for our aeromodel [here](https://viewer.autodesk.com/id/dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YTM2MHZpZXdlci90NjM3MzkxNTg4NDM0NTcwNDc4Xzc3N2RkZjkwLWM5M2ItNGViOS05NDRlLTVlNTQ3OTU4ZjY5NC5jb2xsYWJvcmF0aW9u?sheetId=OWNjYjFlZGQtZDQ0MC00ZTVmLTg0MTEtYWRkYjlkNzQxZjdm).
 
-We thank everyone who has contributed to the project so far for their amazing work!
+We express our uttermost sincere gratitude to those who made this project thrive. We would like to thank, in particular, Leonardo Pedroso for his invaluable contribution to the design of the autopilot, and João Canas for all his words of encouragement, advice, and support.
 
 ![Logos](https://i.imgur.com/HNF4COq.png)
 
