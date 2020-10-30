@@ -8,14 +8,15 @@ In this repository you can find the code that runs our aircraft, divided into th
 Most of our work is based on *Small Unmanned Aircraft* by R. Beard and T. McLain, whose repository can be consulted here: https://magiccvs.byu.edu/gitlab/uavbook/mavsim_template_files. You should also check out *DroneKit Python* (https://github.com/dronekit/dronekit-python) and *OpenCV* (https://opencv.org/).
 
 ### System Architecture
-Our flight controller was designed taking into account the linearised aircraft dynamics, and it is organised into two main blocks: the path-follower which given a desired path in three-dimensional space provides altitude, course, and airspeed references to another block, the autopilot, which ultimately inputs commands to the control surfaces and motor so as to follow the defined path. It is worth pointing out that our controller was designed based on the assumptions that it is run on a fixed wing aircraft, with no flaps, and with a "T" shaped tail. 
+Our flight controller was designed taking into account the linearised aircraft dynamics, and it is organised into two main blocks: the path-follower which given a desired path in three-dimensional space provides altitude, course, and airspeed references to another block, the autopilot, which ultimately inputs commands to the control surfaces and motor so as to follow the defined path. It is worth pointing out that our controller was designed based on the assumptions that it is run on a fixed wing aircraft, with no flaps, and with a "T" shaped tail, engine at the front of the aircraft and a wingspan of 3.1 meters. Hence, as it can be deduced by the wingspan, our aircraft is not build for fast manouvers, but for smooth flight. 
 
 The design of the path-following controller is yet to be complete. At this stage, two guidance laws are being developed for tracking straight-line segments and constant-altitude circular orbits. These two basic blocks shall be later employed to synthesise more complex paths which pass through a set of pre-established waypoints.
 
 On board our aircraft we have (for the time being) a Raspberry Pi 3 Model B+, a Pixhawk (with a GPS antenna and running the PX4 firmware) and all other eletronic equipment required to power the motor and servos. All sensor data is gathered in the Pixhawk, which then routes this data through the TELEM2 port using Mavlink to the Raspberry Pi. This data is then processed in the Raspberry Pi, where our flight controller is running, and the servo inputs are calculated here. These are then converted to PWM signals, transmitted through the GPIO to the fail-safe board, and from there these signals go to each individual servo, in order to actuate the control surfaces. 
 
 ### Structures
-You can find the model for our aeromodel [here](https://viewer.autodesk.com/id/dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YTM2MHZpZXdlci90NjM3MzkxNTg4NDM0NTcwNDc4Xzc3N2RkZjkwLWM5M2ItNGViOS05NDRlLTVlNTQ3OTU4ZjY5NC5jb2xsYWJvcmF0aW9u?sheetId=OWNjYjFlZGQtZDQ0MC00ZTVmLTg0MTEtYWRkYjlkNzQxZjdm).
+You can find the 3D CAD of our model aircraft, made by the Structures team [here](https://autode.sk/37Kln2Q).
+
 
 ### Acknowledgements
 We express our uttermost sincere gratitude to those who made this project thrive. We would like to thank, in particular, Leonardo Pedroso for his invaluable contribution to the design of the autopilot, and João Canas for all his words of encouragement, advice, and support.
