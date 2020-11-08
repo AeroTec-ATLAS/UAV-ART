@@ -51,7 +51,7 @@ func _ready():
 		var d = data[i].split_floats(' ')
 		var t = d[0]
 		time_indexes.insert(i,t)
-		locs.insert(i,Vector3(d[8],d[9],d[7]))
+		locs.insert(i,Vector3(-d[8],d[9],d[7]))
 	delta_t = time_indexes[-1] - time_indexes[0]
 	
 	#End Line

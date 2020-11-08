@@ -6,11 +6,11 @@ extends Spatial
 var cal = Vector3() #home location [lat(deg) lon(deg) alt(m)]
 
 func setLocalRotate(rot,loc):
-	var Ry = Basis(Vector3(0,1,0),rot[1])
-	var Rx = Ry.rotated(Ry.x,-rot[0])
-	var Rz = Rx.rotated(Rx.z,-rot[2])
+	var Ry = Basis(Vector3(0,1,0),-rot[1])
+	var Rx = Ry.rotated(Ry.x, -rot[0])
+	var Rz = Rx.rotated(Rx.z,rot[2])
 	var cLoc = get_diference_from_home(loc)
-	return Transform(Rz,Vector3(cLoc[1],cLoc[2],cLoc[0]))
+	return Transform(Rz,Vector3(-cLoc[1],cLoc[2],cLoc[0]))
 
 func update_data(data):
 	var att = Vector3(data[0],data[1],data[2])

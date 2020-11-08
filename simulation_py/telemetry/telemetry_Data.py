@@ -1,4 +1,4 @@
-from dronekit import connect, VehicleMode
+from dronekit import connect
 
 
 class telemetryData():

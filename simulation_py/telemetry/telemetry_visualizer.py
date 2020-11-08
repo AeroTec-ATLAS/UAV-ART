@@ -9,12 +9,15 @@ sys.path.append('..')
 from video.mav_viewer import mavViewer
 import parameters.simulation_parameters as SIM
 from message_types.msg_state import msgState
+from message_types.msg_delta import msgDelta
 from telemetry.telemetry_Data import telemetryData
-
+from tools.ground_connection import groundProxy
+ground=groundProxy()
 # initialize messages
 state = msgState()  # instantiate state message
+delta = msgDelta() 
 localIP='192.168.1.237'
-raspIP='192.168.1.17'
+raspIP='192.168.1.5'
 telemetry=telemetryData(localIP,raspIP)
 vehicle=telemetry.vehicle
 # initialize viewers and video
@@ -41,6 +44,7 @@ while sim_time < SIM.end_time:
 
     # -------update viewer and video-------------
     mav_view.update(state)
+    ground.sendToVisualizer(state, delta)
     if VIDEO is True:
         video.update(sim_time)
 

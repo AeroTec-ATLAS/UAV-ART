@@ -19,6 +19,11 @@ func _ready():
 func _on_log_pressed():
 	$log.set_disabled(true)
 	$FileDialog.popup()
+	
+func _on_realtime_pressed():
+	var lv = load("res://Control.tscn").instance()
+	get_parent().add_child(lv)
+	queue_free()
 
 func _on_FileDialog_file_selected(path):
 	var lv = load("res://logRead.tscn").instance()

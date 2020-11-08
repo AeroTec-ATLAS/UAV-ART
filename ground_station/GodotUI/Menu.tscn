@@ -24,11 +24,21 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="log" type="Button" parent="."]
-margin_left = 28.8621
-margin_top = 25.8131
-margin_right = 242.862
-margin_bottom = 74.8131
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 254.0
+margin_bottom = 73.0
 text = "Review Flight Log"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="realtime" type="Button" parent="."]
+margin_left = 320.0
+margin_top = 24.0
+margin_right = 534.0
+margin_bottom = 73.0
+text = "Real-time"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,9 +53,9 @@ resizable = true
 mode_overrides_title = false
 mode = 0
 access = 2
-current_dir = "/Users/Pedro/Desktop/MEAer/UAV/UAV_GodotUI"
+current_dir = "/Users/Afonso/OneDrive - Universidade de Lisboa/UAV/UAV-ART/ground_station/GodotUI"
 current_file = "volta"
-current_path = "/Users/Pedro/Desktop/MEAer/UAV/UAV_GodotUI/volta"
+current_path = "/Users/Afonso/OneDrive - Universidade de Lisboa/UAV/UAV-ART/ground_station/GodotUI/volta"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,7 +63,7 @@ __meta__ = {
 [node name="Spatial" type="Spatial" parent="."]
 
 [node name="Plane" parent="Spatial" instance=ExtResource( 2 )]
-transform = Transform( 0.93733, 0, 0.348443, 0, 1, 0, -0.348443, 0, 0.93733, 0, 0, 0 )
+transform = Transform( 0.998853, 0, 0.0478929, -0.00267095, 0.998444, 0.0557052, -0.0478184, -0.0557692, 0.997298, 0.0439572, 0.203995, -0.0159006 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
 autoplay = "rot"
@@ -63,5 +73,6 @@ anims/rot = SubResource( 1 )
 transform = Transform( 0.997977, 0, -0.0635744, 0, 1, 0, 0.0635744, 0, 0.997977, -6.803, 5.142, 22.254 )
 fov = 50.0
 [connection signal="pressed" from="log" to="." method="_on_log_pressed"]
+[connection signal="pressed" from="realtime" to="." method="_on_realtime_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
 [connection signal="popup_hide" from="FileDialog" to="." method="_on_FileDialog_popup_hide"]
