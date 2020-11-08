@@ -1,11 +1,11 @@
 extends Spatial
 
 
-var data
 var time_indexes = []
 var locs = []
 var delta_t
-var labels
+var label = 'Time(s) pitch(rad) yaw(rad) roll(rad) pitchspeed(rad/s) yawspeed(rad/s) rollspeed(rad/s) lat(deg) lon(deg) alt[MSL](mm) vnorth[NED](cm/s) veast[NED](cm/s) vdown[NED](cm/s) IAS(m/s) AOA() Sideslip() RCch1() RCch2() RCch3() RCch4()'
+var labels = label.split(' ')
 
 var l
 var rl
@@ -92,11 +92,12 @@ func _process(delta):
 		packet = connection.get_packet().get_string_from_utf8()
 	var jsonData = JSON.parse(packet).result
 	var convertedData=getData(jsonData)
-	var t = OS.get_ticks_msec() - initTime
+	var t = (float(OS.get_ticks_msec()) - initTime) / 1000
 	time_indexes.insert(time_indexes.size(),t)
 	locs.insert(locs.size(),Vector3(-convertedData[7],convertedData[8],convertedData[6]))
 	$Plane.update_data(convertedData)
 	$GUI.update_HUD(convertedData)
+	disp_log(convertedData, t)
 	draw_line()
 
 func _on_CameraButton_pressed():
@@ -117,25 +118,11 @@ func _on_CameraButton_pressed():
 		$GUI/PopupMenu/HUDButton.set_pressed(false)
 		$GUI/PopupMenu/drawnline.set_disabled(false) 
 
-func interpolate(r):
-	var line1 = get_line(r["i"])
-	var line2 = get_line(r["i"]+1)
-	var f = r["f"]
-	var res = []
-	for i in range(line1.size()):
-		res.insert(i,(1-f)*line1[i] + f*line2[i])
-	res.remove(0)
-	return res
-
-func get_line(i):
-	var line = data[i].split_floats(' ')
-	return line
-
-func disp_log(i):
-	var line = get_line(i)
+func disp_log(data, time):
 	var t = ""
-	for i in range(labels.size()):
-		t = t + labels[i] + ": %010f \n" % line[i]
+	t = t + labels[0] + ": %010f \n" % time
+	for i in range(1,labels.size()):
+		t = t + labels[i] + ": %010f \n" % data[i-1]
 	rl.set_text(t)
 
 func _on_drawnline_toggled(button_pressed):

@@ -10,7 +10,7 @@ func update_HUD(data):
 	#updates HUD elements
 	
 	#Pitch and roll
-	$HUD/horizon.set_rotation(data[2])
+	$HUD/horizon.set_rotation(-data[2])
 
 	var pitch_deg = data[0]*180/PI
 	if abs(pitch_deg) < 20:
@@ -52,3 +52,6 @@ func _on_closeLog_pressed():
 
 func _on_rawButton_pressed():
 	$rawLog.set_visible(true)
+	
+func _on_returnButton_pressed():
+	get_tree().change_scene("res://Menu.tscn")

@@ -10,7 +10,7 @@ class joystick:
         self.connected = False
         if not customJoystick:
             for i in range(pygame.joystick.get_count()):
-                if pygame.joystick.Joystick(i).get_name() == 'Wireless Controller':
+                if (pygame.joystick.Joystick(i).get_name() == 'Wireless Controller') | (pygame.joystick.Joystick(i).get_name() == 'PS4 Controller'):
                     self.sideStick = pygame.joystick.Joystick(i)
                     self.sideStick.init()
                     self.connected = True

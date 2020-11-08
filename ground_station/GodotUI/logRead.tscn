@@ -659,6 +659,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="returnToMain" type="Button" parent="GUI/PopupMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.0
+margin_top = -81.0
+margin_right = -4.0
+margin_bottom = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "End"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28306, 0 )
 mesh = SubResource( 11 )
@@ -682,3 +698,4 @@ cast_shadow = 0
 [connection signal="toggled" from="GUI/PopupMenu/drawnline" to="." method="_on_drawnline_toggled"]
 [connection signal="toggled" from="GUI/PopupMenu/mcam" to="GroundCam" method="_on_mcam_toggled"]
 [connection signal="pressed" from="GUI/PopupMenu/exitMenu" to="GUI" method="_on_exitMenu_pressed"]
+[connection signal="pressed" from="GUI/PopupMenu/returnToMain" to="GUI" method="_on_returnButton_pressed"]
