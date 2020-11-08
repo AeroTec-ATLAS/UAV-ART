@@ -27,9 +27,13 @@ func update_HUD(data):
 	var angs = Vector2(data[14],data[13])*50
 	$HUD/horizon/ang.set_position(angs)
 	
-	#Course
-	var course = -(data[1] - data[14])
-	var pos = Vector2((course/PI)*300,0)
+	#Heading
+	var heading = data[1]
+	while heading > PI:
+		heading = heading - 2 * PI
+	while heading < -PI:
+		heading = heading + 2 * PI
+	var pos = Vector2(fmod(heading/PI, 1)*300,0)
 	$HUD/compass/indicator.set_position(pos)
 
 func _on_playButton_pressed():
