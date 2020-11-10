@@ -65,8 +65,8 @@ class autopilot:
     # lateral autopilot
 
         phi_c = self.roll_from_course.update(0, chi_c, chi, reset_flag)
-        if np.abs(phi_c) < 0.1 and cmd.phi_feedforward != 0:
-            phi_c = cmd.phi_feedforward
+        #if np.abs(phi_c) < 0.1 and cmd.phi_feedforward != 0:
+         #   phi_c = cmd.phi_feedforward
         delta_a = self.aileron_from_roll.update_with_rate(phi_c, phi, p, reset_flag)
         delta_r = 0
 
