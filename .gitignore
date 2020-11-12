@@ -145,6 +145,7 @@ cython_debug/
 *.slxc
 *.asv
 
+
 # folders and misc files
 controlo/autopilot/slprj/
 controlo/autopilot/trim/slprj/
@@ -152,5 +153,6 @@ controlo/autopilot/trim/gain_tuning/slprj/
 controlo/autopilot/old/
 controlo/autopilot/util/txt_logs/
 controlo/autopilot/util/txt_logs_wAero/
+simulation_m/control/pathFollower/slprj
 .import/
 
