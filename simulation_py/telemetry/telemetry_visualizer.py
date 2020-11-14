@@ -17,12 +17,12 @@ ground=groundProxy()
 state = msgState()  # instantiate state message
 delta = msgDelta() 
 localIP='192.168.1.237'
-raspIP='192.168.1.5'
+raspIP='192.168.1.15'
 telemetry=telemetryData(localIP,raspIP)
 vehicle=telemetry.vehicle
 # initialize viewers and video
 VIDEO = False  # True==write video, False==don't write video
-mav_view = mavViewer()
+#mav_view = mavViewer()
 if VIDEO is True:
     from video.video_writer import videoWriter
     video = videoWriter(video_name="chap2_video.avi",
@@ -43,7 +43,7 @@ while sim_time < SIM.end_time:
     state.psi = vehicle.attitude.yaw 
 
     # -------update viewer and video-------------
-    mav_view.update(state)
+    #mav_view.update(state)
     ground.sendToVisualizer(state, delta)
     if VIDEO is True:
         video.update(sim_time)
