@@ -18,8 +18,8 @@ func update_data(data):
 	set_transform(setLocalRotate(att,loc))
 	$uav/eang/elevator.set_rotation(Vector3(-1,0,0)*data[16])
 	$uav/rang/rudder.set_rotation(Vector3(0,0,1)*data[18])
-	$uav/alang/aileronL.set_rotation(Vector3(1,0,0)*data[15])
-	$uav/arang/aileronR.set_rotation(Vector3(-1,0,0)*data[15])
+	$uav/alang/aileronL.set_rotation(Vector3(-1,0,0)*data[15])
+	$uav/arang/aileronR.set_rotation(Vector3(1,0,0)*data[15])
 
 func calibrate(data):
 	cal = Vector3(data[6],data[7],data[8])

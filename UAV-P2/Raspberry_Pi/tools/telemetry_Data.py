@@ -10,7 +10,7 @@ class telemetryData():
             self.networkMode = False
         if self.networkMode:
             import subprocess
-            subprocess.Popen('tools/startRaspConnection.bat ' + self.raspberryip + ' ' + self.localIP, creationflags=subprocess.CREATE_NEW_CONSOLE)
+            subprocess.Popen('tools\\startRaspConnection.bat ' + self.raspberryip + ' ' + self.localIP, creationflags=subprocess.CREATE_NEW_CONSOLE)
 
         connection_string = self.get_connection_string()
         print("Connecting to vehicle on: %s" % (connection_string))

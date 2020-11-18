@@ -5,14 +5,16 @@ mavsim_python
         3/11/2019 - RWB
 """
 import numpy as np
-
+import sys
+sys.path.append('..')
 
 from control.autopilot import autopilot
 from control.path_follower import path_follower
 from tools.ground_connection import groundProxy
 from tools.sensors import Sensors
+from tools.log import log
 localIP='192.168.1.237'
-raspIP='192.168.1.5'
+raspIP='192.168.1.13'
 sensors=Sensors(localIP, raspIP)
 # initialize the visualization
 ground=groundProxy()
@@ -21,6 +23,7 @@ ground=groundProxy()
 ctrl = autopilot(0.01)
 #obsv = observer(SIM.ts_simulation)
 path_follow = path_follower()
+logger = log('Test flight.txt')
 # path definition
 from message_types.msg_path import msgPath
 from message_types.msg_state import msgState
@@ -45,6 +48,7 @@ else:  # path.type == 'orbit'
 sim_time = 0
 previous_t = 0
 # main simulation loop
+import time
 while True:
     # -------observer-------------
     state = sensors.update(state)
@@ -55,9 +59,9 @@ while True:
     # -------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
     previous_t = delta.throttle
-
+    logger.addEntry(state, delta, sim_time)
     # -------update viewer-------------
     ground.sendToVisualizer(state, delta)
-
+    time.sleep(0.01)
     # -------increment time-------------
     sim_time += 0.01
