@@ -25,8 +25,8 @@ function positionGraphics(pos,path,folder)
         dd = -ones(1,length(th))*path.c(3);
     end
 
-    handle=figure();
-    set(handle,'visible','off')
+    figure();
+    set(gcf,'visible','off')
     plot(nn,ee,'r')
     hold on
     plot(pos(:,1), pos(:,2),'b')
@@ -35,8 +35,10 @@ function positionGraphics(pos,path,folder)
     ylabel('East [m]','Interpreter','latex')
     legend('Desired','Observed','Interpreter','latex','location','best')
     hold off
-    saveFigAsPDF(handle,folder+"/north_east")
+    saveFigAsPDF(gcf,folder+"/north_east")
     
+    figure();
+    set(gcf,'visible','off')
     plot(nn,dd,'r')
     hold on
     plot(pos(:,1), -pos(:,3),'b')
@@ -45,8 +47,10 @@ function positionGraphics(pos,path,folder)
     ylabel('Altitude [m]','Interpreter','latex')
     legend('Desired','Observed','Interpreter','latex','location','best')
     hold off
-    saveFigAsPDF(handle,folder+"/north_altitude")
+    saveFigAsPDF(gcf,folder+"/north_altitude")
     
+    figure();
+    set(gcf,'visible','off')
     plot(ee,dd,'r')
     hold on
     plot(pos(:,2), -pos(:,3),'b')
@@ -55,5 +59,5 @@ function positionGraphics(pos,path,folder)
     ylabel('Altitude [m]','Interpreter','latex')
     legend('Desired','Observed','Interpreter','latex','location','best')
     hold off
-    saveFigAsPDF(handle,folder+"/east_altitude")
+    saveFigAsPDF(gcf,folder+"/east_altitude")
 end
