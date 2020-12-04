@@ -13,6 +13,7 @@ from parameters import control_parameters as AP
 from message_types.msg_state import msgState
 from message_types.msg_delta import msgDelta
 import math
+from control.servo_stimulation import servo_stimulation
 
 
 class autopilot:
@@ -111,6 +112,8 @@ class autopilot:
         # construct output and commanded states
 
         u = np.array([[delta_e], [delta_a], [delta_r], [delta_t]])
+		servo = servo_stimulation()
+		servo.stimulation(u)
         self.delta.from_array(u)
 
         self.commanded_state.h = cmd.altitude_command
