@@ -11,8 +11,8 @@
 % v_w = constant; gamma = constant
 
 d_1 = [1;0;0];
-R = 1;                                % sensor noise variance
-Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance
+R = 100;                                  % sensor noise variance % R = 1
+Q = diag([1,1,10,10]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
 
 % Sampling rate
 dt = 0.01;
@@ -72,4 +72,3 @@ plot([data.time], error_vector_beta,'r','LineWidth',2)
 xlabel('time (s)')
 ylabel('error (rad)')
 title('Sideslip angle - error')
-title('')
