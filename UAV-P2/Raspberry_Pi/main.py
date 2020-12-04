@@ -9,16 +9,23 @@ import sys
 sys.path.append('..')
 
 from control.autopilot import autopilot
+from message_types.msg_autopilot import msgAutopilot
 from control.path_follower import path_follower
-from tools.ground_connection import groundProxy
-from tools.sensors import Sensors
+#from tools.ground_connection import groundProxy
+#from tools.sensors import Sensors
 from tools.log import log
+from dynamics.wind_simulation import windSimulation
+from control.autopilot import autopilot
+from dynamics.mav_dynamics import mavDynamics
+from control.servo_stimulation import servo_stimulation
+import parameters.simulation_parameters as SIM
+from tools.autopilot_Command import autopilotCommand
 localIP='192.168.1.237'
 raspIP='192.168.1.13'
-sensors=Sensors(localIP, raspIP)
+#sensors=Sensors(localIP, raspIP)
 # initialize the visualization
-ground=groundProxy()
-
+#ground=groundProxy()
+servo=servo_stimulation()
 # initialize elements of the architecture
 ctrl = autopilot(0.01)
 #obsv = observer(SIM.ts_simulation)
@@ -31,6 +38,11 @@ from message_types.msg_delta import msgDelta
 path = msgPath()
 state = msgState()  # instantiate state message
 delta = msgDelta() 
+commandWindow = autopilotCommand()
+commands = msgAutopilot()
+wind = windSimulation(SIM.ts_simulation)
+wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
+mav = mavDynamics(SIM.ts_simulation)
 # path.type = 'line'
 path.type = 'orbit'
 if path.type == 'line':
@@ -51,17 +63,26 @@ previous_t = 0
 import time
 while True:
     # -------observer-------------
-    state = sensors.update(state)
+    #state = sensors.update(state)
     # -------path follower-------------
-    autopilot_commands = path_follow.update(path, state)
+    commandWindow.root.update_idletasks()
+    commandWindow.root.update()
+    commands.airspeed_command = commandWindow.slideVa.get()  # Va_command.square(sim_time)
+    commands.course_command = np.deg2rad(commandWindow.slideChi.get())  # chi_command.square(sim_time)
+    commands.altitude_command = commandWindow.slideH.get()  # h_command.square(sim_time)
+    autopilot_commands = commands #path_follow.update(path, state)
     # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     # -------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
     previous_t = delta.throttle
+    servo.stimulation(delta.to_array())
+    print(np.degrees(delta.to_array()))
     logger.addEntry(state, delta, sim_time)
     # -------update viewer-------------
-    ground.sendToVisualizer(state, delta)
-    time.sleep(0.01)
+    #ground.sendToVisualizer(state, delta)
+    # -------physical system-------------
+    current_wind = wind.update()  # get the new wind vector
+    mav.update(delta, current_wind)  # propagate the MAV dynamics
     # -------increment time-------------
     sim_time += 0.01

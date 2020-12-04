@@ -23,9 +23,9 @@ class servo_stimulation:
 
 
 	def stimulation(self, u):
-		self.servo_de.angl= u[0]
-		self.servo_da.angl= u[1]
-		self.servo_dr.angl= u[2]
+		self.servo_de.angle= np.degrees(u[0])
+		self.servo_da.angle= np.degrees(u[1])
+		self.servo_dr.angle= np.degrees(u[2])
 
 
 
