@@ -11,8 +11,8 @@
 % v_w = constant; gamma = constant
 
 d_1 = [1;0;0];
-R = 100;                  % sensor noise variance % R = 1
-Q = diag([1,1,10,10]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
+R = 1;                  % sensor noise variance 
+Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance  
 
 % Sampling rate
 dt = 0.01;
@@ -35,7 +35,7 @@ for i = 1:length(data)
         P_dot = Q - P_0*C'/R*C*P_0;
         P = P_dot*dt + P_0;
         K = P*C'/R;
-        x_estim_dot = - K*C*x_estim_0;
+        x_estim_dot = K*C*x_estim_0;
         x_estim(:,i) = x_estim_dot * dt + x_estim_0;
     else
         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
@@ -44,7 +44,7 @@ for i = 1:length(data)
         P_dot = Q - P*C'/R*C*P;
         P = P_dot*dt + P;
         K = P*C'/R;
-        x_estim_dot = - K*C*x_estim(:,i-1);
+        x_estim_dot = K*C*x_estim(:,i-1);
         x_estim(:,i) = x_estim_dot * dt + x_estim(:,i-1);
     end
 end
