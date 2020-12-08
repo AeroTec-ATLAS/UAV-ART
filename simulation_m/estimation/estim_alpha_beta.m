@@ -11,7 +11,7 @@
 % v_w = constant; gamma = constant
 
 d_1 = [1;0;0];
-R = 100;                                  % sensor noise variance % R = 1
+R = 100;                  % sensor noise variance % R = 1
 Q = diag([1,1,10,10]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
 
 % Sampling rate
