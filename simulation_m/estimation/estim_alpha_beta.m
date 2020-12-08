@@ -11,7 +11,7 @@
 % v_w = constant; gamma = constant
 
 d_1 = [1;0;0];
-R = 1;                  % sensor noise variance 
+R = 1;                                  % sensor noise variance 
 Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance  
 
 % Sampling rate
@@ -49,7 +49,7 @@ for i = 1:length(data)
     end
 end
 
-V_r = [data.u; data.v; data.w] - x_estim(3,:);
+V_r = [data.u; data.v; data.w] - x_estim(1:3,:);
 u_r = V_r(1,:); v_r = V_r(2,:); w_r = V_r(3,:);
 
 alpha = zeros(1, length(data)); beta = zeros(1, length(data));
@@ -59,9 +59,50 @@ for i = 1:length(data)
     beta(i) = asin(v_r(i)/sqrt(u_r(i)^2 + v_r(i)^2 + w_r(i)^2));
 end
 
+% Gráficos das variáveis estimadas
+% u_w
+figure
+plot([data.time], x_estim(1,:),'LineWidth',2)
+hold on
+plot([data.time], 1*ones(1,length(data)),'LineWidth',2)
+xlabel('time (s)')
+ylabel('u_w (m/s)')
+legend('estimado','teórico')
+title('Velocidade do vento longitudinal - u_w')
+
+% v_w
+figure
+plot([data.time], x_estim(2,:),'LineWidth',2)
+hold on
+plot([data.time], 1*ones(1,length(data)),'LineWidth',2)
+xlabel('time (s)')
+ylabel('v_w (m/s)')
+legend('estimado','teórico')
+title('Velocidade do vento lateral - v_w')
+
+% w_w
+figure
+plot([data.time], x_estim(3,:),'LineWidth',2)
+hold on
+plot([data.time], 0*ones(1,length(data)),'LineWidth',2)
+xlabel('time (s)')
+ylabel('w_w (m/s)')
+legend('estimado','teórico')
+title('Velocidade do vento vertical - w_w')
+
+% gamma
+figure
+plot([data.time], x_estim(4,:),'LineWidth',2)
+xlabel('time (s)')
+ylabel('Gamma')
+title('Gamma')
+
+%% Gráficos dos erros
+
 error_vector_alpha = [data.AoA] - alpha;
 error_vector_beta = [data.beta] - beta;
 
+figure
 plot([data.time], error_vector_alpha,'LineWidth',2)
 xlabel('time (s)')
 ylabel('error (rad)')
