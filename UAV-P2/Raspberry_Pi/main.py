@@ -74,11 +74,11 @@ while True:
     # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     # -------controller-------------
-    delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
+    delta, commanded_state = ctrl.update(autopilot_commands, mav.true_state, previous_t, sim_time)
     previous_t = delta.throttle
     servo.stimulation(delta.to_array())
     print(np.degrees(delta.to_array()))
-    logger.addEntry(state, delta, sim_time)
+    logger.addEntry(mav.true_state, delta, sim_time)
     # -------update viewer-------------
     #ground.sendToVisualizer(state, delta)
     # -------physical system-------------
