@@ -35,7 +35,7 @@ load anim/aircraft
 
 addpath('anim','util','trim')
 
-T = 50; % simulation time in seconds
+T = 120; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,7 +50,7 @@ t = 0:P.Ts:T;
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
+% h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
 
 % for i = 1:length(t) %Os primeiros 2 elementos serão nulos
 %     
@@ -58,10 +58,35 @@ h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
 % end 
 
 % h_ref = 200*ones(length(t),1);
-% h_ref(2001:4001) = 50*ones(2001,1);
+
+h_ref(1:2000) = 50*ones(2000,1);
+h_ref(2001:4000) = 60*ones(2000,1);
+h_ref(4001:6000) = 50*ones(2000,1);
+for i = 6001:9000
+    h_ref(i) = 50 + (70 - 50)/(9000 - 6000)*(i - 6000);
+end
+for i = 9001:12000
+    h_ref(i) = 70 + (50 - 70)/(12000 - 9000)*(i - 9000);
+end
+h_ref(12001) = h_ref(12000);
+h_ref = h_ref';
+
+
 % chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
-chi_ref = 10*pi/180*ones(length(t),1);
-% chi_ref(3001:5001) = 170*pi/180*ones(2001,1);
+
+chi_ref(1:2000) = 20*pi/180*ones(2000,1);
+chi_ref(2001:4000) = 0*ones(2000,1);
+chi_ref(4001:6000) = -20*pi/180*ones(2000,1);
+chi_ref(6001:8000) = 0*ones(2000,1);
+for i = 8001:10000
+    chi_ref(i) = pi/180*(0 + (20 - 0)/(10000 - 8000)*(i - 8000));
+end
+for i = 10001:12000
+    chi_ref(i) = pi/180*(20 + (0 - 20)/(12000 - 10000)*(i - 10000));
+end
+chi_ref(12001) = chi_ref(12000);
+chi_ref = chi_ref';
+
 % Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 Va_ref = 30*ones(length(t),1);
  
@@ -100,7 +125,7 @@ F_body = FM.signals.values(:,1:3); % [fx fy fz]
 T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-drawAircraft(pos,att,V,F,facecolors,2e-3)
-morePlots
+% drawAircraft(pos,att,V,F,facecolors,2e-3)
+% morePlots
 
 
