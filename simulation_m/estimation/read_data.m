@@ -8,7 +8,7 @@
 %2020-05-21_23.07.txt - longitudinal coefficients
 %dados_log3crudder.txt - longitudinal + lateral coefficients
 
-fid = fopen('dados_log3crudder.txt','rt');
+fid = fopen('2020-12-08_17.33_1_1_0.txt','rt');
 
 if fid < 0
     disp('Error opening the file ".txt"');
@@ -60,31 +60,31 @@ else
             data(i).RCch4    =  str2num(value);
 
 % Aerodynamic forces and moments (not used)
-
-            [value, remain]  =  strtok(remain);
-            data(i).F_D      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).F_Y      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).F_L      =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fx       =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fy       =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).fz       =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).l_aero   =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).m_aero   =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).n_aero   =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).l        =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).m        =  str2num(value);
-            [value, remain]  =  strtok(remain);
-            data(i).n        =  str2num(value);
+% 
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_D      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_Y      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).F_L      =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fx       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fy       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).fz       =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).l_aero   =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).m_aero   =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).n_aero   =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).l        =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).m        =  str2num(value);
+%             [value, remain]  =  strtok(remain);
+%             data(i).n        =  str2num(value);
         end
     end
 end
