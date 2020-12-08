@@ -14,7 +14,7 @@ d_1 = [1;0;0];
 R = 1;                                  % sensor noise variance 
 Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance  
 
-% Sampling rate
+% Sampling time
 dt = 0.01;
 
 % Initial conditions:
