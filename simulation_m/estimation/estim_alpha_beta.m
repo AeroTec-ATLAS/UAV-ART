@@ -64,7 +64,7 @@ end
 figure
 plot([data.time], x_estim(1,:),'LineWidth',2)
 hold on
-plot([data.time], 1*ones(1,length(data)),'LineWidth',2)
+plot([data.time], 3*ones(1,length(data)),'LineWidth',2)
 xlabel('time (s)')
 ylabel('u_w (m/s)')
 legend('estimado','teórico')
@@ -74,7 +74,7 @@ title('Velocidade do vento longitudinal - u_w')
 figure
 plot([data.time], x_estim(2,:),'LineWidth',2)
 hold on
-plot([data.time], 1*ones(1,length(data)),'LineWidth',2)
+plot([data.time], 3*ones(1,length(data)),'LineWidth',2)
 xlabel('time (s)')
 ylabel('v_w (m/s)')
 legend('estimado','teórico')
@@ -84,7 +84,7 @@ title('Velocidade do vento lateral - v_w')
 figure
 plot([data.time], x_estim(3,:),'LineWidth',2)
 hold on
-plot([data.time], 0*ones(1,length(data)),'LineWidth',2)
+plot([data.time], 3*ones(1,length(data)),'LineWidth',2)
 xlabel('time (s)')
 ylabel('w_w (m/s)')
 legend('estimado','teórico')
