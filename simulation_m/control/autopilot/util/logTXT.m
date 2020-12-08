@@ -17,7 +17,6 @@ A = [t' att(:,2) att(:,3) att(:,1) ang_v(:,2) ang_v(:,3) ang_v(:,1) ...
     pos(:,1:2) -pos(:,3) v Va alpha beta delta(:,2) delta(:,1) delta(:,4) ...
     delta(:,3)];
 
-A = A(2301:end,:);
 A = A';
 
 str1 = '%3.4f %1.4f %1.4f %1.4f %3.4f %3.4f %3.4f %5.4f %5.4f %3.4f %3.4f';
