@@ -35,7 +35,7 @@ for i = 1:length(data)
         P_dot = Q - P_0*C'/R*C*P_0;
         P = P_dot*dt + P_0;
         K = P*C'/R;
-        x_estim_dot = K*C*x_estim_0;
+        x_estim_dot = - K*C*x_estim_0;
         x_estim(:,i) = x_estim_dot * dt + x_estim_0;
     else
         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
@@ -44,7 +44,7 @@ for i = 1:length(data)
         P_dot = Q - P*C'/R*C*P;
         P = P_dot*dt + P;
         K = P*C'/R;
-        x_estim_dot = K*C*x_estim(:,i-1);
+        x_estim_dot = - K*C*x_estim(:,i-1);
         x_estim(:,i) = x_estim_dot * dt + x_estim(:,i-1);
     end
 end
