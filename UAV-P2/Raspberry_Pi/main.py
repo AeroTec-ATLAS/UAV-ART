@@ -25,7 +25,7 @@ raspIP='192.168.1.13'
 #sensors=Sensors(localIP, raspIP)
 # initialize the visualization
 #ground=groundProxy()
-#servo=servo_stimulation()
+servo=servo_stimulation()
 # initialize elements of the architecture
 ctrl = autopilot(0.01)
 #obsv = observer(SIM.ts_simulation)
@@ -76,7 +76,7 @@ while True:
     # -------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, mav.true_state, previous_t, sim_time)
     previous_t = delta.throttle
-    #servo.stimulation(delta.to_array())
+    servo.stimulation(delta.to_array())
     print(np.degrees(delta.to_array()))
     logger.addEntry(mav.true_state, delta, sim_time)
     # -------update viewer-------------
