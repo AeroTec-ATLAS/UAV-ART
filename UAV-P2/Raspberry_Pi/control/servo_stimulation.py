@@ -20,9 +20,9 @@ class servo_stimulation:
 	prev_dr=0
 	
 	def __init__(self):	
-		self.servo_de = AngularServo(17, min_angle=-45, max_angle=45)
-		self.servo_da = AngularServo(27, min_angle=self.min_da, max_angle=self.max_da)
-		self.servo_dr = AngularServo(22, min_angle=self.min_dr, max_angle=self.max_dr)
+		self.servo_de = AngularServo(self.porta_de, min_angle=self.min_de, max_angle=self.max_de)
+		self.servo_da = AngularServo(self.porta_da, min_angle=self.min_da, max_angle=self.max_da)
+		self.servo_dr = AngularServo(self.porta_dr, min_angle=self.min_dr, max_angle=self.max_dr)
 
 
 	def stimulation(self, u):
