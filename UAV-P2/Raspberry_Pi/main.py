@@ -12,7 +12,7 @@ from control.autopilot import autopilot
 from message_types.msg_autopilot import msgAutopilot
 from control.path_follower import path_follower
 #from tools.ground_connection import groundProxy
-#from tools.sensors import Sensors
+from tools.sensors import Sensors
 from tools.log import log
 from dynamics.wind_simulation import windSimulation
 from control.autopilot import autopilot
@@ -22,7 +22,7 @@ import parameters.simulation_parameters as SIM
 from tools.autopilot_Command import autopilotCommand
 localIP='192.168.1.237'
 raspIP='192.168.1.13'
-#sensors=Sensors(localIP, raspIP)
+sensors=Sensors()
 # initialize the visualization
 #ground=groundProxy()
 servo=servo_stimulation()
@@ -59,11 +59,13 @@ else:  # path.type == 'orbit'
 # initialize the simulation time
 sim_time = 0
 previous_t = 0
+nprint = 1
 # main simulation loop
 import time
 while True:
     # -------observer-------------
-    #state = sensors.update(state)
+    state = sensors.update(state)
+    state.h=0
     # -------path follower-------------
     commandWindow.root.update_idletasks()
     commandWindow.root.update()
@@ -74,15 +76,22 @@ while True:
     # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     # -------controller-------------
-    delta, commanded_state = ctrl.update(autopilot_commands, mav.true_state, previous_t, sim_time)
+    delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
     previous_t = delta.throttle
     servo.stimulation(delta.to_array())
-    print(np.degrees(delta.to_array()))
+    
+    if nprint == 200:
+        print("--------------------")
+        print(np.degrees(delta.to_array()))
+        nprint = 1
+    
+    nprint = nprint +1   
     logger.addEntry(mav.true_state, delta, sim_time)
     # -------update viewer-------------
     #ground.sendToVisualizer(state, delta)
     # -------physical system-------------
-    current_wind = wind.update()  # get the new wind vector
-    mav.update(delta, current_wind)  # propagate the MAV dynamics
+    time.sleep(0.01)
+    #current_wind = wind.update()  # get the new wind vector
+    #mav.update(delta, current_wind)  # propagate the MAV dynamics
     # -------increment time-------------
     sim_time += 0.01
