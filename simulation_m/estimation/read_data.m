@@ -8,7 +8,7 @@
 %2020-05-21_23.07.txt - longitudinal coefficients
 %dados_log3crudder.txt - longitudinal + lateral coefficients
 
-fid = fopen('2020-12-08_18.57_3_3_3.txt','rt');
+fid = fopen('2020-12-08_18.54_3_3_3.txt','rt');
 
 if fid < 0
     disp('Error opening the file ".txt"');
