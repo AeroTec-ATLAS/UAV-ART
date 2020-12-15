@@ -10,9 +10,11 @@
 % u = d_1*R*v_w + u_r_m*gamma
 % v_w = constant; gamma = constant
 
+close all
+
 d_1 = [1;0;0];
 R = 1;                                  % sensor noise variance 
-Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance  
+Q = diag([10e-10,10e-10,10e-10,10e-10]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
 
 % Sampling time
 dt = 0.01;
@@ -27,24 +29,46 @@ x_estim_0 = [v_w_estim_0;gamma_0];
 x_estim = zeros(4,length(data));    
 K = zeros(4,length(data));
 
+% for i = 1:length(data)
+%     if i == 1
+%         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
+%             data(i).psi);
+%         C = [d_1'*Rot,data(i).Va];
+%         P_dot = Q - P_0*C'/R*C*P_0;
+%         P = P_dot*dt + P_0;
+%         K = P*C'/R;
+%         x_estim_dot = K*(data(1).u - C*x_estim_0);
+%         x_estim(:,i) = x_estim_dot * dt + x_estim_0;
+%     else
+%         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
+%             data(i).psi);
+%         C = [d_1'*Rot,data(i).Va];
+%         P_dot = Q - P*C'/R*C*P;
+%         P = P_dot*dt + P;
+%         K = P*C'/R;
+%         x_estim_dot = K*(data(i).u - C*x_estim(:,i-1));
+%         x_estim(:,i) = x_estim_dot * dt + x_estim(:,i-1);
+%     end
+% end
+
 for i = 1:length(data)
     if i == 1
         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
             data(i).psi);
         C = [d_1'*Rot,data(i).Va];
+        K = P_0*C'/R;
         P_dot = Q - P_0*C'/R*C*P_0;
         P = P_dot*dt + P_0;
-        K = P*C'/R;
-        x_estim_dot = - K*C*x_estim_0;
+        x_estim_dot = K*(data(1).u - C*x_estim_0);
         x_estim(:,i) = x_estim_dot * dt + x_estim_0;
     else
         Rot = rotateFromInertialtoBody_R(data(i).phi,data(i).theta,...
             data(i).psi);
         C = [d_1'*Rot,data(i).Va];
+        K = P*C'/R;
         P_dot = Q - P*C'/R*C*P;
         P = P_dot*dt + P;
-        K = P*C'/R;
-        x_estim_dot = - K*C*x_estim(:,i-1);
+        x_estim_dot = K*(data(i).u - C*x_estim(:,i-1));
         x_estim(:,i) = x_estim_dot * dt + x_estim(:,i-1);
     end
 end
