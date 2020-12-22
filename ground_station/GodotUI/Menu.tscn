@@ -53,9 +53,9 @@ resizable = true
 mode_overrides_title = false
 mode = 0
 access = 2
-current_dir = "/Users/Afonso/OneDrive - Universidade de Lisboa/UAV/UAV-ART/ground_station/GodotUI"
+current_dir = "/Users/Pedro/Desktop/MEAer/UAV/repo/UAV-ART/ground_station/GodotUI"
 current_file = "volta"
-current_path = "/Users/Afonso/OneDrive - Universidade de Lisboa/UAV/UAV-ART/ground_station/GodotUI/volta"
+current_path = "/Users/Pedro/Desktop/MEAer/UAV/repo/UAV-ART/ground_station/GodotUI/volta"
 __meta__ = {
 "_edit_use_anchors_": false
 }

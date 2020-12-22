@@ -36,4 +36,3 @@ theme/custom_font="res://default_font.tres"
 [rendering]
 
 quality/filters/msaa=4
-environment/default_environment="res://default_env.tres"
