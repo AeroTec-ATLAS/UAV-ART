@@ -1,8 +1,8 @@
 
 % UAV-ART (UAV Alameda Research Team)
 % Project UAV-P1
-% Aerotéc - Núcleo de Alunos de Engenharia Aeroespacial do Técnico
-% Instituto Superior Técnico
+% AerotÃ©c - NÃºcleo de Alunos de Engenharia Aeroespacial do TÃ©cnico
+% Instituto Superior TÃ©cnico
 % Started in August 2020
 % 
 % Authors: 
@@ -110,7 +110,7 @@ clear out
 % Results
 % Animation
 if settings.wantToDrawAircraft
-    drawAircraftPathFollower(state.pos,state.att,path,1e-4,0)
+    drawAircraftPathFollower(t,state.pos,state.att,path,1e-4,0)
 end
 
 % Graphics
