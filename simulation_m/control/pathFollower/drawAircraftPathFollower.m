@@ -6,7 +6,7 @@
 % pause_t:      time between updates of the plot
 % focused:      if the figure is focused/accompanying the aircraft or not
 
-function drawAircraftPathFollower(pos,att,path,pause_t,...
+function drawAircraftPathFollower(t,pos,att,path,pause_t,...
     focused)
     % loads the vertices of the aircraft in XYZ
     load ../autopilot/anim/aircraft.mat  V
@@ -57,6 +57,8 @@ function drawAircraftPathFollower(pos,att,path,pause_t,...
         for k = 1:size(pos,1)
             [aircr,traj] = renderAircraft(V,F,facecolors,pos(k,:),...
                                                att(k,:),aircr,traj);
+            title(sprintf("Path Follower Simulation, t=%.2fs, T=%.2fs",...
+                t(k),t(end)))
             pause(pause_t)
         end
     end
