@@ -1,5 +1,6 @@
 % Creates an animation of the movement of the aircraft in 3-D
 % Inputs
+% t:            time instants in the simulation
 % pos:          a matrix whose rows are the vector positions written in NED
 % att:          a matrix whose rows are the euler angles by the order phi 
 %               theta psi
