@@ -143,4 +143,4 @@ T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 % drawAircraft(pos,att,V,F,facecolors,2e-3)
 % morePlots
 
-
+% logTXT
