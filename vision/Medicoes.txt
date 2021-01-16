@@ -1,0 +1,4 @@
+Distâncias medidas reais [cm]:
+
+Test: 78, 110;
+Test2: 60, 120, 180;
