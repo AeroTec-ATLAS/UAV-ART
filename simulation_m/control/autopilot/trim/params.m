@@ -70,9 +70,9 @@ P.L_w     = 50;
 % P.sigma_u = 1.06; 
 % P.sigma_v = 1.06;
 % P.sigma_w = .7;
-P.sigma_u = 0; 
-P.sigma_v = 0;
-P.sigma_w = 0;
+P.sigma_u = 10; 
+P.sigma_v = 10;
+P.sigma_w = 10;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
