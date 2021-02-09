@@ -4,7 +4,7 @@
 %          - Pedro Martins
 %          - Simão Caeiro
 
-% AoA and sideslip angle estimation
+% AoA and sideslip angles estimation
 
 % Model:
 % u = d_1*R*v_w + u_r_m*gamma
