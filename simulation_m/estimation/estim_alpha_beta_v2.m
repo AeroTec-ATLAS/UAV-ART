@@ -4,7 +4,7 @@
 %          - Pedro Martins
 %          - Simão Caeiro
 
-% AoA and sideslip angle estimation
+% AoA and sideslip angles estimation
 
 useLogs = true;
 real = [3;3;0];
@@ -13,8 +13,7 @@ descriptor = "3_3_0_no_gusts_"+useLogs;
 mkdir('estim_alpha_beta_results')
 
 if useLogs
-    read_data
-    
+    read_data    
     u = [data.u]';
     u_r = [data.Va]';
     phi = [data.phi]';
@@ -53,11 +52,11 @@ v_wn = (Phi'*Phi)\(Phi'*(u-u_r));
 
 relErrors = (v_wn-real)/abs(real)*100;
 
-v_r = vg - vRot*v_wn;
-w_r = w - wRot*v_wn;
-Va = norm([u_r,v_r,w_r]);
-
-alphaEst = atan2(w_r,u_r);
+% v_r = vg - vRot*v_wn;
+% w_r = w - wRot*v_wn;
+% Va = norm([u_r,v_r,w_r]);
+% 
+% alphaEst = atan2(w_r,u_r);
 
 %% Results presentation
 % If not using logs, presents the simulated wind speed
