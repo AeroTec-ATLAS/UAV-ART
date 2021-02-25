@@ -4,6 +4,7 @@
 %          - Pedro Martins
 %          - Simão Caeiro
 %          - João Moura
+%
 
 % AoA and sideslip angles estimation
 %clear
