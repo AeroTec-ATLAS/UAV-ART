@@ -222,7 +222,7 @@ plot(time(1:end-1000),error_alpha,'LineWidth',2);
 xlabel('$t$ (s)','Interpreter','latex','FontSize',18)
 ylabel('Erro de $\alpha$ (graus)','Interpreter','latex','FontSize',18)
 title(['RMSE-  ',num2str(RMSE_alpha),'graus'],'FontSize',14);
-%%
+
 
 %beta
 beta=rad2deg(beta);
@@ -320,7 +320,7 @@ legend('Simulado','Estimado','location','best','Interpreter','latex',...
 title('Velocidade do vento turbulento - down')
 
 
-%%
+
 trace_buffer=zeros(1,length(data));
 for i=1:23000
 trace_buffer(i)=trace(P_update{i,1});
