@@ -93,7 +93,8 @@ function out = forces_moments(x, delta, wind, P)
     Fg_body = rotateFromInertialtoBody(phi,theta,psi,0,0,P.mass*P.gravity);
     Force = Force + Fg_body';
     
-    out = [Force',Torque', FAer', TAer', Va, alpha, beta, w_n, w_e, w_d];
+    out = [Force',Torque', FAer', TAer', Va, alpha, beta, w_n, w_e, w_d,...
+        u_r];
 end
 
 function F_vec = getFAer(Va,alpha,q,de,beta,p,r,da,dr,P)

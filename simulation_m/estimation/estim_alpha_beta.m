@@ -4,7 +4,7 @@
 %          - Pedro Martins
 %          - Simão Caeiro
 
-% AoA and sideslip angle estimation
+% AoA and sideslip angles estimation
 
 % Model:
 % u = d_1*R*v_w + u_r_m*gamma
@@ -14,7 +14,7 @@ close all
 
 d_1 = [1;0;0];
 R = 1;                                  % sensor noise variance 
-Q = diag([10e-10,10e-10,10e-10,10e-10]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
+Q = diag([10e-3,10e-3,10e-6,10e-8]);    % white noise covariance  % Q = diag([10e-3,10e-3,10e-6,10e-8]); 
 
 % Sampling time
 dt = 0.01;

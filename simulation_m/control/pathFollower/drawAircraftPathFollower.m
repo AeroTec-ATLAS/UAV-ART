@@ -1,12 +1,13 @@
 % Creates an animation of the movement of the aircraft in 3-D
 % Inputs
+% t:            time instants in the simulation
 % pos:          a matrix whose rows are the vector positions written in NED
 % att:          a matrix whose rows are the euler angles by the order phi 
 %               theta psi
 % pause_t:      time between updates of the plot
 % focused:      if the figure is focused/accompanying the aircraft or not
 
-function drawAircraftPathFollower(pos,att,path,pause_t,...
+function drawAircraftPathFollower(t,pos,att,path,pause_t,...
     focused)
     % loads the vertices of the aircraft in XYZ
     load ../autopilot/anim/aircraft.mat  V
@@ -57,6 +58,8 @@ function drawAircraftPathFollower(pos,att,path,pause_t,...
         for k = 1:size(pos,1)
             [aircr,traj] = renderAircraft(V,F,facecolors,pos(k,:),...
                                                att(k,:),aircr,traj);
+            title(sprintf("Path Follower Simulation, t=%.2fs, T=%.2fs",...
+                t(k),t(end)))
             pause(pause_t)
         end
     end

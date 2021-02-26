@@ -13,6 +13,6 @@ analyse two different .txt files with flight data.
 ## Path following
 A system that enables the aircraft to follow straight lines and orbits.
 It is written on top of the autopilot folder so you need to have both folders side-by-side.
-To run this Matlab simulation, run the .m file located in the control/path_following folder. 
+To run this Matlab simulation, run the main_path_follower.m file located in the control/path_following folder. 
 You can either follow a straight line path or an orbital path, and you can define the path 
-to follow inside the .m file. An animation will run once the simulation is done.
+to follow inside the main_path_follower.m file. An animation will run once the simulation is done.
