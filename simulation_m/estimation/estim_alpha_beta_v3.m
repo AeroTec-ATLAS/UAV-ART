@@ -4,7 +4,8 @@
 %          - Pedro Martins
 %          - Simão Caeiro
 %          - João Moura
-%
+%          - Gilberto Silva
+%          - Gonçalo Matos
 
 % AoA and sideslip angles estimation
 %clear
@@ -32,13 +33,13 @@ a_wt = 2e2;
 a_CL0 = 1e-6;
 a_CLalpha = 1e-10;
 a_gamma = 1e-15;
-a = 0.000001*[a_us a_vs a_ws a_ut a_vt a_wt a_CL0 a_CLalpha a_gamma];
-R = 5*diag([1 0.6]);
+a = 0.01*[a_us a_vs a_ws a_ut a_vt a_wt a_CL0 a_CLalpha a_gamma];  % 0.000001*
+R = diag([1 0.6]);   % 5*
 sigma_vv = [0.1 0; 0 0.1];
 
 % Initial conditions
 x0 = [0 0 0 0 0 0 0 1 1]';
-P0 =1.5*diag([1e-2 1e-2 1e-4 1e-5 1e-5 1e-5 1e-5 1e-1 1e-8]);
+P0 = diag([1e-2 1e-2 1e-4 1e-5 1e-5 1e-5 1e-5 1e-1 1e-8]); % 1.5*
 
 % Variables allocation
 x_predict = zeros(9, length(data));
@@ -76,8 +77,7 @@ Id = eye(3);
 zero = zeros(3);
 F = [Id zero zero; df_dv_s df_dv_t zero; zero zero Id];   
 
-%Vwg = sqrt(data(1).vnorth^2 + data(1).veast^2 + data(1).vdown^2);
-Vwg = 2;
+Vwg = 0; % módulo do vento
 sigma_u = Vwg*0.1/(0.177+0.000823*data(1000).alt)^0.4;
 sigma_v = sigma_u;
 sigma_w = 0.1*Vwg;
@@ -89,14 +89,14 @@ Q = ([a(1) a(2) a(3) a(4)*sigma_u*sqrt(2*dt*Va/Lu) ...
 P_predict{1,1} = F*P0*F'+ Q;
 
 alpha(1) = atan2(vr_b(3),vr_b(1));
-beta(1) = atan2(vr_b(2),Va);
+beta(1) = asin(vr_b(2)/Va);        % erro aqui
 
 Lr = chol(sigma_vv,'lower');                                                     
 vk  = Lr*randn(2,1);
 %z(:,1) = [data(1).fz; data(1).u] + vk;                  %nao sei se temos o az ou o fz
 z(:,1) = [data(1000).az-g*cos(data(1000).theta)*cos(data(1000).phi); data(1000).u] + vk;
-output_func(:,1) = [-K*Va^2*(x0(7)+x0(8)*alpha(1)); ...
-    d1'*Rot*(x0(1:3)+x0(4:6))+x0(end)*data(1000).u_r];
+% output_func(:,1) = [-K*Va^2*(x0(7)+x0(8)*alpha(1)); ...
+%     d1'*Rot*(x0(1:3)+x0(4:6))+x0(end)*data(1000).u_r];
 %y(:,1) = z(:,1) - output_func(:,1);
 
 dh1_dus = 2*K*(Rot*d1)'*vr_b*(x0(7) + x0(8)*alpha(1)) + (- Rot(3,1)*vr_b(1) + ...
@@ -105,9 +105,9 @@ dh1_dvs = 2*K*(Rot*d2)'*vr_b*(x0(7) + x0(8)*alpha(1)) + (- Rot(3,2)*vr_b(1) + ..
     Rot(1,2)*vr_b(3))/(vr_b(1)^2 + vr_b(3)^2);
 dh1_dws = 2*K*(Rot*d3)'*vr_b*(x0(7) + x0(8)*alpha(1)) + (- Rot(3,3)*vr_b(1) + ...
     Rot(1,3)*vr_b(3))/(vr_b(1)^2 + vr_b(3)^2);
-dh1_dut = - K*Va^2*x0(8)*(Rot(3,1)*vr_b(1) - Rot(1,1)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
-dh1_dvt = - K*Va^2*x0(8)*(Rot(3,2)*vr_b(1) - Rot(1,2)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
-dh1_dwt = - K*Va^2*x0(8)*(Rot(3,3)*vr_b(1) - Rot(1,3)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
+dh1_dut = K*Va^2*x0(8)*(Rot(3,1)*vr_b(1) - Rot(1,1)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2); % erro aqui
+dh1_dvt = K*Va^2*x0(8)*(Rot(3,2)*vr_b(1) - Rot(1,2)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
+dh1_dwt = K*Va^2*x0(8)*(Rot(3,3)*vr_b(1) - Rot(1,3)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
 
 H = [dh1_dus dh1_dvs dh1_dws dh1_dut dh1_dvt dh1_dwt -K*Va^2 ...
     -K*Va^2*alpha(1) 0; d1'*Rot d1'*Rot 0 0 data(1).u_r];
@@ -145,8 +145,7 @@ for i = 2:length(data)-1000
         dt*x_update(6,i-1)/Lw*dVa_dus, dt*x_update(6,i-1)/Lw*dVa_dvs, dt*x_update(6,i-1)/Lw*dVa_dws];
     F = [Id zero zero; df_dv_s df_dv_t zero; zero zero Id];   
     
-    %Vwg = sqrt(data(i).vnorth^2 + data(i).veast^2 + data(i).vdown^2);
-    Vwg=2;
+    Vwg=0; % modulo do vento
     sigma_u = Vwg*0.1/(0.177+0.000823*data(i+1000).alt)^0.4;
     sigma_v = sigma_u;
     sigma_w = 0.1*Vwg;
@@ -156,19 +155,18 @@ for i = 2:length(data)-1000
         a(7) a(8) a(9)])*dt^2;
     
     P_predict{i,1} = F*P_update{i-1,1}*F' + Q;
-    P_predict{1,1} = F*P0*F'+ Q;
 
     
     alpha(i) = atan2(vr_b(3),vr_b(1));
-    beta(i) = atan2(vr_b(2),Va);
+    beta(i) = asin(vr_b(2)/Va);  % erro aqui
     
     Lr = chol(sigma_vv,'lower');
     vk  = Lr*randn(2,1);
     %z(:,i) = [data(i).fz; data(i).u] + vk; 
     z(:,i) = [data(i+1000).az-g*cos(data(i+1000).theta)*cos(data(i+1000).phi); data(i+1000).u] + vk;
     
-    output_func(:,i) = [-K*Va^2*(x_predict(7,i)+x_predict(8,i)*alpha(i)); ...           %%duvida se é x_predict ou x_update mas penso que é predict pelo wikipedia
-        d1'*Rot*(x_predict(1:3,i)+x_predict(4:6,i))+x_predict(end,i)*data(i+1000).u_r];
+%     output_func(:,i) = [-K*Va^2*(x_predict(7,i)+x_predict(8,i)*alpha(i)); ...           %%duvida se é x_predict ou x_update mas penso que é predict pelo wikipedia
+%         d1'*Rot*(x_predict(1:3,i)+x_predict(4:6,i))+x_predict(end,i)*data(i+1000).u_r];
     %y(:,i) = z(:,i) - output_func(:,i);
 
     dh1_dus = 2*K*(Rot*d1)'*vr_b*(x_predict(7,i) + +x_predict(8,i)*alpha(i)) + (- Rot(3,1)*vr_b(1) + ...
@@ -177,9 +175,9 @@ for i = 2:length(data)-1000
         Rot(1,2)*vr_b(3))/(vr_b(1)^2 + vr_b(3)^2);
     dh1_dws = 2*K*(Rot*d3)'*vr_b*(x_predict(7,i) + x_predict(8,i)*alpha(i)) + (- Rot(3,3)*vr_b(1) + ...
         Rot(1,3)*vr_b(3))/(vr_b(1)^2 + vr_b(3)^2);
-    dh1_dut = - K*Va^2*x_predict(8,i)*(Rot(3,1)*vr_b(1) - Rot(1,1)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
-    dh1_dvt = - K*Va^2*x_predict(8,i)*(Rot(3,2)*vr_b(1) - Rot(1,2)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
-    dh1_dwt = - K*Va^2*x_predict(8,i)*(Rot(3,3)*vr_b(1) - Rot(1,3)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
+    dh1_dut = K*Va^2*x_predict(8,i)*(Rot(3,1)*vr_b(1) - Rot(1,1)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);  % erro aqui
+    dh1_dvt = K*Va^2*x_predict(8,i)*(Rot(3,2)*vr_b(1) - Rot(1,2)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
+    dh1_dwt = K*Va^2*x_predict(8,i)*(Rot(3,3)*vr_b(1) - Rot(1,3)*vr_b(3))/(vr_b(3)^2 + vr_b(1)^2);
     
     H = [dh1_dus dh1_dvs dh1_dws dh1_dut dh1_dvt dh1_dwt -K*Va^2 ...
         -K*Va^2*alpha(i) 0; d1'*Rot d1'*Rot 0 0 data(i+1000).u_r];
@@ -196,7 +194,7 @@ for i = 2:length(data)-1000
     
 end
 
-% GRAFICOS
+%% GRAFICOS
 time = [data.time]';
 
 alpha=rad2deg(alpha);
@@ -318,6 +316,39 @@ ylabel('$w_t$','Interpreter','latex','FontSize',18)
 legend('Simulado','Estimado','location','best','Interpreter','latex',...
     'FontSize',12)
 title('Velocidade do vento turbulento - down')
+
+% CL0
+figure()
+plot(time(1:end-1000), x_update(7,1:end-1000),'LineWidth',2)
+hold on
+plot(time(1:end-1000), 0.28*ones(1,length(data)-1000),'LineWidth',2)
+xlabel('$t$ (s)','Interpreter','latex','FontSize',18)
+ylabel('$CL_0$','Interpreter','latex','FontSize',18)
+legend('Simulado','Estimado','location','best','Interpreter','latex',...
+    'FontSize',12)
+title('$CL_0$','Interpreter','latex','FontSize',18)
+
+% CLalpha
+figure()
+plot(time(1:end-1000), x_update(8,1:end-1000),'LineWidth',2)
+hold on
+plot(time(1:end-1000), 3.45*ones(1,length(data)-1000),'LineWidth',2)
+xlabel('$t$ (s)','Interpreter','latex','FontSize',18)
+ylabel('$CL_{alpha}','Interpreter','latex','FontSize',18)
+legend('Simulado','Estimado','location','best','Interpreter','latex',...
+    'FontSize',12)
+title('$CL_{alpha}','Interpreter','latex','FontSize',18)
+
+% gamma
+figure()
+plot(time(1:end-1000), x_update(9,1:end-1000),'LineWidth',2)
+hold on
+plot(time(1:end-1000), 1*ones(1,length(data)-1000),'LineWidth',2)
+xlabel('$t$ (s)','Interpreter','latex','FontSize',18)
+ylabel('gamma')
+legend('Simulado','Estimado','location','best','Interpreter','latex',...
+    'FontSize',12)
+title('gamma')
 
 
 
