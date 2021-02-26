@@ -1,14 +1,16 @@
-[gd_resource type="Environment" load_steps=3 format=2]
+[gd_resource type="Environment" load_steps=2 format=2]
 
-[ext_resource path="res://images/086_hdrmaps_com_free.exr" type="Texture" id=1]
-
-[sub_resource type="PanoramaSky" id=1]
-panorama = ExtResource( 1 )
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.380392, 0.6, 0.94902, 1 )
+ground_bottom_color = Color( 0.839216, 0.917647, 0.980392, 1 )
+ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07 )
+fog_enabled = true
+fog_color = Color( 0.839216, 0.917647, 0.980392, 1 )
 tonemap_mode = 2
 auto_exposure_enabled = true
 auto_exposure_min_luma = 0.4
