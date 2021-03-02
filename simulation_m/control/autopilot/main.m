@@ -1,24 +1,24 @@
 
 % UAV-ART (UAV Alameda Research Team)
 % Project UAV-P1
-% Aerotéc - Núcleo de Alunos de Engenharia Aeroespacial do Técnico
-% Instituto Superior Técnico
+% Aerotï¿½c - Nï¿½cleo de Alunos de Engenharia Aeroespacial do Tï¿½cnico
+% Instituto Superior Tï¿½cnico
 % Started in October 2018
-% 
+%
 % Authors: J. Pinto, L. Pedroso
-% 
+%
 % In order to change the parameters of the aircraft or compute a new trim
-% condition in the trim folder there is the script named **params** 
+% condition in the trim folder there is the script named **params**
 % to do so.
 % Should one want to change the controller gains, the getGains function,
 % located in the same folder, is to be edited.
-% 
+%
 % Ensure you have installed the R2018a Simulink version or a newer one.
-% 
+%
 % Check R. W. Beard & T. W. McLain, Small Unmanned Aircraft (2012) for more
 % details on the autopilot arquitecture.
 % Go to http://uavbook.byu.edu/doku.php?id=start to obtain the files
-% necessary to solve the exercises suggested in the book and other 
+% necessary to solve the exercises suggested in the book and other
 % resources.
 
 clear
@@ -41,21 +41,21 @@ t = 0:P.Ts:T;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Define control references for the autopilot
 % Check chapter VI of the aformentioned book (Successive Loop Closure)
-% 
+%
 % Controller arquitecture summary:
-% -> Lateral Autopilot - control the course angle (chi) using roll (phi); 
+% -> Lateral Autopilot - control the course angle (chi) using roll (phi);
 % the sideslip angle (beta) is commanded to 0.
-% 
+%
 % -> Longitudinal Autopilot - regulate airspeed (Va) and altitude (h) using
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
 
-% for i = 1:length(t) %Os primeiros 2 elementos serão nulos
-%     
+% for i = 1:length(t) %Os primeiros 2 elementos serï¿½o nulos
+%
 %     h_ref(i)= 0.5*t(i);
-% end 
+% end
 
 % h_ref = 200*ones(length(t),1);
 
@@ -105,8 +105,6 @@ chi_ref = chi_ref';
 
 % Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 Va_ref = 30*ones(length(t),1);
- 
-
 
 reference = [t' Va_ref h_ref chi_ref];
 
@@ -139,8 +137,13 @@ T_aero = aero.signals.values(:,4:6); % [L M N]
 F_body = FM.signals.values(:,1:3); % [fx fy fz]
 T_body = FM.signals.values(:,4:6); % [taux tauy tauz], tauy = M, tauz = N
 
+% Total Acceleration (expressed in the body frame)
+accel(:,1) = 1/P.mass * F_body(:,1) + P.gravity*sin(att(:,2)); % ax
+accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %ay
+accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% drawAircraft(pos,att,V,F,facecolors,2e-3)
+%drawAircraft(pos,att,V,F,facecolors,2e-3)
 % morePlots
 
-% logTXT
+logTXT_wAccel
