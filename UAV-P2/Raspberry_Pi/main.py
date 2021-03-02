@@ -21,11 +21,11 @@ from control.servo_stimulation import servo_stimulation
 import parameters.simulation_parameters as SIM
 from tools.autopilot_Command import autopilotCommand
 localIP='192.168.1.237'
-raspIP='192.168.1.13'
-sensors=Sensors()
+raspIP='192.168.1.18'
+#sensors=Sensors()
 # initialize the visualization
 #ground=groundProxy()
-servo=servo_stimulation()
+#servo=servo_stimulation()
 # initialize elements of the architecture
 ctrl = autopilot(0.01)
 #obsv = observer(SIM.ts_simulation)
@@ -42,7 +42,7 @@ commandWindow = autopilotCommand()
 commands = msgAutopilot()
 wind = windSimulation(SIM.ts_simulation)
 wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
-mav = mavDynamics(SIM.ts_simulation)
+mav = mavDynamics(SIM.ts_simulation, localIP, raspIP)
 # path.type = 'line'
 path.type = 'orbit'
 if path.type == 'line':
@@ -64,8 +64,8 @@ nprint = 1
 import time
 while True:
     # -------observer-------------
-    state = sensors.update(state)
-    state.h=0
+    #state = sensors.update(state)
+    #state.h=0
     # -------path follower-------------
     commandWindow.root.update_idletasks()
     commandWindow.root.update()
@@ -78,7 +78,7 @@ while True:
     # -------controller-------------
     delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
     previous_t = delta.throttle
-    servo.stimulation(delta.to_array())
+    #servo.stimulation(delta.to_array())
     
     if nprint == 200:
         print("--------------------")
@@ -91,7 +91,7 @@ while True:
     #ground.sendToVisualizer(state, delta)
     # -------physical system-------------
     time.sleep(0.01)
-    #current_wind = wind.update()  # get the new wind vector
-    #mav.update(delta, current_wind)  # propagate the MAV dynamics
+    current_wind = wind.update()  # get the new wind vector
+    mav.update(delta, current_wind)  # propagate the MAV dynamics
     # -------increment time-------------
     sim_time += 0.01

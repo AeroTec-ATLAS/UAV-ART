@@ -58,43 +58,56 @@ class mavDynamics:
 
     ###################################
     # public functions
-    def update(self, delta, wind):
+    def update(self, delta, wind, simulation=True):
         """
             Integrate the differential equations defining dynamics, update sensors
             delta = (delta_a, delta_e, delta_r, delta_t) are the control inputs
             wind is the wind vector in inertial coordinates
             Ts is the time step between function calls.
         """
-        gustInInertial = Euler2Rotation(self._state.item(6), self._state.item(7), self._state.item(8)) @ wind[3:6]
-        self._wind = wind[0:3] + gustInInertial
-        # get forces and moments acting on rigid bod
-        forces_moments = self._forces_moments(delta)
+        if not simulation:
+            gustInInertial = Euler2Rotation(self._state.item(6), self._state.item(7), self._state.item(8)) @ wind[3:6]
+            self._wind = wind[0:3] + gustInInertial
+            # get forces and moments acting on rigid bod
+            forces_moments = self._forces_moments(delta)
 
-        # Integrate ODE using Runge-Kutta RK4 algorithm
-        time_step = self._ts_simulation
-        k1 = self._derivatives(self._state, forces_moments)
-        k2 = self._derivatives(self._state + time_step / 2. * k1, forces_moments)
-        k3 = self._derivatives(self._state + time_step / 2. * k2, forces_moments)
-        k4 = self._derivatives(self._state + time_step * k3, forces_moments)
-        self._state += time_step / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+            # Integrate ODE using Runge-Kutta RK4 algorithm
+            time_step = self._ts_simulation
+            k1 = self._derivatives(self._state, forces_moments)
+            k2 = self._derivatives(self._state + time_step / 2. * k1, forces_moments)
+            k3 = self._derivatives(self._state + time_step / 2. * k2, forces_moments)
+            k4 = self._derivatives(self._state + time_step * k3, forces_moments)
+            self._state += time_step / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
 
-        # normalize the quaternion
-        '''e0 = self._state.item(6)
-        e1 = self._state.item(7)
-        e2 = self._state.item(8)
-        e3 = self._state.item(9)
-        normE = np.sqrt(e0**2 + e1**2 + e2**2 + e3**2)
-        self._state[6][0] = self._state.item(6) / normE
-        self._state[7][0] = self._state.item(7) / normE
-        self._state[8][0] = self._state.item(8) / normE
-        self._state[9][0] = self._state.item(9) / normE'''
+            # normalize the quaternion
+            '''e0 = self._state.item(6)
+            e1 = self._state.item(7)
+            e2 = self._state.item(8)
+            e3 = self._state.item(9)
+            normE = np.sqrt(e0**2 + e1**2 + e2**2 + e3**2)
+            self._state[6][0] = self._state.item(6) / normE
+            self._state[7][0] = self._state.item(7) / normE
+            self._state[8][0] = self._state.item(8) / normE
+            self._state[9][0] = self._state.item(9) / normE'''
 
-        # update the airspeed, angle of attack, and side slip angles using new state
-        self._update_velocity_data(wind)
-
-        # update the message class for the true state
-        self._update_sensors()
-        self._update_true_state()
+            # update the airspeed, angle of attack, and side slip angles using new state
+            self._update_velocity_data(wind)
+            self._update_true_state()
+        else:
+            # update the message class for the true state
+            self._update_sensors()
+            self.true_state.pn=self.sensors.gps_n
+            self.true_state.pe=self.sensors.gps_e
+            self.true_state.h=self.sensors.gps_h
+            self.true_state.phi = self.telemetry.vehicle.attitude.roll
+            self.true_state.theta = self.telemetry.vehicle.attitude.pitch
+            self.true_state.psi = self.telemetry.vehicle.attitude.yaw 
+            self.true_state.p=self.sensors.gyro_x
+            self.true_state.q=self.sensors.gyro_y
+            self.true_state.r=self.sensors.gyro_z
+            self.true_state.Vg=self.sensors.gps_Vg
+            self.true_state.chi=self.sensors.gps_course
+            
 
     def external_set_state(self, new_state):
         self._state = new_state

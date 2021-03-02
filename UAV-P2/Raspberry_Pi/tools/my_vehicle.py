@@ -26,11 +26,11 @@ class HighResIMU(object):
     :param ymag: Y Magnetic field (milli tesla)
     :param zmag: Z Magnetic field (milli tesla)    
     """
-    def __init__(self, time_usec=None, xacc=None, yacc=None, zacc=None, xgyro=None, ygyro=None, zgyro=None, xmag=None, ymag=None, zmag=None, abs_pressure=None, diff_pressure=None, pressure_alt=None, temperature=None, fields_updated=None):
+    def __init__(self, time_sec=None, xacc=None, yacc=None, zacc=None, xgyro=None, ygyro=None, zgyro=None, xmag=None, ymag=None, zmag=None, abs_pressure=None, diff_pressure=None, pressure_alt=None, temperature=None, fields_updated=None):
         """
         HighResIMU object constructor.
         """
-        self.time_usec = time_usec
+        self.time_sec = time_sec
         self.xacc = xacc
         self.yacc = yacc
         self.zacc = zacc
@@ -67,11 +67,11 @@ class GPSRawInt(object):
     :param ymag: Y Magnetic field (milli tesla)
     :param zmag: Z Magnetic field (milli tesla)    
     """
-    def __init__(self, time_usec=None, fix_type=None, lat=None, lon=None, alt=None, eph=None, epv=None, vel=None, cog=None, satellites_visible=None):
+    def __init__(self, time_sec=None, fix_type=None, lat=None, lon=None, alt=None, eph=None, epv=None, vel=None, cog=None, satellites_visible=None):
         """
         HighResIMU object constructor.
         """
-        self.time_usec = time_usec
+        self.time_sec = time_sec
         self.lat = lat
         self.lon = lon
         self.alt = alt
@@ -102,7 +102,7 @@ class MyVehicle(Vehicle):
             The listener writes the message to the (newly attached) ``vehicle._highres_imu`` object 
             and notifies observers.
             """
-            self._highres_imu.time_usec=message.time_usec
+            self._highres_imu.time_sec=message.time_usec/(10^6)
             self._highres_imu.xacc=message.xacc
             self._highres_imu.yacc=message.yacc
             self._highres_imu.zacc=message.zacc
@@ -123,7 +123,7 @@ class MyVehicle(Vehicle):
 
         @self.on_message('GPS_RAW_INT')
         def listener(self, name, message):
-            self._gps_raw_int.time_usec=message.time_usec
+            self._gps_raw_int.time_sec=message.time_usec/(10^6)
             self._gps_raw_int.lat=message.lat
             self._gps_raw_int.lon=message.lon
             self._gps_raw_int.alt=message.alt/1000.0
