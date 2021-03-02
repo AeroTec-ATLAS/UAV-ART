@@ -1,4 +1,5 @@
-from dronekit import connect, VehicleMode
+from dronekit import connect
+from tools.my_vehicle import MyVehicle
 
 class telemetryData():
     def __init__(self, localIP='', raspberryIP=''):
@@ -14,7 +15,7 @@ class telemetryData():
 
         connection_string = self.get_connection_string()
         print("Connecting to vehicle on: %s" % (connection_string))
-        self.vehicle = connect(connection_string, wait_ready=True, baud=921600)
+        self.vehicle = connect(connection_string, wait_ready=True, baud=921600, vehicle_class=MyVehicle)
 
     def get_connection_string(self):
         if self.networkMode:

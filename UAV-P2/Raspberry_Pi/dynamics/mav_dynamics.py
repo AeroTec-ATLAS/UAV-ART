@@ -16,13 +16,14 @@ import math
 
 # load message types
 from message_types.msg_state import msgState
+from message_types.msg_sensors import msgSensors
 
 import parameters.aerosonde_parameters as MAV
 from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation, Euler2Rotation2
-
+from tools.telemetry_Data import telemetryData
 
 class mavDynamics:
-    def __init__(self, Ts):
+    def __init__(self, Ts, localIP='', raspIP=''):
         self._ts_simulation = Ts
         # set initial states based on parameter file
         # _state is the 13x1 internal state of the aircraft that is being propagated:
@@ -52,6 +53,8 @@ class mavDynamics:
         self._beta = np.arcsin(self._state.item(4) / self._Va)
         # initialize true_state message
         self.true_state = msgState()
+        self.telemetry = telemetryData(localIP, raspIP)
+        self.sensors = msgSensors()
 
     ###################################
     # public functions
@@ -90,6 +93,7 @@ class mavDynamics:
         self._update_velocity_data(wind)
 
         # update the message class for the true state
+        self._update_sensors()
         self._update_true_state()
 
     def external_set_state(self, new_state):
@@ -279,3 +283,22 @@ class mavDynamics:
         self.true_state.wn = self._wind.item(0)
         self.true_state.we = self._wind.item(1)
         self.true_state.wd = self._wind.item(2)
+
+    def _update_sensors(self):
+        vehicle = self.telemetry.vehicle
+        self.sensors.gyro_x = vehicle.highres_imu.xgyro
+        self.sensors.gyro_y = vehicle.highres_imu.ygyro
+        self.sensors.gyro_z = vehicle.highres_imu.zgyro
+        self.sensors.accel_x = vehicle.highres_imu.xacc
+        self.sensors.accel_y = vehicle.highres_imu.yacc
+        self.sensors.accel_z = vehicle.highres_imu.zacc
+        self.sensors.mag_x = vehicle.highres_imu.xmag
+        self.sensors.mag_y = vehicle.highres_imu.ymag
+        self.sensors.mag_z = vehicle.highres_imu.zmag
+        self.sensors.abs_pressure = vehicle.highres_imu.abs_pressure
+        self.sensors.diff_pressure = vehicle.highres_imu.diff_pressure
+        self.sensors.gps_n = vehicle.gps_raw_int.lat
+        self.sensors.gps_e = vehicle.gps_raw_int.lon
+        self.sensors.gps_h = vehicle.gps_raw_int.alt
+        self.sensors.gps_Vg = vehicle.gps_raw_int.vel
+        self.sensors.gps_course = vehicle.gps_raw_int.cog
