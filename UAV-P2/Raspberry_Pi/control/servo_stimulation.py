@@ -7,9 +7,9 @@ class servo_stimulation:
 	
 	def __init__(self):
 		self.kit = ServoKit(channels=16)	
-		self.servo_de = kit.servo[4]
-		self.servo_da = kit.servo[8]
-		self.servo_dr = kit.servo[12]
+		self.servo_de = self.kit.servo[4]
+		self.servo_da = self.kit.servo[8]
+		self.servo_dr = self.kit.servo[12]
 
 
 	def stimulation(self, u):
