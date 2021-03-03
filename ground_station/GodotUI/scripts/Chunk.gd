@@ -16,15 +16,14 @@ func _init(x,z,chunk_size):
 	self.chunk_size = chunk_size
 
 func _ready():
-	var material = SpatialMaterial.new()
-	material.albedo_color = Color(randi())
+	var material = preload("res://Chunk_Mat.tres")
 	generate_chunk(material)
 
 func generate_chunk(material):
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(chunk_size,chunk_size)
-	plane_mesh.subdivide_depth = 2 #chunk_size*0.5
-	plane_mesh.subdivide_width = 2 #chunk_size*0.5
+	plane_mesh.subdivide_depth = 1 #chunk_size*0.5
+	plane_mesh.subdivide_width = 1 #chunk_size*0.5
 	
 	var surface_tool = SurfaceTool.new()
 	var data_tool = MeshDataTool.new()

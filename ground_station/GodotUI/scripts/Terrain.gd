@@ -1,7 +1,7 @@
 extends Spatial
 
 const chunk_size = 256
-const chunk_amount = 16
+const chunk_amount = 45
 
 var chunks = {}
 var unready_chunks = {}
