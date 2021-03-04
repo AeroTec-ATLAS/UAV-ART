@@ -1,7 +1,7 @@
 extends Spatial
 
-const chunk_size = 256
-const chunk_amount = 45
+const chunk_size = 512
+const chunk_amount = 15 #CHUNK RADIUS 
 
 var chunks = {}
 var unready_chunks = {}
@@ -56,13 +56,24 @@ func update_chunks():
 	var player_translation = player.translation
 	var p_x = int(player_translation.x)/chunk_size
 	var p_z = int(player_translation.z)/chunk_size
-
-	for x in range(p_x-chunk_amount*0.5,p_x+chunk_amount*0.5):
-		for z in range(p_z-chunk_amount*0.5,p_z+chunk_amount*0.5):
-			add_chunk(x,z)
-			var chunk = get_chunk(x,z)
-			if chunk != null:
-				chunk.should_remove = false
+	var x
+	var z
+	
+	for n in range(chunk_amount):
+		for i in range(-n,n+1):
+			for j1 in [-1,1]:
+				x = p_x+n*j1
+				z = p_z+i
+				add_chunk(x,z)
+				var chunk = get_chunk(x,z)
+				if chunk != null:
+					chunk.should_remove = false
+				x = p_x+i
+				z = p_z+n*j1
+				add_chunk(x,z)
+				chunk = get_chunk(x,z)
+				if chunk != null:
+					chunk.should_remove = false
 
 func clean_up_chunks():
 	for key in chunks:
