@@ -21,7 +21,7 @@ from control.servo_stimulation import servo_stimulation
 import parameters.simulation_parameters as SIM
 from tools.autopilot_Command import autopilotCommand
 localIP='192.168.1.237'
-raspIP='192.168.1.18'
+raspIP='192.168.1.38'
 #sensors=Sensors()
 # initialize the visualization
 #ground=groundProxy()
@@ -86,7 +86,7 @@ while True:
         nprint = 1
     
     nprint = nprint +1   
-    logger.addEntry(mav.true_state, delta, sim_time)
+    logger.addEntry(mav.true_state, delta, mav.sensors, sim_time)
     # -------update viewer-------------
     #ground.sendToVisualizer(state, delta)
     # -------physical system-------------
