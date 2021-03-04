@@ -12,7 +12,7 @@ from control.autopilot import autopilot
 from message_types.msg_autopilot import msgAutopilot
 from control.path_follower import path_follower
 #from tools.ground_connection import groundProxy
-from tools.sensors import Sensors
+#from tools.sensor_viewer import SensorViewer
 from tools.log import log
 from dynamics.wind_simulation import windSimulation
 from control.autopilot import autopilot
@@ -28,6 +28,7 @@ raspIP='192.168.1.38'
 #servo=servo_stimulation()
 # initialize elements of the architecture
 ctrl = autopilot(0.01)
+#sensor_view = SensorViewer()  # initialize view of sensor data plots
 #obsv = observer(SIM.ts_simulation)
 path_follow = path_follower()
 logger = log('Test flight.txt')
@@ -93,5 +94,7 @@ while True:
     time.sleep(0.01)
     current_wind = wind.update()  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
+    #sensor_view.update(mav.sensors,  # sensor values
+     #                  SIM.ts_simulation)
     # -------increment time-------------
     sim_time += 0.01
