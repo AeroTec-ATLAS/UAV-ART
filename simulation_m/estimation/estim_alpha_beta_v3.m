@@ -202,8 +202,9 @@ alpha_simulado=rad2deg([data.AoA]);
 
 for i=1:23000
     error_alpha(i)=alpha_simulado(i+1000)-alpha(i);
+    error_alpha_sqrd(i)=error_alpha(i)^2;
 end
-RMSE_alpha = mean(abs(error_alpha));
+RMSE_alpha = sqrt(sum(error_alpha_sqrd)/23000);
 
 figure()
 alpha=alpha';
@@ -228,8 +229,9 @@ beta_simulado=rad2deg([data.beta]);
 
 for i=1:23000
     error_beta(i)=beta_simulado(i+1000)-beta(i);
+    error_beta_sqrd(i)=error_beta(i)^2;
 end
-RMSE_beta = mean(abs(error_beta));
+RMSE_beta = sqrt(sum(error_beta_sqrd)/23000);
 
 figure()
 beta=beta';
