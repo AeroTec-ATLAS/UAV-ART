@@ -1,7 +1,7 @@
 extends Spatial
 
 const chunk_size = 512
-const chunk_amount = 15 #CHUNK RADIUS 
+const chunk_amount = 12 #CHUNK RADIUS 
 
 var chunks = {}
 var unready_chunks = {}
