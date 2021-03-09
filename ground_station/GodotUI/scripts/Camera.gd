@@ -45,9 +45,9 @@ func _input(event):
 		else:
 			mouse_buttons[1] = 0
  
-	if mouse_buttons[1] == 1:
+	if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED or mouse_buttons[1] == 1) and m:
 		var mouse_delta = Vector2(mouse_pos_temp[0]-get_viewport().get_mouse_position()[0],
-															mouse_pos_temp[1]-get_viewport().get_mouse_position()[1])
+		mouse_pos_temp[1]-get_viewport().get_mouse_position()[1])
 	   
 		# Rotations: currently active target horizontal
 		var target_rot = get_rotation()
@@ -65,9 +65,6 @@ func _input(event):
 		set_rotation(pivot_rot)
 	   
 		get_viewport().warp_mouse(mouse_pos_temp)
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	if m:
 		var nfov
