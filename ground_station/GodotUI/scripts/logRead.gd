@@ -143,6 +143,7 @@ func _on_CameraButton_pressed():
 	line.remove(0)
 	$GUI.update_HUD(line)
 	$GUI/PopupMenu/mcam.set_disabled(true)
+	$GUI/PopupMenu/particle.set_disabled(false)
 	if active.get_name() == "P1st":
 		$GUI/PopupMenu/HUDButton.set_disabled(false) 
 		$GUI/PopupMenu/HUDButton.set_pressed(true)
@@ -150,6 +151,7 @@ func _on_CameraButton_pressed():
 	else:
 		if active.get_name() == "GroundCam":
 			$GUI/PopupMenu/mcam.set_disabled(false)
+			$GUI/PopupMenu/particle.set_disabled(true)
 		$GUI/PopupMenu/HUDButton.set_disabled(true) 
 		$GUI/PopupMenu/HUDButton.set_pressed(false)
 		$GUI/PopupMenu/drawnline.set_disabled(false) 
@@ -187,3 +189,7 @@ func draw_line(index):
 	for i in range(index):
 		ig.add_vertex(locs[i])
 	ig.end()
+
+
+func _on_particle_toggled(button_pressed):
+	$Plane/Particles.set_visible(button_pressed)
