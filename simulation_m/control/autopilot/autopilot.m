@@ -204,6 +204,9 @@ function phi_c = course_hold(chi_c, chi, flag, kp, ki, lowLim, upLim, Ts)
     end
     
     error = chi_c - chi;
+    while error > pi;  error = error - 2*pi; end
+    while error < -pi; error = error + 2*pi; end
+    
     i = i + (Ts/2)*(error + p);
     p = error;
     
