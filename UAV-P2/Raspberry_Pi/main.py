@@ -20,30 +20,39 @@ from dynamics.mav_dynamics import mavDynamics
 from control.servo_stimulation import servo_stimulation
 import parameters.simulation_parameters as SIM
 from tools.autopilot_Command import autopilotCommand
+
 localIP='192.168.1.237'
 raspIP='192.168.1.38'
 #sensors=Sensors()
+
 # initialize the visualization
 #ground=groundProxy()
 #servo=servo_stimulation()
+
 # initialize elements of the architecture
 ctrl = autopilot(0.01)
 #sensor_view = SensorViewer()  # initialize view of sensor data plots
 #obsv = observer(SIM.ts_simulation)
+
 path_follow = path_follower()
+
 logger = log('Test flight.txt')
+
 # path definition
 from message_types.msg_path import msgPath
 from message_types.msg_state import msgState
 from message_types.msg_delta import msgDelta
+
 path = msgPath()
 state = msgState()  # instantiate state message
-delta = msgDelta() 
+delta = msgDelta()
+
 commandWindow = autopilotCommand()
 commands = msgAutopilot()
 wind = windSimulation(SIM.ts_simulation)
 wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation, localIP, raspIP)
+
 # path.type = 'line'
 path.type = 'orbit'
 if path.type == 'line':
@@ -61,6 +70,7 @@ else:  # path.type == 'orbit'
 sim_time = 0
 previous_t = 0
 nprint = 1
+
 # main simulation loop
 import time
 while True:
@@ -80,13 +90,13 @@ while True:
     delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
     previous_t = delta.throttle
     #servo.stimulation(delta.to_array())
-    
+
     if nprint == 200:
         print("--------------------")
         print(np.degrees(delta.to_array()))
         nprint = 1
-    
-    nprint = nprint +1   
+
+    nprint = nprint +1
     logger.addEntry(mav.true_state, delta, mav.sensors, sim_time)
     # -------update viewer-------------
     #ground.sendToVisualizer(state, delta)
