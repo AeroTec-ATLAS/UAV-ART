@@ -1,3 +1,12 @@
+% UAV-ART // Aerotéc - Núcleo de estudantes de Engenharia Aeroespacial
+% Authors: - Simão Caeiro
+%          - Gilberto Silva
+%          - Gonçalo Matos
+%          - Hugo Pereira
+%          - João Moura
+%          - José Neves
+%          - Pedro Martins
+
 % dubinsParameters
 %   - Find Dubin's parameters between two configurations
 % input is:
@@ -38,10 +47,10 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
     pe   = end_node(1:3);
     chi_e = end_node(4);
     
-    crs = ps + R*Rotz(pi/2) * [cos(chi_s); sin(chi_s); 0];
-    cls = ps + R*Rotz(-pi/2) * [cos(chi_s); sin(chi_s); 0];
-    cre = pe + R*Rotz(pi/2) * [cos(chi_e); sin(chi_e); 0];
-    cle = pe + R*Rotz(-pi/2) * [cos(chi_e); sin(chi_e); 0];
+    crs = ps + R*rotz(pi/2) * [cos(chi_s); sin(chi_s); 0];
+    cls = ps + R*rotz(-pi/2) * [cos(chi_s); sin(chi_s); 0];
+    cre = pe + R*rotz(pi/2) * [cos(chi_e); sin(chi_e); 0];
+    cle = pe + R*rotz(-pi/2) * [cos(chi_e); sin(chi_e); 0];
     
     % compute L1
     v = atan2(crs(2)-cre(2),crs(1)-cre(1));
@@ -80,8 +89,8 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             ce = cre;
             lambda_e = 1;
             q1 = (ce-cs)/norm(ce-cs);
-            z1 = cs+R*Rotz(-pi/2)*q1;
-            z2 = ce+R*Rotz(-pi/2)*q1;
+            z1 = cs+R*rotz(-pi/2)*q1;
+            z2 = ce+R*rotz(-pi/2)*q1;
             
         case 2
             cs = crs;
@@ -91,9 +100,9 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             l = norm(ce-cs);
             v = atan2(ce(2)-cs(2),ce(1)-cs(1));
             v2 = v-pi/2+asin(2*R/l);
-            q1 = Rotz(theta2+pi/2)*e1;
-            z1 = cs+R*Rotz(v2)*e1;
-            z2 = ce+R*Rotz(v2+pi)*e1;
+            q1 = rotz(theta2+pi/2)*e1;
+            z1 = cs+R*rotz(v2)*e1;
+            z2 = ce+R*rotz(v2+pi)*e1;
             
         case 3
             cs = cls;
@@ -103,9 +112,9 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             l = norm(ce-cs);
             v = atan2(ce(2)-cs(2),ce(1)-cs(1));
             v2 = acos(2*R/l);
-            q1 = Rotz(v+v2-pi/2)*e1;
-            z1 = cs+R*Rotz(v+v2)*e1;
-            z2 = ce+R*Rotz(v+v2-pi)*e1;
+            q1 = rotz(v+v2-pi/2)*e1;
+            z1 = cs+R*rotz(v+v2)*e1;
+            z2 = ce+R*rotz(v+v2-pi)*e1;
             
         case 4
             cs = cls;
@@ -113,12 +122,12 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             ce = cle;
             lambda_e = -1;
             q1 = (ce-cs)/norm(ce-cs);
-            z1 = cs+R*Rotz(pi/2)*q1;
-            z2 = ce+R*Rotz(pi/2)*q1;    %q2=q1
+            z1 = cs+R*rotz(pi/2)*q1;
+            z2 = ce+R*rotz(pi/2)*q1;    %q2=q1
     end
     
     z3 = pe;
-    q3 = Rotz(chi_e)*e1;
+    q3 = rotz(chi_e)*e1;
        
     % assign path variables
     dubinspath.ps   = ps;
@@ -137,12 +146,6 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
     dubinspath.z3   = z3;
     dubinspath.q3   = q3;
   end
-end
-
-function Rot = Rotz(v)
-    Rot = [cos(v), -sin(v), 0;
-           sin(v), cos(v), 0;
-           0, 0, 1];
 end
 
 
