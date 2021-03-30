@@ -25,6 +25,7 @@ class PathManager:
     def update(self, waypoints, radius, state):
         if waypoints.num_waypoints == 0:
             self.manager_requests_waypoints = True
+			#WHAT DO WHILE NO WAYPOINTS?
 
         if self.manager_requests_waypoints is True \
                 and waypoints.flag_waypoints_changed is True:
@@ -41,7 +42,8 @@ class PathManager:
         return self.path
 
     def initialize_pointers(self):
-        if self.num_waypoints >= 3:##isto não dá erro?
+        self.num_waypoints = waypoints.num_waypoints
+		if self.num_waypoints >= 3:
             self.ptr_previous = 0
             self.ptr_current = 1
             self.ptr_next = 2
@@ -54,41 +56,39 @@ class PathManager:
         self.ptr_next += 1
 
     def inHalfSpace(self, pos):
-        if (np.vdot(pos-self.halfspace_r, self.halfspace_n) <= 0):##Verificar o produto interno
+        if (np.vdot(pos-self.halfspace_r, self.halfspace_n) <= 0):
             return True
         else:
             return False
 
     def line_manager(self, waypoints, state):
-        mav_pos = np.array([[state.pn, state.pe, -state.h]]).T
+       
+	   mav_pos = np.array([[state.pn, state.pe, -state.h]]).T
         if (waypoints.flag_waypoints_changed):
             initialize_pointers()
 
+		# STEPs 4 to 7 of ALGO 5
+        self.halfspace_r = waypoints.ned[:,ptr_previous]
+        self.line_Vector_previous=(waypoints.ned[:,ptr_current]-waypoints.ned[:,ptr_previous])/np.linalg.norm(waypoints.ned[:,ptr_current]-waypoints.ned[:,ptr_previous])
+        self.line_Vector_current=(waypoints.ned[:,ptr_next]-waypoints.ned[:,ptr_current])/np.linalg.norm(waypoints.ned[:,ptr_next]-waypoints.ned[:,ptr_current])
+        self.halfspace_n =(self.line_Vector_previous+self.line_Vector_current)/np.linalg.norm(self.line_Vector_previous+self.line_Vector_current)
+        # STEP 8
         # if the waypoints have changed, update the waypoint pointer
         if (inHalfSpace(mav_pos)):
-            increment_pointers()
+			construct_line(waypoints)
 
-        self.halfspace_r = waypoints.ned(ptr_previous)##INCOMPLETE, how to access array properly?
-        self.line_Vector_previous=(waypoints.w_i-waypoints.w_(i-1))/np.linalg.norm(waypoints.w_i-waypoints.w_(i-1))##Corrigir
-        self.line_Vector_current=(waypoints.w_(i+1)-waypoints.w_i)/np.linalg.norm(waypoints.w_(i+1)-waypoints.w_i)##Corrigir
-        self.halfspace_n =(self.line_Vector_previous+self.line_Vector_current)/np.linalg.norm(self.line_Vector_previous+self.line_Vector_current)
-        # state machine for line path
-        construct_line(waypoints)
-
+		# state machine for line path
+		
     def construct_line(self, waypoints):
-        previous = waypoints.ned[:, self.ptr_previous:self.ptr_previous+1]
-        if self.ptr_current == 1:
-            current =
+       # previous = waypoints.ned[:, self.ptr_previous:self.ptr_previous+1]
+        if self.ptr_next == self.num_waypoints:
+			initialize_pointers(waypoints)
         else:
-            current =
-        if self.ptr_next == 9999:
-            next =
-        else:
-            next =
-        #update path variables
+			increment_pointers()
+		#update path variables
         self.path.line_origin = halfspace_r
         self.path.line_direction = self.line_Vector_previous
-        self.path.airspeed = waypoints.airspeed()##HOW TO ACCESS?
+        self.path.airspeed = waypoints.airspeed()
 
     def fillet_manager(self, waypoints, radius, state):
         mav_pos = np.array([[state.north, state.east, -state.altitude]]).T
