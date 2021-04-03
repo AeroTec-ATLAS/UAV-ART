@@ -1,8 +1,9 @@
+chap2==1.1.0
 dronekit==2.9.2
 ipython==7.22.0
-matplotlib==3.4.0
+matplotlib==3.4.1
 numpy==1.20.2
-Pillow==8.1.2
+Pillow==8.2.0
 pygame==2.0.1
 pyqtgraph==0.12.0
 scipy==1.6.2
