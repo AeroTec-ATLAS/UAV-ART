@@ -6,10 +6,7 @@ mavsim_python
 """
 import sys
 sys.path.append('..')
-print (repr(sys.path))
-PYSOLR_PATH = 'C:/Users/pedro/Desktop/gitrep/UAV-ART/simulation_py'
-if not PYSOLR_PATH in sys.path:
-    sys.path.append(PYSOLR_PATH)
+
 import numpy as np
 import parameters.simulation_parameters as SIM
 import parameters.planner_parameters as PLAN

@@ -11,7 +11,6 @@ import numpy as np
 import sys
 sys.path.append('..')
 
-
 class DubinsParameters:
     def __init__(self, ps=9999*np.ones((3,1)), chis=9999,
                  pe=9999*np.ones((3,1)), chie=9999, R=9999):
@@ -66,37 +65,38 @@ class DubinsParameters:
 
 
 def compute_parameters(ps, chis, pe, chie, R):
-    ell = 
+    """   
+    ell = 0
     if ell < 2 * R:
         print('Error in Dubins Parameters: The distance between nodes must be larger than 2R.')
     else:
         # compute start and end circles
-        crs = 
-        cls = 
-        cre = 
-        cle = 
+        crs = 0
+        cls = 0
+        cre = 0
+        cle = 0
 
         # compute L1
         
-        L1 = 
+        L1 = 0
         # compute L2
 
-        ell = 
-        theta = 
-        theta2 = 
+        ell = 0
+        theta = 0
+        theta2 = 0
         if not np.isreal(theta2):
-            L2 = 
+            L2 = 0
         else:
-            L2 = 
+            L2 = 0
 
         # compute L3
-        ell = 
-        theta = 
-        theta2 = 
+        ell = 0
+        theta = 0
+        theta2 = 0
         if not np.isreal(theta2):
 
         else:
-            L3 = 
+            L3 = 0
         # compute L4
         theta = 
         L4 = 
@@ -139,7 +139,8 @@ def compute_parameters(ps, chis, pe, chie, R):
         q3 = 
 
         return L, cs, lams, ce, lame, w1, q1, w2, w3, q3
-
+    """    
+    return null
 
 def rotz(theta):
     return np.array([[np.cos(theta), -np.sin(theta), 0],
