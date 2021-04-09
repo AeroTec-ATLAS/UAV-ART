@@ -34,21 +34,21 @@ class WaypointViewer:
         self.path_plot = []
         self.waypoint_plot = []
 
-    def update(self, state, path, waypoints):
+    def update(self, state, path, waypoint):
         blue = np.array([[30, 144, 255, 255]])/255.
         red = np.array([[1., 0., 0., 1]])
         # initialize the drawing the first time update() is called
         if not self.plot_initialized:
             self.mav_plot = DrawMav(state, self.window)
-            self.waypoint_plot = DrawWaypoints(waypoints, path.orbit_radius, blue, self.window)
+            self.waypoint_plot = DrawWaypoints(waypoint, path.orbit_radius, blue, self.window)
             self.path_plot = DrawPath(path, red, self.window)
             self.plot_initialized = True
         # else update drawing on all other calls to update()
         else:
             self.mav_plot.update(state)
-            if waypoints.flag_waypoints_changed:
-                self.waypoint_plot.update(waypoints)
-                waypoints.flag_waypoints_changed = False
+            if waypoint.flag_waypoints_changed:
+                self.waypoint_plot.update(waypoint)
+                waypoint.flag_waypoints_changed = False
             if not path.plot_updated:  # only plot path when it changes
                 self.path_plot.update(path, red)
                 path.plot_updated = True

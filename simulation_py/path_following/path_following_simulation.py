@@ -6,7 +6,7 @@ mavsim_python
 """
 import sys
 sys.path.append('..')
-
+import keyboard
 import numpy as np
 import parameters.simulation_parameters as SIM
 import parameters.planner_parameters as PLAN
@@ -64,21 +64,27 @@ waypoints.type = 'straight_line'
 #waypoints.type = 'fillet'
 #waypoints.type = 'dubins'
 Va = PLAN.Va0
+print("Speed for waypoints is: ", Va)
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
-waypoints.add(np.array([[1000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[0, 1000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[1000, 1000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[0, -2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[2000, 2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
+
+print(waypoints.ned)
 # initialize the simulation time
 sim_time = SIM.start_time
 previous_t = 0
+plot_timer = 0
 # main simulation loop
 while sim_time < SIM.end_time:
+
     # -------observer-------------
     # measurements = mav.sensors()  # get sensor measurements
     # estimated_state = obsv.update(measurements)  # estimate states from measurements
     estimated_state = mav.true_state
    
-   # -------path manager-------------
+    # -------path manager-------------
     path = path_manager.update(waypoints, PLAN.R_min, estimated_state)
 
     # -------path follower-------------
@@ -94,22 +100,17 @@ while sim_time < SIM.end_time:
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
     # -------update viewer-------------
-    if plot_timer > SIM.ts_plotting:
-        WaypointViewer.update(mav.true_state, path, waypoints)  # plot path and MAV
-        data_view.update(mav.true_state,  # true states
-                         estimated_state,  # estimated states
-                         commanded_state,  # commanded states
-                         delta,  # input to aircraft
-                         SIM.ts_plotting)
-        plot_timer = 0
-    plot_timer += SIM.ts_simulation
-
-    if VIDEO is True:
+    path_view.update(path, mav.true_state)  # plot path and MAV
+    data_view.update(mav.true_state,  # true states
+                     estimated_state,  # estimated states
+                     commanded_state,  # commanded states
+                     SIM.ts_simulation)
+    ground.sendToVisualizer(mav.true_state, delta)
+    if VIDEO == True:
         video.update(sim_time)
 
     # -------increment time-------------
     sim_time += SIM.ts_simulation
 
-if VIDEO is True:
+if VIDEO == True:
     video.close()
-

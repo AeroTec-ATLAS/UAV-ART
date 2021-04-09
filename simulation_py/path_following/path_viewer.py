@@ -63,7 +63,7 @@ class path_viewer():
 
         # initialize the drawing the first time update() is called
         if not self.plot_initialized:
-            if path.type == 'line':
+            if path.type == 'line' or path.type =='manager':
                 straight_line_object = self.straight_line_plot(path)
                 self.window.addItem(straight_line_object)  # add straight line to plot
             else:  # path.type=='orbit
@@ -88,7 +88,6 @@ class path_viewer():
         #self.window.opts['center'] = view_location
         # redraw
         self.app.processEvents()
-
     ###################################
     # private functions
     def _rotate_points(self, points, R):
