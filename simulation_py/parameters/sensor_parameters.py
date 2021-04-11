@@ -22,7 +22,7 @@ mag_beta = np.radians(1.0)
 mag_sigma = np.radians(0.03)
 
 # -------- GPS --------
-ts_gps = 1.0
+ts_gps = 1./5. #5 Hz refresh rate for GPS
 gps_k = 1. / 1100.  # 1 / s
 gps_n_sigma = 0.21
 gps_e_sigma = 0.21
