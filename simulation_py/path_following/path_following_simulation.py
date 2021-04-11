@@ -16,11 +16,13 @@ from dynamics.mav_dynamics import mavDynamics
 # from chap8.observer import observer
 from path_following.path_follower import path_follower
 from path_following.path_viewer import path_viewer
+from tools.sensor_viewer import SensorViewer
 from tools.ground_connection import groundProxy
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
 path_view = path_viewer()  # initialize the viewer
 data_view = dataViewer()  # initialize view of data plots
+sensor_view = SensorViewer()  # initialize view of sensor data plots
 ground=groundProxy()
 if VIDEO == True:
     from video.video_writer import video_writer
@@ -78,6 +80,9 @@ while sim_time < SIM.end_time:
                      estimated_state,  # estimated states
                      commanded_state,  # commanded states
                      SIM.ts_simulation)
+    sensor_view.update(mav.sensors(),  # sensor values
+                       SIM.ts_simulation)
+
     ground.sendToVisualizer(mav.true_state, delta)
     if VIDEO == True:
         video.update(sim_time)

@@ -16,8 +16,10 @@ import math
 
 # load message types
 from message_types.msg_state import msgState
+from message_types.msg_sensors import msgSensors
 
 import parameters.aerosonde_parameters as MAV
+import parameters.sensor_parameters as SENSOR
 from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation, Euler2Rotation2
 
 
@@ -46,12 +48,21 @@ class mavDynamics:
         self._wind = np.array([[0.], [0.], [0.]])  # wind in NED frame in meters/sec
         self._update_velocity_data()
         # store forces to avoid recalculation in the sensors function
-        self._forces = np.array([[], [], []])
+        self._forces = np.array([[0.], [0.], [0.]])
         self._Va = math.sqrt(self._state.item(3)**2 + self._state.item(4)**2 + self._state.item(5)**2)
         self._alpha = np.arctan2(self._state.item(5), self._state.item(3))
         self._beta = np.arcsin(self._state.item(4) / self._Va)
         # initialize true_state message
         self.true_state = msgState()
+        # initialize the sensors message
+        self._sensors = msgSensors()
+        # random walk parameters for GPS
+        self._gps_eta_n = 0.
+        self._gps_eta_e = 0.
+        self._gps_eta_h = 0.
+        # timer so that gps only updates every ts_gps seconds
+        self._t_gps = 999.  # large value ensures gps updates at initial time.
+
 
     ###################################
     # public functions
@@ -91,6 +102,58 @@ class mavDynamics:
 
         # update the message class for the true state
         self._update_true_state()
+
+    def sensors(self):
+        "Return value of sensors on MAV: gyros, accels, absolute_pressure, dynamic_pressure, GPS"
+        # simulate rate gyros(units are rad / sec)
+        self._sensors.gyro_x = self.true_state.p + np.random.randn()*SENSOR.gyro_sigma
+        self._sensors.gyro_y = self.true_state.q + np.random.randn()*SENSOR.gyro_sigma
+        self._sensors.gyro_z = self.true_state.r + np.random.randn()*SENSOR.gyro_sigma
+        # simulate accelerometers(units of g)
+        fx = self._forces.item(0)
+        fy = self._forces.item(1)
+        fz = self._forces.item(2)
+        phi = self.true_state.phi
+        theta = self.true_state.theta
+        self._sensors.accel_x = fx/MAV.mass + MAV.gravity*np.sin(theta) + np.random.randn()*SENSOR.accel_sigma
+        self._sensors.accel_y = fy/MAV.mass - MAV.gravity*np.cos(theta)*np.sin(phi) + np.random.randn()*SENSOR.accel_sigma
+        self._sensors.accel_z = fz/MAV.mass - MAV.gravity*np.cos(theta)*np.cos(phi) + np.random.randn()*SENSOR.accel_sigma
+        # simulate magnetometers
+        # magnetic field in Lisbon has magnetic declination of -1.72 degrees
+        # and magnetic inclination of 62.68 degrees
+        R_mag = Euler2Rotation(0, -np.radians(52.68), np.radians(-1.72))
+        # magnetic field in inertial frame: unit vector
+        mag_inertial = R_mag @ np.array([[1.], [0.], [0.]])
+        R = Euler2Rotation(self.true_state.phi, self.true_state.theta, self.true_state.psi) # body to inertial
+        # magnetic field in body frame: unit vector
+        mag_body = R @ mag_inertial
+        # magnetic field in Lisbon has an intensity of 43925.4 nT
+        mag_body = mag_body * 43925.4*10**-9 
+        self._sensors.mag_x = mag_body.item(0)
+        self._sensors.mag_y = mag_body.item(1)
+        self._sensors.mag_z = mag_body.item(2)
+        # simulate pressure sensors
+        B_abs = 0.
+        B_diff = 0.
+        self._sensors.abs_pressure = MAV.rho*MAV.gravity*self.true_state.h + B_abs + np.random.randn()*SENSOR.static_pres_sigma
+        self._sensors.diff_pressure = MAV.rho*self.true_state.Va**2./2. + B_diff + np.random.randn()*SENSOR.diff_pres_sigma
+        # simulate GPS sensor
+        if self._t_gps >= SENSOR.ts_gps:
+            self._gps_eta_n = np.exp(-SENSOR.gps_k*SENSOR.ts_gps)*self._gps_eta_n+np.random.randn()*SENSOR.gps_n_sigma
+            self._gps_eta_e = np.exp(-SENSOR.gps_k*SENSOR.ts_gps)*self._gps_eta_e+np.random.randn()*SENSOR.gps_e_sigma
+            self._gps_eta_h = np.exp(-SENSOR.gps_k*SENSOR.ts_gps)*self._gps_eta_h+np.random.randn()*SENSOR.gps_h_sigma
+            self._sensors.gps_n = self.true_state.pn + self._gps_eta_n
+            self._sensors.gps_e = self.true_state.pe + self._gps_eta_e
+            self._sensors.gps_h = self.true_state.h + self._gps_eta_h
+            Vn = self.true_state.Va*np.cos(self.true_state.psi)+self.true_state.wn
+            Ve = self.true_state.Va * np.sin(self.true_state.psi) + self.true_state.we
+            self._sensors.gps_Vg = np.sqrt(Vn**2 + Ve**2) + np.random.randn()*SENSOR.gps_Vg_sigma
+            self._sensors.gps_course = np.arctan2(Ve,Vn) + np.random.randn()*SENSOR.gps_course_sigma
+            self._t_gps = 0.
+        else:
+            self._t_gps += self._ts_simulation
+        return self._sensors
+
 
     def external_set_state(self, new_state):
         self._state = new_state
