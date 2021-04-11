@@ -20,7 +20,8 @@ diff_pres_sigma = 0.002*1000  # standard deviation of diff pressure sensor in Pa
 # -------- Magnetometer --------
 mag_beta = np.radians(1.0)
 mag_sigma = np.radians(0.03)
-
+mag_dec = np.radians(-1.72)
+mag_inc = np.radians(52.68)
 # -------- GPS --------
 ts_gps = 1./5. #5 Hz refresh rate for GPS
 gps_k = 1. / 1100.  # 1 / s

@@ -122,15 +122,16 @@ class mavDynamics:
         # simulate magnetometers
         # magnetic field in provo has magnetic declination of 12.5 degrees
         # and magnetic inclination of 66 degrees
-        #R_mag = 
+        R_mag = Euler2Rotation(0, -SENSOR.mag_inc, SENSOR.mag_dec)
         # magnetic field in inertial frame: unit vector
-        #mag_inertial = 
-        #R =  # body to inertial
+        mag_inertial = R_mag @ np.array([[1.], [0.], [0.]])
+        R = Euler2Rotation(self.true_state.phi, self.true_state.theta, self.true_state.psi) # body to inertial
         # magnetic field in body frame: unit vector
-        #mag_body = 
-        #self._sensors.mag_x = 
-        #self._sensors.mag_y = 
-        #self._sensors.mag_z = 
+        mag_body = R @ mag_inertial
+        mag_body = mag_body * 43925.4*10**-9 
+        self._sensors.mag_x = mag_body.item(0)
+        self._sensors.mag_y = mag_body.item(1)
+        self._sensors.mag_z = mag_body.item(2)
         # simulate pressure sensors
         B_abs = 0.
         B_diff = 0.
