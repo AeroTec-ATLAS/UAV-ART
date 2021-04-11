@@ -36,7 +36,6 @@
 function out = path_manager_fillet(in,P,start_of_simulation)
 
   NN = 0;
-  num_waypoints = in(1+NN);
   waypoints = reshape(in(2+NN:5*P.size_waypoint_array+1+NN),5,P.size_waypoint_array);
   NN = NN + 1 + 5*P.size_waypoint_array;
   pn        = in(1+NN);
@@ -57,9 +56,8 @@ function out = path_manager_fillet(in,P,start_of_simulation)
   % psi     = in(16+NN);
   state     =  in(1+NN:16+NN);
   NN = NN + 16;
-  t         = in(1+NN);
  
-  p = [pn; pe; pd];
+  p = [pn; pe; -h];
 
 %% Ligação entre blocos
   persistent waypoints_old   % stored copy of old waypoints
@@ -103,7 +101,6 @@ function out = path_manager_fillet(in,P,start_of_simulation)
           Va_d   = waypoints(5,ptr_a-1); % desired airspeed along waypoint path
           r      = w_prev;
           q      = q_prev;
-          %q      = q/norm(q);
 
           z = w - (R/tan(varrho/2)) * q_prev;
 
@@ -119,9 +116,8 @@ function out = path_manager_fillet(in,P,start_of_simulation)
           flag   = 2;  % following orbit
           Va_d   = waypoints(5,ptr_a-1); % desired airspeed along waypoint path
           r      = [0; 0; 0];     % not used for orbit
-          q      = [1; 0; 0];     % not used for orbit
-          q = q/norm(q);
-          %beta   = ;
+          q      = [0; 0; 0];     % not used for orbit
+          
           c      = w - (R/sin(varrho/2))*((q_prev-q_i)/(norm(q_prev-q_i)));
           rho    = R;
           lambda = sign(q_prev(1)*q_i(2) - q_prev(2)*q_i(1));

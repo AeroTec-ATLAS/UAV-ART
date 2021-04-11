@@ -35,7 +35,6 @@
 function out = path_manager_line(in,PLAN,start_of_simulation)
 
   NN = 0;
-  num_waypoints = in(1+NN);
   waypoints = reshape(in(2+NN:5*PLAN.size_waypoint_array+1+NN),5,PLAN.size_waypoint_array);
   NN = NN + 1 + 5*PLAN.size_waypoint_array;
   pn        = in(1+NN);
@@ -56,10 +55,8 @@ function out = path_manager_line(in,PLAN,start_of_simulation)
   % psi     = in(16+NN);
   state     =  in(1+NN:16+NN);
   NN = NN + 16;
-  t         = in(1+NN);
  
-  
-  p = [pn; pe; pd];
+  p = [pn; pe; -h];
 
 %% Ligação entre blocos
   persistent waypoints_old   % stored copy of old waypoints
@@ -67,14 +64,14 @@ function out = path_manager_line(in,PLAN,start_of_simulation)
   persistent flag_need_new_waypoints % flag that request new waypoints from path planner
   
   
-  if start_of_simulation || isempty(waypoints_old),
+  if start_of_simulation || isempty(waypoints_old)
       waypoints_old = zeros(5,PLAN.size_waypoint_array);
       flag_need_new_waypoints = 0;
      
   end
   
   % if the waypoints have changed, update the waypoint pointer
-  if min(min(waypoints==waypoints_old))==0,
+  if min(min(waypoints==waypoints_old))==0
       ptr_a = 2;
       waypoints_old = waypoints;
       flag_need_new_waypoints = 0;
@@ -99,8 +96,8 @@ function out = path_manager_line(in,PLAN,start_of_simulation)
   rho    = 0;          % not used for waypoint path
   lambda = 0;          % not used for waypoint path
 
-  if (p-r)'*n_i >= 0
-    ptr_a = ptr_a + 1;
+  if (p-r)'*n_i >= 0 
+      ptr_a = ptr_a + 1;
   end
   
   q = q_prev;

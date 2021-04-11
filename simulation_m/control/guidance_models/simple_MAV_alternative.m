@@ -1,4 +1,4 @@
-function [sys,x0,str,ts,simStateCompliance] = simple_MAV_voltacoord(t,x,u,flag,P)
+function [sys,x0,str,ts,simStateCompliance] = simple_MAV_alternative(t,x,u,flag,P)
 
 switch flag
 
@@ -127,31 +127,30 @@ function sys=mdlDerivatives(t,x,uu,P)
     Va_c     = uu(2);
     phi_c    = uu(3);
     
-    %**********COEFICIENTES A MUDAR*********%    
+    %********** COEFFICIENTS *********%   
     b_hdot = 0.4;
-    b_h    = 0.05;
-    
-    b_va   = 0.09;
-    
+    b_h    = 0.05;    
+    b_va   = 0.09; 
     b_phi  = 0.2;
-    %***************************************%
+    %*********************************%
         
     pn_dot  = Va*cos(psi) + P.wind_n;
     pe_dot  = Va*sin(psi) + P.wind_e;
     psi_dot = (P.gravity/Va) * tan(phi);
 
+    % derivative calculation
+    % [h_c_dot]= derivada_h(t, h_c);  
     
-    [h_c_dot]= derivada_h(t, h_c);   
-    
+    %%%%%%%%%%%%%%%%%%%%%%%%%
     x1 = h;
     x2 = h_dot;
     
     x1_dot = x2;
-    x2_dot = b_hdot*(h_c_dot - x2) + b_h*(h_c - x1); 
-
-    
+    % x2_dot = b_hdot*(h_c_dot - x2) + b_h*(h_c - x1);
+    x2_dot = - b_hdot*x2 + b_h*(h_c - x1);
     Va_dot  = b_va*(Va_c - Va);
     phi_dot = b_phi*(phi_c - phi);
+    %%%%%%%%%%%%%%%%%%%%%%%%
     
 sys = [pn_dot; pe_dot; psi_dot; x1_dot; Va_dot; phi_dot; x2_dot];
 % end mdlDerivatives

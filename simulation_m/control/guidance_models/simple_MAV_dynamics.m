@@ -148,12 +148,10 @@ function sys=mdlDerivatives(t,x,uu,P)
     Va_c      = uu(3); 
     
     %********** COEFFICIENTS *********%
-    b_chidot  = 5;   % derivative gain (k_d)
-    b_chi     = 1.1; % proportional gain (k_p)
-    
-    b_hdot = 0.4;  % k_d
-    b_h    = 0.05; % k_p
-    
+    b_chidot  = 5;   
+    b_chi     = 1.1; 
+    b_hdot = 0.4;  
+    b_h    = 0.05; 
     b_va      = 0.09;
     %*********************************%
     
@@ -161,23 +159,19 @@ function sys=mdlDerivatives(t,x,uu,P)
     pn_dot = Va*cos(psi) + P.wind_n;
     pe_dot = Va*sin(psi) + P.wind_e;
 
-    %derivatives calculation
-    [chi_c_dot]= derivada_chi(t, chi_c);
-    [h_c_dot]= derivada_h(t, h_c);
+    % derivatives calculation
+    [chi_c_dot] = derivada_chi(t, chi_c);
+    % [h_c_dot] = derivada_h(t, h_c);
     
     %%%%%%%%%%%%%%%%%%%%%%%%%
     x1 = h;
     x2 = h_dot;
-    
-    x2_dot = b_hdot*(h_c_dot - x2) + b_h*(h_c - x1);
-    
-    
     x3 = chi;
     x4 = chi_dot;
     
+    % x2_dot = b_hdot*(h_c_dot - x2) + b_h*(h_c - x1);
+    x2_dot = - b_hdot*x2 + b_h*(h_c - x1);
     x4_dot = b_chidot*(chi_c_dot - x4) + b_chi*(chi_c - x3);
-      
-
     Va_dot = b_va*(Va_c - Va);
     %%%%%%%%%%%%%%%%%%%%%%%%
     

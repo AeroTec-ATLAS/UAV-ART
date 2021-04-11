@@ -20,10 +20,10 @@ function speedsGraphics(t,Va,v_w,folder)
     ylabel('w_n [m/s]','Interpreter','tex')
     saveFigAsPDF(handle,folder+"/wn")
     
-    plot(v_w(:,2),t)
+    plot(t,v_w(:,2))
     title('East windspeed','Interpreter','latex')
-    xlabel('w_e [m/s]','Interpreter','tex')
-    ylabel('t [s]','Interpreter','latex')
+    xlabel('t [s]','Interpreter','latex')
+    ylabel('w_e [m/s]','Interpreter','tex')
     saveFigAsPDF(handle,folder+"/we")
     
     plot(t,-v_w(:,3))

@@ -1,8 +1,8 @@
 
 % UAV-ART (UAV Alameda Research Team)
 % Project UAV-P1
-% AerotÃ©c - NÃºcleo de Alunos de Engenharia Aeroespacial do TÃ©cnico
-% Instituto Superior TÃ©cnico
+% Aerotec - Núcleo de Alunos de Engenharia Aeroespacial do Técnico
+% Instituto Superior Técnico
 % Started in August 2020
 % 
 % Authors: 
@@ -37,18 +37,14 @@ addpath('../autopilot', '../autopilot/util')
 % You can open it by entering 'open ../autopilot/trim/params'
 
 % Simulation configurations
-settings.simTime = 40;
-% 0 if you do want and 1 if you do not
+settings.simTime = 100;
+% 0 if you do not want and 1 if you do want
 settings.wantToDrawAircraft = 1;
-settings.wantToCreateGraphics = 1;
-% folder to host the generated files
-settings.folder = 'test_retas';
-settings.folder = "results/"+settings.folder;   % do not change part of the
-                                                % script
+settings.wantToCreateGraphics = 1; 
 
 % -------------------------------------------------------------------------
 % Path Manager
-path.flag = 1;                  % 1 for straights and 2 for orbits
+path.flag = 2;                  % 1 for straights and 2 for orbits
 path.Va_d = 35;                 % desired airspeed 
 path.r = [-400; -1000; -100];   % straight origin
 path.q = [0.5; 1; -0.02];       % straight directing vector
@@ -59,6 +55,16 @@ path.lambda = 1;                % orbit direction
 
 desiredPath = [path.flag; path.Va_d; path.r; path.q; path.c; path.rho;...
     path.lambda];
+
+% -------------------------------------------------------------------------
+
+% folder to host the generated files
+if path.flag == 1
+    settings.folder = 'test_retas';
+else
+    settings.folder = 'test_orbitas';
+end
+settings.folder = "results/"+settings.folder;  
 
 % -------------------------------------------------------------------------
 

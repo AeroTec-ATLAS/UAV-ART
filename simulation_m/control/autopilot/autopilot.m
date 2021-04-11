@@ -13,11 +13,11 @@ function y = autopilot(uu,P)
 
     % process inputs
     NN = 0;
-%   pn       = uu(1+NN);  % inertial North position
-%   pe       = uu(2+NN);  % inertial East position
+    pn       = uu(1+NN);  % inertial North position
+    pe       = uu(2+NN);  % inertial East position
     h        = uu(3+NN);  % altitude
     Va       = uu(4+NN);  % airspeed
-%   alpha    = uu(5+NN);  % angle of attack
+    alpha    = uu(5+NN);  % angle of attack
     beta     = uu(6+NN);  % side slip angle
     phi      = uu(7+NN);  % roll angle
     theta    = uu(8+NN);  % pitch angle
@@ -25,13 +25,13 @@ function y = autopilot(uu,P)
     p        = uu(10+NN); % body frame roll rate
     q        = uu(11+NN); % body frame pitch rate
     r        = uu(12+NN); % body frame yaw rate
-%   Vg       = uu(13+NN); % ground speed
-%   wn       = uu(14+NN); % wind North
-%   we       = uu(15+NN); % wind East
-%   psi      = uu(16+NN); % heading
-%   bx       = uu(17+NN); % x-gyro bias
-%   by       = uu(18+NN); % y-gyro bias
-%   bz       = uu(19+NN); % z-gyro bias
+    Vg       = uu(13+NN); % ground speed
+    wn       = uu(14+NN); % wind North
+    we       = uu(15+NN); % wind East
+    psi      = uu(16+NN); % heading
+    bx       = uu(17+NN); % x-gyro bias
+    by       = uu(18+NN); % y-gyro bias
+    bz       = uu(19+NN); % z-gyro bias
     
     NN = NN+19;
     
@@ -62,9 +62,9 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,...
     if t == 0
         phi_c = course_hold(chi_c, chi, 1, P.G.k_p_course, ...
                                     P.G.k_i_course, -pi/7.2, pi/7.2, P.Ts);
-%         delta_r = sideslip_hold(beta, 1,  P.G.k_p_sideslip, ...
-%                                   P.G.k_i_sideslip, -P.G.delta_r_max, ...
-%                                   P.G.delta_r_max, P.Ts);
+        delta_r = sideslip_hold(beta, 1,  P.G.k_p_sideslip, ...
+                                  P.G.k_i_sideslip, -P.G.delta_r_max, ...
+                                  P.G.delta_r_max, P.Ts);
 
         delta_r = 0; % the aircraft is designed to drive the sideslip to 0
         delta_a = roll_hold(phi_c, phi, 1, p, P.G.k_p_roll, ...
@@ -73,9 +73,9 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,...
     else
         phi_c = course_hold(chi_c, chi, 0, P.G.k_p_course, ...
                                     P.G.k_i_course, -pi/7.2, pi/7.2, P.Ts);
-%         delta_r = sideslip_hold(beta, 0,  P.G.k_p_sideslip, ...
-%                                   P.G.k_i_sideslip, -P.G.delta_r_max, ...
-%                                                   P.G.delta_r_max, P.Ts);
+        delta_r = sideslip_hold(beta, 0,  P.G.k_p_sideslip, ...
+                                  P.G.k_i_sideslip, -P.G.delta_r_max, ...
+                                                  P.G.delta_r_max, P.Ts);
         delta_r = 0;
         delta_a = roll_hold(phi_c, phi, 0, p, P.G.k_p_roll, ...
                                 P.G.k_i_roll, P.G.k_d_roll, ...
@@ -147,11 +147,12 @@ function [delta, x_command] = autopilot_uavbook(Va_c,h_c,chi_c,Va,h,...
                                             -pi/6, pi/6, P.Ts);            
     end
     
+    
     persistent delta_e
     delta_e = pitch_hold(theta_c, theta, flag, q, P.G.k_p_pitch, ...
                         P.G.k_d_pitch, -P.G.delta_e_max, P.G.delta_e_max);
     
-%     if t - 23 > 0
+%     if t - T_pertubacao > 0
 %         if ~mod(t,0.2)
 %             delta_e = 0.1*randn;
 %             delta_e = -abs(delta_e);
@@ -233,11 +234,9 @@ function delta_r = sideslip_hold(beta, flag, kp, ki, lowLim, upLim, Ts)
     i = i + (Ts/2)*(error + p);
     p = error;
     
-%     delta_r = sat(-kp*p-ki*i, upLim, lowLim);
     delta_r = sat(kp*p+ki*i, upLim, lowLim);
     
     if ki~=0
-%         u_unsat = -kp*p - ki*i;
         u_unsat = kp*p + ki*i;
         i = i + Ts/ki *(-u_unsat);
     end
