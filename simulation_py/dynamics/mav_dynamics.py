@@ -115,19 +115,19 @@ class mavDynamics:
         fz = self._forces.item(2)
         phi = self.true_state.phi
         theta = self.true_state.theta
-        psi = self.true_state.psi
         self._sensors.accel_x = fx/MAV.mass + MAV.gravity*np.sin(theta) + np.random.randn()*SENSOR.accel_sigma
         self._sensors.accel_y = fy/MAV.mass - MAV.gravity*np.cos(theta)*np.sin(phi) + np.random.randn()*SENSOR.accel_sigma
         self._sensors.accel_z = fz/MAV.mass - MAV.gravity*np.cos(theta)*np.cos(phi) + np.random.randn()*SENSOR.accel_sigma
         # simulate magnetometers
-        # magnetic field in provo has magnetic declination of 12.5 degrees
-        # and magnetic inclination of 66 degrees
-        R_mag = Euler2Rotation(0, -SENSOR.mag_inc, SENSOR.mag_dec)
+        # magnetic field in Lisbon has magnetic declination of -1.72 degrees
+        # and magnetic inclination of 62.68 degrees
+        R_mag = Euler2Rotation(0, -np.radians(52.68), np.radians(-1.72))
         # magnetic field in inertial frame: unit vector
         mag_inertial = R_mag @ np.array([[1.], [0.], [0.]])
         R = Euler2Rotation(self.true_state.phi, self.true_state.theta, self.true_state.psi) # body to inertial
         # magnetic field in body frame: unit vector
         mag_body = R @ mag_inertial
+        # magnetic field in Lisbon has an intensity of 43925.4 nT
         mag_body = mag_body * 43925.4*10**-9 
         self._sensors.mag_x = mag_body.item(0)
         self._sensors.mag_y = mag_body.item(1)
