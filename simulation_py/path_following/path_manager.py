@@ -82,13 +82,13 @@ class PathManager:
         if (np.vdot(pos-self.halfspace_r, self.halfspace_n)>=0):
             print("pos- ", pos, "\n r= ", self.halfspace_r, "\n = ", pos-self.halfspace_r)
             print("N= ",self.halfspace_n)
-            if self.ptr_next < waypoints.num_waypoints-1:
+            if self.ptr_next < waypoints.num_waypoints-2:
                 self.increment_pointers()
                 #print("Pointer: ", self.ptr_current)
             else:
-                self.initialize_pointers(waypoints)  
+                self.initialize_pointers(waypoints)
+                print("Re-initialized Waypoints")  
             print("updated waypoint to number: ",self.ptr_current) 
-            input("wpt")
         if self.i == 100:
             print("POS: ", pos)
             print("WP: ",waypoints.ned[:,self.ptr_current])

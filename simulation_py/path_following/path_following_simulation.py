@@ -67,9 +67,11 @@ Va = PLAN.Va0
 print("Speed for waypoints is: ", Va)
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
 waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[0, -2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[2000, 2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
-waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
+waypoints.add(np.array([[2000, 2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[0, 2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[0, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[2000, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
 
 print(waypoints.ned)
 # initialize the simulation time
@@ -77,7 +79,7 @@ sim_time = SIM.start_time
 previous_t = 0
 plot_timer = 0
 # main simulation loop
-while sim_time < SIM.end_time:
+while 1: # sim_time < SIM.end_time:
 
     # -------observer-------------
     # measurements = mav.sensors()  # get sensor measurements
