@@ -44,7 +44,7 @@ settings.wantToCreateGraphics = 1;
 
 % -------------------------------------------------------------------------
 % Path Manager
-path.flag = 2;                  % 1 for straights and 2 for orbits
+path.flag = 1;                  % 1 for straights and 2 for orbits
 path.Va_d = 35;                 % desired airspeed 
 path.r = [-400; -1000; -100];   % straight origin
 path.q = [0.5; 1; -0.02];       % straight directing vector
@@ -70,7 +70,7 @@ settings.folder = "results/"+settings.folder;
 
 % Simulation
 % Run simulation
-out = sim('completePathFollower.slx',settings.simTime);
+out = sim('PathFollower.slx',settings.simTime);
 
 % Output assignment
 % Time

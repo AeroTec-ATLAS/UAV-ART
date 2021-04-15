@@ -38,7 +38,7 @@ addpath('../autopilot', '../autopilot/util','../pathFollower')
 % You can open it by entering 'open ../autopilot/trim/params'
 
 % Simulation configurations
-settings.simTime = 100;
+settings.simTime = 75;
 % 0 if you do not want and 1 if you do want
 settings.wantToDrawAircraft = 1;
 settings.wantToCreateGraphics = 1; 
@@ -48,9 +48,12 @@ settings.folder = "results/";
 % Simulation
 PLAN.Va0 = P.Va0;
 PLAN.size_waypoint_array = 5;
-PLAN.R_min = 5;
+PLAN.R_min = 250;
+% Initial altitude
+P.pd0 = -100;
 % Run simulation
 out = sim('PathManager.slx',settings.simTime);
+set_param('PathManager','AlgebraicLoopSolver','LineSearch')
 
 % Output assignment
 % Time

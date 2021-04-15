@@ -60,9 +60,9 @@ function out = path_manager(in,PLAN)
       waypoints = reshape(in(2+NN:5*PLAN.size_waypoint_array+1+NN),5,PLAN.size_waypoint_array);
       if abs(waypoints(4,1))>=2*pi
         % follows straight-lines and switches at waypoints
-        out = path_manager_line(in,PLAN,start_of_simulation);  
+        % out = path_manager_line(in,PLAN,start_of_simulation);  
         % smooths through waypoints with fillets
-        %out = path_manager_fillet(in,PLAN,start_of_simulation);  
+        out = path_manager_fillet(in,PLAN,start_of_simulation);  
         start_of_simulation=0;
       else
         % follows Dubins paths between waypoint configurations
