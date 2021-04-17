@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vasco/Desktop/CODE/UAV_Fiducial_Markers/main2.cpp
+opencv2/opencv.hpp
+/home/vasco/Desktop/CODE/UAV_Fiducial_Markers/opencv2/opencv.hpp
+math.h
+-
+fstream
+-
+iostream
+-
+
