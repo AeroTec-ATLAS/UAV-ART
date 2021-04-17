@@ -1,0 +1,7 @@
+TODO LIST:
+ 
+1) dynamic resizing
+2) solve skip frames
+3) check distances
+
+yaw
