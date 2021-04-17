@@ -33,12 +33,10 @@
 %       dubinspath.q3   - unit vector defining direction of half plane H3
 % 
 
-%function dubinspath = dubinsParameters(start_node, end_node, R)
+function dubinspath = dubinsParameters(start_node, end_node, R)
 
   e1 = [1; 0; 0];
-    
-  ell = norm(start_node(1:2)-end_node(1:2));
-  if norm(start_node(1:2)-end_node(1:2)) <= 3*R
+      if norm(start_node(1:2)-end_node(1:2)) <= 3*R
       disp('The distance between nodes must be larger than 3R.');
       dubinspath = [];
   else
@@ -138,16 +136,13 @@
     dubinspath.R    = R;
     dubinspath.L    = L;
     dubinspath.cs   = cs;
-    dubinspath.lams = lambda_s;
+    dubinspath.lambda_s = lambda_s;
     dubinspath.ce   = ce;
-    dubinspath.lame = lambda_e;
+    dubinspath.lambda_e = lambda_e;
     dubinspath.z1   = z1;
     dubinspath.q1   = q1;
     dubinspath.z2   = z2;   
     dubinspath.z3   = z3;
     dubinspath.q3   = q3;
   end
-%end
-%% rotz(theta)
-
-%% TESTING
+end
