@@ -1,8 +1,8 @@
 
 % UAV-ART (UAV Alameda Research Team)
 % Project UAV-P1
-% Aerotï¿½c - Nï¿½cleo de Alunos de Engenharia Aeroespacial do Tï¿½cnico
-% Instituto Superior Tï¿½cnico
+% Aerotéc - Núcleo de Alunos de Engenharia Aeroespacial do Tï¿½cnico
+% Instituto Superior Técnico
 % Started in October 2018
 %
 % Authors: J. Pinto, L. Pedroso
@@ -35,7 +35,7 @@ load anim/aircraft
 
 addpath('anim','util','trim')
 
-T = 240; % simulation time in seconds
+T = 60; % simulation time in seconds
 t = 0:P.Ts:T;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,55 +57,55 @@ t = 0:P.Ts:T;
 %     h_ref(i)= 0.5*t(i);
 % end
 
-% h_ref = 200*ones(length(t),1);
+h_ref = 200*ones(length(t),1);
 
-h_ref(1:2000) = 50*ones(2000,1);
-h_ref(2001:4000) = 60*ones(2000,1);
-h_ref(4001:6000) = 50*ones(2000,1);
-for i = 6001:9000
-    h_ref(i) = 50 + (70 - 50)/(9000 - 6000)*(i - 6000);
-end
-for i = 9001:12000
-    h_ref(i) = 70 + (50 - 70)/(12000 - 9000)*(i - 9000);
-end
-h_ref(12001:13000) = 50*ones(1000,1);
-h_ref(13001:14000) = 40*ones(1000,1);
-h_ref(14001:15000) = 50*ones(1000,1);
-h_ref(15001:16000) = 40*ones(1000,1);
-h_ref(16001:18000) = 50*ones(2000,1);
-h_ref(18001:19000) = 60*ones(1000,1);
-h_ref(19001:20000) = 50*ones(1000,1);
-h_ref(20001:21000) = 60*ones(1000,1);
-h_ref(21001:22000) = 50*ones(1000,1);
-h_ref(22001:24001) = 50*ones(2001,1);
-h_ref = h_ref';
+% h_ref(1:2000) = 50*ones(2000,1);
+% h_ref(2001:4000) = 60*ones(2000,1);
+% h_ref(4001:6000) = 50*ones(2000,1);
+% for i = 6001:9000
+%     h_ref(i) = 50 + (70 - 50)/(9000 - 6000)*(i - 6000);
+% end
+% for i = 9001:12000
+%     h_ref(i) = 70 + (50 - 70)/(12000 - 9000)*(i - 9000);
+% end
+% h_ref(12001:13000) = 50*ones(1000,1);
+% h_ref(13001:14000) = 40*ones(1000,1);
+% h_ref(14001:15000) = 50*ones(1000,1);
+% h_ref(15001:16000) = 40*ones(1000,1);
+% h_ref(16001:18000) = 50*ones(2000,1);
+% h_ref(18001:19000) = 60*ones(1000,1);
+% h_ref(19001:20000) = 50*ones(1000,1);
+% h_ref(20001:21000) = 60*ones(1000,1);
+% h_ref(21001:22000) = 50*ones(1000,1);
+% h_ref(22001:24001) = 50*ones(2001,1);
+% h_ref = h_ref';
 
 
 % chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
+chi_ref = 0*pi/180*ones(length(t),1);
 
-chi_ref(1:1000) = 20*pi/180*ones(1000,1);
-chi_ref(1001:2000) = 0*ones(1000,1);
-chi_ref(2001:4000) = -20*pi/180*ones(2000,1);
-chi_ref(4001:5000) = 0*ones(1000,1);
-for i = 5001:9000
-    chi_ref(i) = pi/180*(0 + (270 - 0)/(9000 - 5000)*(i - 5000));
-end
-for i = 9001:13000
-    chi_ref(i) = pi/180*(270 + (0 - 270)/(13000 - 9000)*(i - 9000));
-end
-for i = 13001:17000
-    chi_ref(i) = pi/180*(0 + (270 - 0)/(17000 - 13000)*(i - 13000));
-end
-for i = 17001:21000
-    chi_ref(i) = pi/180*(270 + (0 - 270)/(21000 - 17000)*(i - 17000));
-end
+% chi_ref(1:1000) = 20*pi/180*ones(1000,1);
+% chi_ref(1001:2000) = 0*ones(1000,1);
+% chi_ref(2001:4000) = -20*pi/180*ones(2000,1);
+% chi_ref(4001:5000) = 0*ones(1000,1);
+% for i = 5001:9000
+%     chi_ref(i) = pi/180*(0 + (270 - 0)/(9000 - 5000)*(i - 5000));
+% end
+% for i = 9001:13000
+%     chi_ref(i) = pi/180*(270 + (0 - 270)/(13000 - 9000)*(i - 9000));
+% end
+% for i = 13001:17000
+%     chi_ref(i) = pi/180*(0 + (270 - 0)/(17000 - 13000)*(i - 13000));
+% end
+% for i = 17001:21000
+%     chi_ref(i) = pi/180*(270 + (0 - 270)/(21000 - 17000)*(i - 17000));
+% end
+% 
+% chi_ref(21001:24001) = 0*ones(3001,1);
+% 
+% chi_ref = chi_ref';
 
-chi_ref(21001:24001) = 0*ones(3001,1);
-
-chi_ref = chi_ref';
-
-% Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
-Va_ref = 30*ones(length(t),1);
+Va_ref = P.Va0*ones(length(t),1); % airspeed (m/s)
 
 reference = [t' Va_ref h_ref chi_ref];
 
@@ -144,7 +144,6 @@ accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %a
 accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%drawAircraft(pos,att,V,F,facecolors,2e-3)
+drawAircraft(pos,att,V,F,facecolors,2e-3)
 % morePlots
-
-logTXT_wAccel
+% logTXT
