@@ -46,38 +46,29 @@ from message_types.msg_path import msgPath
 path = msgPath()
 # path.type = 'line'
 path.type = 'manager'
-if path.type == 'line':
-    path.line_origin = np.array([[0.0, 0.0, -100.0]]).T
-    path.line_direction = np.array([[0.5, 1.0, -0.05]]).T
-    path.line_direction = path.line_direction / np.linalg.norm(path.line_direction)
-    path.airspeed = 35
-elif path.type == 'orbit':
-    path.orbit_center = np.array([[0.0, 0.0, -100.0]]).T  # center of the orbit
-    path.orbit_radius = 500.0  # radius of the orbit
-    path.orbit_direction = 'CW'  # orbit direction: 'CW'==clockwise, 'CCW'==counter clockwise
-    path.airspeed = 35
-
 # waypoint definition
 from message_types.msg_waypoints import msgWaypoints
 waypoints = msgWaypoints()
-waypoints.type = 'straight_line'
-#waypoints.type = 'fillet'
-#waypoints.type = 'dubins'
+#waypoints.type = 'straight_line'
+waypoints.type = 'fillet'
+waypoints.type = 'dubins'
 Va = PLAN.Va0
 print("Speed for waypoints is: ", Va)
+#Waypoint definition
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
 waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[2000, 2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[0, 2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
-waypoints.add(np.array([[0, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
-waypoints.add(np.array([[2000, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
-waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
-
+waypoints.add(np.array([[-2000, 2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[-1000, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
+waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
 print(waypoints.ned)
+#End waypoint definition
+
 # initialize the simulation time
 sim_time = SIM.start_time
 previous_t = 0
 plot_timer = 0
+
 # main simulation loop
 while 1: # sim_time < SIM.end_time:
 

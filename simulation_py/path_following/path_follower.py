@@ -39,9 +39,10 @@ class path_follower:
         Lambda = 0
         c = path.orbit_center
         rho = path.orbit_radius
-        if path.orbit_direction == 'CW':
+        #Ajustei aqui para continuar a funcionar com comandos antigos, mas deve receber apenas o valor de lambda 1 ou -1
+        if path.orbit_direction == 'CW' or path.orbit_direction == 1:
             Lambda = 1
-        elif path.orbit_direction == 'CCW':
+        elif path.orbit_direction == 'CCW' or path.orbit_direction == -1:
             Lambda = -1
         p = np.array([[state.pn, state.pe, c.item(2)]]).T
         d = np.linalg.norm(p - c)
