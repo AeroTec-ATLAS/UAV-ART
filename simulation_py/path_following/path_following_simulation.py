@@ -56,11 +56,11 @@ Va = PLAN.Va0
 print("Speed for waypoints is: ", Va)
 #Waypoint definition
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
-waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[-2000, 2000, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
-waypoints.add(np.array([[-1000, -2000, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
+waypoints.add(np.array([[1200, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[0, 1200, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[1200, 1200, -100]]).T, Va, np.radians(-135), np.inf, 0, 0)
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
-waypoints.add(np.array([[2000, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
+waypoints.add(np.array([[1200, 0, -100]]).T, Va, np.radians(45), np.inf, 0, 0)
 print(waypoints.ned)
 #End waypoint definition
 
