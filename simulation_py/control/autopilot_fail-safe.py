@@ -76,6 +76,7 @@ while sim_time < SIM.end_time:
         data_view.update(mav.true_state,  # true states
                          estimated_state,  # estimated states
                          commanded_state,  # commanded states
+                         delta,				
                          SIM.ts_simulation)
     if VIDEO is True:
         video.update(sim_time)
