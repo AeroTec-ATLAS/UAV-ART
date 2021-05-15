@@ -121,11 +121,18 @@ class pathManager:
             self.path.orbit_center = wi - radius/np.sin(rho/2.)*(qi_prev-qi)/np.linalg.norm(qi_prev-qi)
             self.path.orbit_radius = radius
             self.path.signToDirection(np.sign((qi_prev.item(0)*qi.item(1))-(qi_prev.item(1)*qi.item(0))))
-            a=np.sign((qi_prev.item(0)*qi.item(1))-(qi_prev.item(1)*qi.item(0)))
             if self.inHalfSpace(mav_pos):
                 self.increment_pointers()
                 self.manager_state = 1
                 self.path.flag_path_changed = True
+                if self.ptr_next == self.num_waypoints: # if reaching last waypoint, generates the last path
+                    wi = waypoints.ned[:, self.ptr_current]
+                    wi_prev = waypoints.ned[:, self.ptr_previous]
+                    qi_prev = wi - wi_prev
+                    qi_prev = qi_prev / np.linalg.norm(qi_prev)
+                    self.path.type = 'line'
+                    self.path.line_origin = np.array([wi_prev]).T
+                    self.path.line_direction = np.array([qi_prev]).T
         # if the waypoints have changed, update the waypoint pointer
 
         # state machine for fillet path
