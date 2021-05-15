@@ -13,21 +13,21 @@ sys.path.append('..')
 
 
 class dubinsParameters:
-    def __init__(self, ps=9999*np.ones((3,1)), chis=9999,
-                 pe=9999*np.ones((3,1)), chie=9999, R=9999):
+    def __init__(self, ps=9999*np.array([[1,1,1]]).T, chis=9999,
+                 pe=9999*np.array([[1,1,1]]).T, chie=9999, R=9999):
         if R == 9999:
             L = R
             cs = ps
             lams = R
             ce = ps
             lame = R
-            w1 = ps
+            z1 = ps
             q1 = ps
-            w2 = ps
-            w3 = ps
+            z2 = ps
+            z3 = ps
             q3 = ps
         else:
-            L, cs, lams, ce, lame, w1, q1, w2, w3, q3 \
+            L, cs, lams, ce, lame, z1, q1, z2, z3, q3 \
                 = compute_parameters(ps, chis, pe, chie, R)
         self.p_s = ps
         self.chi_s = chis
@@ -39,14 +39,14 @@ class dubinsParameters:
         self.dir_s = lams
         self.center_e = ce
         self.dir_e = lame
-        self.r1 = w1
+        self.r1 = z1
         self.n1 = q1
-        self.r2 = w2
-        self.r3 = w3
+        self.r2 = z2
+        self.r3 = z3
         self.n3 = q3
 
     def update(self, ps, chis, pe, chie, R):
-         L, cs, lams, ce, lame, w1, q1, w2, w3, q3 \
+         L, cs, lams, ce, lame, z1, q1, z2, z3, q3 \
             = compute_parameters(ps, chis, pe, chie, R)
          self.p_s = ps
          self.chi_s = chis
@@ -58,102 +58,97 @@ class dubinsParameters:
          self.dir_s = lams
          self.center_e = ce
          self.dir_e = lame
-         self.r1 = w1
+         self.r1 = z1
          self.n1 = q1
-         self.r2 = w2
-         self.r3 = w3
+         self.r2 = z2
+         self.r3 = z3
          self.n3 = q3
 
 
-def compute_parameters(self, ps, chis, pe, chie, R):
-        # calcular distancia entre circulos
+def compute_parameters(ps, chis, pe, chie, R):
+        # distance between orbits
         ell = np.linalg.norm(ps-pe)
         e1 = np.array([[1,0,0]]).T
-        print (ps)
-        print (pe)
-        print (chis)
-        print (chie)
-        print (R)
 
-        if ell < 2 * R:
+        if ell < 3 * R:
             print('Error in Dubins Parameters: The distance between nodes must be larger than 2R.')
         else:
             pi2 = np.pi/2
             # compute start and end circles
-            crs = ps + R*np.array([np.cos(chis + pi2), np.sin(chis + pi2), 0 ])
-            cls = ps + R*np.array([np.cos(chis - pi2), np.sin(chis - pi2), 0 ])
-            cre = pe + R*np.array([np.cos(chie + pi2), np.sin(chis + pi2), 0 ])
-            cle = pe + R*np.array([np.cos(chie - pi2), np.sin(chis - pi2), 0 ])
+            crs = ps + R * rotz(pi2) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
+            cls = ps + R * rotz(-pi2) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
+            cre = pe + R * rotz(pi2) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
+            cle = pe + R * rotz(-pi2) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
             # compute L1,
-            v = self.angle2d(crs,cre)
-            L1 = np.linalg.norm(crs-cre) + R*self.mod(4*pi2 + self.mod(v - pi2) - self.mod(chis - pi2)) + R*self.mod(4*pi2 + self.mod(chie - pi2) - self.mod(v - pi2))
+            v = angle2d(crs,cre)
+            L1 = np.linalg.norm(crs-cre) + R*mod(2*np.pi + mod(v - pi2) - mod(chis - pi2)) + R*mod(2*np.pi + mod(chie - pi2) - mod(v - pi2))
 
             # compute L2
             ell = np.linalg.norm(cle-crs)
-            theta = self.angle2d(crs,cle)
-            theta2 = theta - pi2 + np.arcsin(2*R/ell)
-            L2 = np.sqrt(ell**2-4*R**2) + R * self.mod(pi2*4 + self.mod(theta2) - self.mod(chis - pi2)) + R * self.mod(4*pi2 + self.mod(theta2 + np.pi)- self.mod(chie + pi2)) 
+            v = angle2d(crs,cle)
+            v2 = v - pi2 + np.arcsin(2*R/ell)
+            L2 = np.sqrt(ell**2-4*R**2) + R * mod(2*np.pi + mod(v2) - mod(chis - pi2)) + R * mod(2*np.pi + mod(v2 + np.pi)- mod(chie + pi2)) 
 
             # compute L3
             ell = np.linalg.norm(cre-cls)
-            theta = self.angle2d(cls,cre)
-            theta2 = np.arccos (2*R/ell)
-            L3 = np.sqrt(ell**2 - 4*R**2) + R*self.mod(4*pi2 + self.mod(chis + pi2) - self.mod(theta+theta2)) + R*self.mod(4*pi2 + self.mod(chie-pi2) - self.mod(theta+theta2-np.pi))        
+            v = angle2d(cls,cre)
+            v2 = np.arccos (2*R/ell)
+            L3 = np.sqrt(ell**2 - 4*R**2) + R * mod(2*np.pi + mod(chis + pi2) - mod(v+v2)) + R*mod(2*np.pi + mod(chie-pi2) - mod(v+v2-np.pi))        
 
             # compute L4
             ell = np.linalg.norm(cls-cle)
-            theta = self.angle2d(cls,cle)
-            L4 = ell + R*self.mod(4*pi2 + self.mod(chis + pi2) - self.mod(theta + pi2)) + R*self.mod(4*pi2 + self.mod(theta + pi2) - self.mod(chie + pi2))
+            v = angle2d(cls,cle)
+            L4 = ell + R * mod(2*np.pi + mod(chis + pi2) - mod(v + pi2)) + R*mod(2*np.pi + mod(v + pi2) - mod(chie + pi2))
 
             # L is the minimum distance
             L = np.min([L1, L2, L3, L4])
-            idx = np.argmin([L1, L2, L3, L4])
-            if idx == 0:
+            argmin = np.argmin([L1, L2, L3, L4])
+            if argmin == 0:
                 cs = crs
                 lams = 1
                 ce = cre
                 lame = 1
                 q1 = (ce-cs)/np.linalg.norm(ce-cs)
-                w1 = cs + R*self.rotz(-pi2)*q1
-                w2 = ce + R*self.rotz(-pi2)*q1
-            elif idx == 1:
+                z1 = cs + R*rotz(-pi2) @ q1
+                z2 = ce + R*rotz(-pi2) @ q1
+            elif argmin == 1:
                 cs = crs
                 lams = 1    
                 ce = cle
                 lame = -1
 
                 ell = np.linalg.norm(ce-cs)
-                v  = self.angle2d(ce,cs)
+                v  = angle2d(ce,cs)
                 v2 = v - pi2 + np.arcsin(2*R/ell)
 
-                q1 = self.rotz(v2+pi2)*e1
-                w1 = cs + R*self.rotz(v2)*e1
-                w2 = ce + R*self.rotz(v2+np.pi)*e1
-            elif idx == 2:
+                q1 = rotz(v2+pi2) @ e1
+                z1 = cs + R*rotz(v2) @ e1
+                z2 = ce + R*rotz(v2+np.pi) @ e1
+            elif argmin == 2:
                 cs = cls
                 lams = -1
                 ce = cre
                 lame = 1
 
                 ell = np.linalg.norm(ce-cs)
-                v = self.angle2d(ce,cs)
+                v = angle2d(ce,cs)
                 v2 = np.arccos(2*R/ell)
 
-                q1 = self.rotz(v+v2-pi2)*e1
-                w1 = cs + R*self.rotz(v+v2)*e1
-                w2 = ce + R*self.rotz(v+v2-np.pi)*e1
-            elif idx == 3:
+                q1 = rotz(v+v2-pi2) @ e1
+                z1 = cs + R*rotz(v+v2) @ e1
+                z2 = ce + R*rotz(v+v2-np.pi) @ e1
+            elif argmin == 3:
                 cs = cls
                 lams = -1
                 ce = cle
                 lame = -1
                 q1 = (ce-cs)*np.linalg.norm(ce-cs)
-                w1 = cs + R*self.rotz(pi2)*q1
-                w2 = ce + R*self.rotz(pi2)*q1
-            w3 = pe
-            q3 = self.rotz(chie)*e1
+                z1 = cs + R*rotz(pi2) @ q1
+                z2 = ce + R*rotz(pi2) @ q1
+            z3 = pe
+            q3 = rotz(chie) @ e1
 
-            return L, cs, lams, ce, lame, w1, q1, w2, w3, q3
+            return L, cs, lams, ce, lame, z1, q1, z2, z3, q3
 
 
 def rotz(theta):
@@ -169,6 +164,6 @@ def mod(x):
         x -= 2*np.pi
     return x
 
-def angle2d(self, x, y):
-        return np.arctan2(x.item(1)-y.item(1), x.item(0)-y.item(0))
+def angle2d(x, y):
+        return np.pi/2 - np.arctan2(y.item(1)-x.item(1), y.item(0)-x.item(0))
 
