@@ -12,7 +12,7 @@ import sys
 sys.path.append('..')
 
 
-class DubinsParameters:
+class dubinsParameters:
     def __init__(self, ps=9999*np.ones((3,1)), chis=9999,
                  pe=9999*np.ones((3,1)), chie=9999, R=9999):
         if R == 9999:
