@@ -56,7 +56,7 @@ waypoints.add(np.array([[1000, 1000, -100]]).T, Va, np.radians(-135), np.inf, 0,
 # initialize the simulation time
 sim_time = SIM.start_time
 plot_timer = 0
-previous_t = 0
+
 # main simulation loop
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
@@ -71,8 +71,8 @@ while sim_time < SIM.end_time:
     autopilot_commands = path_follower.update(path, estimated_state)
 
     # -------autopilot-------------
-    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state, previous_t, sim_time)
-    previous_t = delta.throttle
+    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state, sim_time)
+
 
     # -------physical system-------------
     current_wind = wind.update()  # get the new wind vector

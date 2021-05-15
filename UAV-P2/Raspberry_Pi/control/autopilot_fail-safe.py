@@ -33,7 +33,7 @@ wind = windSimulation(SIM.ts_simulation)
 wind._steady_state = np.array([[5., 2., 0.]]).T  # Steady wind in NED frame
 mav = mavDynamics(SIM.ts_simulation)
 ctrl = autopilot(SIM.ts_simulation)
-previous_t = 0
+
 # autopilot commands
 from message_types.msg_autopilot import msgAutopilot
 commands = msgAutopilot()
@@ -63,10 +63,10 @@ while sim_time < SIM.end_time:
 # -------controller-------------
     if not commandWindow.paused:
         estimated_state = mav.true_state  # uses true states in the control
-        delta, commanded_state = ctrl.update(commands, estimated_state, previous_t, sim_time)
+        delta, commanded_state = ctrl.update(commands, estimated_state, sim_time)
         if (not commandWindow.autopilot):
             delta.from_array(np.array([[delta_e, delta_a, delta_r, delta_t]]).T)
-        previous_t = delta.throttle
+
 # -------physical system-------------
         current_wind = wind.update()  # get the new wind vector
         mav.update(delta, current_wind)  # propagate the MAV dynamics
@@ -76,6 +76,7 @@ while sim_time < SIM.end_time:
         data_view.update(mav.true_state,  # true states
                          estimated_state,  # estimated states
                          commanded_state,  # commanded states
+                         delta,
                          SIM.ts_simulation)
     if VIDEO is True:
         video.update(sim_time)

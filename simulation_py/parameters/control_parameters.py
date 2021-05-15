@@ -67,7 +67,7 @@ sideslip_kp: 3
 sideslip_ki: 2.5378
 
 #----------throttle-------------
-throttle_max = 0.6031
+throttle_trim = 0.6031
 
 #--------surface_limits------------
 delta_a_max = 0.3491

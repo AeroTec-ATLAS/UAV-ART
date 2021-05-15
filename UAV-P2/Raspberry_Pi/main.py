@@ -59,7 +59,7 @@ else:  # path.type == 'orbit'
 
 # initialize the simulation time
 sim_time = 0
-previous_t = 0
+
 nprint = 1
 # main simulation loop
 import time
@@ -77,8 +77,8 @@ while True:
     # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     # -------controller-------------
-    delta, commanded_state = ctrl.update(autopilot_commands, state, previous_t, sim_time)
-    previous_t = delta.throttle
+    delta, commanded_state = ctrl.update(autopilot_commands, state, sim_time)
+
     #servo.stimulation(delta.to_array())
     
     if nprint == 200:
