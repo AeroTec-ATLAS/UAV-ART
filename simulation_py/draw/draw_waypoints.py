@@ -6,10 +6,10 @@ mavsim_python: drawing tools
 """
 import numpy as np
 import pyqtgraph.opengl as gl
-from path_following.dubins_parameters import DubinsParameters
+from path_following.dubins_parameters import dubinsParameters
 
 
-class DrawWaypoints:
+class drawWaypoints:
     def __init__(self, waypoints, radius, color, window):
         self.radius = radius
         self.color = color
@@ -40,7 +40,7 @@ class DrawWaypoints:
     def dubins_points(self, waypoints, radius, Del):
         # returns a list of points along the dubins path
         initialize_points = True
-        dubins_path = DubinsParameters()
+        dubins_path = dubinsParameters()
         for j in range(0, waypoints.num_waypoints-1):
             dubins_path.update(
                 waypoints.ned[:, j:j+1],

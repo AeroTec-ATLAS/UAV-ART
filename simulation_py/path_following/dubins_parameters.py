@@ -11,9 +11,58 @@ import numpy as np
 import sys
 sys.path.append('..')
 
-class DubinsParameters:
-    def __init__(self):
-        self.i = 0
+class dubinsParameters:
+    def __init__(self, ps=9999*np.ones((3,1)), chis=9999,
+                 pe=9999*np.ones((3,1)), chie=9999, R=9999):
+        if R == 9999:
+            L = R
+            cs = ps
+            lams = R
+            ce = ps
+            lame = R
+            w1 = ps
+            q1 = ps
+            w2 = ps
+            w3 = ps
+            q3 = ps
+        else:
+            L, cs, lams, ce, lame, w1, q1, w2, w3, q3 \
+                = self.compute_parameters(ps, chis, pe, chie, R)
+        self.p_s = ps
+        self.chi_s = chis
+        self.p_e = pe
+        self.chi_e = chie
+        self.radius = R
+        self.length = L
+        self.center_s = cs
+        self.dir_s = lams
+        self.center_e = ce
+        self.dir_e = lame
+        self.r1 = w1
+        self.n1 = q1
+        self.r2 = w2
+        self.r3 = w3
+        self.n3 = q3
+
+    def update(self, ps, chis, pe, chie, R):
+         L, cs, lams, ce, lame, w1, q1, w2, w3, q3 \
+            = self.compute_parameters(ps, chis, pe, chie, R)
+         self.p_s = ps
+         self.chi_s = chis
+         self.p_e = pe
+         self.chi_e = chie
+         self.radius = R
+         self.length = L
+         self.center_s = cs
+         self.dir_s = lams
+         self.center_e = ce
+         self.dir_e = lame
+         self.r1 = w1
+         self.n1 = q1
+         self.r2 = w2
+         self.r3 = w3
+         self.n3 = q3
+
 
     def compute_parameters(self, ps, chis, pe, chie, R):
         # calcular distancia entre circulos
@@ -42,13 +91,13 @@ class DubinsParameters:
             ell = np.linalg.norm(cle-crs)
             theta = self.angle2d(crs,cle)
             theta2 = theta - pi2 + np.arcsin(2*R/ell)
-            L2 = np.sqrt(ell^2-4*R^2) + R * self.mod(pi2*4 + self.mod(theta2) - self.mod(chis - pi2)) + R * self.mod(4*pi2 + self.mod(theta2 + np.pi)- self.mod(chie + pi2)) 
+            L2 = np.sqrt(ell**2-4*R**2) + R * self.mod(pi2*4 + self.mod(theta2) - self.mod(chis - pi2)) + R * self.mod(4*pi2 + self.mod(theta2 + np.pi)- self.mod(chie + pi2)) 
             
             # compute L3
             ell = np.linalg.norm(cre-cls)
             theta = self.angle2d(cls,cre)
             theta2 = np.arccos (2*R/ell)
-            L3 = np.sqrt(ell^2 - 4*R^2) + R*self.mod(4*pi2 + self.mod(chis + pi2) - self.mod(theta+theta2)) + R*self.mod(4*pi2 + self.mod(chie-pi2) - self.mod(theta+theta2-np.pi))        
+            L3 = np.sqrt(ell**2 - 4*R**2) + R*self.mod(4*pi2 + self.mod(chis + pi2) - self.mod(theta+theta2)) + R*self.mod(4*pi2 + self.mod(chie-pi2) - self.mod(theta+theta2-np.pi))        
             
             # compute L4
             ell = np.linalg.norm(cls-cle)
@@ -118,4 +167,4 @@ class DubinsParameters:
         return x
 
     def angle2d(self, x, y):
-        return np.arctan2(x[1]-y[1], x[0]-y[0])
+        return np.arctan2(x.item(1)-y.item(1), x.item(0)-y.item(0))

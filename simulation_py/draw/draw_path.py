@@ -9,7 +9,7 @@ import numpy as np
 import pyqtgraph.opengl as gl
 
 
-class DrawPath:
+class drawPath:
     def __init__(self, path, color, window):
         self.color = color
         if path.type == 'line':

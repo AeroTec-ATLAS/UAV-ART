@@ -4,7 +4,7 @@ import math
 sys.path.append('..')
 from message_types.msg_path import msgPath
 
-class PathManager:
+class pathManager:
     def __init__(self):
         # message sent to path follower
         self.i = 0

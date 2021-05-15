@@ -16,14 +16,15 @@ from dynamics.wind_simulation import windSimulation
 from control.autopilot import autopilot
 from dynamics.mav_dynamics import mavDynamics
 # from chap8.observer import observer
-from path_following.path_manager import PathManager
+from path_following.path_manager import pathManager
 from path_following.path_follower import path_follower
 from path_following.path_viewer import path_viewer
 from tools.ground_connection import groundProxy
-from path_following.waypoint_viewer import WaypointViewer
+from path_following.waypoint_viewer import waypointViewer
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
+waypoint_view = waypointViewer()  # initialize the viewer
 path_view = path_viewer()  # initialize the viewer
 data_view = dataViewer()  # initialize view of data plots
 ground=groundProxy()
@@ -40,7 +41,7 @@ mav = mavDynamics(SIM.ts_simulation)
 ctrl = autopilot(SIM.ts_simulation)
 #obsv = observer(SIM.ts_simulation)
 path_follow = path_follower()
-path_manager = PathManager()
+path_manager = pathManager()
 # path definition
 from message_types.msg_path import msgPath
 path = msgPath()
@@ -93,6 +94,7 @@ while 1: # sim_time < SIM.end_time:
     mav.update(delta, current_wind)  # propagate the MAV dynamics
 
     # -------update viewer-------------
+    waypoint_view.update(mav.true_state, path, waypoints)  # plot path and MAV
     path_view.update(path, mav.true_state)  # plot path and MAV
     data_view.update(mav.true_state,  # true states
                      estimated_state,  # estimated states

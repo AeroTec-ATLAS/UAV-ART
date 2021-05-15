@@ -11,36 +11,36 @@ import numpy as np
 import parameters.simulation_parameters as SIM
 import parameters.planner_parameters as PLAN
 
-from chap3.data_viewer import DataViewer
-from chap4.wind_simulation import WindSimulation
-from chap6.autopilot import Autopilot
-from chap7.mav_dynamics import MavDynamics
-from chap8.observer import Observer
-from chap10.path_follower import PathFollower
-from chap11.path_manager import PathManager
-from chap11.waypoint_viewer import WaypointViewer
+from kinematics.data_viewer import dataViewer
+from dynamics.wind_simulation import windSimulation
+from control.autopilot import autopilot
+from dynamics.mav_dynamics import mavDynamics
+#from chap8.observer import Observer
+from path_following.path_follower import path_follower
+from path_following.path_manager import pathManager
+from path_following.waypoint_viewer import waypointViewer
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
-waypoint_view = WaypointViewer()  # initialize the viewer
-data_view = DataViewer()  # initialize view of data plots
+waypoint_view = waypointViewer()  # initialize the viewer
+data_view = dataViewer()  # initialize view of data plots
 if VIDEO is True:
-    from chap2.video_writer import VideoWriter
-    video = VideoWriter(video_name="chap11_video.avi",
+    from video.video_writer import videoWriter
+    video = videoWriter(video_name="chap11_video.avi",
                         bounding_box=(0, 0, 1000, 1000),
                         output_rate=SIM.ts_video)
 
 # initialize elements of the architecture
-wind = WindSimulation(SIM.ts_simulation)
-mav = MavDynamics(SIM.ts_simulation)
-autopilot = Autopilot(SIM.ts_simulation)
-observer = Observer(SIM.ts_simulation)
-path_follower = PathFollower()
-path_manager = PathManager()
+wind = windSimulation(SIM.ts_simulation)
+mav = mavDynamics(SIM.ts_simulation)
+autopilot = autopilot(SIM.ts_simulation)
+#observer = observer(SIM.ts_simulation)
+path_follower = path_follower()
+path_manager = pathManager()
 
 # waypoint definition
-from message_types.msg_waypoints import MsgWaypoints
-waypoints = MsgWaypoints()
+from message_types.msg_waypoints import msgWaypoints
+waypoints = msgWaypoints()
 waypoints.type = 'straight_line'
 #waypoints.type = 'fillet'
 #waypoints.type = 'dubins'
@@ -59,8 +59,8 @@ plot_timer = 0
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
     # -------observer-------------
-    measurements = mav.sensors()  # get sensor measurements
-    estimated_state = observer.update(measurements)  # estimate states from measurements
+    #measurements = mav.sensors()  # get sensor measurements
+    estimated_state = mav.true_state #observer.update(measurements)  # estimate states from measurements
 
     # -------path manager-------------
     path = path_manager.update(waypoints, PLAN.R_min, estimated_state)
@@ -69,7 +69,7 @@ while sim_time < SIM.end_time:
     autopilot_commands = path_follower.update(path, estimated_state)
 
     # -------autopilot-------------
-    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state)
+    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state, previous_t, sim_time)
 
     # -------physical system-------------
     current_wind = wind.update()  # get the new wind vector

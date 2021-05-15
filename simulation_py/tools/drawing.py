@@ -10,7 +10,7 @@ mavsim_python: drawing tools
 import numpy as np
 import pyqtgraph.opengl as gl
 from tools.rotations import Euler2Rotation
-# from chap11.dubins_parameters import dubinsParameters # Not needed for chapters 2/3/4
+from path_following.dubins_parameters import dubinsParameters # Not needed for chapters 2/3/4
 
 
 class drawMav():
