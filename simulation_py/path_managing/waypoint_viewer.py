@@ -9,12 +9,12 @@ sys.path.append("..")
 import numpy as np
 import pyqtgraph as pg
 import pyqtgraph.opengl as gl
-from chap2.draw_mav import DrawMav
-from chap10.draw_path import DrawPath
-from chap11.draw_waypoints import DrawWaypoints
+from tools.drawing import drawMav
+from tools.drawing import drawPath
+from tools.drawing import drawWaypoints
 
 
-class WaypointViewer:
+class waypointViewer:
     def __init__(self):
         self.scale = 4000
         # initialize Qt gui application and window
@@ -39,9 +39,9 @@ class WaypointViewer:
         red = np.array([[1., 0., 0., 1]])
         # initialize the drawing the first time update() is called
         if not self.plot_initialized:
-            self.mav_plot = DrawMav(state, self.window)
-            self.waypoint_plot = DrawWaypoints(waypoints, path.orbit_radius, blue, self.window)
-            self.path_plot = DrawPath(path, red, self.window)
+            self.mav_plot = drawMav(state, self.window)
+            self.waypoint_plot = drawWaypoints(waypoints, path.orbit_radius, blue, self.window)
+            self.path_plot = drawPath(path, red, self.window)
             self.plot_initialized = True
         # else update drawing on all other calls to update()
         else:
@@ -49,7 +49,7 @@ class WaypointViewer:
             if waypoints.flag_waypoints_changed:
                 self.waypoint_plot.update(waypoints)
                 waypoints.flag_waypoints_changed = False
-            if not path.plot_updated:  # only plot path when it changes
+            if path.flag_path_changed:  # only plot path when it changes
                 self.path_plot.update(path, red)
                 path.plot_updated = True
         # redraw

@@ -17,9 +17,9 @@ from dynamics.wind_simulation import windSimulation
 from control.autopilot import autopilot
 from dynamics.mav_dynamics import mavDynamics
 #from chap8.observer import Observer
-from path_following.path_follower import pathFollower
-from path_manager.path_manager import pathManager
-from path_manager.waypoint_viewer import waypointViewer
+from path_following.path_follower import path_follower
+from path_managing.path_manager import pathManager
+from path_managing.waypoint_viewer import waypointViewer
 
 # initialize the visualization
 VIDEO = False  # True==write video, False==don't write video
@@ -37,14 +37,14 @@ mav = mavDynamics(SIM.ts_simulation)
 autopilot = autopilot(SIM.ts_simulation)
 initial_state = copy.deepcopy(mav.true_state)
 #observer = observer(SIM.ts_simulation, initial_state)
-path_follower = pathFollower()
+path_follower = path_follower()
 path_manager = pathManager()
 
 # waypoint definition
-from message_types.msg_waypoints import MsgWaypoints
-waypoints = MsgWaypoints()
-waypoints.type = 'straight_line'
-#waypoints.type = 'fillet'
+from message_types.msg_waypoints import msgWaypoints
+waypoints = msgWaypoints()
+#waypoints.type = 'straight_line'
+waypoints.type = 'fillet'
 #waypoints.type = 'dubins'
 Va = PLAN.Va0
 waypoints.add(np.array([[0, 0, -100]]).T, Va, np.radians(0), np.inf, 0, 0)
@@ -56,13 +56,13 @@ waypoints.add(np.array([[1000, 1000, -100]]).T, Va, np.radians(-135), np.inf, 0,
 # initialize the simulation time
 sim_time = SIM.start_time
 plot_timer = 0
-
+previous_t = 0
 # main simulation loop
 print("Press Command-Q to exit...")
 while sim_time < SIM.end_time:
     # -------observer-------------
     measurements = mav.sensors()  # get sensor measurements
-    estimated_state = observer.update(measurements)  # estimate states from measurements
+    estimated_state = mav.true_state #observer.update(measurements)  # estimate states from measurements
 
     # -------path manager-------------
     path = path_manager.update(waypoints, PLAN.R_min, estimated_state)
@@ -71,7 +71,8 @@ while sim_time < SIM.end_time:
     autopilot_commands = path_follower.update(path, estimated_state)
 
     # -------autopilot-------------
-    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state)
+    delta, commanded_state = autopilot.update(autopilot_commands, estimated_state, previous_t, sim_time)
+    previous_t = delta.throttle
 
     # -------physical system-------------
     current_wind = wind.update()  # get the new wind vector
