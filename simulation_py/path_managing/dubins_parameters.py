@@ -73,32 +73,31 @@ def compute_parameters(ps, chis, pe, chie, R):
         if ell < 3 * R:
             print('Error in Dubins Parameters: The distance between nodes must be larger than 2R.')
         else:
-            pi2 = np.pi/2
             # compute start and end circles
-            crs = ps + R * rotz(pi2) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
-            cls = ps + R * rotz(-pi2) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
-            cre = pe + R * rotz(pi2) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
-            cle = pe + R * rotz(-pi2) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
+            crs = ps + R * rotz(np.pi/2.) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
+            cls = ps + R * rotz(-np.pi/2.) @ np.array([[np.cos(chis), np.sin(chis), 0 ]]).T
+            cre = pe + R * rotz(np.pi/2.) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
+            cle = pe + R * rotz(-np.pi/2.) @ np.array([[np.cos(chie), np.sin(chie), 0 ]]).T
             # compute L1,
             v = angle2d(crs,cre)
-            L1 = np.linalg.norm(crs-cre) + R*mod(2*np.pi + mod(v - pi2) - mod(chis - pi2)) + R*mod(2*np.pi + mod(chie - pi2) - mod(v - pi2))
+            L1 = np.linalg.norm(crs-cre) + R*mod(2*np.pi + mod(v - np.pi/2.) - mod(chis - np.pi/2.)) + R*mod(2*np.pi + mod(chie - np.pi/2.) - mod(v - np.pi/2.))
 
             # compute L2
             ell = np.linalg.norm(cle-crs)
             v = angle2d(crs,cle)
-            v2 = v - pi2 + np.arcsin(2*R/ell)
-            L2 = np.sqrt(ell**2-4*R**2) + R * mod(2*np.pi + mod(v2) - mod(chis - pi2)) + R * mod(2*np.pi + mod(v2 + np.pi)- mod(chie + pi2)) 
+            v2 = v - np.pi/2. + np.arcsin(2*R/ell)
+            L2 = np.sqrt(ell**2-4*R**2) + R * mod(2*np.pi + mod(v2) - mod(chis - np.pi/2.)) + R * mod(2*np.pi + mod(v2 + np.pi)- mod(chie + np.pi/2.)) 
 
             # compute L3
             ell = np.linalg.norm(cre-cls)
             v = angle2d(cls,cre)
             v2 = np.arccos (2*R/ell)
-            L3 = np.sqrt(ell**2 - 4*R**2) + R * mod(2*np.pi + mod(chis + pi2) - mod(v+v2)) + R*mod(2*np.pi + mod(chie-pi2) - mod(v+v2-np.pi))        
+            L3 = np.sqrt(ell**2 - 4*R**2) + R * mod(2*np.pi + mod(chis + np.pi/2.) - mod(v+v2)) + R*mod(2*np.pi + mod(chie-np.pi/2.) - mod(v+v2-np.pi))        
 
             # compute L4
             ell = np.linalg.norm(cls-cle)
             v = angle2d(cls,cle)
-            L4 = ell + R * mod(2*np.pi + mod(chis + pi2) - mod(v + pi2)) + R*mod(2*np.pi + mod(v + pi2) - mod(chie + pi2))
+            L4 = ell + R * mod(2*np.pi + mod(chis + np.pi/2.) - mod(v + np.pi/2.)) + R*mod(2*np.pi + mod(v + np.pi/2.) - mod(chie + np.pi/2.))
 
             # L is the minimum distance
             L = np.min([L1, L2, L3, L4])
@@ -109,8 +108,8 @@ def compute_parameters(ps, chis, pe, chie, R):
                 ce = cre
                 lame = 1
                 q1 = (ce-cs)/np.linalg.norm(ce-cs)
-                z1 = cs + R*rotz(-pi2) @ q1
-                z2 = ce + R*rotz(-pi2) @ q1
+                z1 = cs + R*rotz(-np.pi/2.) @ q1
+                z2 = ce + R*rotz(-np.pi/2.) @ q1
             elif argmin == 1:
                 cs = crs
                 lams = 1    
@@ -118,10 +117,10 @@ def compute_parameters(ps, chis, pe, chie, R):
                 lame = -1
 
                 ell = np.linalg.norm(ce-cs)
-                v  = angle2d(ce,cs)
-                v2 = v - pi2 + np.arcsin(2*R/ell)
+                v  = angle2d(cs,ce)
+                v2 = v - np.pi/2. + np.arcsin(2*R/ell)
 
-                q1 = rotz(v2+pi2) @ e1
+                q1 = rotz(v2+np.pi/2.) @ e1
                 z1 = cs + R*rotz(v2) @ e1
                 z2 = ce + R*rotz(v2+np.pi) @ e1
             elif argmin == 2:
@@ -131,10 +130,10 @@ def compute_parameters(ps, chis, pe, chie, R):
                 lame = 1
 
                 ell = np.linalg.norm(ce-cs)
-                v = angle2d(ce,cs)
+                v = angle2d(cs,ce)
                 v2 = np.arccos(2*R/ell)
 
-                q1 = rotz(v+v2-pi2) @ e1
+                q1 = rotz(v+v2-np.pi/2.) @ e1
                 z1 = cs + R*rotz(v+v2) @ e1
                 z2 = ce + R*rotz(v+v2-np.pi) @ e1
             elif argmin == 3:
@@ -143,8 +142,8 @@ def compute_parameters(ps, chis, pe, chie, R):
                 ce = cle
                 lame = -1
                 q1 = (ce-cs)*np.linalg.norm(ce-cs)
-                z1 = cs + R*rotz(pi2) @ q1
-                z2 = ce + R*rotz(pi2) @ q1
+                z1 = cs + R*rotz(np.pi/2.) @ q1
+                z2 = ce + R*rotz(np.pi/2.) @ q1
             z3 = pe
             q3 = rotz(chie) @ e1
 

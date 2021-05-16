@@ -178,6 +178,7 @@ class pathManager:
             self.halfspace_n = -self.dubins_path.n1
             if self.inHalfSpace(mav_pos):
                 self.manager_state = 2
+                self.path.flag_path_changed = True
 
         elif self.manager_state == 2:          
             self.halfspace_r = self.dubins_path.r1
@@ -207,6 +208,7 @@ class pathManager:
             self.halfspace_n = -self.dubins_path.n3
             if self.inHalfSpace(mav_pos):
                 self.manager_state = 5
+                self.path.flag_path_changed = True
 
         elif self.manager_state == 5:
             self.halfspace_r = self.dubins_path.r3
@@ -215,6 +217,8 @@ class pathManager:
                 self.manager_state = 1
                 self.path.flag_path_changed = True
                 self.increment_pointers()
+                self.dubins_path.update(waypoints.ned[:,self.ptr_previous].reshape(3,1), waypoints.course.item(self.ptr_previous), waypoints.ned[:,self.ptr_current].reshape(3,1), waypoints.course.item(self.ptr_current), radius)
+                
         self.path.airspeed = waypoints.airspeed[self.ptr_current]
 
 
