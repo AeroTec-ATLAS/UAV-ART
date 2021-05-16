@@ -24,7 +24,7 @@ class autopilot:
 
         # instantiate longitudinal controllers
         self.elevator_from_pitch = pidControl(kp=AP.pitch_kp, ki=0, kd=AP.pitch_kd, Ts=ts_control, sigma=0.05, low_limit=-AP.delta_e_max, high_limit=AP.delta_e_max)
-        self.throttle_from_airspeed = pidControl(kp=AP.airspeed_throttle_kp, ki=AP.airspeed_throttle_ki, kd=0, Ts=ts_control, sigma=0.05, low_limit=0, high_limit=1)
+        self.throttle_from_airspeed = pidControl(kp=AP.airspeed_throttle_kp, ki=AP.airspeed_throttle_ki, kd=0, Ts=ts_control, sigma=0.05, low_limit=0, high_limit=AP.throttle_max)
         self.pitch_from_airspeed = pidControl(kp=AP.airspeed_pitch_kp, ki=AP.airspeed_pitch_ki, kd=0, Ts=ts_control, sigma=0.05, low_limit=-np.pi / 6, high_limit=np.pi / 6)
         self.pitch_from_altitude = pidControl(kp=AP.altitude_kp, ki=AP.altitude_ki, kd=0, Ts=ts_control, sigma=0.05, low_limit=-np.pi / 6, high_limit=np.pi / 6)
 
@@ -79,7 +79,7 @@ class autopilot:
             if AP.altitude_state != 1:
                 reset_flag = 1
             AP.altitude_state = 1
-            delta_t = 1
+            delta_t = AP.throttle_max
             theta_c = AP.theta_c_climb * (1 - math.exp(-ts_control))
 
         # climb_zone
@@ -87,7 +87,7 @@ class autopilot:
             if AP.altitude_state != 2:
                 reset_flag = 1
             AP.altitude_state = 2
-            delta_t = 1
+            delta_t = AP.throttle_max
             theta_c = self.pitch_from_airspeed.update(Va_c, Va, reset_flag)
 
         # descend_zone
