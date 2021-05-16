@@ -92,7 +92,7 @@ def compute_parameters(ps, chis, pe, chie, R):
             ell = np.linalg.norm(cre-cls)
             v = angle2d(cls,cre)
             v2 = np.arccos (2*R/ell)
-            L3 = np.sqrt(ell**2 - 4*R**2) + R * mod(2*np.pi + mod(chis + np.pi/2.) - mod(v+v2)) + R*mod(2*np.pi + mod(chie-np.pi/2.) - mod(v+v2-np.pi))        
+            L3 = np.sqrt(ell**2 - 4*R**2) + R * mod(2*np.pi + mod(chis + np.pi/2.) - mod(v+v2)) + R*mod(2*np.pi + mod(chie-np.pi/2.) - mod(v+v2-np.pi)) 
 
             # compute L4
             ell = np.linalg.norm(cls-cle)
@@ -141,12 +141,11 @@ def compute_parameters(ps, chis, pe, chie, R):
                 lams = -1
                 ce = cle
                 lame = -1
-                q1 = (ce-cs)*np.linalg.norm(ce-cs)
+                q1 = (ce-cs)/np.linalg.norm(ce-cs)
                 z1 = cs + R*rotz(np.pi/2.) @ q1
                 z2 = ce + R*rotz(np.pi/2.) @ q1
             z3 = pe
             q3 = rotz(chie) @ e1
-
             return L, cs, lams, ce, lame, z1, q1, z2, z3, q3
 
 
@@ -164,5 +163,4 @@ def mod(x):
     return x
 
 def angle2d(x, y):
-        return np.pi/2 - np.arctan2(y.item(1)-x.item(1), y.item(0)-x.item(0))
-
+        return np.pi/2 - np.arctan2(y.item(0)-x.item(0), y.item(1)-x.item(1))
