@@ -31,15 +31,14 @@ class pathManager:
         if self.manager_requests_waypoints is True \
                 and waypoints.flag_waypoints_changed is True:
             self.manager_requests_waypoints = False
-        if self.ptr_next <= self.num_waypoints - 1:
-            if waypoints.type == 'straight_line':
-                self.line_manager(waypoints, state)
-            elif waypoints.type == 'fillet':
-                self.fillet_manager(waypoints, radius, state)
-            elif waypoints.type == 'dubins':
-                self.dubins_manager(waypoints, radius, state)
-            else:
-                print('Error in Path Manager: Undefined waypoint type.')
+        if waypoints.type == 'straight_line':
+            self.line_manager(waypoints, state)
+        elif waypoints.type == 'fillet':
+            self.fillet_manager(waypoints, radius, state)
+        elif waypoints.type == 'dubins':
+            self.dubins_manager(waypoints, radius, state)
+        else:
+            print('Error in Path Manager: Undefined waypoint type.')
         return self.path
 
     def initialize_pointers(self):
@@ -75,7 +74,7 @@ class pathManager:
         ni = (qi_prev - qi) / np.linalg.norm(qi_prev - qi)
         self.halfspace_n = ni
         # if the waypoints have changed, update the waypoint pointer
-        if self.inHalfSpace(mav_pos):
+        if self.inHalfSpace(mav_pos) and self.ptr_current < self.num_waypoints - 2:
             self.increment_pointers()
         # state machine for line path
         self.path.type = 'line'
@@ -124,7 +123,8 @@ class pathManager:
             self.path.orbit_radius = radius
             self.path.signToDirection(np.sign((qi_prev.item(0)*qi.item(1))-(qi_prev.item(1)*qi.item(0))))
             if self.inHalfSpace(mav_pos):
-                self.increment_pointers()
+                if self.ptr_current < self.num_waypoints - 2:
+                    self.increment_pointers()
                 self.manager_state = 1
                 self.path.flag_path_changed = True
                 if self.ptr_next == self.num_waypoints: # if reaching last waypoint, generates the last path
@@ -216,9 +216,9 @@ class pathManager:
             if self.inHalfSpace(mav_pos):
                 self.manager_state = 1
                 self.path.flag_path_changed = True
-                self.increment_pointers()
+                if self.ptr_current < self.num_waypoints - 2:
+                    self.increment_pointers()
                 self.dubins_path.update(waypoints.ned[:,self.ptr_previous].reshape(3,1), waypoints.course.item(self.ptr_previous), waypoints.ned[:,self.ptr_current].reshape(3,1), waypoints.course.item(self.ptr_current), radius)
-                
         self.path.airspeed = waypoints.airspeed[self.ptr_current]
 
 
