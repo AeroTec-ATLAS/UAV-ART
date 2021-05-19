@@ -15,7 +15,7 @@ Va0 = MAV.u0
 phi_max = np.radians(45)
 
 # minimum turn radius
-R_min = 150
+R_min = 250
 
 # create random city map
 city_width      = 2000  # the city is of size (width)x(width)

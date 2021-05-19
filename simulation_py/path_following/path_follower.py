@@ -43,10 +43,10 @@ class path_follower:
             Lambda = 1
         elif path.orbit_direction == 'CCW':
             Lambda = -1
-        p = np.array([[state.pn, state.pe, c.item(2)]]).T
+        p = np.array([[state.pn, state.pe, -state.h]]).T
         d = np.linalg.norm(p - c)
         phi = atan2(p.item(1)-c.item(1), p.item(0)-c.item(0))
-        phi = self._wrap(phi, state.chi)
+        phi = self._wrap(phi, 0)
         self.autopilot_commands.airspeed_command = path.airspeed
         self.autopilot_commands.course_command = phi + Lambda*(np.pi/2+atan(self.k_orbit*(d-rho)/rho))
         self.autopilot_commands.altitude_command = -c.item(2)
