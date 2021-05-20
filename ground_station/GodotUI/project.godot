@@ -26,6 +26,11 @@ boot_splash/image="res://images/UAV.png"
 boot_splash/bg_color=Color( 0.988235, 0.988235, 0.988235, 0 )
 config/icon="res://images/iconUAV.png"
 
+[debug]
+
+settings/fps/force_fps=60
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1440

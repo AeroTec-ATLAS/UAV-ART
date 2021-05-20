@@ -10,7 +10,7 @@ mavsim_python: drawing tools
 import numpy as np
 import pyqtgraph.opengl as gl
 from tools.rotations import Euler2Rotation
-# from chap11.dubins_parameters import dubinsParameters # Not needed for chapters 2/3/4
+from path_managing.dubins_parameters import dubinsParameters # Not needed for chapters 2/3/4
 
 
 class drawMav():
@@ -199,13 +199,14 @@ class drawPath():
                                                   mode='line_strip')
         window.addItem(self.path_plot_object)
 
-    def update(self, path):
+    def update(self, path, color):
         if path.type == 'line':
             scale = 1000
             points = self.straight_line_points(path, scale)
         elif path.type == 'orbit':
             points = self.orbit_points(path)
-        self.path_plot_object.setData(pos=points)
+        path_color = np.tile(color, (points.shape[0], 1))
+        self.path_plot_object.setData(pos=points, color=path_color)
 
     def straight_line_points(self, path, scale):
         points = np.array([[path.line_origin.item(0),

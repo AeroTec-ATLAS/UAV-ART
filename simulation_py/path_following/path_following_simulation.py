@@ -41,8 +41,8 @@ path_follow = path_follower()
 # path definition
 from message_types.msg_path import msgPath
 path = msgPath()
-# path.type = 'line'
-path.type = 'orbit'
+path.type = 'line'
+#path.type = 'orbit'
 if path.type == 'line':
     path.line_origin = np.array([[0.0, 0.0, -100.0]]).T
     path.line_direction = np.array([[0.5, 1.0, -0.05]]).T
@@ -56,7 +56,7 @@ else:  # path.type == 'orbit'
 
 # initialize the simulation time
 sim_time = SIM.start_time
-previous_t = 0
+
 # main simulation loop
 while sim_time < SIM.end_time:
     # -------observer-------------
@@ -68,8 +68,8 @@ while sim_time < SIM.end_time:
     # autopilot_commands = path_follow.update(path, mav.true_state)  # for debugging
 
     # -------controller-------------
-    delta, commanded_state = ctrl.update(autopilot_commands, estimated_state, previous_t, sim_time)
-    previous_t = delta.throttle
+    delta, commanded_state = ctrl.update(autopilot_commands, estimated_state, sim_time)
+
     # -------physical system-------------
     current_wind = wind.update()  # get the new wind vector
     mav.update(delta, current_wind)  # propagate the MAV dynamics
@@ -79,6 +79,7 @@ while sim_time < SIM.end_time:
     data_view.update(mav.true_state,  # true states
                      estimated_state,  # estimated states
                      commanded_state,  # commanded states
+                     delta,
                      SIM.ts_simulation)
     sensor_view.update(mav.sensors(),  # sensor values
                        SIM.ts_simulation)

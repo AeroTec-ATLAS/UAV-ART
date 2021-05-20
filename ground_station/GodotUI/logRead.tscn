@@ -565,6 +565,7 @@ __meta__ = {
 }
 
 [node name="PopupMenu" type="Panel" parent="GUI"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -244.0
@@ -676,6 +677,7 @@ cast_shadow = 0
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.0741477, 29.2776 )
 mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
+
 [connection signal="pressed" from="GUI/playButton" to="GUI" method="_on_playButton_pressed"]
 [connection signal="value_changed" from="GUI/Panel/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="GUI/Panel/spslider" to="." method="_on_spslider_value_changed"]

@@ -6,14 +6,16 @@ part of mavsimPy
     - Update history:
         12/17/2018 - RWB
         1/14/2019 - RWB
+        2/27/2020 - RWB
 """
 from state_plotter.Plotter import Plotter
 from state_plotter.plotter_args import *
 
+
 class dataViewer:
     def __init__(self):
         time_window_length=100
-        self.plotter = Plotter(plotting_frequency=100, # refresh plot every 100 time steps
+        self.plotter = Plotter(plotting_frequency=100, # refresh plot every 10 time steps
                                time_window=time_window_length)  # plot last time_window seconds of data
         # set up the plot window
         # define first row
@@ -85,10 +87,29 @@ class dataViewer:
                                  rad2deg=True,
                                  time_window=time_window_length)
         fourth_row = [p_plots, q_plots, r_plots, gyro_plots]
+        # define fifth row
+        delta_e_plot = PlotboxArgs(plots=['delta_e'],
+                                   labels={'left': 'delta_e(deg)', 'bottom': 'Time (s)'},
+                                   rad2deg=True,
+                                   time_window=time_window_length)
+        delta_a_plot = PlotboxArgs(plots=['delta_a'],
+                                   labels={'left': 'delta_a(deg)', 'bottom': 'Time (s)'},
+                                   rad2deg=True,
+                                   time_window=time_window_length)
+        delta_r_plot = PlotboxArgs(plots=['delta_r'],
+                                   labels={'left': 'delta_r(deg)', 'bottom': 'Time (s)'},
+                                   rad2deg=True,
+                                   time_window=time_window_length)
+        delta_t_plot = PlotboxArgs(plots=['delta_t'],
+                                   labels={'left': 'delta_t(deg)', 'bottom': 'Time (s)'},
+                                   rad2deg=False,
+                                   time_window=time_window_length)
+        fifth_row = [delta_e_plot, delta_a_plot, delta_r_plot, delta_t_plot]
         plots = [first_row,
                  second_row,
                  third_row,
-                 fourth_row
+                 fourth_row,
+                 fifth_row
                  ]
         # Add plots to the window
         self.plotter.add_plotboxes(plots)
@@ -99,10 +120,11 @@ class dataViewer:
                                                              'phi_e', 'theta_e', 'chi_e', 'p_e', 'q_e', 'r_e',
                                                              'Vg_e', 'wn_e', 'we_e', 'psi_e', 'bx_e', 'by_e', 'bz_e'])
         self.plotter.define_input_vector('commands', ['h_c', 'Va_c', 'phi_c', 'theta_c', 'chi_c'])
+        self.plotter.define_input_vector('delta', ['delta_e', 'delta_a', 'delta_r', 'delta_t'])
         # plot timer
         self.time = 0.
 
-    def update(self, true_state, estimated_state, commanded_state, ts):
+    def update(self, true_state, estimated_state, commanded_state, delta, ts):
         commands = [commanded_state.h, # h_c
                     commanded_state.Va, # Va_c
                     commanded_state.phi, # phi_c
@@ -122,15 +144,18 @@ class dataViewer:
                                 estimated_state.p, estimated_state.q, estimated_state.r,
                                 estimated_state.Vg, estimated_state.wn, estimated_state.we, estimated_state.psi,
                                 estimated_state.bx, estimated_state.by, estimated_state.bz]
+        delta_list = [delta.elevator, delta.aileron, delta.rudder, delta.throttle]
         self.plotter.add_vector_measurement('true_state', true_state_list, self.time)
         self.plotter.add_vector_measurement('estimated_state', estimated_state_list, self.time)
         self.plotter.add_vector_measurement('commands', commands, self.time)
+        self.plotter.add_vector_measurement('delta', delta_list, self.time)
 
         # Update and display the plot
         self.plotter.update_plots()
 
         # increment time
         self.time += ts
+
 
 
 

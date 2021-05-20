@@ -42,7 +42,7 @@ class msgWaypoints:
         self.connect_to_goal = np.array([])
 
     def add(self, ned, airspeed, course, cost, parent, connect_to_goal):
-        self.num_waypoints = self.num_waypoints + 1
+        self.num_waypoints += 1
         self.ned = np.append(self.ned, ned, axis=1)
         self.airspeed = np.append(self.airspeed, airspeed)
         self.course = np.append(self.course, course)

@@ -31,7 +31,7 @@ class pidControl:
 			self.a1 = (2.0 * sigma - Ts) / (2.0 * sigma + Ts)
 			self.a2 = 2.0 / (2.0 * sigma + Ts)
 
-	def update(self, prev_u, y_ref, y, reset_flag=False):
+	def update(self, y_ref, y, reset_flag=False):
 		if reset_flag is True:
 			self.integrator = 0.0
 			self.error_delay_1 = 0.0
@@ -47,7 +47,7 @@ class pidControl:
 		error_dot = self.a1 * self.error_dot_delay_1 + self.a2 * (error - self.error_delay_1)
                          
         # PID control
-		u = prev_u + self.kp * error + self.ki * self.integrator + self.kd * error_dot
+		u = self.kp * error + self.ki * self.integrator + self.kd * error_dot
             
             
         # saturate PID control at limit

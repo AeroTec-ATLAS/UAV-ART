@@ -6,7 +6,7 @@ import sys
 sys.path.append('..')
 
 import numpy as np
-#import dynamics_linear.model_coef as TF
+import dynamics_linear.model_coef as TF
 import parameters.aerosonde_parameters as MAV
 
 gravity = MAV.gravity  # gravity constant
@@ -67,7 +67,8 @@ sideslip_kp: 3
 sideslip_ki: 2.5378
 
 #----------throttle-------------
-throttle_max = 0.6031
+throttle_trim = 0.314
+throttle_max = 1
 
 #--------surface_limits------------
 delta_a_max = 0.3491

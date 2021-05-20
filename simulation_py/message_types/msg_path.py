@@ -28,3 +28,9 @@ class msgPath:
         self.orbit_direction = 'CW'
         # flag that indicates that a path has changed.  Used to signal a redraw in viewer
         self.flag_path_changed = True
+
+    def signToDirection(self, sign):
+        if sign == np.sign(1):
+            self.orbit_direction='CW'
+        elif sign == np.sign(-1):
+             self.orbit_direction = 'CCW'
