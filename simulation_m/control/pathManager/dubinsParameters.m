@@ -52,14 +52,18 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
     cle = pe + R*rotz(-90) * [cos(chi_e), sin(chi_e), 0]';
     
     % compute L1
-    v = atan2(crs(2)-cre(2),crs(1)-cre(1));
+    %v = atan2(crs(2)-cre(2),crs(1)-cre(1));
+    %v = atan((crs(2)-cre(2))/(crs(1)-cre(1)));
+    v = -(atan2(cre(1)-crs(1),cre(2)-crs(2)) - pi/2);
     L1 = norm(crs-cre) + R * mod(2*pi + mod(v-pi/2,2*pi) ...
         - mod(chi_s-pi/2,2*pi),2*pi) + R * mod(2*pi + mod(chi_e-pi/2,2*pi) ...
         - mod(v-pi/2,2*pi),2*pi);
     
     % compute L2
     l = norm(cle-crs);
-    v = atan2(crs(2)-cle(2),crs(1)-cle(1));
+    %v = atan2(crs(2)-cle(2),crs(1)-cle(1));
+    %v = atan((crs(2)-cle(2))/(crs(1)-cle(1)));
+    v = -(atan2(cle(1)-crs(1),cle(2)-crs(2)) - pi/2);
     v2 = v - pi/2 + asin(2*R/l); 
     L2 = sqrt(l^2-4*R^2) + R * mod(2*pi + mod(v2,2*pi) ...
         - mod(chi_s-pi/2,2*pi),2*pi) + R * mod(2*pi + mod(v2+pi,2*pi) ...
@@ -67,14 +71,18 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
     
     % compute L3
     l = norm(cre-cls);
-    v = atan2(cls(2)-cre(2),cls(1)-cre(1));
+    %v = atan2(cls(2)-cre(2),cls(1)-cre(1));
+    %v = atan((cls(2)-cre(2))/(cls(1)-cre(1)));
+    v = -(atan2(cre(1)-cls(1),cre(2)-cls(2)) - pi/2);
     v2 = acos(2*R/l); 
     L3 = sqrt(l^2-4*R^2) + R * mod(2*pi + mod(chi_s+pi/2,2*pi) ...
-        - mod(v+v2/2,2*pi),2*pi) + R * mod(2*pi + mod(chi_e-pi/2,2*pi) ...
+        - mod(v+v2,2*pi),2*pi) + R * mod(2*pi + mod(chi_e-pi/2,2*pi) ...
         - mod(v+v2-pi,2*pi),2*pi);
     
     % compute L4
-    v = atan2(cls(2)-cle(2),cls(1)-cle(1));
+    %v = atan2(cls(2)-cle(2),cls(1)-cle(1));
+    %v = atan((cls(2)-cle(2))/(cls(1)-cle(1)));
+    v = -(atan2(cle(1)-cls(1),cle(2)-cls(2)) - pi/2);
     L4 = norm(cls-cle) + R * mod(2*pi + mod(chi_s+pi/2,2*pi) ...
         - mod(v+pi/2,2*pi),2*pi) + R * mod(2*pi + mod(v+pi/2,2*pi) ...
         - mod(chi_e+pi/2,2*pi),2*pi);
@@ -97,7 +105,9 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             ce = cle;
             lambda_e = -1;
             l = norm(ce-cs);
-            v = atan2(ce(2)-cs(2),ce(1)-cs(1));
+            %v = atan2(ce(2)-cs(2),ce(1)-cs(1));
+            %v = atan((ce(2)-cs(2))/(ce(1)-cs(1)));
+            v = -(atan2(ce(1)-cs(1),ce(2)-cs(2)) - pi/2);
             v2 = v-pi/2+asin(2*R/l);
             q1 = rotz(rad2deg(v2+pi/2))*e1;
             z1 = cs+R*rotz(rad2deg(v2))*e1;
@@ -109,7 +119,9 @@ function dubinspath = dubinsParameters(start_node, end_node, R)
             ce = cre;
             lambda_e = 1;
             l = norm(ce-cs);
-            v = atan2(ce(2)-cs(2),ce(1)-cs(1));
+            %v = atan2(ce(2)-cs(2),ce(1)-cs(1));
+            %v = atan((ce(2)-cs(2))/(ce(1)-cs(1)));
+            v = -(atan2(ce(1)-cs(1),ce(2)-cs(2)) - pi/2);
             v2 = acos(2*R/l);
             q1 = rotz(rad2deg(v+v2-pi/2))*e1;
             z1 = cs+R*rotz(rad2deg(v+v2))*e1;

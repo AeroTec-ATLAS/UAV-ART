@@ -38,7 +38,7 @@ addpath('../autopilot', '../autopilot/util','../pathFollower')
 % You can open it by entering 'open ../autopilot/trim/params'
 
 % Simulation configurations
-settings.simTime = 75;
+settings.simTime = 300;
 % 0 if you do not want and 1 if you do want
 settings.wantToDrawAircraft = 1;
 settings.wantToCreateGraphics = 1; 

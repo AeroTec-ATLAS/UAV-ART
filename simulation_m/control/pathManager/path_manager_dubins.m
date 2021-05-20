@@ -32,19 +32,7 @@ function out = path_manager_dubins(in,PLAN,start_of_simulation)
   pn        = in(1+NN);
   pe        = in(2+NN);
   h         = in(3+NN);
-  % Va      = in(4+NN);
-  % alpha   = in(5+NN);
-  % beta    = in(6+NN);
-  % phi     = in(7+NN);
-  % theta   = in(8+NN);
-  chi     = in(9+NN);
-  % p       = in(10+NN);
-  % q       = in(11+NN);
-  % r       = in(12+NN);
-  % Vg      = in(13+NN);
-  % wn      = in(14+NN);
-  % we      = in(15+NN);
-  % psi     = in(16+NN);
+
   state     =  in(1+NN:16+NN);
   NN = NN + 16;
   t         = in(1+NN);
@@ -54,7 +42,7 @@ function out = path_manager_dubins(in,PLAN,start_of_simulation)
 % Liga¡?o entre blocos
   persistent waypoints_old   % stored copy of old waypoints
   persistent ptr_a           % waypoint pointer
-  persistent ptr_b           % waypoint pointer
+  %persistent ptr_b           % waypoint pointer
   persistent state_transition % state of transition state machine
   persistent dubinspath
   persistent flag_need_new_waypoints % flag that request new waypoints from path planner
@@ -159,7 +147,7 @@ function out = path_manager_dubins(in,PLAN,start_of_simulation)
           flag   = 2;  % following orbit
           rho    = dubinspath.R;
           lambda = dubinspath.lambda_e;
-          c      = dubinspath.cs;
+          c      = dubinspath.ce; 
           r      = dubinspath.z1; %not used
           q      = dubinspath.q1; %not used
           Va_d   = waypoints(5,ptr_a); % desired airspeed along waypoint path
@@ -197,7 +185,7 @@ function out = path_manager_dubins(in,PLAN,start_of_simulation)
           c      = dubinspath.cs;
           r      = dubinspath.z1; %not used
           q      = dubinspath.q1; %not used
-          Va_d   = waypoints(5,ptr_a);
+          Va_d   = waypoints(5,ptr_a-1);
           flag_first_time_in_state = 0;
           
          
