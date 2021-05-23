@@ -107,7 +107,7 @@ class mavDynamics:
             self.true_state.r=self.sensors.gyro_z
             self.true_state.Vg=self.sensors.gps_Vg
             self.true_state.chi=self.sensors.gps_course
-            
+            delta.from_array(self._get_surfaces())
 
     def external_set_state(self, new_state):
         self._state = new_state
@@ -315,3 +315,7 @@ class mavDynamics:
         self.sensors.gps_h = vehicle.gps_raw_int.alt
         self.sensors.gps_Vg = vehicle.gps_raw_int.vel
         self.sensors.gps_course = vehicle.gps_raw_int.cog
+
+    def _get_surfaces(self):
+        vehicle = self.telemetry.vehicle
+        return np.array([[vehicle.rc_channels.elevator],[vehicle.rc_channels.aileron],[vehicle.rc_channels.rudder],[vehicle.rc_channels.throttle]]) 

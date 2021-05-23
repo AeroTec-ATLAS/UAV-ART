@@ -84,6 +84,30 @@ class GPSRawInt(object):
         """
         return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
 
+class RCChannels(object):
+   
+    def __init__(self, time_sec=None, port=None, chan1_scaled=None, chan2_scaled=None, chan3_scaled=None, chan4_scaled=None, chan5_scaled=None, chan6_scaled=None, chan7_scaled=None, chan8_scaled=None, rssi=None):
+        """
+        RCChannels object constructor.
+        """
+        self.time_sec = time_sec
+        self.rc_1 = chan1_scaled/100.
+        self.rc_2 = chan2_scaled/100.
+        self.rc_3 = chan3_scaled/100.
+        self.rc_4 = chan4_scaled/100.
+        self.rc_5 = chan5_scaled/100.
+        self.rc_6 = chan6_scaled/100.
+        self.rc_7 = chan7_scaled/100.
+        self.rc_8 = chan8_scaled/100.
+
+        
+    def __str__(self):
+        """
+        String representation used to print the RawIMU object. 
+        """
+        return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
+
+
 class MyVehicle(Vehicle):
     def __init__(self, *args):
         super(MyVehicle, self).__init__(*args)
@@ -91,6 +115,7 @@ class MyVehicle(Vehicle):
         # Create an Vehicle.raw_imu object with initial values set to None.
         self._highres_imu = HighResIMU()
         self._gps_raw_int = GPSRawInt()
+        self._rc_channels = RCChannels()
 
         # Create a message listener using the decorator.   
         @self.on_message('HIGHRES_IMU')
@@ -102,7 +127,7 @@ class MyVehicle(Vehicle):
             The listener writes the message to the (newly attached) ``vehicle._highres_imu`` object 
             and notifies observers.
             """
-            self._highres_imu.time_sec=message.time_usec/(10^6)
+            self._highres_imu.time_sec=message.time_usec/(10^6) # TODO: Consistency in units used
             self._highres_imu.xacc=message.xacc
             self._highres_imu.yacc=message.yacc
             self._highres_imu.zacc=message.zacc
@@ -130,6 +155,14 @@ class MyVehicle(Vehicle):
             self._gps_raw_int.vel=message.vel/100.0
             self._gps_raw_int.cog=message.cog/100.0
 
+        @self.on_message('RC_CHANNELS_SCALED')
+        def listener(self, name, message):
+            self._rc_channels.time_sec=message.time_usec/(10^6)
+            self._rc_channels.elevator=message.rc_1 # TODO: Attribute control surfaces
+            self._rc_channels.aileron=message.rc_2  # TODO: Calibrate according to max deflection
+            self._rc_channels.rudder=message.rc_3
+            self._rc_channels.throttle=message.rc_4
+
     @property
     def highres_imu(self):
         return self._highres_imu
@@ -137,3 +170,7 @@ class MyVehicle(Vehicle):
     @property
     def gps_raw_int(self):
         return self._gps_raw_int
+    
+    @property
+    def rc_channels(self):
+        return self._rc_channels
