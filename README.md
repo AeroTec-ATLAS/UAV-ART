@@ -15,7 +15,8 @@ It is worth pointing out that our controller was designed based on the assumptio
 On board our aircraft we have (for the time being) a Raspberry Pi 4 Model B+, a Pixhawk (with a GPS antenna and running the PX4 firmware) and all other eletronic equipment required to power the motor and servos. All sensor data is gathered in the Pixhawk, which then routes this data through the TELEM2 port using Mavlink to the Raspberry Pi. This data is then processed in the Raspberry Pi, where our flight controller is running, and the servo inputs are calculated here. These are then converted to PWM signals, transmitted through the GPIO to the fail-safe board, and from there these signals go to each individual servo, in order to actuate the control surfaces. 
 
 ### Structures
-You can find the 3D CAD of our model aircraft, made by the Structures team [here](https://autode.sk/3qP2CTa).
+The Structures team is currently in the process of designing the main aircraft, UAV-P2, so we are not able to present it yet.
+You can find the 3D CAD of our model test aircraft, used to test the flight controller [here](https://autode.sk/34axLGh).
 
 
 ### Acknowledgements
