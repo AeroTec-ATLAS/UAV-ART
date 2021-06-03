@@ -6,10 +6,12 @@ mavsim_python
 """
 import numpy as np
 import sys
+import time
 sys.path.append('..')
 from tools.log import log
 from dynamics.mav_dynamics import mavDynamics
 import parameters.simulation_parameters as SIM
+import parameters.sensor_parameters as SEN
 localIP='192.168.1.237'
 raspIP='192.168.1.38'
 # initialize elements of the architecture
@@ -18,16 +20,14 @@ from message_types.msg_state import msgState
 from message_types.msg_delta import msgDelta
 state = msgState()  # instantiate state message
 delta = msgDelta() 
-mav = mavDynamics(SIM.ts_simulation, localIP, raspIP)
-# initialize the simulation time
-sim_time = 0
-# main simulation loop
-import time
+mav = mavDynamics(SIM.ts_simulation,'' ,'')
+# initialize the time keeping
+flight_time = 0
+start_time = time.time()
+# main loop
 while True:
-	# Missing delta fetch from Pixhawk
-    logger.addEntry(mav.true_state, delta, mav.sensors, sim_time)
     # -------physical system-------------
-    time.sleep(0.01)
-    mav.update(delta, None, simulation=False)  # propagate the MAV dynamics
-    # -------increment time-------------
-    sim_time += 0.01
+    time.sleep(SEN.ts_sensors)
+    mav.update(mav.delta, None, simulation=False)  # propagate the MAV dynamics
+    flight_time = time.time() - start_time
+    logger.addEntry(mav.true_state, mav.delta, mav.sensors, flight_time)

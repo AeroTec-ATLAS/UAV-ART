@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 import numpy as np
-
+ts_sensors = 0.01
 # -------- Accelerometer --------
 accel_sigma = 0.0025*9.8  # standard deviation of accelerometers in m/s^2
 

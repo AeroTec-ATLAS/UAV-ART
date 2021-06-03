@@ -41,8 +41,9 @@ class HighResIMU(object):
         self.ymag = ymag
         self.zmag = zmag
         self.abs_pressure=abs_pressure
-        self.diff_pressure=diff_pressure      
-        
+        self.diff_pressure=diff_pressure 
+        self.p_alt = pressure_alt     
+        self.temperature = temperature        
     def __str__(self):
         """
         String representation used to print the RawIMU object. 
@@ -84,21 +85,40 @@ class GPSRawInt(object):
         """
         return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
 
+class Attitude(object):
+    
+    def __init__(self, time_boot_ms=None, roll=None, pitch=None, yaw=None, rollspeed=None, pitchspeed=None, yawspeed=None):
+        """
+        HighResIMU object constructor.
+        """
+        self.time_boot_ms = time_boot_ms
+        self.roll = roll
+        self.pitch = pitch
+        self.yaw = yaw
+        self.rollspeed = rollspeed
+        self.pitchspeed = pitchspeed
+        self.yawspeed = yawspeed
+
+    def __str__(self):
+        """
+        String representation used to print the RawIMU object. 
+        """
+        return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
 class RCChannels(object):
    
-    def __init__(self, time_sec=None, port=None, chan1_scaled=None, chan2_scaled=None, chan3_scaled=None, chan4_scaled=None, chan5_scaled=None, chan6_scaled=None, chan7_scaled=None, chan8_scaled=None, rssi=None):
+    def __init__(self, time_boot_ms=None, chancount=None, chan1_raw=0, chan2_raw=0, chan3_raw=0, chan4_raw=0, chan5_raw=0, chan6_raw=0, chan7_raw=0, chan8_raw=0, rssi=None):
         """
         RCChannels object constructor.
         """
-        self.time_sec = time_sec
-        self.rc_1 = chan1_scaled/100.
-        self.rc_2 = chan2_scaled/100.
-        self.rc_3 = chan3_scaled/100.
-        self.rc_4 = chan4_scaled/100.
-        self.rc_5 = chan5_scaled/100.
-        self.rc_6 = chan6_scaled/100.
-        self.rc_7 = chan7_scaled/100.
-        self.rc_8 = chan8_scaled/100.
+        self.time_sec = time_boot_ms
+        self.aileron = chan1_raw/100.
+        self.elevator = chan2_raw/100.
+        self.throttle = chan3_raw/100.
+        self.rudder = chan4_raw/100.
+        self.rc_5 = chan5_raw/100.
+        self.rc_6 = chan6_raw/100.
+        self.rc_7 = chan7_raw/100.
+        self.rc_8 = chan8_raw/100.
 
         
     def __str__(self):
@@ -114,6 +134,7 @@ class MyVehicle(Vehicle):
 
         # Create an Vehicle.raw_imu object with initial values set to None.
         self._highres_imu = HighResIMU()
+        self._attitude = Attitude()
         self._gps_raw_int = GPSRawInt()
         self._rc_channels = RCChannels()
 
@@ -139,12 +160,24 @@ class MyVehicle(Vehicle):
             self._highres_imu.zmag=message.zmag
             self._highres_imu.abs_pressure=message.abs_pressure
             self.highres_imu.diff_pressure=message.diff_pressure
+            self.highres_imu.p_alt = message.pressure_alt
+            self.highres_imu.p_alt = message.temperature
 
             
             # Notify all observers of new message (with new value)
             #   Note that argument `cache=False` by default so listeners
             #   are updated with every new message
             self.notify_attribute_listeners('highres_imu', self._highres_imu) 
+        
+        @self.on_message('ATTITUDE')
+        def listener(self, name, message):
+            self._attitude.time_boot_ms = message.time_boot_ms
+            self._attitude.roll = message.roll
+            self._attitude.pitch = message.pitch
+            self._attitude.yaw = message.yaw
+            self._attitude.rollspeed = message.rollspeed
+            self._attitude.pitchspeed = message.pitchspeed
+            self._attitude.yawspeed = message.yawspeed
 
         @self.on_message('GPS_RAW_INT')
         def listener(self, name, message):
@@ -155,17 +188,21 @@ class MyVehicle(Vehicle):
             self._gps_raw_int.vel=message.vel/100.0
             self._gps_raw_int.cog=message.cog/100.0
 
-        @self.on_message('RC_CHANNELS_SCALED')
+        @self.on_message('RC_CHANNELS')
         def listener(self, name, message):
-            self._rc_channels.time_sec=message.time_usec/(10^6)
-            self._rc_channels.elevator=message.rc_1 # TODO: Attribute control surfaces
-            self._rc_channels.aileron=message.rc_2  # TODO: Calibrate according to max deflection
-            self._rc_channels.rudder=message.rc_3
-            self._rc_channels.throttle=message.rc_4
+            self._rc_channels.time_sec=message.time_boot_ms/(10^6)
+            self._rc_channels.elevator=message.chan2_raw # TODO: Attribute control surfaces
+            self._rc_channels.aileron=message.chan1_raw  # TODO: Calibrate according to max deflection
+            self._rc_channels.rudder=message.chan4_raw
+            self._rc_channels.throttle=message.chan3_raw
 
     @property
     def highres_imu(self):
         return self._highres_imu
+
+    @property
+    def attitude(self):
+        return self._attitude
 
     @property
     def gps_raw_int(self):

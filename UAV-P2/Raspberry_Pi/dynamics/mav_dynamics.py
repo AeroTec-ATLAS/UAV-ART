@@ -17,6 +17,7 @@ import math
 # load message types
 from message_types.msg_state import msgState
 from message_types.msg_sensors import msgSensors
+from message_types.msg_delta import msgDelta
 
 import parameters.aerosonde_parameters as MAV
 from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation, Euler2Rotation2
@@ -55,6 +56,7 @@ class mavDynamics:
         self.true_state = msgState()
         self.telemetry = telemetryData(localIP, raspIP)
         self.sensors = msgSensors()
+        self.delta = msgDelta()
 
     ###################################
     # public functions
@@ -65,7 +67,7 @@ class mavDynamics:
             wind is the wind vector in inertial coordinates
             Ts is the time step between function calls.
         """
-        if not simulation:
+        if simulation:
             gustInInertial = Euler2Rotation(self._state.item(6), self._state.item(7), self._state.item(8)) @ wind[3:6]
             self._wind = wind[0:3] + gustInInertial
             # get forces and moments acting on rigid bod
@@ -99,15 +101,15 @@ class mavDynamics:
             self.true_state.pn=self.sensors.gps_n
             self.true_state.pe=self.sensors.gps_e
             self.true_state.h=self.sensors.gps_h
-            self.true_state.phi = self.telemetry.vehicle.attitude.roll
-            self.true_state.theta = self.telemetry.vehicle.attitude.pitch
-            self.true_state.psi = self.telemetry.vehicle.attitude.yaw 
+            self.true_state.phi = self.sensors.attitude.roll
+            self.true_state.theta = self.sensors.attitude.pitch
+            self.true_state.psi = self.sensors.attitude.yaw 
             self.true_state.p=self.sensors.gyro_x
             self.true_state.q=self.sensors.gyro_y
             self.true_state.r=self.sensors.gyro_z
             self.true_state.Vg=self.sensors.gps_Vg
             self.true_state.chi=self.sensors.gps_course
-            delta.from_array(self._get_surfaces())
+            self.delta.from_array(self._get_surfaces())
 
     def external_set_state(self, new_state):
         self._state = new_state
@@ -315,6 +317,9 @@ class mavDynamics:
         self.sensors.gps_h = vehicle.gps_raw_int.alt
         self.sensors.gps_Vg = vehicle.gps_raw_int.vel
         self.sensors.gps_course = vehicle.gps_raw_int.cog
+        self.sensors.roll = vehicle.attitude.roll
+        self.sensors.pitch = vehicle.attitude.pitch
+        self.sensors.yaw = vehicle.attitude.yaw
 
     def _get_surfaces(self):
         vehicle = self.telemetry.vehicle
