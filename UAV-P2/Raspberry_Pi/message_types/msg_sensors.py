@@ -30,3 +30,13 @@ class msgSensors:
         self.roll = 0
         self.pitch = 0
         self.yaw = 0
+        self.wx = 0
+        self.wy = 0
+        self.wz = 0
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        self.vx = 0
+        self.vy = 0
+        self.vz = 0
+        self.va = 0

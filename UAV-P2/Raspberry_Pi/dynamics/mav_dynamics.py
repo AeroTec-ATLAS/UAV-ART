@@ -98,9 +98,9 @@ class mavDynamics:
         else:
             # update the message class for the true state
             self._update_sensors()
-            self.true_state.pn=self.sensors.gps_n
-            self.true_state.pe=self.sensors.gps_e
-            self.true_state.h=self.sensors.gps_h
+            self.true_state.pn=self.sensors.x
+            self.true_state.pe=self.sensors.y
+            self.true_state.h=self.sensors.z
             self.true_state.phi = self.sensors.attitude.roll
             self.true_state.theta = self.sensors.attitude.pitch
             self.true_state.psi = self.sensors.attitude.yaw 
@@ -109,6 +109,7 @@ class mavDynamics:
             self.true_state.r=self.sensors.gyro_z
             self.true_state.Vg=self.sensors.gps_Vg
             self.true_state.chi=self.sensors.gps_course
+            self.true_state.Va = self.sensors.va
             self.delta.from_array(self._get_surfaces())
 
     def external_set_state(self, new_state):
@@ -320,6 +321,16 @@ class mavDynamics:
         self.sensors.roll = vehicle.attitude.roll
         self.sensors.pitch = vehicle.attitude.pitch
         self.sensors.yaw = vehicle.attitude.yaw
+        self.sensors.wx = vehicle.wind_cov.wx
+        self.sensors.wy = vehicle.wind_cov.wy
+        self.sensors.wz = vehicle.wind_cov.wz
+        self.sensors.x = vehicle.localPos.x
+        self.sensors.y = vehicle.localPos.y
+        self.sensors.z = vehicle.localPos.z
+        self.sensors.vx = vehicle.localPos.vx
+        self.sensors.vy = vehicle.localPos.vy
+        self.sensors.vz = vehicle.localPos.vz
+        self.sensors.va = vehicle.airspeed.va
 
     def _get_surfaces(self):
         vehicle = self.telemetry.vehicle

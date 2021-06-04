@@ -11,8 +11,8 @@ class log():
     def addEntry(self, state, delta, sensors, time):
         text = '{time} {theta} {psi} {phi} {q} {r} {p} {pn} {pe} {h} {vNorth} {vEast} {vDown} {xacc} {yacc} {zacc} {Va} {alpha} {beta} {delta_a} {delta_e} {delta_t} {delta_r}'
         text = text.format(time=time, theta=state.theta, psi=state.psi, phi=state.phi, q=state.q, r=state.r, p=state.p, pn=state.pn,
-                           pe=state.pe, h=state.h, vNorth=state.Vg * cos(state.chi) * cos(state.gamma), vEast=state.Vg * sin(state.chi) * cos(state.gamma),
-                           vDown=-state.Vg * sin(state.gamma), xacc=sensors.accel_x, yacc=sensors.accel_y, zacc=sensors.accel_z, Va=state.Va, alpha=state.alpha, beta=state.beta, delta_a=delta.aileron,
+                           pe=state.pe, h=state.h, vNorth=sensors.vx, vEast=sensors.vy,
+                           vDown=sensors.vz, xacc=sensors.accel_x, yacc=sensors.accel_y, zacc=sensors.accel_z, Va=sensors.va, alpha=state.alpha, beta=state.beta, delta_a=delta.aileron,
                            delta_e=delta.elevator, delta_t=delta.throttle, delta_r=delta.rudder)
         self._file.write(text + '\n')
 

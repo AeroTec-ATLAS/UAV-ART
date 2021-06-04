@@ -85,6 +85,26 @@ class GPSRawInt(object):
         """
         return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
 
+class LocalPosition(object):
+    
+    def __init__(self, time_boot_ms=None, x=None, y=None, z=None, vx=None, vy=None, vz=None):
+        """
+        LocalPosition object constructor.
+        """
+        self.time_sec = time_boot_ms
+        self.x = x
+        self.y = y
+        self.z = z
+        self.vx = vx
+        self.vy = vy
+        self.vz = vz    
+        
+    def __str__(self):
+        """
+        String representation used to print the RawIMU object. 
+        """
+        return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
+
 class Attitude(object):
     
     def __init__(self, time_boot_ms=None, roll=None, pitch=None, yaw=None, rollspeed=None, pitchspeed=None, yawspeed=None):
@@ -99,6 +119,32 @@ class Attitude(object):
         self.pitchspeed = pitchspeed
         self.yawspeed = yawspeed
 
+    def __str__(self):
+        """
+        String representation used to print the RawIMU object. 
+        """
+        return "RAW_IMU: time_boot_us={},xacc={},yacc={},zacc={},xgyro={},ygyro={},zgyro={},xmag={},ymag={},zmag={}".format(self.time_boot_us, self.xacc, self.yacc,self.zacc,self.xgyro,self.ygyro,self.zgyro,self.xmag,self.ymag,self.zmag)
+
+class WindCov(object):
+   
+    def __init__(self, time_usec=None, wind_x=None, wind_y=None, wind_z=None, var_horiz=None, var_vert=None, wind_alt=None, horiz_accuracy=None, vert_accuracy=None):
+        """
+        WindCov object constructor.
+        """
+        self.time_sec = time_usec
+        self.wx = wind_x 
+        self.wy = wind_y
+        self.wz = wind_z
+
+class HighLat(object):
+
+    def __init__(self, timestamp=None, type=None, autopilot=None, custom_mode=None, latitude=None, longitude=None, altitude=None, target_altitude=None, heading=None, target_heading=None, target_distance=None, throttle=None, airspeed=None):
+        """
+        HighResIMU object constructor.
+        """
+        self.time_sec = timestamp
+        self.Va = airspeed  
+        
     def __str__(self):
         """
         String representation used to print the RawIMU object. 
@@ -136,7 +182,10 @@ class MyVehicle(Vehicle):
         self._highres_imu = HighResIMU()
         self._attitude = Attitude()
         self._gps_raw_int = GPSRawInt()
+        self._localPos = LocalPosition()
         self._rc_channels = RCChannels()
+        self._wind_cov = WindCov()
+        self._airspeed = HighLat()
 
         # Create a message listener using the decorator.   
         @self.on_message('HIGHRES_IMU')
@@ -181,12 +230,34 @@ class MyVehicle(Vehicle):
 
         @self.on_message('GPS_RAW_INT')
         def listener(self, name, message):
-            self._gps_raw_int.time_sec=message.time_usec/(10^6)
+            self._gps_raw_int.time_sec=message.time_usec
             self._gps_raw_int.lat=message.lat
             self._gps_raw_int.lon=message.lon
             self._gps_raw_int.alt=message.alt/1000.0
             self._gps_raw_int.vel=message.vel/100.0
             self._gps_raw_int.cog=message.cog/100.0
+
+        @self.on_message('LOCAL_POSITION_NED')
+        def listener(self, name, message):
+            self._localPos.time_sec = message.time_boot_ms
+            self._localPos.x = message.x
+            self._localPos.y = message.y
+            self._localPos.z = message.z
+            self._localPos.vx = message.vx
+            self._localPos.vy = message.vy
+            self._localPos.vz = message.vz 
+
+        @self.on_message('WIND_COV')
+        def listener(self, name, message):
+            self._wind_cov.time_sec=message.time_usec/(10^6)
+            self._wind_cov.wx = message.wind_x
+            self._wind_cov.wy = message.wind_y
+            self._wind_cov.wz = message.wind_z
+
+        @self.on_message('HIGH_LATENCY2')
+        def listener(self, name, message):
+            self._airspeed.time_sec = message.timestamp
+            self._airspeed.Va = message.airspeed
 
         @self.on_message('RC_CHANNELS')
         def listener(self, name, message):
@@ -211,3 +282,11 @@ class MyVehicle(Vehicle):
     @property
     def rc_channels(self):
         return self._rc_channels
+
+    @property
+    def wind_cov(self):
+        return self._wind_cov
+
+    @property
+    def localPos(self):
+        return self._localPos
