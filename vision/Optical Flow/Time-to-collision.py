@@ -68,6 +68,7 @@ def cal_average(num):
 # cap = cv2.VideoCapture('/Users/arthurlago/Documents/UAV/fg.mp4')
 # cap = cv2.VideoCapture('/Users/arthurlago/Documents/UAV/Videos/O meu filme.mp4')
 cap = cv2.VideoCapture('filme-teste-2.mp4')
+# cap = cv2.VideoCapture('godot6.mp4')
 # cap = cv2.VideoCapture('lk3-9.mp4')
 
 width  = int(cap.get(3))
@@ -78,9 +79,9 @@ w = int(width/2)
 h = int(height/2)
 
 # params for ShiTomasi corner detection
-feature_params = dict( maxCorners = 675,
-                       qualityLevel = 0.05,
-                       minDistance = 2,
+feature_params = dict( maxCorners = 1000,
+                       qualityLevel = 0.01,
+                       minDistance = 3,
                        blockSize = 2 )
 
 # Parameters for lucas kanade optical flow
@@ -96,29 +97,33 @@ ret, old_frame = cap.read()
 old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
 
 
-####Mas assim estas a escolher "boas features"? Discutir usar o goodFeaturesToTrack (estava originalmente)
-
 ### For the first optical flow features use a patch on the lower center of the frame
-dw1 = width/4
-dh1 = height/4
-dw = dw1/30
-dh = dh1/10
+# dw1 = width/4
+# dh1 = height/4
+# dw = dw1/30
+# dh = dh1/10
 
-p0 = []
+# p0 = []
 
-idw=dw1
-while idw<(3*dw1):
-    idh=height/2
-    while idh<(3*dh1):
-        u = np.float32(([[idw, idh]]))
-        p0.append(u)
-        idh = idh+dh
-    idw = idw+dw
+# idw=dw1
+# while idw<(3*dw1):
+#     idh=height/2
+#     while idh<(3*dh1):
+#         u = np.float32(([[idw, idh]]))
+#         p0.append(u)
+#         idh = idh+dh
+#     idw = idw+dw
 
-p0 = np.array(p0)
+# p0 = np.array(p0)
 
 # Create a mask image for drawing purposes
 mask = np.zeros_like(old_frame)
+
+feature_mask = np.zeros_like(old_gray)
+feature_mask[int(height/2):int(3*height/4), int(width/4):int(3*width/4)] = 255
+
+p0 = cv2.goodFeaturesToTrack(old_gray, mask = feature_mask, **feature_params)
+
 
 #Video Writer
 out = cv2.VideoWriter('outpy2.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (width, height))
@@ -229,7 +234,7 @@ while(1):
         ttc_y = 1/i_ttc_y
 
         all_ttc_x.append(ttc_x)
-        all_ttc_y.append(ttc_x)
+        all_ttc_y.append(ttc_y)
         
 
     ## Determine final times to collision using median
@@ -270,9 +275,10 @@ while(1):
 
     # Now update the previous frame and previous points ??? Nao deviamos fazer isto?
     old_gray = frame_gray.copy()
-    # p0 = good_new.reshape(-1,1,2)
-    # if (cnt%5)==0:
-        # p0 = cv2.goodFeaturesToTrack(old_gray, mask = None, **feature_params)
+
+    p0 = good_new.reshape(-1,1,2)
+    if (counter_frame%5)==0:
+        p0 = cv2.goodFeaturesToTrack(old_gray, mask = feature_mask, **feature_params)
 
 
 #Apply median filter
