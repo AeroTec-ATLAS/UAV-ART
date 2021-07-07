@@ -7,14 +7,14 @@ close all
 % ps(fonte de tensao): 12(V), 16(V) ou bat(bateria):3s ou 4s
 % velocidade do ar: 6, 10, 15 ou 20 (m/s)
 
-name = 'test_prop10x5_ps12_v10';
+name = 'test_prop11x7_bat4s_v20';
 
 struct = load(name);
 fn = fieldnames(struct);
 data_struct = struct.(fn{1});
 
 %% variaveis
-index = find([data_struct.delta_t]==100,1,'last'); %rejeitar efeito de histerese
+index = find([data_struct.delta_t]==max([data_struct.delta_t]),1,'last'); %rejeitar efeito de histerese
 
 time = [data_struct(1:index).time]; % segundos
 delta_t = [data_struct(1:index).delta_t]; % percentagem
