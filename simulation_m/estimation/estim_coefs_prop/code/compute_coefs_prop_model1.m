@@ -4,7 +4,7 @@ close all
 
 %% escolher ficheiros
 propStr = '10x5';
-supplyStr = 'bat3s';
+supplyStr = 'ps12';
 vStrs = ["6","10","15","20"];
 Va_total = [];
 DeltaT_total = [];
@@ -32,6 +32,8 @@ Y = sqrt(T_total./(0.5*rho*S_prop*C_prop) + Va_total.^2);
 Phi = DeltaT_total;
 
 k_motor = NRLS(Y,Phi);
+
+res = Y - k_motor*Phi;
 
 
 function Coef = NRLS(Y,Phi)
