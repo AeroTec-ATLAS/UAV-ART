@@ -155,4 +155,6 @@ controlo/autopilot/util/txt_logs/
 controlo/autopilot/util/txt_logs_wAero/
 simulation_m/control/pathFollower/slprj
 .import/
+simulation_c/telemetry/c_library_v2
+simulation_c/telemetry/mavlink
 
