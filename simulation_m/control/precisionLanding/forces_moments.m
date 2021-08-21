@@ -12,22 +12,22 @@
 %   New output includes:
 %       alpha_d - alpha desired
 %       beta_d  - beta desired
-%       miu_d - miu desired
-%       miu -
-%       Omega -
-%       dot_Omega_d -
+%       miu_d - bank angle desired
+%       miu - bank angle
+%       Omega - angular velocity
+%       dot_Omega_d - 
 %       v - airspeed
 %       v_d - airspeed desired
 %       G - 
-%       w -
-%       alpha0 -
-%       Maabb -
-%       Moo -
-%       Mdd -
-%       gama -
-%       D -
-%       k_VP -
-%       k_VI -
+%       w - 
+%       alpha0 - angle of attack that nullifies the forces due to the drag, lift and gravity
+%       Maabb - 
+%       Moo - 
+%       Mdd - 
+%       gama - flight-path
+%       D - 
+%       k_VP - 
+%       k_VI - 
 
 
 
@@ -139,7 +139,6 @@ function out = forces_moments(x, delta, wind, P)
     
     % Angular velocity controller
 
-    % Equation 48 [1]
     Maabb = [P.C_ell_beta 0; 0 P.C_m_alpha; P.C_n_beta 0];
 
     Vbar = 10; % this corresponds to V bar but I do not know what this is
@@ -184,6 +183,7 @@ function out = forces_moments(x, delta, wind, P)
     
     out = [Force',Torque', FAer', TAer', Va, alpha, beta, w_n, w_e, w_d,...
         u_r, add_out];
+    
 end
 
 function F_vec = getFAer(Va,alpha,q,de,beta,p,r,da,dr,P)
@@ -224,6 +224,7 @@ function T_vec = getTorques(Va,alpha,q,de,beta,p,r,da,dr,P)
                                                     P.C_n_delta_r*dr);
                     
     T_vec = 0.5*P.rho*Va^2*P.S_wing*[L;M;N];    
+    
 end
 
 
