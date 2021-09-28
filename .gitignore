@@ -158,3 +158,5 @@ simulation_m/control/pathFollower/slprj
 simulation_c/telemetry/c_library_v2
 simulation_c/telemetry/mavlink
 
+# IDE
+.vscode
