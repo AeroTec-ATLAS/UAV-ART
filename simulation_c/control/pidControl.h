@@ -38,6 +38,14 @@ typedef struct {
 
 float saturate(pidControl* pc, int u);
 
+/* =============================================================================
+ * initialization
+ * =============================================================================
+ */
+
+pidControl* initialization(float kp, float ki, float kd, float Ts, 			
+					float sigma, float low_limit, float high_limit);
+
 #endif
 
 /* =============================================================================

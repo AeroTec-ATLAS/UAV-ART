@@ -1,5 +1,6 @@
 #include "messages.h" 
 #include "pidControl.h"
+#include "parameters.h"
 
 void initialization_parameters(parameters *AP){
 

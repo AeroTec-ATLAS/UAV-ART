@@ -1,6 +1,22 @@
+/* =============================================================================
+ *
+ * parameters.h
+ *
+ * =============================================================================
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+
+//Begin of simulation parameters
+#define TS_SIMULATION 1/100
+#define START_TIME 0
+#define END_TIME 200
+#define TS_PLOTTING 0.02
+#define TS_VIDEO 0.1
+#define TS_CONTROL TS_SIMULATION
+//End of simulation parameters
 
 typedef struct {
 	//gravity = MAV.gravity  # gravity constant			Investigar o MAVLINK para gravity e rho
@@ -50,3 +66,10 @@ typedef struct {
 	float delta_a_max; // = 0.3491
 	float delta_r_max; // = 0.7854
 } parameters;
+
+/* =============================================================================
+ *
+ * End of parameters.h
+ *
+ * =============================================================================
+ */

@@ -22,10 +22,10 @@ Controlador PID - Define um controlador multifacetado que funciona para cada um 
  * =============================================================================
  */
 
-pidControl initialization(float kp, float ki, float kd, float Ts, 			
+pidControl* initialization(float kp, float ki, float kd, float Ts, 			
 					float sigma, float low_limit, float high_limit){
 
-	pidControl pc; 			/*VER SE É APONTADOR OU NÃO*/
+	pidControl* pc; 			/*VER SE É APONTADOR OU NÃO*/
 
 	pc->kp = kp;
 	pc->ki = ki;
