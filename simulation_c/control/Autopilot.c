@@ -120,11 +120,15 @@ AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)  
     float h_c = cmd->altitude_command;  		// commanded altitude (m)
     float chi_c = cmd->course_command; 		    // commanded course (rad)
 
+    float phi_c;
     float theta_c;
+    float delta_a;
     float delta_e;
+    float delta_r;
     float delta_t;
     bool reset_flag;
     AutoPilotInfo* info;
+    int altitude_state;
 
     if (TS_CONTROL == 0)
         reset_flag = true;
@@ -133,16 +137,16 @@ AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)  
 
     // lateral autopilot
 
-    float phi_c = update(roll_from_course, chi_c, chi, reset_flag) + cmd->phi_feedforward;
+    phi_c = update(roll_from_course, chi_c, chi, reset_flag) + cmd->phi_feedforward;
     //float phi_c = np.clip(phi_c, self.roll_from_course.low_limit, self.roll_from_course.high_limit) VER FUNÇÃO EQUIVALENTE
-    float delta_a = update_with_rate(aileron_from_roll, phi_c, phi, p, reset_flag);
-    float delta_r = 0;
+    delta_a = update_with_rate(aileron_from_roll, phi_c, phi, p, reset_flag);
+    delta_r = 0;
 
     // longitudinal autopilot
         // saturate the altitude command
         // state machine
 
-    int altitude_state = 1;
+    altitude_state = 1;
 
     // takeoff zone
     if (h <= AP->altitude_take_off_zone){
