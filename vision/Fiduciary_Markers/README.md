@@ -1,4 +1,15 @@
-Hello World
+This folder contains all the necessary code to perform the detection of our own Fiduciary Markers, the Marker C.
 
-Para instalar OpenCV -> seguir este tutorial
-http://www.codebind.com/cpp-tutorial/install-opencv-ubuntu-cpp/ 
+To run Python version:
+"
+python3 markerC_detector.py
+"
+
+
+
+To run C++ version:
+"
+cmake .
+make
+./markerC_detector
+"

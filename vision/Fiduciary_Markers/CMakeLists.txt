@@ -1,10 +1,10 @@
-######## A simple cmakelists.txt file for OpenCV() #############  
-cmake_minimum_required(VERSION 2.8)                            
-PROJECT(subCpp)                                         
+######## A simple cmakelists.txt file for OpenCV() #############
+cmake_minimum_required(VERSION 2.8)
+PROJECT(main3)
 
-FIND_PACKAGE( OpenCV REQUIRED )                              
+FIND_PACKAGE( OpenCV REQUIRED )
 INCLUDE_DIRECTORIES( ${OpenCV_INCLUDE_DIRS} )
 
-ADD_EXECUTABLE(subCpp subCpp.cpp)                         
-TARGET_LINK_LIBRARIES (subCpp ${OpenCV_LIBS})         
-########### end ####################################  
+ADD_EXECUTABLE(main3 main3.cpp)
+TARGET_LINK_LIBRARIES (main3 ${OpenCV_LIBS})
+########### end ####################################
