@@ -6,7 +6,7 @@ function drawAircraft(p,ang,V,F,facecolors,pause_t)
     xlabel('East [m]','Fontsize',12)
     ylabel('North [m]','Fontsize',12)
     zlabel('Altitude [m]','Fontsize',12)
-%     view(-32,32)
+    view(-32,32)
     e = 10;
     
     axis([min(p(:,2))-e,max(p(:,2))+e,min(p(:,1))-e,max(p(:,1))+e,... 

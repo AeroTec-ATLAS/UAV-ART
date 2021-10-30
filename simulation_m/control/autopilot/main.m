@@ -50,18 +50,15 @@ t = 0:P.Ts:T;
 % throttle (delta_t) and pitch (theta).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% h_ref = 200 + 10*(t').*ones(length(t),1); % height (m)
+% h_ref = 200*ones(length(t),1);
 
-% for i = 1:length(t) %Os primeiros 2 elementos ser�o nulos
-%
-%     h_ref(i)= 0.5*t(i);
-% end
+h_ref(1:2000,1) = 50*ones(2000,1);
+h_ref(2001:4000,1) = 60*ones(2000,1);
+h_ref(4001:6001,1) = 50*ones(2001,1);
 
-h_ref = 200*ones(length(t),1);
+% h_ref = 200 + 10*(t').*ones(length(t),1);
 
-% h_ref(1:2000) = 50*ones(2000,1);
-% h_ref(2001:4000) = 60*ones(2000,1);
-% h_ref(4001:6000) = 50*ones(2000,1);
+
 % for i = 6001:9000
 %     h_ref(i) = 50 + (70 - 50)/(9000 - 6000)*(i - 6000);
 % end
@@ -81,8 +78,15 @@ h_ref = 200*ones(length(t),1);
 % h_ref = h_ref';
 
 
+% chi_ref = 0*pi/180*ones(length(t),1);
+
+chi_ref(1:2000,1) = 0*pi/180*ones(2000,1);
+chi_ref(2001:4000,1) = 20*pi/180*ones(2000,1);
+chi_ref(4001:6001,1) = 0*pi/180*ones(2001,1);
+
+
+
 % chi_ref = 0*pi/180*ones(length(t),1) + 0.1*randn(length(t),1); % course angle (rad)
-chi_ref = 0*pi/180*ones(length(t),1);
 
 % chi_ref(1:1000) = 20*pi/180*ones(1000,1);
 % chi_ref(1001:2000) = 0*ones(1000,1);
@@ -144,6 +148,6 @@ accel(:,2) = 1/P.mass * F_body(:,2) - P.gravity*cos(att(:,2)).*sin(att(:,1)); %a
 accel(:,3) = 1/P.mass * F_body(:,3) - P.gravity*cos(att(:,2)).*cos(att(:,1)); %az
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-drawAircraft(pos,att,V,F,facecolors,2e-3)
-% morePlots
+% drawAircraft(pos,att,V,F,facecolors,2e-3)
+morePlots
 % logTXT
