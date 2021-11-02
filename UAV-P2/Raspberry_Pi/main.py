@@ -15,7 +15,9 @@ import parameters.sensor_parameters as SEN
 localIP='192.168.1.237'
 raspIP='192.168.1.38'
 # initialize elements of the architecture
-logger = log('Test flight.txt')
+from datetime import datetime
+date = datetime.today().strftime('%Y--%m--%d-%H-%M-%S')
+logger = log(date+'_Test-Flight.txt')
 from message_types.msg_state import msgState
 from message_types.msg_delta import msgDelta
 state = msgState()  # instantiate state message
