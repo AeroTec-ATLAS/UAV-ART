@@ -5,9 +5,7 @@
  * =============================================================================
  */
 
-
-#include "pidControl.h"
-#include "messages.h"
+#include "pathfollowing.h"
 
 #define CHI_INF M_PI / 4
 #define K_PATH 0.05
@@ -20,7 +18,7 @@ msgAutopilot autopilot_commands;
  * update
  * =============================================================================
  */
-msgAutopilot update(msgPath path, msgStates state){
+msgAutopilot updatePathFollowing(msgPath path, msgStates state){
     if(path.type ==  1){
         follow_straight_line(path, state);
     }

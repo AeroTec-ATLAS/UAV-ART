@@ -18,6 +18,28 @@
 #define TS_CONTROL TS_SIMULATION
 //End of simulation parameters
 
+//Begin of sensor parameters
+#define TS_SENSORS 0.01
+#define ACCEL_SIGMA 0.0025*9.8
+#define GYRO_X_BIAS 0
+#define GYRO_Y_BIAS 0
+#define GYRO_Z_BIAS 0
+//gyro_sigma = np.radians(0.13)
+#define STATIC_PRES_SIGMA 0.01*1000
+#define DIFF_PRESS_SIGMA 0.002*1000
+//mag_beta = np.radians(1.0)
+//mag_sigma = np.radians(0.03)
+/*
+ts_gps = 1.0
+gps_k = 1. / 1100.  # 1 / s
+gps_n_sigma = 0.21
+gps_e_sigma = 0.21
+gps_h_sigma = 0.40
+gps_Vg_sigma = 0.05
+gps_course_sigma = gps_Vg_sigma / 10
+*/
+//End of sensor parameters
+
 typedef struct {
 	//gravity = MAV.gravity  # gravity constant			Investigar o MAVLINK para gravity e rho
 	//rho = MAV.rho  # density of air

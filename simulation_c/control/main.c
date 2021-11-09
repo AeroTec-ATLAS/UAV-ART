@@ -2,58 +2,59 @@
 #include "pidControl.h"
 #include "messages.h"
 #include "parameters.h"
+#include "Autopilot.h"
+#include "pathfollowing.h"
+#include <time.h>
+#include <unistd.h>
+#include <math.h>
 
+bool video;
 
 int main(){
     /*inicialize parameters*/
-    parameters AP;
-    initialization_parameters(AP);
-
     /*inicialize autopilot*/
-    autopilot_struct ctrl;
-    ctrl = autopilotInit(AP,ts_control);
-
-    /*creat messages*/
-    msgAutopilot commands;
+    parameters AP;
+    AutoPilotInfo ctrl;
+    AutoPilotReturn* autopReturn;
     msgDelta deltas;
     msgStates state;
+    initialization_parameters(&AP, &ctrl);
+    /*creat messages*/
+    msgAutopilot commands;
     msgPath path;
 
-    /*creat flags*/
-    bool failsafeSwitch = 0;
+    path.type = 'line';
+    path.airspeed = 35;
 
-    /*autopilot loop*/
-    do{
-    while(failsafeSwitch == 1)
-    {
+    if (path.type == 'line'){
+        path.line_origin[0] = 0.0;
+        path.line_origin[1] = 0.0;
+        path.line_origin[2] = -100.0;
+        double a = path.line_direction[0]*path.line_direction[0];
+        double b = path.line_direction[1]*path.line_direction[1];
+        double c = path.line_direction[2]*path.line_direction[2];
+        float norm = (float)sqrt(a+b+c);
 
-    /*retirar dados dos sensores*/
-    /*-------------------------------------------*/
-    /*state = /*função dos sensores*/
-    /*-------------------------------------------*/
-
-    /*retirar os comandos para o pathfollower*/
-    /*-------------------------------------------*/
-    /*path = /*pathmanager()*/
-    /*-------------------------------------------*/
-
-    /*retirar os comandos para o autopilot*/
-    /*-------------------------------------------*/
-    /*commands = pathfollower(/*dados para o pathfollower)*/
-    /*-------------------------------------------*/
-
-    /*correr o autopilot*/
-    /*-------------------------------------------*/
-    deltas = autopilot(ctrl, AP, state, commands, ts_control);
-    /*-------------------------------------------*/
-
-    /*enviar os dados para as superfícies de controlo*/
-    /*-------------------------------------------*/
-    /*controlSurfaces(deltas)*/
-    /*-------------------------------------------*/
-
+        for(int i = 0; i < 3; i++)
+            path.line_direction[i] /= norm;
+        
+    }else{
+        /* Center of the orbit */
+        path.orbit_center[0] = 0;
+        path.orbit_center[1] = 0;
+        path.orbit_center[2] = -100;
+        /* Radius of the orbit */
+        path.orbit_radius = 500; 
+        /* orbit direction: 'CW'==clockwise, 'CCW'==counter clockwise */
+        path.orbit_direction = "CW"; 
     }
-    }while (1);
+    /*autopilot loop*/
+    int sim_time = START_TIME;
 
-    return 0
+    while(sim_time < END_TIME){ 
+        commands = updatePathFollowing(path, state);
+        autopReturn = autopilot(&AP, &commands, &state, &ctrl);
+        sim_time += TS_SIMULATION;
+    }
+    return 0;
 }

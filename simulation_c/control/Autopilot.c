@@ -15,76 +15,66 @@ autopilot - Controlar automaticamente a dinâmica e atitude do aeromodelo.
 #include "Autopilot.h"
 #include "parameters.h"
 
-pidControl* aileron_from_roll;
-pidControl* roll_from_course;
-pidControl* elevator_from_pitch;
-pidControl* throttle_from_airspeed;
-pidControl* pitch_from_airspeed;
-pidControl* pitch_from_altitude;
-msgStates command_state;
-
 /* =============================================================================
  * initialization_parameters
  * =============================================================================
  */
-void initialization_parameters(parameters *AP){
+void initialization_parameters(parameters *AP, AutoPilotInfo *autoPilot){
 
 	AP->sigma = 0.5; //  =  0.5 // low pass filter gain for derivative
 
-	//----------roll loop-------------
+	/*----------roll loop-------------*/
 	AP->roll_kp = 1;
 	AP->roll_ki = 0.4000;
 	AP->roll_kd = 0.1209;
 
-	//----------course loop-------------
+	/*----------course loop-------------*/
 	AP->course_kp = 5.8067;
 	AP->course_ki = 0.7285;
 
-	//----------pitch loop-------------
-
+	/*----------pitch loop-------------*/
 	AP->pitch_kp = -3;
 	AP->pitch_kd = -1.1622;
 	AP->theta_c_climb = 0.5236;
 	AP->delta_e_max = 0.5236;
     
-	//----------altitude--------------
-
+	/*----------altitude--------------*/
 	AP->altitude_state = 0;
 	AP->altitude_kp = 0.0190;
 	AP->altitude_ki = 6.3312e-04;
 	AP->altitude_hold_zone = 25;  // moving saturation limit around current altitude
 	AP->altitude_take_off_zone = 40;
 
-	//---------airspeed hold using throttle---------------
+	/*---------airspeed hold using throttle---------------*/
 	AP->airspeed_throttle_kp = 0.0049;
 	AP->airspeed_throttle_ki = 0.0013;
 
-	//---------airspeed hold using pitch---------------
+	/*---------airspeed hold using pitch---------------*/
 	AP->airspeed_pitch_kp = -0.1355;
 	AP->airspeed_pitch_ki = -0.0270;
 
-	//----------sideslip-------------
+	/*----------sideslip-------------*/
 	AP->sideslip_kp = 3;
 	AP->sideslip_ki = 2.5378;
 
-	//----------throttle-------------
+	/*----------throttle-------------*/
 	AP->throttle_trim = 0.6031;
 
-	//--------surface_limits------------
+	/*--------surface_limits------------*/
 	AP->delta_a_max = 0.3491;
 	AP->delta_r_max = 0.7854;
 
 // Fazer estrutura com todos os controladores 
 // EM REVISÃO
 
-    aileron_from_roll = initialization(AP->roll_kp, AP->roll_ki, AP->roll_kd, TS_CONTROL, 0.05, -AP->delta_a_max, AP->delta_a_max);
-    roll_from_course = initialization(AP->course_kp, AP->course_ki, 0, TS_CONTROL, 0.05, -M_PI / 7.2, M_PI / 7.2);
-    elevator_from_pitch = initialization(AP->pitch_kp, 0, AP->pitch_kd, TS_CONTROL, 0.05, -AP->delta_e_max, AP->delta_e_max);
-    throttle_from_airspeed = initialization(AP->airspeed_throttle_kp, AP->airspeed_throttle_ki, 0, TS_CONTROL, 0.05, 0, 1);
-    pitch_from_airspeed = initialization(AP->airspeed_pitch_kp, AP->airspeed_pitch_ki, 0, TS_CONTROL, 0.05, M_PI / 6, M_PI/ 6);
-    pitch_from_altitude = initialization(AP->altitude_kp, AP->altitude_ki, 0, TS_CONTROL, 0.05, -M_PI / 6, M_PI / 6);
+    /* Initialize structure AutoPilotInfo */
+    autoPilot->aileron_from_roll = initialization(AP->roll_kp, AP->roll_ki, AP->roll_kd, TS_CONTROL, 0.05, -AP->delta_a_max, AP->delta_a_max);
+    autoPilot->roll_from_course = initialization(AP->course_kp, AP->course_ki, 0, TS_CONTROL, 0.05, -M_PI / 7.2, M_PI / 7.2);
+    autoPilot->elevator_from_pitch = initialization(AP->pitch_kp, 0, AP->pitch_kd, TS_CONTROL, 0.05, -AP->delta_e_max, AP->delta_e_max);
+    autoPilot->throttle_from_airspeed = initialization(AP->airspeed_throttle_kp, AP->airspeed_throttle_ki, 0, TS_CONTROL, 0.05, 0, 1);
+    autoPilot->pitch_from_airspeed = initialization(AP->airspeed_pitch_kp, AP->airspeed_pitch_ki, 0, TS_CONTROL, 0.05, M_PI / 6, M_PI/ 6);
+    autoPilot->pitch_from_altitude = initialization(AP->altitude_kp, AP->altitude_ki, 0, TS_CONTROL, 0.05, -M_PI / 6, M_PI / 6);
 }
-
 
     // inicialize message
     //self.commanded_state = msgState()
@@ -94,7 +84,7 @@ void initialization_parameters(parameters *AP){
  * autopilot
  * =============================================================================
  */
-AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)        //juntar o delta e o commanded_state numa só 
+AutoPilotReturn* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state, AutoPilotInfo *autoPilot)  //juntar o delta e o commanded_state numa só 
 {
     //float pn = state.pn;  		// inertial North position
     //float pe = state.pe;  		// inertial East position
@@ -127,7 +117,7 @@ AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)  
     float delta_r;
     float delta_t;
     bool reset_flag;
-    AutoPilotInfo* info;
+    AutoPilotReturn* info;
     int altitude_state;
 
     if (TS_CONTROL == 0)
@@ -137,9 +127,9 @@ AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)  
 
     // lateral autopilot
 
-    phi_c = update(roll_from_course, chi_c, chi, reset_flag) + cmd->phi_feedforward;
+    phi_c = update(autoPilot->roll_from_course, chi_c, chi, reset_flag) + cmd->phi_feedforward;
     //float phi_c = np.clip(phi_c, self.roll_from_course.low_limit, self.roll_from_course.high_limit) VER FUNÇÃO EQUIVALENTE
-    delta_a = update_with_rate(aileron_from_roll, phi_c, phi, p, reset_flag);
+    delta_a = update_with_rate(autoPilot->aileron_from_roll, phi_c, phi, p, reset_flag);
     delta_r = 0;
 
     // longitudinal autopilot
@@ -185,24 +175,24 @@ AutoPilotInfo* autopilot(parameters *AP, msgAutopilot *cmd , msgStates *state)  
             
         case 2:  // climb zone
             delta_t = 1;    //throttle_take_off
-            theta_c = update(pitch_from_airspeed, Va_c, Va, reset_flag);
+            theta_c = update(autoPilot->pitch_from_airspeed, Va_c, Va, reset_flag);
 
             break;
            
         case 3: // descend zone
             delta_t = 0;
-            theta_c = update(pitch_from_airspeed, Va_c, Va, reset_flag);
+            theta_c = update(autoPilot->pitch_from_airspeed, Va_c, Va, reset_flag);
 
             break;
             
         case 4: // altitude hold zone
-            delta_t = AP->throttle_trim + update(throttle_from_airspeed, Va_c, Va, reset_flag);
-            theta_c = update(pitch_from_altitude, h_c, h, reset_flag);
+            delta_t = AP->throttle_trim + update(autoPilot->throttle_from_airspeed, Va_c, Va, reset_flag);
+            theta_c = update(autoPilot->pitch_from_altitude, h_c, h, reset_flag);
             
             break;
     }
 
-        delta_e = update_with_rate(elevator_from_pitch,theta_c, theta, q, reset_flag);
+        delta_e = update_with_rate(autoPilot->elevator_from_pitch,theta_c, theta, q, reset_flag);
 
         // construct output and commanded states
         info->delta.aileron = delta_a;
