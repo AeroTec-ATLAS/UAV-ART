@@ -23,7 +23,7 @@ k2 = 0.5;
 k3 = 5;
 k4 = 3.5;
 
-D = diag([0 k1*k3 k4/d]);
+D = diag([0 k1*k3 k4/d]); %% de onde vem isto?? -> nao deveria ser da eq 45?
 
 %% Angular velocity controller
 
@@ -51,6 +51,9 @@ alpha0 = 0.01; % corresponds to the angle of attack that nullifies the
 
 %% Attitude controller
 
+mass = P.mass;
+g = P.gravity;
+
 G=[sin(alpha) 0 -cos(alpha);-cos(alpha)*tan(beta) 1 -sin(alpha)*tan(beta);...
     cos(alpha)/cos(beta) 0 sin(alpha)/cos(beta)];
 
@@ -66,4 +69,14 @@ W3=L*(tan(beta)+tan(gamma)*sin(miu))-C*tan(gamma)*cos(miu)+D*...
     -tan(beta)*cos(miu)*tan(gamma))+mass*g*(((tan(alpha)*sin(miu)*tan...
     (gamma)*sin(gamma)+tan(alpha)*tan(beta)*sin(gamma))/(cos(beta)))-...
     ((tan(beta)*cos(miu))/cos(gamma)));
+
+
+%% duvidas gerais:
+% Para o cálculo de W, são precisos o D, C, L. Esses parâmetros não estão
+% calculados. Fazer com que sejam saídas do Forces and Moments? de lá já
+% meteram a sair o D, mas como uma relação entre os ganhos que não percebo
+% de onde é que vem. Estes três parâmetros devem vir da equação 45 do
+% paper. dúvidas que tenho em relação a isto: já temos estes parâmetros do
+% autopilot ou temos que os calcular de novo. Se for para calcular põe se a
+% sair do Forces and Moments tmb? 
 
