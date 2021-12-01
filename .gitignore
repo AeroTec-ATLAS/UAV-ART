@@ -166,3 +166,9 @@ simulation_m/estimation/slprj/sim/varcache/autopilot_sim/varInfo.mat
 simulation_m/estimation/slprj/sim/varcache/mavsim_trim/checksumOfCache.mat
 simulation_m/estimation/slprj/sim/varcache/mavsim_trim/tmwinternal/simulink_cache.xml
 simulation_m/estimation/slprj/sim/varcache/mavsim_trim/varInfo.mat
+
+#Logs
+*.txt
+*.parm
+*.tlog
+*.raw
