@@ -1,8 +1,8 @@
 dronekit==2.9.2
-ipython==7.29.0
-matplotlib==3.4.3
-numpy==1.21.3
+ipython==7.30.0
+matplotlib==3.5.0
+numpy==1.21.4
 Pillow==8.4.0
-pygame==2.0.3
+pygame==2.1.0
 pyqtgraph==0.12.3
-scipy==1.7.1
+scipy==1.7.3
