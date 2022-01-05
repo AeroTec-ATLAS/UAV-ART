@@ -73,10 +73,8 @@ W3=L*(tan(beta)+tan(gamma)*sin(miu))-C*tan(gamma)*cos(miu)+D*...
 
 %% duvidas gerais:
 % Para o cálculo de W, são precisos o D, C, L. Esses parâmetros não estão
-% calculados. Fazer com que sejam saídas do Forces and Moments? de lá já
-% meteram a sair o D, mas como uma relação entre os ganhos que não percebo
-% de onde é que vem. Estes três parâmetros devem vir da equação 45 do
-% paper. dúvidas que tenho em relação a isto: já temos estes parâmetros do
-% autopilot ou temos que os calcular de novo. Se for para calcular põe se a
-% sair do Forces and Moments tmb? 
+% calculados. Fazer com que sejam saídas do Forces and Moments?  Estes três
+% parâmetros devem vir da equação 45 do paper. 
+% dúvidas que tenho em relação a isto: já temos estes parâmetros do
+% autopilot ou temos que os calcular de novo.
 
