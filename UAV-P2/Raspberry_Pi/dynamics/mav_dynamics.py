@@ -20,11 +20,12 @@ from message_types.msg_sensors import msgSensors
 from message_types.msg_delta import msgDelta
 
 import parameters.aerosonde_parameters as MAV
+from parameters import control_parameters as AP 
 from tools.rotations import Quaternion2Rotation, Quaternion2Euler, Euler2Rotation, Euler2Rotation2
 from tools.telemetry_Data import telemetryData
 
 class mavDynamics:
-    def __init__(self, Ts, localIP='', raspIP=''):
+    def __init__(self, Ts):
         self._ts_simulation = Ts
         # set initial states based on parameter file
         # _state is the 13x1 internal state of the aircraft that is being propagated:
@@ -54,7 +55,7 @@ class mavDynamics:
         self._beta = np.arcsin(self._state.item(4) / self._Va)
         # initialize true_state message
         self.true_state = msgState()
-        self.telemetry = telemetryData(localIP, raspIP)
+        self.telemetry = telemetryData()
         self.sensors = msgSensors()
         self.delta = msgDelta()
 
@@ -108,7 +109,6 @@ class mavDynamics:
             self.true_state.q=self.sensors.gyro_y
             self.true_state.r=self.sensors.gyro_z
             self.true_state.Vg=self.sensors.gps_Vg
-            self.true_state.chi=self.sensors.gps_course
             self.true_state.Va = self.sensors.va
             self.delta.from_array(self._get_surfaces())
 
@@ -301,37 +301,36 @@ class mavDynamics:
         self.true_state.wd = self._wind.item(2)
 
     def _update_sensors(self):
-        vehicle = self.telemetry.vehicle
-        self.sensors.gyro_x = vehicle.highres_imu.xgyro
-        self.sensors.gyro_y = vehicle.highres_imu.ygyro
-        self.sensors.gyro_z = vehicle.highres_imu.zgyro
-        self.sensors.accel_x = vehicle.highres_imu.xacc
-        self.sensors.accel_y = vehicle.highres_imu.yacc
-        self.sensors.accel_z = vehicle.highres_imu.zacc
-        self.sensors.mag_x = vehicle.highres_imu.xmag
-        self.sensors.mag_y = vehicle.highres_imu.ymag
-        self.sensors.mag_z = vehicle.highres_imu.zmag
-        self.sensors.abs_pressure = vehicle.highres_imu.abs_pressure
-        self.sensors.diff_pressure = vehicle.highres_imu.diff_pressure
-        self.sensors.gps_n = vehicle.gps_raw_int.lat
-        self.sensors.gps_e = vehicle.gps_raw_int.lon
-        self.sensors.gps_h = vehicle.gps_raw_int.alt
-        self.sensors.gps_Vg = vehicle.gps_raw_int.vel
-        self.sensors.gps_course = vehicle.gps_raw_int.cog
-        self.sensors.roll = vehicle.attitude.roll
-        self.sensors.pitch = vehicle.attitude.pitch
-        self.sensors.yaw = vehicle.attitude.yaw
-        self.sensors.wx = vehicle.wind_cov.wx
-        self.sensors.wy = vehicle.wind_cov.wy
-        self.sensors.wz = vehicle.wind_cov.wz
-        self.sensors.x = vehicle.localPos.x
-        self.sensors.y = vehicle.localPos.y
-        self.sensors.z = vehicle.localPos.z
-        self.sensors.vx = vehicle.localPos.vx
-        self.sensors.vy = vehicle.localPos.vy
-        self.sensors.vz = vehicle.localPos.vz
-        self.sensors.va = vehicle.airspeed.va
+        vehicle = self.telemetry
+        self.sensors.gyro_x = vehicle.getIMU().xgyro
+        self.sensors.gyro_y = vehicle.getIMU().ygyro
+        self.sensors.gyro_z = vehicle.getIMU().zgyro
+        self.sensors.accel_x = vehicle.getIMU().xacc
+        self.sensors.accel_y = vehicle.getIMU().yacc
+        self.sensors.accel_z = vehicle.getIMU().zacc
+        self.sensors.mag_x = vehicle.getIMU().xmag
+        self.sensors.mag_y = vehicle.getIMU().ymag
+        self.sensors.mag_z = vehicle.getIMU().zmag
+        self.sensors.abs_pressure = vehicle.getIMU().abs_pressure
+        self.sensors.diff_pressure = vehicle.getIMU().diff_pressure
+        self.sensors.gps_n = vehicle.getGPS().lat
+        self.sensors.gps_e = vehicle.getGPS().lon
+        self.sensors.gps_h = vehicle.getGPS().alt * 1000
+        self.sensors.gps_Vg = math.sqrt(vehicle.getGPS().vx**2 + vehicle.getGPS().vy**2 + vehicle.getGPS().vz**2)
+        self.sensors.roll = vehicle.getAttitude().roll
+        self.sensors.pitch = vehicle.getAttitude().pitch
+        self.sensors.yaw = vehicle.getAttitude().yaw
+        self.sensors.wx = vehicle.getWind().wind_x
+        self.sensors.wy = vehicle.getWind().wind_y
+        self.sensors.wz = vehicle.getWind().wind_z
+        self.sensors.x = vehicle.getPosition().x
+        self.sensors.y = vehicle.getPosition().y
+        self.sensors.z = vehicle.getPosition().z
+        self.sensors.vx = vehicle.getPosition().vx
+        self.sensors.vy = vehicle.getPosition().vy
+        self.sensors.vz = vehicle.getPosition().vz
+        self.sensors.va = vehicle.getVFR().airspeed
 
     def _get_surfaces(self):
-        vehicle = self.telemetry.vehicle
-        return np.array([[vehicle.rc_channels.elevator],[vehicle.rc_channels.aileron],[vehicle.rc_channels.rudder],[vehicle.rc_channels.throttle]]) 
+        vehicle = self.telemetry
+        return np.array([[vehicle.getRC().chan2_scaled/100*AP.delta_e_max],[vehicle.getRC().chan1_scaled/100*AP.delta_a_max],[vehicle.getRC().chan4_scaled/100*AP.delta_r_max],[vehicle.getRC().chan3_scaled/100]]) 

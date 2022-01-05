@@ -6,7 +6,6 @@ import sys
 sys.path.append('..')
 
 import numpy as np
-import dynamics_linear.model_coef as TF
 import parameters.aerosonde_parameters as MAV
 
 gravity = MAV.gravity  # gravity constant
@@ -39,7 +38,6 @@ pitch_kp = -3
 pitch_kd = -1.1622
 #K_theta_DC =
 theta_c_climb = 0.5236
-delta_e_max = 0.5236
 
 #----------altitude loop-------------
 #wn_altitude =
@@ -71,5 +69,6 @@ throttle_trim = 0.314
 throttle_max = 1
 
 #--------surface_limits------------
+delta_e_max = 0.5236
 delta_a_max = 0.3491
 delta_r_max = 0.7854
