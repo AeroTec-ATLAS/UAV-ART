@@ -15,13 +15,17 @@ class telemetryData():
         self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_HIGHRES_IMU, 200)
         self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_WIND_COV, 200)
         self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 10)
+        self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_LOCAL_POSITION_NED, 10)
         self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_RC_CHANNELS, 200)
+        self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 50)
         print('Awaiting GPS')
-        self.mavlink.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=60)
-        print('GPS Connected')
-        timeUsec = self.mavlink.recv_match(type='SYSTEM_TIME').time_unix_usec
+        self.mavlink.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=10)
+        print('GPS Connected or GPS Timeout')
+        timeUsec = self.mavlink.recv_match(type='SYSTEM_TIME', blocking=True).time_unix_usec
         clk_id = time.CLOCK_REALTIME
-        time.clock_settime(clk_id, float(timeUsec)/1000.)
+        print(clk_id)
+        print(float(timeUsec)/1000.)
+        time.clock_settime(clk_id, float(timeUsec)/1E6)
         print('Time set')
         print('Arming Pixhawk')
         self.arm()
@@ -56,9 +60,9 @@ class telemetryData():
             1, 0, 0, 0, 0, 0, 0)
         
     def disarm(self):
-        self.mavlink.mav.telemetry.mavlink.mav.command_long_send(
-            self.mavlink.mav.telemetry.mavlink.target_system,
-            self.mavlink.mav.telemetry.mavlink.target_component,
+        self.mavlink.mav.command_long_send(
+            self.mavlink.target_system,
+            self.mavlink.target_component,
             mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
             0,
             0, 0, 0, 0, 0, 0, 0)

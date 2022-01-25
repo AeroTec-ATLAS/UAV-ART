@@ -33,13 +33,10 @@ while True:
         time.sleep(SEN.ts_sensors)
         mav.update(mav.delta, None, simulation=False)  # propagate the MAV dynamics
         flight_time = time.time() - start_time
-        time.sleep(1/200.)
         logger.addEntry(mav.true_state, mav.delta, mav.sensors, flight_time)
     except KeyboardInterrupt:
         mav.telemetry.disarm()
         mav.telemetry.mavlink.motors_disarmed_wait()
         print('Pixhawk Disarmed')
         break
-    except:
-        pass
     
