@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Scripts/Horizonte_externo.gd" type="Script" id=7]
 [ext_resource path="res://Images/SetaCentral.png" type="Texture" id=8]
 [ext_resource path="res://Images/Branco.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/AltimeterText.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/polygon1.gd" type="Script" id=11]
+[ext_resource path="res://Images/Medidor.png" type="Texture" id=12]
+[ext_resource path="res://Images/ponteiro.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Medidor1.gd" type="Script" id=14]
 
 [node name="ArtificialHorizon" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -49,11 +54,45 @@ script = ExtResource( 7 )
 texture = ExtResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="Control"]
+position = Vector2( 1.05701, -2.56601 )
 scale = Vector2( 17, 17 )
 texture = ExtResource( 9 )
 mode = 3
 range_item_cull_mask = 1024
 
+[node name="Medidor" type="Sprite" parent="Control"]
+position = Vector2( -324.485, 185 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 12 )
+offset = Vector2( 0, -300 )
+script = ExtResource( 14 )
+
+[node name="Ponteiro" type="Sprite" parent="Control"]
+position = Vector2( -400, 0 )
+scale = Vector2( 0.111958, 0.111958 )
+texture = ExtResource( 13 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -149.23, -59.8529 )
+scale = Vector2( 0.77687, 0.77687 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
+script = ExtResource( 11 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D"]
+margin_left = -463.0
+margin_top = 133.0
+margin_right = -383.0
+margin_bottom = 173.0
+bbcode_enabled = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="Leitura" from="Control/Sprite" to="Control/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Seta" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Control/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Control/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Control/Sprite" to="Control/Medidor" method="_on_Sprite_Leitura"]
