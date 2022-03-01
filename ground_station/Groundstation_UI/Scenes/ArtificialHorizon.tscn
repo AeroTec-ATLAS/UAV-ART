@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -12,10 +12,11 @@
 [ext_resource path="res://Scripts/AltimeterText.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/polygon1.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/MedidorAlt.gd" type="Script" id=12]
-[ext_resource path="res://Images/ponteiro.png" type="Texture" id=13]
+[ext_resource path="res://Images/Moldura.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Medidor1.gd" type="Script" id=14]
 [ext_resource path="res://Images/Medidor0_100.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/VelText.gd" type="Script" id=16]
+[ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 
 [node name="ArtificialHorizon" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -75,19 +76,19 @@ texture = ExtResource( 15 )
 script = ExtResource( 12 )
 
 [node name="PonteiroVel2" type="Sprite" parent="Control"]
-position = Vector2( -400, 0 )
-scale = Vector2( 0.111958, 0.111958 )
-texture = ExtResource( 13 )
+position = Vector2( -371, 2 )
+scale = Vector2( 0.180873, 0.180873 )
+texture = ExtResource( 17 )
 
 [node name="PonteiroAlt" type="Sprite" parent="Control"]
-position = Vector2( 400, 0 )
+position = Vector2( 380, 2 )
 rotation = 3.14159
-scale = Vector2( 0.111958, 0.111958 )
-texture = ExtResource( 13 )
+scale = Vector2( 0.181, 0.181 )
+texture = ExtResource( 17 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -230.943, -66.566 )
-scale = Vector2( 0.441156, 0.441156 )
+position = Vector2( -60.9962, -144.137 )
+scale = Vector2( 0.894728, 0.894728 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
 script = ExtResource( 11 )
@@ -104,8 +105,8 @@ __meta__ = {
 }
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2( 649.057, -66.566 )
-scale = Vector2( 0.441156, 0.441156 )
+position = Vector2( 829.109, -148.749 )
+scale = Vector2( 0.921697, 0.921697 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
 script = ExtResource( 11 )
@@ -121,11 +122,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Moldura" type="Sprite" parent="Polygon2D2"]
+position = Vector2( -1469, 787.212 )
+scale = Vector2( 4.59106, 0.772156 )
+texture = ExtResource( 13 )
+
+[node name="Moldura2" type="Sprite" parent="Polygon2D2"]
+position = Vector2( -1477.53, -495.055 )
+scale = Vector2( 4.59106, 1.11949 )
+texture = ExtResource( 13 )
+
 [connection signal="Leitura" from="Control/Sprite" to="Control/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Seta" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Control/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Control/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Medidor1Vel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Control/Medidor1Alt" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Control/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Control/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Control/Sprite" to="Polygon2D2/RichTextLabel" method="_on_Sprite_Leitura"]

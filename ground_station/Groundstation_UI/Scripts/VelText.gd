@@ -7,6 +7,7 @@ func _ready():
 
 func _on_Sprite_Leitura(array2):
 	var dialog = array2[9]
+	set_visible_characters(4)
 	set_bbcode(dialog)
 	
 	
