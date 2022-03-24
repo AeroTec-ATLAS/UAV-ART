@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://seta.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/seta.gd" type="Script" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/Mostrador_editado.png-940b8db5ccb6435fa4c79b8e6a18a5e1.stex"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="roda" type="Sprite" parent="Sprite"]
+position = Vector2( 450.832, 303.764 )
+scale = Vector2( 0.5, 0.5 )
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+[node name="seta" type="Sprite" parent="Sprite2"]
+position = Vector2( 451.315, 304.738 )
+scale = Vector2( 0.320841, 0.320841 )
+texture = ExtResource( 2 )
+offset = Vector2( 71.5, -520 )
+region_rect = Rect2( 500, 500, 500, 500 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
