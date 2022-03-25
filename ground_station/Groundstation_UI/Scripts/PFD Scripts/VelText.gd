@@ -12,3 +12,7 @@ func _on_Sprite_Leitura(array2):
 	
 	
 	
+
+
+func _on_Altitude_AltIni():
+	pass # Replace with function body.

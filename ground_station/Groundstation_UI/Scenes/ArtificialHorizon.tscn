@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -20,8 +20,22 @@
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/SpawnerBarra.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/BarraSpawnada.gd" type="Script" id=20]
-[ext_resource path="res://Scenes/AltText1.gd" type="Script" id=21]
-[ext_resource path="res://Scenes/InitialAlt.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/AltText1.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/InitialAlt.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Most1.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Most7.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/Most3.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/Most5.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/Most6.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/Most2.gd" type="Script" id=28]
+[ext_resource path="res://Scripts/Most4.gd" type="Script" id=29]
+[ext_resource path="res://Scripts/AltText2.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/AltText8.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/AltText7.gd" type="Script" id=32]
+[ext_resource path="res://Scripts/AltText3.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/AltText5.gd" type="Script" id=34]
+[ext_resource path="res://Scripts/AltText4.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/AltText6.gd" type="Script" id=36]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -189,21 +203,152 @@ texture = ExtResource( 18 )
 script = ExtResource( 20 )
 
 [node name="Moldura" type="Sprite" parent="."]
+visible = false
 position = Vector2( 4.83554, 319.695 )
 scale = Vector2( 2.07033, 1.24194 )
 texture = ExtResource( 13 )
 
 [node name="Moldura2" type="Sprite" parent="."]
+visible = false
 position = Vector2( -4.00664, -320.872 )
 scale = Vector2( 2.07033, 1.24194 )
 texture = ExtResource( 13 )
 
-[node name="TesteMostrador" type="RichTextLabel" parent="."]
-margin_left = 207.0
-margin_top = -206.0
-margin_right = 618.0
-margin_bottom = 29.0
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2( 1586.16, -139.6 )
+scale = Vector2( 0.921697, 0.921697 )
+script = ExtResource( 23 )
+
+[node name="TesteMostrador" type="RichTextLabel" parent="Polygon2D3"]
+margin_left = -1381.0
+margin_top = 164.0
+margin_right = -1311.0
+margin_bottom = 185.0
 script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D4" type="Polygon2D" parent="."]
+script = ExtResource( 28 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D4"]
+margin_left = 313.0
+margin_top = -38.0
+margin_right = 383.0
+margin_bottom = -21.0
+script = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D5" type="Polygon2D" parent="."]
+script = ExtResource( 25 )
+
+[node name="TesteMostrador3" type="RichTextLabel" parent="Polygon2D5"]
+margin_left = 313.0
+margin_top = -89.0
+margin_right = 383.0
+margin_bottom = -72.0
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D6" type="Polygon2D" parent="."]
+script = ExtResource( 29 )
+
+[node name="TesteMostrador4" type="RichTextLabel" parent="Polygon2D6"]
+margin_left = 313.0
+margin_top = -138.0
+margin_right = 383.0
+margin_bottom = -121.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D7" type="Polygon2D" parent="."]
+script = ExtResource( 26 )
+
+[node name="TesteMostrador5" type="RichTextLabel" parent="Polygon2D7"]
+margin_left = 313.0
+margin_top = -188.0
+margin_right = 383.0
+margin_bottom = -172.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D8" type="Polygon2D" parent="."]
+script = ExtResource( 27 )
+
+[node name="TesteMostrador6" type="RichTextLabel" parent="Polygon2D8"]
+margin_left = 313.0
+margin_top = -237.0
+margin_right = 383.0
+margin_bottom = -220.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D9" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D9"]
+margin_left = 313.0
+margin_top = -287.0
+margin_right = 383.0
+margin_bottom = -268.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D10" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D10"]
+margin_left = 313.0
+margin_top = -337.0
+margin_right = 383.0
+margin_bottom = -318.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D11" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D11"]
+margin_left = 313.0
+margin_top = -387.0
+margin_right = 383.0
+margin_bottom = -368.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -219,5 +364,23 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Medidor1Alt" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="BarraGr" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="TesteMostrador" method="_on_Sprite_Leitura"]
-[connection signal="AltIni" from="Altitude" to="TesteMostrador" method="_on_Altitude_AltIni"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5/TesteMostrador3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D6" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D7" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D8" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D9" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D10" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D11" method="_on_Sprite_Leitura"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D3/TesteMostrador" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D4/TesteMostrador2" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D5/TesteMostrador3" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D6/TesteMostrador4" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D7/TesteMostrador5" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D8/TesteMostrador6" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D9/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D10/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D11/TesteMostrador7" method="_on_Altitude_AltIni"]
