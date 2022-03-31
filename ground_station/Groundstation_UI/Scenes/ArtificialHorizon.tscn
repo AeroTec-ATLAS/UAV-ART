@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Scripts/PFD Scripts/AltimeterText.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/PFD Scripts/polygon1.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/PFD Scripts/MedidorAlt.gd" type="Script" id=12]
-[ext_resource path="res://Images/Moldura.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/AltText9.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/PFD Scripts/Medidor1.gd" type="Script" id=14]
 [ext_resource path="res://Images/Medidor0_100.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
@@ -22,13 +22,7 @@
 [ext_resource path="res://Scripts/BarraSpawnada.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/AltText1.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/InitialAlt.gd" type="Script" id=22]
-[ext_resource path="res://Scripts/Most1.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/Most7.gd" type="Script" id=24]
-[ext_resource path="res://Scripts/Most3.gd" type="Script" id=25]
-[ext_resource path="res://Scripts/Most5.gd" type="Script" id=26]
-[ext_resource path="res://Scripts/Most6.gd" type="Script" id=27]
-[ext_resource path="res://Scripts/Most2.gd" type="Script" id=28]
-[ext_resource path="res://Scripts/Most4.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/AltText2.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/AltText8.gd" type="Script" id=31]
 [ext_resource path="res://Scripts/AltText7.gd" type="Script" id=32]
@@ -99,7 +93,6 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
 position = Vector2( -71.6028, -182.321 )
 scale = Vector2( 0.894728, 0.894728 )
 color = Color( 0, 0, 0, 1 )
@@ -117,14 +110,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2( 1586.16, -139.6 )
-scale = Vector2( 0.921697, 0.921697 )
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 1025.92, 87.6865 )
+scale = Vector2( 1.03014, 1.03014 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
 script = ExtResource( 11 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D/Polygon2D2"]
 margin_left = -452.056
 margin_top = 115.056
 margin_right = -372.056
@@ -133,22 +126,6 @@ bbcode_enabled = true
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
-}
-
-[node name="Moldura" type="Sprite" parent="Polygon2D2"]
-position = Vector2( -1469, 787.212 )
-scale = Vector2( 4.59106, 0.772156 )
-texture = ExtResource( 13 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Moldura2" type="Sprite" parent="Polygon2D2"]
-position = Vector2( -889.294, -333.632 )
-scale = Vector2( 4.59106, 1.11949 )
-texture = ExtResource( 13 )
-__meta__ = {
-"_edit_lock_": true
 }
 
 [node name="Velocidade" type="Control" parent="."]
@@ -188,7 +165,7 @@ texture = ExtResource( 15 )
 script = ExtResource( 12 )
 
 [node name="PonteiroAlt" type="Sprite" parent="Altitude"]
-position = Vector2( -745, 9.333 )
+position = Vector2( -745, 0 )
 rotation = 3.14159
 scale = Vector2( 0.180873, 0.180873 )
 texture = ExtResource( 17 )
@@ -202,28 +179,16 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
 script = ExtResource( 20 )
 
-[node name="Moldura" type="Sprite" parent="."]
-visible = false
-position = Vector2( 4.83554, 319.695 )
-scale = Vector2( 2.07033, 1.24194 )
-texture = ExtResource( 13 )
-
-[node name="Moldura2" type="Sprite" parent="."]
-visible = false
-position = Vector2( -4.00664, -320.872 )
-scale = Vector2( 2.07033, 1.24194 )
-texture = ExtResource( 13 )
-
 [node name="Polygon2D3" type="Polygon2D" parent="."]
 position = Vector2( 1586.16, -139.6 )
 scale = Vector2( 0.921697, 0.921697 )
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador" type="RichTextLabel" parent="Polygon2D3"]
 margin_left = -1381.0
-margin_top = 164.0
-margin_right = -1311.0
-margin_bottom = 185.0
+margin_top = 13.0
+margin_right = -1303.0
+margin_bottom = 34.0
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -231,7 +196,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D4" type="Polygon2D" parent="."]
-script = ExtResource( 28 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D4"]
 margin_left = 313.0
@@ -245,7 +210,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D5" type="Polygon2D" parent="."]
-script = ExtResource( 25 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador3" type="RichTextLabel" parent="Polygon2D5"]
 margin_left = 313.0
@@ -259,7 +224,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D6" type="Polygon2D" parent="."]
-script = ExtResource( 29 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador4" type="RichTextLabel" parent="Polygon2D6"]
 margin_left = 313.0
@@ -275,7 +240,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D7" type="Polygon2D" parent="."]
-script = ExtResource( 26 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador5" type="RichTextLabel" parent="Polygon2D7"]
 margin_left = 313.0
@@ -291,7 +256,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D8" type="Polygon2D" parent="."]
-script = ExtResource( 27 )
+script = ExtResource( 24 )
 
 [node name="TesteMostrador6" type="RichTextLabel" parent="Polygon2D8"]
 margin_left = 313.0
@@ -332,7 +297,7 @@ margin_right = 383.0
 margin_bottom = -318.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 32 )
+script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -348,7 +313,7 @@ margin_right = 383.0
 margin_bottom = -368.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 31 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -359,7 +324,7 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D2/RichTextLabel" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Velocidade/Medidor1Vel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Medidor1Alt" method="_on_Sprite_Leitura"]
@@ -374,7 +339,7 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D9" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D10" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D11" method="_on_Sprite_Leitura"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D3/TesteMostrador" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D4/TesteMostrador2" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D5/TesteMostrador3" method="_on_Altitude_AltIni"]
