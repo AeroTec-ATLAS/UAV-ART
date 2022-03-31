@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Scripts/PFD Scripts/AltimeterText.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/PFD Scripts/polygon1.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/PFD Scripts/MedidorAlt.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/AltText9.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/AltText9.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/PFD Scripts/Medidor1.gd" type="Script" id=14]
 [ext_resource path="res://Images/Medidor0_100.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scripts/BarraSpawnada.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/AltText1.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/InitialAlt.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/SpawnerNum.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/Most7.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/AltText2.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/AltText8.gd" type="Script" id=31]
@@ -319,6 +320,9 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="SpawnerNum" type="Node2D" parent="."]
+script = ExtResource( 23 )
+
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Seta" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
@@ -339,6 +343,7 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D9" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D10" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D11" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="SpawnerNum" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D3/TesteMostrador" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D4/TesteMostrador2" method="_on_Altitude_AltIni"]
