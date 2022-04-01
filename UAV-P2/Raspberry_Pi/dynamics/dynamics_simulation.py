@@ -13,7 +13,7 @@ import parameters.simulation_parameters as SIM
 
 from video.mav_viewer import mavViewer
 from kinematics.data_viewer import dataViewer
-from dynamics.mav_dynamics import mavDynamics
+from dynamics.mav_dynamics import mavDynamics # Import mavDynamics
 from dynamics.wind_simulation import windSimulation
 from tools.log import log
 from message_types.msg_delta import msgDelta
