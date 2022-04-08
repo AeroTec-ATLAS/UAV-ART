@@ -3,6 +3,7 @@ extends Control
 var init
 var estado = 1
 var pinit
+var pinit2
 signal AltIni
 
 func _on_Sprite_Leitura(array2): #esta funcao detecta o primeiro valor de altitude
@@ -24,4 +25,3 @@ func _process(delta):
 	if estado == 2:
 		estado += 1
 		pinit = init / 10 #com a divisao por 10 conseguimos arredondar mais facilmente, e so multiplicar a div por 10
-

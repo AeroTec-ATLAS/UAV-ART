@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -24,6 +24,11 @@
 [ext_resource path="res://Scripts/InitialAlt.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/SpawnerNum.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/Most7.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/AltTextNeg.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/AltTextNeg1.gd" type="Script" id=26]
+[ext_resource path="res://Scenes/AltTextNeg2.gd" type="Script" id=27]
+[ext_resource path="res://Scenes/AltTextNeg3.gd" type="Script" id=28]
+[ext_resource path="res://Scenes/AltTextNeg4.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/AltText2.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/AltText8.gd" type="Script" id=31]
 [ext_resource path="res://Scripts/AltText7.gd" type="Script" id=32]
@@ -31,6 +36,7 @@
 [ext_resource path="res://Scripts/AltText5.gd" type="Script" id=34]
 [ext_resource path="res://Scripts/AltText4.gd" type="Script" id=35]
 [ext_resource path="res://Scripts/AltText6.gd" type="Script" id=36]
+[ext_resource path="res://Scenes/AltTextNeg5.gd" type="Script" id=37]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -210,6 +216,90 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Polygon2D12" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D12"]
+margin_left = 313.0
+margin_top = 63.0
+margin_right = 383.0
+margin_bottom = 80.0
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D13" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D13"]
+margin_left = 313.0
+margin_top = 114.0
+margin_right = 383.0
+margin_bottom = 131.0
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D14" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D14"]
+margin_left = 313.0
+margin_top = 164.0
+margin_right = 383.0
+margin_bottom = 181.0
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D15" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D15"]
+margin_left = 313.0
+margin_top = 215.0
+margin_right = 383.0
+margin_bottom = 232.0
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D16" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D16"]
+margin_left = 313.0
+margin_top = 266.0
+margin_right = 383.0
+margin_bottom = 283.0
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Polygon2D17" type="Polygon2D" parent="."]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D17"]
+margin_left = 313.0
+margin_top = 367.0
+margin_right = 383.0
+margin_bottom = 384.0
+script = ExtResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
 [node name="Polygon2D5" type="Polygon2D" parent="."]
 script = ExtResource( 24 )
 
@@ -335,6 +425,8 @@ script = ExtResource( 23 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="BarraGr" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D12" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D13" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5/TesteMostrador3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D6" method="_on_Sprite_Leitura"]
@@ -344,6 +436,10 @@ script = ExtResource( 23 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D10" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D11" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="SpawnerNum" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D14" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D15" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D16" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D17" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D3/TesteMostrador" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D4/TesteMostrador2" method="_on_Altitude_AltIni"]
