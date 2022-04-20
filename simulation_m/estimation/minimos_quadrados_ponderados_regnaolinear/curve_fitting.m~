@@ -1,0 +1,19 @@
+function [Y_fitted, W] = curve_fitting(X, Y, beta0) 
+
+t = [data.time];
+y = CL;
+figure()
+plot(t, y, 'ro');
+
+[xdata] = X;
+F = @(beta_CL_coeffs, xdata)beta(1)*xdata(:,1)+ beta_CL_coeffs(2)*xdata(:,2) + beta_CL_coeffs(3)*xdata(:,3);
+curve = lsqcurvefit(F,beta_CL_coeffs0,xdata,y');
+CL_fitted = curve(1)*xdata(:,1) + curve(2)*xdata(:,2)+ curve(3)*xdata(:,3);
+plot (t, CL, 'o', t, CL_fitted);
+legend('Data','Fitted curve')
+title('Data and Fitted Curve')
+
+mean = (CL' + CL_fitted)/2;
+variance = ((CL'-mean).^2 + (CL_fitted-mean).^2)/2;
+W = diag(variance);
+

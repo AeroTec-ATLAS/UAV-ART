@@ -102,9 +102,9 @@ class mavDynamics:
             self.true_state.pn=self.sensors.x
             self.true_state.pe=self.sensors.y
             self.true_state.h=self.sensors.z
-            self.true_state.phi = self.sensors.attitude.roll
-            self.true_state.theta = self.sensors.attitude.pitch
-            self.true_state.psi = self.sensors.attitude.yaw 
+            self.true_state.phi = self.sensors.roll
+            self.true_state.theta = self.sensors.pitch
+            self.true_state.psi = self.sensors.yaw 
             self.true_state.p=self.sensors.gyro_x
             self.true_state.q=self.sensors.gyro_y
             self.true_state.r=self.sensors.gyro_z
@@ -302,6 +302,9 @@ class mavDynamics:
 
     def _update_sensors(self):
         vehicle = self.telemetry
+        self.sensors.roll = vehicle.getAttitude().roll
+        self.sensors.pitch = vehicle.getAttitude().pitch
+        self.sensors.yaw = vehicle.getAttitude().yaw
         self.sensors.gyro_x = vehicle.getIMU().xgyro
         self.sensors.gyro_y = vehicle.getIMU().ygyro
         self.sensors.gyro_z = vehicle.getIMU().zgyro
@@ -313,24 +316,49 @@ class mavDynamics:
         self.sensors.mag_z = vehicle.getIMU().zmag
         self.sensors.abs_pressure = vehicle.getIMU().abs_pressure
         self.sensors.diff_pressure = vehicle.getIMU().diff_pressure
-        self.sensors.gps_n = vehicle.getGPS().lat
-        self.sensors.gps_e = vehicle.getGPS().lon
-        self.sensors.gps_h = vehicle.getGPS().alt * 1000
-        self.sensors.gps_Vg = math.sqrt(vehicle.getGPS().vx**2 + vehicle.getGPS().vy**2 + vehicle.getGPS().vz**2)
+        try:
+                self.sensors.gps_n = vehicle.getGPS().lat
+                self.sensors.gps_e = vehicle.getGPS().lon
+                self.sensors.gps_h = vehicle.getGPS().alt * 1000
+                self.sensors.gps_Vg = math.sqrt(vehicle.getGPS().vx**2 + vehicle.getGPS().vy**2 + vehicle.getGPS().vz**2)
+        except:
+                self.sensors.gps_n = 'N/A'
+                self.sensors.gps_e = 'N/A'
+                self.sensors.gps_h = 'N/A'
+                self.sensors.gps_Vg = 'N/A'
         self.sensors.roll = vehicle.getAttitude().roll
         self.sensors.pitch = vehicle.getAttitude().pitch
         self.sensors.yaw = vehicle.getAttitude().yaw
-        self.sensors.wx = vehicle.getWind().wind_x
-        self.sensors.wy = vehicle.getWind().wind_y
-        self.sensors.wz = vehicle.getWind().wind_z
-        self.sensors.x = vehicle.getPosition().x
-        self.sensors.y = vehicle.getPosition().y
-        self.sensors.z = vehicle.getPosition().z
-        self.sensors.vx = vehicle.getPosition().vx
-        self.sensors.vy = vehicle.getPosition().vy
-        self.sensors.vz = vehicle.getPosition().vz
-        self.sensors.va = vehicle.getVFR().airspeed
+        try:
+                self.sensors.wx = vehicle.getWind().wind_x
+                self.sensors.wy = vehicle.getWind().wind_y
+                self.sensors.wz = vehicle.getWind().wind_z
+        except:
+                self.sensors.wx = 'N/A'
+                self.sensors.wy = 'N/A'
+                self.sensors.wz = 'N/A'
+        try:
+                self.sensors.x = vehicle.getPosition().x
+                self.sensors.y = vehicle.getPosition().y
+                self.sensors.z = vehicle.getPosition().z
+                self.sensors.vx = vehicle.getPosition().vx
+                self.sensors.vy = vehicle.getPosition().vy
+                self.sensors.vz = vehicle.getPosition().vz
+        except:
+                self.sensors.x = 'N/A'
+                self.sensors.y = 'N/A'
+                self.sensors.z = 'N/A'
+                self.sensors.vx = 'N/A'
+                self.sensors.vy = 'N/A'
+                self.sensors.vz = 'N/A'
+        try:
+                self.sensors.va = vehicle.getVFR().airspeed
+        except:
+                self.sensors.va = 'N/A'
 
     def _get_surfaces(self):
         vehicle = self.telemetry
-        return np.array([[vehicle.getRC().chan2_scaled/100*AP.delta_e_max],[vehicle.getRC().chan1_scaled/100*AP.delta_a_max],[vehicle.getRC().chan4_scaled/100*AP.delta_r_max],[vehicle.getRC().chan3_scaled/100]]) 
+        try:
+                return np.array([[vehicle.getRC().chan2_scaled/100*AP.delta_e_max],[vehicle.getRC().chan1_scaled/100*AP.delta_a_max],[vehicle.getRC().chan4_scaled/100*AP.delta_r_max],[vehicle.getRC().chan3_scaled/100]]) 
+        except:
+                return np.array([[0],[0],[0],[0]]) 
