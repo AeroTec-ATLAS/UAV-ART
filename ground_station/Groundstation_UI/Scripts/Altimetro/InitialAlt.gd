@@ -1,5 +1,7 @@
 extends Control
 
+#Decide a altitude inicial
+
 var init
 var estado = 1
 var pinit

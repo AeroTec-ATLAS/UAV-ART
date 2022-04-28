@@ -2,7 +2,7 @@
 
 [ext_resource path="res://seta.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Legacy Scripts/PonteiroAS.gd" type="Script" id=2]
-[ext_resource path="res://Leitor.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Global Func/Leitor.gd" type="Script" id=3]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4

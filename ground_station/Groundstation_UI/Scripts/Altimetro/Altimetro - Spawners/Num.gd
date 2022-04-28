@@ -1,6 +1,6 @@
 extends Polygon2D
 
-
+#Código para a movimentação dos polígonos novos
 
 func _ready():
 	#position.y = 0
@@ -12,8 +12,8 @@ func _ready():
 
 func _process(delta):
 	#position.x = 313.0
-	position.y = (Most7.position.y) -321 + -50 * (SpawnerNum.contM - 5) + (49.0/10 * float(global.array2[9])) 
-	
+	position.y = (Most7.position.y) -334 + -50 * (SpawnerNum.contM - 6) + (49.0/10 * float(global.array2[9])) 
+
 	#-522 da certo
 #func _ready():
 	#position.y = 0

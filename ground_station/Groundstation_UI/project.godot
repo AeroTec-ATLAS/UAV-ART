@@ -15,10 +15,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-global="*res://Leitor.gd"
-InitialAlt="*res://Scripts/InitialAlt.gd"
-SpawnerNum="*res://Scripts/SpawnerNum.gd"
-Most7="*res://Scripts/Most7.gd"
+global="*res://Scripts/Global Func/Leitor.gd"
+InitialAlt="*res://Scripts/Altimetro/InitialAlt.gd"
+SpawnerNum="*res://Scripts/Altimetro/SpawnNewNumber.gd"
+Most7="*res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd"
 
 [physics]
 

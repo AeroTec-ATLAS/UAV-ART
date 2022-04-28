@@ -1,42 +1,49 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/PFD Scripts/Movimento_interno.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/PFD Scripts/Movimento_seta.gd" type="Script" id=4]
 [ext_resource path="res://Images/Seta.png" type="Texture" id=5]
-[ext_resource path="res://Leitor.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Global Func/Leitor.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/PFD Scripts/Horizonte_externo.gd" type="Script" id=7]
 [ext_resource path="res://Images/SetaCentral.png" type="Texture" id=8]
 [ext_resource path="res://Images/Branco.png" type="Texture" id=9]
-[ext_resource path="res://Scripts/PFD Scripts/AltimeterText.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/PFD Scripts/polygon1.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/PFD Scripts/MedidorAlt.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/AltText9.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltimeterText.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText9.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/PFD Scripts/Medidor1.gd" type="Script" id=14]
 [ext_resource path="res://Images/Medidor0_100.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
 [ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/SpawnerBarra.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scripts/BarraSpawnada.gd" type="Script" id=20]
-[ext_resource path="res://Scripts/AltText1.gd" type="Script" id=21]
-[ext_resource path="res://Scripts/InitialAlt.gd" type="Script" id=22]
-[ext_resource path="res://Scripts/SpawnerNum.gd" type="Script" id=23]
-[ext_resource path="res://Scripts/Most7.gd" type="Script" id=24]
-[ext_resource path="res://Scripts/AltTextNeg.gd" type="Script" id=25]
-[ext_resource path="res://Scripts/AltTextNeg1.gd" type="Script" id=26]
-[ext_resource path="res://Scenes/AltTextNeg2.gd" type="Script" id=27]
-[ext_resource path="res://Scenes/AltTextNeg3.gd" type="Script" id=28]
-[ext_resource path="res://Scenes/AltTextNeg4.gd" type="Script" id=29]
-[ext_resource path="res://Scripts/AltText2.gd" type="Script" id=30]
-[ext_resource path="res://Scripts/AltText8.gd" type="Script" id=31]
-[ext_resource path="res://Scripts/AltText7.gd" type="Script" id=32]
-[ext_resource path="res://Scripts/AltText3.gd" type="Script" id=33]
-[ext_resource path="res://Scripts/AltText5.gd" type="Script" id=34]
-[ext_resource path="res://Scripts/AltText4.gd" type="Script" id=35]
-[ext_resource path="res://Scripts/AltText6.gd" type="Script" id=36]
-[ext_resource path="res://Scenes/AltTextNeg5.gd" type="Script" id=37]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText1.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Altimetro/SpawnNewNumber.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText0.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg1.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg2.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg3.gd" type="Script" id=28]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg4.gd" type="Script" id=29]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText2.gd" type="Script" id=30]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText8.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText7.gd" type="Script" id=32]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText3.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText5.gd" type="Script" id=34]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText4.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText6.gd" type="Script" id=36]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg5.gd" type="Script" id=37]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Polygon2D
+
+
+func _on_Sprite_Leitura(array2):
+	pass
+
+"
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -100,17 +107,17 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -71.6028, -182.321 )
+position = Vector2( -109.432, -139.448 )
 scale = Vector2( 0.894728, 0.894728 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
-script = ExtResource( 11 )
+script = SubResource( 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D"]
-margin_left = -471.3
-margin_top = 81.3872
-margin_right = -391.3
-margin_bottom = 109.387
+margin_left = -439.355
+margin_top = 138.701
+margin_right = -359.355
+margin_bottom = 166.7
 bbcode_enabled = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -118,17 +125,17 @@ __meta__ = {
 }
 
 [node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
-position = Vector2( 1025.92, 87.6865 )
+position = Vector2( 1072.9, -10.985 )
 scale = Vector2( 1.03014, 1.03014 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
-script = ExtResource( 11 )
+script = SubResource( 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D/Polygon2D2"]
-margin_left = -452.056
-margin_top = 115.056
-margin_right = -372.056
-margin_bottom = 162.056
+margin_left = -452.742
+margin_top = 146.421
+margin_right = -372.742
+margin_bottom = 193.421
 bbcode_enabled = true
 script = ExtResource( 16 )
 __meta__ = {
@@ -141,6 +148,7 @@ margin_top = -232.641
 margin_right = -250.074
 margin_bottom = 198.359
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -165,239 +173,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Medidor1Alt" type="Sprite" parent="Altitude"]
-position = Vector2( 320, -55 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 15 )
-script = ExtResource( 12 )
-
-[node name="PonteiroAlt" type="Sprite" parent="Altitude"]
-position = Vector2( -745, 0 )
-rotation = 3.14159
-scale = Vector2( 0.180873, 0.180873 )
-texture = ExtResource( 17 )
-
-[node name="Spawner" parent="." instance=ExtResource( 19 )]
-position = Vector2( 350, 0 )
-
-[node name="BarraGr" type="Sprite" parent="."]
-position = Vector2( 350, 0 )
+[node name="BarraGr" type="Sprite" parent="Altitude"]
+position = Vector2( -806.57, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
 script = ExtResource( 20 )
 
-[node name="Polygon2D3" type="Polygon2D" parent="."]
-position = Vector2( 1586.16, -139.6 )
-scale = Vector2( 0.921697, 0.921697 )
-script = ExtResource( 24 )
+[node name="Spawner" parent="Altitude" instance=ExtResource( 19 )]
+position = Vector2( -806.57, 13.2539 )
 
-[node name="TesteMostrador" type="RichTextLabel" parent="Polygon2D3"]
-margin_left = -1381.0
-margin_top = 13.0
-margin_right = -1303.0
-margin_bottom = 34.0
-script = ExtResource( 21 )
+[node name="SpawnerNum" type="Node2D" parent="Altitude"]
+position = Vector2( -1156.57, 13.2539 )
+script = ExtResource( 23 )
+
+[node name="Altimetro - Caixas de Texto" type="Control" parent="Altitude"]
+margin_left = -1156.57
+margin_top = 13.2539
+margin_right = -1116.57
+margin_bottom = 53.2539
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
 
-[node name="Polygon2D4" type="Polygon2D" parent="."]
+[node name="CaixaPositiva9" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
 script = ExtResource( 24 )
 
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D4"]
-margin_left = 313.0
-margin_top = -38.0
-margin_right = 383.0
-margin_bottom = -21.0
-script = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D12" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D12"]
-margin_left = 313.0
-margin_top = 63.0
-margin_right = 383.0
-margin_bottom = 80.0
-script = ExtResource( 25 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D13" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D13"]
-margin_left = 313.0
-margin_top = 114.0
-margin_right = 383.0
-margin_bottom = 131.0
-script = ExtResource( 26 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D14" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D14"]
-margin_left = 313.0
-margin_top = 164.0
-margin_right = 383.0
-margin_bottom = 181.0
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D15" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D15"]
-margin_left = 313.0
-margin_top = 215.0
-margin_right = 383.0
-margin_bottom = 232.0
-script = ExtResource( 28 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D16" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D16"]
-margin_left = 313.0
-margin_top = 266.0
-margin_right = 383.0
-margin_bottom = 283.0
-script = ExtResource( 29 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D17" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador2" type="RichTextLabel" parent="Polygon2D17"]
-margin_left = 313.0
-margin_top = 367.0
-margin_right = 383.0
-margin_bottom = 384.0
-script = ExtResource( 37 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D5" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador3" type="RichTextLabel" parent="Polygon2D5"]
-margin_left = 313.0
-margin_top = -89.0
-margin_right = 383.0
-margin_bottom = -72.0
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D6" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador4" type="RichTextLabel" parent="Polygon2D6"]
-margin_left = 313.0
-margin_top = -138.0
-margin_right = 383.0
-margin_bottom = -121.0
-bbcode_text = "1000"
-text = "1000"
-script = ExtResource( 35 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D7" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador5" type="RichTextLabel" parent="Polygon2D7"]
-margin_left = 313.0
-margin_top = -188.0
-margin_right = 383.0
-margin_bottom = -172.0
-bbcode_text = "1000"
-text = "1000"
-script = ExtResource( 34 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D8" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador6" type="RichTextLabel" parent="Polygon2D8"]
-margin_left = 313.0
-margin_top = -237.0
-margin_right = 383.0
-margin_bottom = -220.0
-bbcode_text = "1000"
-text = "1000"
-script = ExtResource( 36 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D9" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D9"]
-margin_left = 313.0
-margin_top = -287.0
-margin_right = 383.0
-margin_bottom = -268.0
-bbcode_text = "1000"
-text = "1000"
-script = ExtResource( 32 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D10" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D10"]
-margin_left = 313.0
-margin_top = -337.0
-margin_right = 383.0
-margin_bottom = -318.0
-bbcode_text = "1000"
-text = "1000"
-script = ExtResource( 31 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Polygon2D11" type="Polygon2D" parent="."]
-script = ExtResource( 24 )
-
-[node name="TesteMostrador7" type="RichTextLabel" parent="Polygon2D11"]
+[node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9"]
 margin_left = 313.0
 margin_top = -387.0
 margin_right = 383.0
@@ -410,8 +211,219 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="SpawnerNum" type="Node2D" parent="."]
-script = ExtResource( 23 )
+[node name="CaixaPositiva8" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8"]
+margin_left = 313.0
+margin_top = -337.0
+margin_right = 383.0
+margin_bottom = -318.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva7" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7"]
+margin_left = 313.0
+margin_top = -287.0
+margin_right = 383.0
+margin_bottom = -268.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva6" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador6" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva6"]
+margin_left = 313.0
+margin_top = -237.0
+margin_right = 383.0
+margin_bottom = -220.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva5" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador5" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva5"]
+margin_left = 313.0
+margin_top = -188.0
+margin_right = 383.0
+margin_bottom = -172.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva4" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador4" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva4"]
+margin_left = 313.0
+margin_top = -138.0
+margin_right = 383.0
+margin_bottom = -121.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva3" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador3" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3"]
+margin_left = 313.0
+margin_top = -89.0
+margin_right = 383.0
+margin_bottom = -72.0
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva2" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva2"]
+margin_left = 313.0
+margin_top = -38.0
+margin_right = 383.0
+margin_bottom = -21.0
+script = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva1" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+position = Vector2( 1586.16, -139.6 )
+scale = Vector2( 0.921697, 0.921697 )
+script = ExtResource( 24 )
+
+[node name="TesteMostrador" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva1"]
+margin_left = -1381.0
+margin_top = 13.0
+margin_right = -1303.0
+margin_bottom = 34.0
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Caixa0" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/Caixa0"]
+margin_left = 313.0
+margin_top = 63.0
+margin_right = 383.0
+margin_bottom = 80.0
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa1" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa1"]
+margin_left = 313.0
+margin_top = 114.0
+margin_right = 383.0
+margin_bottom = 131.0
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa2" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa2"]
+margin_left = 313.0
+margin_top = 164.0
+margin_right = 383.0
+margin_bottom = 181.0
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa3" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3"]
+margin_left = 313.0
+margin_top = 215.0
+margin_right = 383.0
+margin_bottom = 232.0
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa4" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4"]
+margin_left = 313.0
+margin_top = 266.0
+margin_right = 383.0
+margin_bottom = 283.0
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa5" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
+script = ExtResource( 24 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5"]
+margin_left = 313.0
+margin_top = 367.0
+margin_right = 383.0
+margin_bottom = 384.0
+script = ExtResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="PonteiroAlt" type="Sprite" parent="Altitude"]
+position = Vector2( -745, 0 )
+rotation = 3.14159
+scale = Vector2( 0.180873, 0.180873 )
+texture = ExtResource( 17 )
 
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Seta" method="_on_Sprite_Leitura"]
@@ -421,32 +433,31 @@ script = ExtResource( 23 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Velocidade/Medidor1Vel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Medidor1Alt" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="BarraGr" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D3" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D4" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D12" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D13" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D5/TesteMostrador3" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D6" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D7" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D8" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D9" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D10" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D11" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="SpawnerNum" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D14" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D15" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D16" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D17" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/SpawnerNum" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva6" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva5" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3/TesteMostrador3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva1" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/Caixa0" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa1" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Polygon2D/Polygon2D2/RichTextLabel" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D3/TesteMostrador" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D4/TesteMostrador2" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D5/TesteMostrador3" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D6/TesteMostrador4" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D7/TesteMostrador5" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D8/TesteMostrador6" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D9/TesteMostrador7" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D10/TesteMostrador7" method="_on_Altitude_AltIni"]
-[connection signal="AltIni" from="Altitude" to="Polygon2D11/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7/TesteMostrador7" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva6/TesteMostrador6" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva5/TesteMostrador5" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva4/TesteMostrador4" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3/TesteMostrador3" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva2/TesteMostrador2" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva1/TesteMostrador" method="_on_Altitude_AltIni"]
