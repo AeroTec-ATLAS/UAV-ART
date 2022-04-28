@@ -17,13 +17,13 @@ func _process(delta):
 	if (float(global.array2[9]) > (0 + 10 * (contM -3))): #falta trocar o 0 pela altitude inicial
 		criar()
 		contM += 1
-		print(array_nodes)
+		#print(array_nodes)
 	
 	
 	if (float(global.array2[9]) < (0 + -10 * contN)): #falta trocar o 0 pela altitude inicial
 		criar()
 		contN +=1
-		print(array_nodes)
+		#print(array_nodes)
 		
 	
 	

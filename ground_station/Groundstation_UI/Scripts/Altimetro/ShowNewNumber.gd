@@ -1,16 +1,12 @@
 extends RichTextLabel
-
 # Este script exibe os novos números spawnados
 
+var aux #salva os valores de contM
 func _ready():
-	pass 
+	aux = SpawnerNum.contM
 
 
 func _process(delta):
-	
-	SpawnerNum.contM = SpawnerNum.contM + 0
-	var dialog = str(InitialAlt.pinit * 10 +((SpawnerNum.contM)) * 10) 
-	#print(SpawnerNum.contM)
+	var dialog = str(InitialAlt.pinit * 10 +((aux)) * 10) 
 	set_visible_characters(4)
 	set_bbcode(dialog)
-
