@@ -47,6 +47,9 @@ func _on_Sprite_Leitura(array2):
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Horizonte" type="Control" parent="."]
 anchor_top = 1.0
@@ -340,9 +343,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/Caixa0"]
 margin_left = 313.0
-margin_top = 63.0
+margin_top = 61.0
 margin_right = 383.0
-margin_bottom = 80.0
+margin_bottom = 78.0
 script = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -354,9 +357,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa1"]
 margin_left = 313.0
-margin_top = 114.0
+margin_top = 112.0
 margin_right = 383.0
-margin_bottom = 131.0
+margin_bottom = 129.0
 script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -368,9 +371,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa2"]
 margin_left = 313.0
-margin_top = 164.0
+margin_top = 162.0
 margin_right = 383.0
-margin_bottom = 181.0
+margin_bottom = 179.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -382,9 +385,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3"]
 margin_left = 313.0
-margin_top = 215.0
+margin_top = 213.0
 margin_right = 383.0
-margin_bottom = 232.0
+margin_bottom = 230.0
 script = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -396,9 +399,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4"]
 margin_left = 313.0
-margin_top = 266.0
+margin_top = 264.0
 margin_right = 383.0
-margin_bottom = 283.0
+margin_bottom = 281.0
 script = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -410,9 +413,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5"]
 margin_left = 313.0
-margin_top = 367.0
+margin_top = 314.0
 margin_right = 383.0
-margin_bottom = 384.0
+margin_bottom = 331.0
 script = ExtResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": false,

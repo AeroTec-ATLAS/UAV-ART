@@ -1,6 +1,6 @@
 extends Sprite
 
-onready var file = 'res://data_log.txt'
+onready var file = 'res://teste.txt'
 var f
 var velocidade 
 var ang1 #pitch

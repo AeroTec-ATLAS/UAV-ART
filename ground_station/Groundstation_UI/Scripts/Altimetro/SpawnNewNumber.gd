@@ -4,7 +4,7 @@ extends Node2D
 
 
 var contM = 9
-var contN = 4
+var contN = 5
 var array_nodes = [] #array onde vao ser guardados os nodes
 var slots = 0
 
@@ -20,7 +20,7 @@ func _process(delta):
 		#print(array_nodes)
 	
 	
-	if (float(global.array2[9]) < (0 + -10 * contN)): #falta trocar o 0 pela altitude inicial
+	if (float(global.array2[9]) < (0 + -10 * (contN-3))): #falta trocar o 0 pela altitude inicial
 		criar()
 		contN +=1
 		#print(array_nodes)
@@ -29,18 +29,18 @@ func _process(delta):
 	
 func get_input(): #debugg
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		criar()
+		#criar()
+		pass
 
 
 func criar():
-	array_nodes.append([]) #necessário
+	#array_nodes.append([]) #necessário
 	var caixa = load("res://Scenes/SpawnNum.tscn")
 	var caixaC = caixa.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC)
-	print("criou")
-	array_nodes[slots].append(caixaC) #guarda os nodes criados num array
-	slots += 1
-	return caixaC
+	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
+	#slots += 1
+	#return caixaC
 
 
 
