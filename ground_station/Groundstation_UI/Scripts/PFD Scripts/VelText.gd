@@ -10,9 +10,3 @@ func _on_Sprite_Leitura(array2):
 	set_visible_characters(4)
 	set_bbcode(dialog)
 	
-	
-	
-
-
-func _on_Altitude_AltIni():
-	pass # Replace with function body.

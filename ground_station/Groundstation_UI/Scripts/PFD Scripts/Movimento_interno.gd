@@ -13,6 +13,4 @@ func _on_Sprite_Leitura(array2):
 	pitch = float(array2[1]) 
 	position.y = 0 + (pitch * 4 * 180)/PI
 
-	#ver se o lado que gira/sobe é o certo
-	#usar os 3 ang?
-	#aumentar a a imagem do mov interno, pq o aviao pode descer ou subir muito mais
+	

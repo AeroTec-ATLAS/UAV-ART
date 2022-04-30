@@ -14,19 +14,14 @@ func _ready():
 
 func _process(delta):
 	get_input()
-	if (float(global.array2[9]) > (0 + 10 * (contM -3))): #falta trocar o 0 pela altitude inicial
+	if (float(global.array2[9]) > (InitialAlt.pinit + 10 * (contM -3))): 
 		criar()
 		contM += 1
-		#print(array_nodes)
 	
-	
-	if (float(global.array2[9]) < (0 + -10 * (contN-3))): #falta trocar o 0 pela altitude inicial
+	if (float(global.array2[9]) < (InitialAlt.pinit + -10 * (contN-3))): 
 		criar()
 		contN +=1
-		#print(array_nodes)
 		
-	
-	
 func get_input(): #debugg
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		#criar()
@@ -41,20 +36,3 @@ func criar():
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 	#slots += 1
 	#return caixaC
-
-
-
-#func _on_Sprite_Leitura(array2):
-	#Sempre que a altitude chega a 60, 70, 80 etc cria um novo numero 
-	#if (float(array2[9]) > (0 + 10 * (contM -3))): #falta trocar o 0 pela altitude inicial
-		#contM +=1
-		#print(contM)
-		#criar()
-		#print(InitialAlt.pinit)
-	#if (float(array2[9]) < (0 + -10 * contN)): #falta trocar o 0 pela altitude inicial
-		#contN +=1
-		#criar()
-		#print(contN)
-		#print(InitialAlt.pinit)
-
-
