@@ -412,13 +412,13 @@ scale = Vector2( 0.180873, 0.180873 )
 texture = ExtResource( 17 )
 
 [node name="Moldura" type="Sprite" parent="Altitude"]
-position = Vector2( -803.513, 306.688 )
-scale = Vector2( 0.325397, 1.97753 )
+position = Vector2( -803.513, 286.688 )
+scale = Vector2( 0.325397, 2.42697 )
 texture = ExtResource( 11 )
 
 [node name="Moldura2" type="Sprite" parent="Altitude"]
-position = Vector2( -811.513, -309.312 )
-scale = Vector2( 0.325397, 1.97753 )
+position = Vector2( -811.513, -293.312 )
+scale = Vector2( 0.325397, 2.60674 )
 texture = ExtResource( 11 )
 
 [node name="Altitude Tempo Real" type="RichTextLabel" parent="Altitude"]
@@ -451,7 +451,6 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altitude Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Velocidade/Medidor1Vel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr" method="_on_Sprite_Leitura"]
@@ -472,7 +471,7 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
-[connection signal="AltIni" from="Altitude" to="Altitude/Altitude Tempo Real" method="_on_Altitude_AltIni"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altitude Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7/TesteMostrador7" method="_on_Altitude_AltIni"]
@@ -482,3 +481,4 @@ __meta__ = {
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3/TesteMostrador3" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva2/TesteMostrador2" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva1/TesteMostrador" method="_on_Altitude_AltIni"]
+[connection signal="AltIni" from="Altitude" to="Altitude/Altitude Tempo Real" method="_on_Altitude_AltIni"]

@@ -13,6 +13,6 @@ func _ready():
 
 func _process(delta):
 	if float(global.array2[9]) * 10 > ( InitialAlt.pinit * 10 + SpawnerNum.contM * 10):
-		position.y = (Most7.position.y) -334 + -50 * (aux1 - 6) + (49.0/10 * float(global.array2[9])) 
+		position.y = (Most7.position.y) -322 + -50 * (aux1 - 6) + (49.0/10 * float(global.array2[9])) 
 	if float(global.array2[9])* 10 < ( InitialAlt.pinit * 10 - SpawnerNum.contN * 10):
-		position.y = (Most7.position.y) -41 + 50 * (aux2) + (49.0/10 * float(global.array2[9])) 
+		position.y = (Most7.position.y) -29 + 50 * (aux2) + (49.0/10 * float(global.array2[9])) 
