@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -9,12 +9,11 @@
 [ext_resource path="res://Scripts/PFD Scripts/Horizonte_externo.gd" type="Script" id=7]
 [ext_resource path="res://Images/SetaCentral.png" type="Texture" id=8]
 [ext_resource path="res://Images/Branco.png" type="Texture" id=9]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltimeterText.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Airspeed/SpawnerNumAS.gd" type="Script" id=10]
 [ext_resource path="res://Images/Moldura.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/Airspeed/AirspeedIni.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText9.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/PFD Scripts/Medidor1.gd" type="Script" id=14]
-[ext_resource path="res://Images/Medidor0_100.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/PFD Scripts/DEBUG.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
 [ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
@@ -55,15 +54,6 @@
 [ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador6.gd" type="Script" id=53]
 [ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=54]
 [ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=55]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Polygon2D
-
-
-func _on_Sprite_Leitura(array2):
-	pass
-
-"
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -128,49 +118,6 @@ range_item_cull_mask = 1024
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
-position = Vector2( -109.432, -139.448 )
-scale = Vector2( 0.894728, 0.894728 )
-color = Color( 0, 0, 0, 1 )
-polygon = PoolVector2Array( -469.218, 131.19, -374.951, 131.456, -374.685, 170.756, -469.218, 171.022 )
-script = SubResource( 1 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D"]
-margin_left = -439.355
-margin_top = 138.701
-margin_right = -359.355
-margin_bottom = 166.7
-bbcode_enabled = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Velocidade" type="Control" parent="."]
-visible = false
-margin_left = -490.074
-margin_top = -232.641
-margin_right = -250.074
-margin_bottom = 198.359
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Medidor1Vel" type="Sprite" parent="Velocidade"]
-visible = false
-position = Vector2( 104.94, 221.118 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 15 )
-script = ExtResource( 14 )
-
-[node name="PonteiroVel2" type="Sprite" parent="Velocidade"]
-visible = false
-position = Vector2( 54.1994, 228.72 )
-scale = Vector2( 0.180873, 0.180873 )
-texture = ExtResource( 17 )
 
 [node name="Altitude" type="Control" parent="."]
 margin_left = 1156.57
@@ -492,7 +439,7 @@ position = Vector2( -806.57, 13.2539 )
 
 [node name="SpawnerNum" type="Node2D" parent="Airspeed"]
 position = Vector2( -1156.57, 13.2539 )
-script = ExtResource( 23 )
+script = ExtResource( 10 )
 
 [node name="Airspeed - Caixas de Texto" type="Control" parent="Airspeed"]
 margin_left = -1156.57
@@ -727,7 +674,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="PonteiroAlt" type="Sprite" parent="Airspeed"]
+[node name="PonteiroVel" type="Sprite" parent="Airspeed"]
 position = Vector2( -745, 0 )
 rotation = 3.14159
 scale = Vector2( 0.180873, 0.180873 )
@@ -768,12 +715,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DEBUG" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Seta" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Polygon2D/RichTextLabel" method="_on_Sprite_Leitura"]
-[connection signal="Leitura" from="Horizonte/Sprite" to="Velocidade/Medidor1Vel" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/SpawnerNum" method="_on_Sprite_Leitura"]
@@ -796,6 +743,7 @@ __meta__ = {
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altitude Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/SpawnerNum" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva7" method="_on_Sprite_Leitura"]
