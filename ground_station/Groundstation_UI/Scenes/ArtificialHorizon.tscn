@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -14,11 +14,12 @@
 [ext_resource path="res://Scripts/Airspeed/AirspeedIni.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText9.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/PFD Scripts/DEBUG.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Altimetro/BarraInicialAlt.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
 [ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/SpawnerBarra.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText1.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/Altimetro/SpawnNewNumber.gd" type="Script" id=23]
@@ -134,10 +135,10 @@ __meta__ = {
 position = Vector2( -806.57, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
-script = ExtResource( 20 )
+script = ExtResource( 15 )
 
-[node name="Spawner" parent="Altitude" instance=ExtResource( 19 )]
-position = Vector2( -806.57, 13.2539 )
+[node name="SpawnerBarra" type="Node2D" parent="Altitude"]
+script = ExtResource( 20 )
 
 [node name="SpawnerNum" type="Node2D" parent="Altitude"]
 position = Vector2( -1156.57, 13.2539 )
@@ -748,6 +749,7 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva7" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva6" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva5" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva4" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva2" method="_on_Sprite_Leitura"]

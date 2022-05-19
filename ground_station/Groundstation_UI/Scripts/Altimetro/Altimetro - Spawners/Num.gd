@@ -11,9 +11,9 @@ func _ready():
 	#print("ContM = ",SpawnerNum.contM)
 	#print("ContN = ", SpawnerNum.contN)
 
-func _process(delta):
-	if float(global.array2[9]) * 10 > ( InitialAlt.pinit * 10 + SpawnerNum.contM * 10):
-		position.y = (Most7.position.y) -322 - 53 + -50 * (aux1 - 6) + (49.0/10 * float(global.array2[9])) 
-	if float(global.array2[9])* 10 < ( InitialAlt.pinit * 10 - SpawnerNum.contN * 10):
-		position.y = (Most7.position.y) -29 - 53 + 50 * (aux2) + (49.0/10 * float(global.array2[9])) 
+func _process(delta): #global.array2[9]
+	if float(Debug.x) * 10 >= ( InitialAlt.pinit * 10 + SpawnerNum.contM * 10):
+		position.y = (Most7.position.y) -322 - 53 + -50 * (aux1 - 6) + (49.3597/10.0 * float(Debug.x)) 
+	if float(Debug.x)* 10 <= ( InitialAlt.pinit * 10 - SpawnerNum.contN * 10):
+		position.y = (Most7.position.y) -26 - 53 + 50 * (aux2) + (49.3597/10.0 * float(Debug.x)) 
 

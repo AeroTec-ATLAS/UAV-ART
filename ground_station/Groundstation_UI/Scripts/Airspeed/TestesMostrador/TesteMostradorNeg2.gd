@@ -4,6 +4,6 @@ extends RichTextLabel
 
 
 func _on_Airspeed_AirIni(as_init):
-		var dialog = str(as_init*10 - 20) 
+		var dialog = str(as_init*10 - 10) 
 		set_visible_characters(4)
 		set_bbcode(dialog)

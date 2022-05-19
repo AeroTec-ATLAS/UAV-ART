@@ -21,6 +21,9 @@ SpawnerNum="*res://Scripts/Altimetro/SpawnNewNumber.gd"
 Most7="*res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd"
 SpawnerNumAs="*res://Scripts/Airspeed/SpawnerNumAS.gd"
 Debug="*res://Scripts/PFD Scripts/DEBUG.gd"
+BarraSpawnada="*res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada.gd"
+SpawnerBarra="*res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd"
+BarraSpawnada2="*res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada2.gd"
 
 [physics]
 
