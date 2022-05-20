@@ -19,7 +19,7 @@ func _process(delta):
 	#print(Debug.x)
 	#aux = _on_Sprite_Leitura(delta)
 	#print(aux)
-	if (float(global.array2[13]) > (InitialAlt.pinit * 10 + 10 * (contM1 -3))): 
+	if (float(Debug.x) > ( 5 * (contM1 -3))): #global.array2[13]
 		#print("criou")
 		
 		#criar()
@@ -29,29 +29,28 @@ func _process(delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(global.array2[13]) < (InitialAlt.pinit * 10 + -10 * (contN1-3))): 
+	if (float(Debug.x) < (-5 * (contN1-3))): 
 		contN1 +=1
 	#	criar()
 		
 		
 func criar1():
 	#array_nodes.append([]) #necessário
-	var caixa1 = preload("res://Scenes/SpawnNumAS.tscn")
-	var caixaC1 = caixa1.instance()
-	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC1)
+	var caixa3 = preload("res://Scenes/SpawnNumAS.tscn")
+	var caixaC3 = caixa3.instance()
+	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC3)
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 	#slots += 1
 	#return caixaC
 func _on_Sprite_Leitura(array2):
 	#print(Debug.x)
-	#print(array2[13])
-	#print(0 * 10 + 10 * (contM -3))
-	if (float(array2[13]) > (0 * 10 + 10 * (contM1 -3))): #trocar valor inicial
-		print("aaaaaaa")
+	#print(5 * (contM1 -3))
+	if (float(Debug.x) >= (5 * (contM1 -3))): #trocar valor inicial #array2[13]
+		#print("aaaaaaa")
 		contM1 += 1
 		criar1() #array2[9]
-		print("criou")
+		#print("criou")
 	
-	if (float(array2[13]) < (0 * 10 + -10 * (contN1-3))): #trocar valor inicial
+	if (float(Debug.x) <= (-5 * (contN1-3))): #trocar valor inicial
 		criar1()
 		contN1 +=1

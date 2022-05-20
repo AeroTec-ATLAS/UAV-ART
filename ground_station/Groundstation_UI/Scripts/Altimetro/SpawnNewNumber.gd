@@ -41,7 +41,7 @@ func criar():
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 	#slots += 1
 	#return caixaC
-func _on_Sprite_Leitura(array2):
+func _on_Sprite_Leitura(_array2):
 
 	if (float(Debug.x) >= (0 * 10 + 10 * (contM -3))): #trocar valor inicial #array2[9]
 		contM += 1

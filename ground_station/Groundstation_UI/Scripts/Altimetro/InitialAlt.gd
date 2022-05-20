@@ -18,7 +18,7 @@ func _on_Sprite_Leitura(array2): #esta funcao detecta o primeiro valor de altitu
 		pinit = init / 10 #com a divisao por 10 conseguimos arredondar mais facilmente, e so multiplicar a div por 10
 		emit_signal("AltIni",pinit)
 
-func _process(delta):
+func _process(_delta):
 	if float(global.array2[9]) > 0:
 		if estado == 1:
 			init = int(global.array2[9])
