@@ -312,9 +312,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa1"]
 margin_left = 313.0
-margin_top = 112.0
+margin_top = 105.0
 margin_right = 383.0
-margin_bottom = 129.0
+margin_bottom = 122.0
 script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -326,9 +326,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa2"]
 margin_left = 313.0
-margin_top = 162.0
+margin_top = 155.0
 margin_right = 383.0
-margin_bottom = 179.0
+margin_bottom = 172.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -340,9 +340,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3"]
 margin_left = 313.0
-margin_top = 213.0
+margin_top = 206.0
 margin_right = 383.0
-margin_bottom = 230.0
+margin_bottom = 223.0
 script = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -354,9 +354,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4"]
 margin_left = 313.0
-margin_top = 264.0
+margin_top = 257.0
 margin_right = 383.0
-margin_bottom = 281.0
+margin_bottom = 274.0
 script = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -368,9 +368,9 @@ script = ExtResource( 24 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5"]
 margin_left = 313.0
-margin_top = 314.0
+margin_top = 307.0
 margin_right = 383.0
-margin_bottom = 331.0
+margin_bottom = 324.0
 script = ExtResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": false,

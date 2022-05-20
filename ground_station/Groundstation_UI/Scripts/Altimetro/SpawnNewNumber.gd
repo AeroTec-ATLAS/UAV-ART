@@ -28,7 +28,7 @@ func _process(delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(Debug.x) < (InitialAlt.pinit * 10 + -10 * (contN-4))): 
+	if (float(Debug.x) < (InitialAlt.pinit * 10 + -10 * (contN-3))): 
 		contN +=1
 	#	criar()
 		
@@ -41,14 +41,14 @@ func criar():
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 	#slots += 1
 	#return caixaC
-func _on_Sprite_Leitura(_array2):
+func _on_Sprite_Leitura(array2):
 
 	if (float(Debug.x) >= (0 * 10 + 10 * (contM -3))): #trocar valor inicial #array2[9]
 		contM += 1
 		criar()
 		
 	
-	if (float(Debug.x) <= (0 * 10 + -10 * (contN - 4))): #trocar valor inicial
+	if (float(Debug.x) <= (0 * 10 + -10 * (contN - 3))): #trocar valor inicial
 		contN +=1
 		criar()
 		
