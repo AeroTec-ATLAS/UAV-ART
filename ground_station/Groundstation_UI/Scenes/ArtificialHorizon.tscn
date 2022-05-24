@@ -761,6 +761,7 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Air Speed Tempo Real" method="_on_Sprite_Leitura"]
+[connection signal="AltIni" from="Altitude" to="Altitude/SpawnerNum" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7/TesteMostrador7" method="_on_Altitude_AltIni"]

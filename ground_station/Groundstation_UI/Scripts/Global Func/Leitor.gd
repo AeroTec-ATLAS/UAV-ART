@@ -40,4 +40,3 @@ func _physics_process(_delta):
 		linha_aux = f.get_line()
 		array2 = linha_aux.split(" ", true,0)
 		emit_signal("Leitura",array2)
-		

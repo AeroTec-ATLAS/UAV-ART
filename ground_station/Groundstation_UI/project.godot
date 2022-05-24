@@ -26,6 +26,7 @@ SpawnerBarra="*res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd"
 BarraSpawnada2="*res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada2.gd"
 AirspeedIni="*res://Scripts/Airspeed/AirspeedIni.gd"
 CaixasTextoAirspeed="*res://Scripts/Airspeed/CaixasTextoAirspeed.gd"
+SpawnNewNumber="*res://Scripts/Altimetro/SpawnNewNumber.gd"
 
 [physics]
 

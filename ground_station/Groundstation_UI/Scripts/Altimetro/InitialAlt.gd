@@ -9,7 +9,7 @@ var pinit2
 signal AltIni
 
 func _on_Sprite_Leitura(array2): #esta funcao detecta o primeiro valor de altitude
-	if float(array2[9]) > 0:
+	if float(array2[9]) >= 0:
 		if estado == 1:
 			init = int(array2[9])
 			estado +=1
@@ -19,7 +19,7 @@ func _on_Sprite_Leitura(array2): #esta funcao detecta o primeiro valor de altitu
 		emit_signal("AltIni",pinit)
 
 func _process(_delta):
-	if float(global.array2[9]) > 0:
+	if float(global.array2[9]) >= 0:
 		if estado == 1:
 			init = int(global.array2[9])
 			estado +=1

@@ -7,14 +7,15 @@ var contM = 9
 var contN = 5
 var array_nodes = [] #array onde vao ser guardados os nodes
 var slots = 0
+var aux
 #var aux = 9
 func _ready():
 	#if (float(global.array2[9]) >= (int(InitialAlt.pinit) * 10 + 10 * (contM -3))):
 	#	contM +=1
 	#aux = contM
 	pass
-
-
+func _on_Altitude_AltIni(alt):
+	aux = alt
 func _process(delta):
 	#aux = _on_Sprite_Leitura(delta)
 	#print(aux)
@@ -44,6 +45,7 @@ func criar():
 func _on_Sprite_Leitura(array2):
 
 	if (float(Debug.x) >= (0 * 10 + 10 * (contM -3))): #trocar valor inicial #array2[9]
+		#print(pinit)
 		contM += 1
 		criar()
 		
@@ -52,3 +54,6 @@ func _on_Sprite_Leitura(array2):
 		contN +=1
 		criar()
 		
+
+
+
