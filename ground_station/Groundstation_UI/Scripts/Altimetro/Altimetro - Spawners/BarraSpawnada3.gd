@@ -18,10 +18,10 @@ func _ready():
 
 func _process(_delta):
 	position.x = 626.0 + 234  #296
-	position.y = -1870 * (aux1-2) + (49.3597/10.0 * Debug.x) #aux3 - 822 *2* (aux1-3) #-1003 #+ (49.3597/10.0 * Debug.x)
+	position.y = -1870 * (aux1-2) + (49.3597/10.0 * global.array2[9]) #aux3 - 822 *2* (aux1-3) #-1003 #+ (49.3597/10.0 * Debug.x)
 	if(aux1 >=5):
 		
-		position.y = -1870 * (aux1-2) + (49.3597/10.0 * Debug.x) +1870 * (aux1-3-aux4)
+		position.y = -1870 * (aux1-2) + (49.3597/10.0 * global.array2[9]) +1870 * (aux1-3-aux4)
 		aux4 = aux1 + 1
 		print(position.y)
 	#1867.561279

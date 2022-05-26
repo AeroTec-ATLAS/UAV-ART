@@ -14,17 +14,17 @@ func _ready():
 	aux4 = SpawnerBarraAS.neg1
 	position.x = -1.5
 	#print("first")
-	print("criou")
+	#print("criou")
 	#pass
 	
-func _process(delta):
+func _process(_delta):
 	#print(SpawnerBarra.estado)
 	
 	
 	
 	#if(float(Debug.x)):
 	#if (aux3 == 1):
-	position.y = (-822.5 + 22.87286 -408.89277 -139 + (49.3597/5.0 * Debug.x))
+	position.y = (-822.5 + 22.87286 -408.89277 -139 + (49.3597/5.0 * float(global.array2[13])))
 	#print("Posição =" ,position.y)
 	#print("Debug =" ,Debug.x)
 	

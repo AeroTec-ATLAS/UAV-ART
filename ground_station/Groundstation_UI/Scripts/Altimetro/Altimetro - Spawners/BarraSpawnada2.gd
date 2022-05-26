@@ -13,10 +13,10 @@ func _ready():
 	#print(aux1)
 	#pass
 
-func _process(delta):
+func _process(_delta):
 	#print(aux1)
 	position.x = 626.0 + 234 
-	position.y = (27  - 822.5*(aux1) +296 + (49.3597/10.0 * Debug.x))
+	position.y = (27  - 822.5*(aux1) +296 + (49.3597/10.0 * float(global.array2[9])))
 	#position.y = (600  - 822.5*(aux1) +296 + (49.3597/10.0 * Debug.x))
 	
 		#27.0  - 822.5*(aux1) +296 + (49.3597/10.0 * Debug.x)

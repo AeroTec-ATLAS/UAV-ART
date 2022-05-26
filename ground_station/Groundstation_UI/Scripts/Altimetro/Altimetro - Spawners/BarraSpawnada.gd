@@ -15,14 +15,14 @@ func _ready():
 	
 	#pass
 
-func _process(delta):
+func _process(_delta):
 	#print(SpawnerBarra.estado)
 	
 	
 	position.x = 626.0 + 234 
 	#if(float(Debug.x)):
 	#if (aux3 == 1):
-	position.y = (27.0 - 161.164*(aux1) -641 + (49.3597/10.0 * Debug.x))
+	position.y = (27.0 - 161.164*(aux1) -641 + (49.3597/10.0 * float(global.array2[9])))
 	#if (aux4 == 1):
 		#position.y = (27.0 + 161.164*(aux2) +641 - (49.3597/10.0 * Debug.x))
 	#27.0 - 161.164*(aux1) -641 + (49.3597/10.0 * Debug.x)

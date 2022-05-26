@@ -13,13 +13,13 @@ func _ready():
 	#print("ContN = ", SpawnerNum.contN)
 
 func _process(_delta): 
-	if float(Debug.x)*5 >= ( SpawnerNumAs.contM1 * 5):#global.array2[13]
+	if float(global.array2[13])*5 >= ( SpawnerNumAs.contM1 * 5):#global.array2[13]
 		#print("aaaa")
 		
-		position.y = -49.3597 * (aux1-6) -431.0 +29.5 + (49.3597/5.0 * float(Debug.x))
+		position.y = -49.3597 * (aux1-6) -431.0 +29.5 + (49.3597/5.0 * float(global.array2[13]))
 		#position.y = (CaixasTextoAirspeed.position.y) -322 - 53 + -50 * (aux1 - 6) + (49.3597/5.0 * float(Debug.x)) 
 		#print(position.x)
 		#position.y = (Most7.position.y) -22 - 53 + -50 * (aux1 - 6) + (49.3597/5.0 * float(Debug.x)) 
-	if float(Debug.x) * 5  <= ( - SpawnerNumAs.contN1 * 5):
-		position.y = -29 - 100 + 49.3597 * (aux2+3) + (49.3597/5.0 * float(Debug.x)) 
+	if float(global.array2[13]) * 5  <= ( - SpawnerNumAs.contN1 * 5):
+		position.y = -29 - 100 + 49.3597 * (aux2+3) + (49.3597/5.0 * float(global.array2[13])) 
 

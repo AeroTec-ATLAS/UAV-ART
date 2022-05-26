@@ -14,12 +14,10 @@ func _ready():
 	#	contM +=1
 	#aux = contM
 	pass
-func _on_Altitude_AltIni(alt):
-	aux = alt
-func _process(delta):
+func _process(_delta):
 	#aux = _on_Sprite_Leitura(delta)
 	#print(aux)
-	if (float(Debug.x) > (InitialAlt.pinit * 10 + 10 * (contM -3))): #(global.array2[9])
+	if (float(global.array2[9]) > (InitialAlt.pinit * 10 + 10 * (contM -3))): #(global.array2[9])
 		#print("criou")
 		
 		#criar()
@@ -29,7 +27,7 @@ func _process(delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(Debug.x) < (InitialAlt.pinit * 10 + -10 * (contN-3))): 
+	if (float(global.array2[9]) < (InitialAlt.pinit * 10 + -10 * (contN-3))): 
 		contN +=1
 	#	criar()
 		
@@ -44,13 +42,13 @@ func criar():
 	#return caixaC
 func _on_Sprite_Leitura(array2):
 
-	if (float(Debug.x) >= (0 * 10 + 10 * (contM -3))): #trocar valor inicial #array2[9]
+	if (float(array2[9]) >= (0 * 10 + 10 * (contM -3))): #trocar valor inicial #array2[9]
 		#print(pinit)
 		contM += 1
 		criar()
 		
 	
-	if (float(Debug.x) <= (0 * 10 + -10 * (contN - 3))): #trocar valor inicial
+	if (float(array2[9]) <= (0 * 10 + -10 * (contN - 3))): #trocar valor inicial
 		contN +=1
 		criar()
 		

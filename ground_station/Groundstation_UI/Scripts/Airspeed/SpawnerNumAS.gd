@@ -19,7 +19,7 @@ func _process(_delta):
 	#print(Debug.x)
 	#aux = _on_Sprite_Leitura(delta)
 	#print(aux)
-	if (float(Debug.x) > ( 5 * (contM1 -3))): #global.array2[13]
+	if (float(global.array2[13]) > ( 5 * (contM1 -3))): #global.array2[13]
 		#print("criou")
 		
 		#criar()
@@ -29,7 +29,7 @@ func _process(_delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(Debug.x) < (-5 * (contN1-3))): 
+	if (float(global.array2[13]) < (-5 * (contN1-3))): 
 		contN1 +=1
 	#	criar()
 		
@@ -45,12 +45,12 @@ func criar1():
 func _on_Sprite_Leitura(array2):
 	#print(Debug.x)
 	#print(5 * (contM1 -3))
-	if (float(Debug.x) >= (5 * (contM1 -3))): #trocar valor inicial #array2[13]
+	if (float(array2[13]) >= (5 * (contM1 -3))): #trocar valor inicial #array2[13]
 		#print("aaaaaaa")
 		contM1 += 1
 		criar1() #array2[9]
 		#print("criou")
 	
-	if (float(Debug.x) <= (-5 * (contN1-3))): #trocar valor inicial
+	if (float(array2[13]) <= (-5 * (contN1-3))): #trocar valor inicial
 		criar1()
 		contN1 +=1
