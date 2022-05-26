@@ -18,7 +18,6 @@
 [ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
 [ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
-[ext_resource path="res://Scenes/SpawnerBarra.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText1.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=22]
@@ -55,6 +54,7 @@
 [ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador6.gd" type="Script" id=53]
 [ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=54]
 [ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=55]
+[ext_resource path="res://Scripts/Airspeed/SpawnerBarraAS.gd" type="Script" id=56]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -435,8 +435,9 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
 script = ExtResource( 55 )
 
-[node name="Spawner" parent="Airspeed" instance=ExtResource( 19 )]
-position = Vector2( -806.57, 13.2539 )
+[node name="SpawnerBarra" type="Node2D" parent="Airspeed"]
+position = Vector2( -806.57, 0 )
+script = ExtResource( 56 )
 
 [node name="SpawnerNum" type="Node2D" parent="Airspeed"]
 position = Vector2( -1156.57, 13.2539 )
@@ -698,9 +699,6 @@ margin_right = -740.0
 margin_bottom = 307.0
 bbcode_enabled = true
 script = ExtResource( 54 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Título" type="RichTextLabel" parent="Airspeed"]
 margin_left = -850.0
@@ -712,9 +710,6 @@ bbcode_text = "Airspeed Real
   Value (m/s):"
 text = "Airspeed Real 
   Value (m/s):"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DEBUG" type="Node2D" parent="."]
 script = ExtResource( 14 )

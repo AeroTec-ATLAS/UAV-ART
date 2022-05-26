@@ -15,7 +15,7 @@ func _ready():
 	pass
 
 #global.array2[9]
-func _process(delta):
+func _process(_delta):
 	#print(Debug.x)
 	#aux = _on_Sprite_Leitura(delta)
 	#print(aux)
