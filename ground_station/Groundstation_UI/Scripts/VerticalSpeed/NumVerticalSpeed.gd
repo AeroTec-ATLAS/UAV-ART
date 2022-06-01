@@ -9,7 +9,7 @@ func _ready():
 	aux2 = SpawnerNumVerticalSpeed.contN1
 	position.x = 306.0 + 7
 	#position.x = -806.57
-	print("ContM = ",aux1)
+	#print("ContM = ",aux1)
 	#print("ContN = ", SpawnerNum.contN)
 
 func _process(_delta): 

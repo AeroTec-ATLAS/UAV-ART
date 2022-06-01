@@ -24,7 +24,10 @@ var p19
 var p20
 var array2 = PoolRealArray([p1,ang1,ang2,ang3,p5,p6,p7,p8,p9,altitude,p11,p12,p13,velocidade,p15,p16,p17,p18,p19,p20])
 var linha_aux
-signal Leitura
+var estado = 1
+var init
+var pinit
+signal Leitura(array2,pinit)
 
 func _ready():
 	load_file(file)
@@ -36,7 +39,13 @@ func load_file(file):
 	return
 
 func _physics_process(_delta):
+	if estado == 1:
+		init = int(global.array2[9])
+		estado +=1
+	if estado == 2:
+		estado += 1
+		pinit = init / 10
 	if not f.eof_reached():
 		linha_aux = f.get_line()
 		array2 = linha_aux.split(" ", true,0)
-		emit_signal("Leitura",array2)
+		emit_signal("Leitura",array2,pinit)

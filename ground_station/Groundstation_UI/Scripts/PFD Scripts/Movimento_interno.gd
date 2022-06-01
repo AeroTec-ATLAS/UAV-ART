@@ -6,7 +6,7 @@ var pitch
 func _ready():
 	rotation_degrees = 0
 	
-func _on_Sprite_Leitura(array2):
+func _on_Sprite_Leitura(array2,pinit):
 
 
 	rotation = float(array2[3])

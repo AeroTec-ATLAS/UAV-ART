@@ -10,7 +10,7 @@ func _ready():
 		
 	pass
 
-func _on_Sprite_Leitura(array2):
+func _on_Sprite_Leitura(array2,pinit):
 	position.y = 27.0 + (49.3597/10.0 * float(array2[9])) #21.0
 	#-249 + (48.0/10 * float(array2[9]))
 	#pass

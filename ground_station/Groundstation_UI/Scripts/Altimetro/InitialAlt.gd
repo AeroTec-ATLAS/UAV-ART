@@ -8,7 +8,7 @@ var pinit
 var pinit2
 signal AltIni
 
-func _on_Sprite_Leitura(array2): #esta funcao detecta o primeiro valor de altitude
+func _on_Sprite_Leitura(array2,pinit): #esta funcao detecta o primeiro valor de altitude
 	if float(array2[9]) >= 0:
 		if estado == 1:
 			init = int(array2[9])

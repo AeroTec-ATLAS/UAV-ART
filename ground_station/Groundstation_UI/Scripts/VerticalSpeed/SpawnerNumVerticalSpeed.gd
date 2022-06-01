@@ -46,7 +46,7 @@ func criarNeg():
 	var caixaC = caixa.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC)
 	
-func _on_Sprite_Leitura(array2):
+func _on_Sprite_Leitura(array2,pinit):
 	#print(array2[10])
 	#print(contM1)
 	#print(5 * (contM1 -3))

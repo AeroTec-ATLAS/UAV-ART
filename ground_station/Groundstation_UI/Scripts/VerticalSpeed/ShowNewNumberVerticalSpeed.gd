@@ -7,7 +7,7 @@ var aux2 #salva o ultimo valor do contN
 func _ready():
 	aux1 = SpawnerNumVerticalSpeed.contM1
 	aux2 = SpawnerNumVerticalSpeed.contN1
-	print(aux1)
+	#print(aux1)
 func _process(_delta): 
 	#if float(global.array2[10]) * 2  >= ( 9 * 2):
 		
