@@ -21,7 +21,7 @@ func _process(_delta):
 	#if (float(Debug.x1) >= (27.0 + (49.3597/10.0 * Debug.x))):
 	#print(contBarraM)
 	if(estado == 1):
-		if (float(global.array2[13]) >= (160.5/2 * (contBarraM_AS-1))): #161.164 #por ajuste da alt ini
+		if (float(Debug.x) >= (160.5/2 * (contBarraM_AS-1))): #161.164 #por ajuste da alt ini
 			#print("criou1")
 			var barra = preload("res://Scenes/Barra_AS.tscn")
 			var barraC = barra.instance()
@@ -38,7 +38,7 @@ func _process(_delta):
 	#		estado = 8
 	#		contBarraN -= 1
 	elif(estado==2):    #272 é isso #||estado==8
-		if (float(global.array2[13]) >= (136.0/2 * (contBarraM_AS-1))): #137 #InitialAlt.pinit * 10 + 10 * (SpawnerNum.contM -3)
+		if (float(Debug.x) >= (136.0/2 * (contBarraM_AS-1))): #137 #InitialAlt.pinit * 10 + 10 * (SpawnerNum.contM -3)
 			#print("criou2")
 			#print("criou2")
 			#print(contBarraM)

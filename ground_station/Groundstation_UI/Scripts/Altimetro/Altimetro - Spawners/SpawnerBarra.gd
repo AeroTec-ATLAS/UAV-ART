@@ -20,7 +20,7 @@ func _process(_delta):
 	#if (float(Debug.x1) >= (27.0 + (49.3597/10.0 * Debug.x))):
 	#print(contBarraM)
 	if(estado == 1):
-		if (float(global.array2[9]) >= (160.5 * (contBarraM-1))): #161.164 #por ajuste da alt ini
+		if (float(Debug.x) >= (160.5 * (contBarraM-1))): #161.164 #por ajuste da alt ini
 			#print("criou1")
 			var barra = preload("res://Scenes/Barra.tscn")
 			var barraC = barra.instance()
@@ -28,7 +28,7 @@ func _process(_delta):
 			estado = 2
 			contBarraM += 1
 	elif(estado==2):    #272 é isso #||estado==8
-		if (float(global.array2[9]) >= (136.0 * (contBarraM-1))): #137 #InitialAlt.pinit * 10 + 10 * (SpawnerNum.contM -3)
+		if (float(Debug.x) >= (136.0 * (contBarraM-1))): #137 #InitialAlt.pinit * 10 + 10 * (SpawnerNum.contM -3)
 			#print("criou2")
 			#print("criou2")
 			#print(contBarraM)
@@ -39,7 +39,7 @@ func _process(_delta):
 			contBarraM += 1
 			estado = 3
 	elif(estado==3):
-		if (float(global.array2[9]) >= (126.0 * (contBarraM-1))): #113.0
+		if (float(Debug.x) >= (126.0 * (contBarraM-1))): #113.0
 			print("3+")
 			var barra2 = preload("res://Scenes/Barra3.tscn")
 			var barraC2 = barra2.instance()

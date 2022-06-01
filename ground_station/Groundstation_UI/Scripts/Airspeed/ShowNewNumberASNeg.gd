@@ -9,10 +9,10 @@ func _ready():
 	aux2 = SpawnerNumAs.contN1
 func _process(_delta): 
 	#if float(Debug.x) * 5  >= ( 9 * 5):
-		var dialog = str(aux1 * 5 + 5)
-		set_visible_characters(4)
-		set_bbcode(dialog)
-	#if float(global.array2[13]) * 5 <= (- 4 * 5):
-	#	var dialog = str(-aux2 * 5 -5) 
+	#	var dialog = str(aux1 * 5 + 5)
 	#	set_visible_characters(4)
 	#	set_bbcode(dialog)
+	#if float(global.array2[13]) * 5 <= (- 4 * 5):
+		var dialog = str(-aux2 * 5 -5) 
+		set_visible_characters(4)
+		set_bbcode(dialog)

@@ -41,10 +41,9 @@ func load_file(file):
 func _physics_process(_delta):
 	if estado == 1:
 		init = int(global.array2[9])
-		estado +=1
-	if estado == 2:
-		estado += 1
 		pinit = init / 10
+		print(pinit)
+		estado +=1
 	if not f.eof_reached():
 		linha_aux = f.get_line()
 		array2 = linha_aux.split(" ", true,0)

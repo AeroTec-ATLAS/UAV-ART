@@ -24,7 +24,7 @@ func _process(_delta):
 	
 	#if(float(Debug.x)):
 	#if (aux3 == 1):
-	position.y = (-822.5 + 22.87286 -408.89277 -139 + (49.3597/5.0 * float(global.array2[13])))
+	position.y = (-822.5 + 22.87286 -408.89277 -139 + (49.3597/5.0 * float(Debug.x)))
 	#print("Posição =" ,position.y)
 	#print("Debug =" ,Debug.x)
 	
