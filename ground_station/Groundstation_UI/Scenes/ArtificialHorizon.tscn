@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -56,6 +56,26 @@
 [ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=54]
 [ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=55]
 [ext_resource path="res://Scripts/Airspeed/SpawnerBarraAS.gd" type="Script" id=56]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGrVerticalSpeed.gd" type="Script" id=57]
+[ext_resource path="res://Scripts/VerticalSpeed/SpawnerBarraVerticalSpeed.gd" type="Script" id=58]
+[ext_resource path="res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd" type="Script" id=59]
+[ext_resource path="res://Scripts/VerticalSpeed/CaixasDeTextoVerticalSpeed.gd" type="Script" id=60]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador0VerticalSpeed.gd" type="Script" id=61]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorVerticalSpeed.gd" type="Script" id=62]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador2.gd" type="Script" id=63]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador3.gd" type="Script" id=64]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador4.gd" type="Script" id=65]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador5.gd" type="Script" id=66]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador6.gd" type="Script" id=67]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador7.gd" type="Script" id=68]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador8.gd" type="Script" id=69]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador9.gd" type="Script" id=70]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg1.gd" type="Script" id=71]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg2.gd" type="Script" id=72]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg3.gd" type="Script" id=73]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg4.gd" type="Script" id=74]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg5.gd" type="Script" id=75]
+[ext_resource path="res://Scripts/VerticalSpeed/Velocidade Vertical Tempo Real.gd" type="Script" id=76]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -311,7 +331,6 @@ margin_right = 383.0
 margin_bottom = 78.0
 script = ExtResource( 25 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
@@ -386,8 +405,8 @@ __meta__ = {
 }
 
 [node name="PonteiroAlt" type="Sprite" parent="Altitude"]
-position = Vector2( -745, 0 )
-rotation = 3.14159
+position = Vector2( -870, 0 )
+rotation = -6.28319
 scale = Vector2( 0.180873, 0.180873 )
 texture = ExtResource( 17 )
 
@@ -408,9 +427,6 @@ margin_right = -740.0
 margin_bottom = 307.0
 bbcode_enabled = true
 script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Título" type="RichTextLabel" parent="Altitude"]
 margin_left = -850.0
@@ -719,6 +735,300 @@ bbcode_text = "Airspeed Real
 text = "Airspeed Real 
   Value (m/s):"
 
+[node name="VerticalSpeed" type="Control" parent="."]
+margin_left = 1250.0
+margin_top = -13.0
+margin_right = 1290.0
+margin_bottom = 27.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BarraGr" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -806.57, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+script = ExtResource( 57 )
+
+[node name="SpawnerBarra" type="Node2D" parent="VerticalSpeed"]
+position = Vector2( -806.57, 0 )
+script = ExtResource( 58 )
+
+[node name="SpawnerNum" type="Node2D" parent="VerticalSpeed"]
+position = Vector2( -1156.57, 13.2539 )
+script = ExtResource( 59 )
+
+[node name="VerticalSpeed - Caixas de Texto" type="Control" parent="VerticalSpeed"]
+margin_left = -1156.57
+margin_top = 13.2539
+margin_right = -1116.57
+margin_bottom = 53.2539
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaixaPositiva9" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador9" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva9"]
+margin_left = 313.0
+margin_top = -387.0
+margin_right = 383.0
+margin_bottom = -368.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 70 )
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva8" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador8" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva8"]
+margin_left = 313.0
+margin_top = -337.0
+margin_right = 383.0
+margin_bottom = -318.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 69 )
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva7" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador7" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva7"]
+margin_left = 313.0
+margin_top = -287.0
+margin_right = 383.0
+margin_bottom = -268.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 68 )
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva6" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador6" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva6"]
+margin_left = 313.0
+margin_top = -237.0
+margin_right = 383.0
+margin_bottom = -220.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 67 )
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva5" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador5" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva5"]
+margin_left = 313.0
+margin_top = -188.0
+margin_right = 383.0
+margin_bottom = -172.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 66 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva4" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador4" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva4"]
+margin_left = 313.0
+margin_top = -138.0
+margin_right = 383.0
+margin_bottom = -121.0
+bbcode_text = "1000"
+text = "1000"
+script = ExtResource( 65 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva3" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador3" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva3"]
+margin_left = 313.0
+margin_top = -89.0
+margin_right = 383.0
+margin_bottom = -72.0
+script = ExtResource( 64 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva2" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador2" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva2"]
+margin_left = 313.0
+margin_top = -38.0
+margin_right = 383.0
+margin_bottom = -21.0
+script = ExtResource( 63 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaPositiva1" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+position = Vector2( 1586.16, -139.6 )
+scale = Vector2( 0.921697, 0.921697 )
+script = ExtResource( 60 )
+
+[node name="TesteMostrador" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva1"]
+margin_left = -1381.0
+margin_top = 13.0
+margin_right = -1303.0
+margin_bottom = 34.0
+script = ExtResource( 62 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Caixa0" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostrador0" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/Caixa0"]
+margin_left = 313.0
+margin_top = 61.0
+margin_right = 383.0
+margin_bottom = 78.0
+script = ExtResource( 61 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa1" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostradorNeg1" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa1"]
+margin_left = 313.0
+margin_top = 112.0
+margin_right = 383.0
+margin_bottom = 129.0
+script = ExtResource( 71 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa2" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostradorNeg2" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa2"]
+margin_left = 313.0
+margin_top = 162.0
+margin_right = 383.0
+margin_bottom = 179.0
+script = ExtResource( 72 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa3" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostradorNeg3" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa3"]
+margin_left = 313.0
+margin_top = 213.0
+margin_right = 383.0
+margin_bottom = 230.0
+script = ExtResource( 73 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa4" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostradorNeg4" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa4"]
+margin_left = 313.0
+margin_top = 264.0
+margin_right = 383.0
+margin_bottom = 281.0
+script = ExtResource( 74 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CaixaNegativa5" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
+script = ExtResource( 60 )
+
+[node name="TesteMostradorNeg5" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa5"]
+margin_left = 313.0
+margin_top = 314.0
+margin_right = 383.0
+margin_bottom = 331.0
+script = ExtResource( 75 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="PonteiroVel" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -745, 0 )
+rotation = 3.14159
+scale = Vector2( 0.180873, 0.180873 )
+texture = ExtResource( 17 )
+
+[node name="Moldura" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -785.728, 286.688 )
+scale = Vector2( 0.254822, 2.42697 )
+texture = ExtResource( 11 )
+
+[node name="Moldura2" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -812.404, -293.312 )
+scale = Vector2( 0.325397, 2.60674 )
+texture = ExtResource( 11 )
+
+[node name="Velocidade Vertical Tempo Real" type="RichTextLabel" parent="VerticalSpeed"]
+margin_left = -820.0
+margin_top = 260.0
+margin_right = -740.0
+margin_bottom = 307.0
+bbcode_enabled = true
+script = ExtResource( 76 )
+
+[node name="Título" type="RichTextLabel" parent="VerticalSpeed"]
+margin_left = -850.0
+margin_top = 225.0
+margin_right = -750.0
+margin_bottom = 272.0
+bbcode_enabled = true
+bbcode_text = "Airspeed Real 
+  Value (m/s):"
+text = "Airspeed Real 
+  Value (m/s):"
+__meta__ = {
+"_editor_description_": "Vertical Speed
+ Real Value (m/s):"
+}
+
 [node name="DEBUG" type="Node2D" parent="."]
 script = ExtResource( 14 )
 
@@ -764,6 +1074,26 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Air Speed Tempo Real" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr" method="_on_Leitor_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/SpawnerBarra" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/SpawnerNum" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva7" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva6" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva5" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva1" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/Caixa0" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa1" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa3" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/Velocidade Vertical Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Altitude/SpawnerNum" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8/TesteMostrador7" method="_on_Altitude_AltIni"]

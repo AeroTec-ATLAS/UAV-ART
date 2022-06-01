@@ -28,6 +28,7 @@ AirspeedIni="*res://Scripts/Airspeed/AirspeedIni.gd"
 CaixasTextoAirspeed="*res://Scripts/Airspeed/CaixasTextoAirspeed.gd"
 SpawnNewNumber="*res://Scripts/Altimetro/SpawnNewNumber.gd"
 SpawnerBarraAS="*res://Scripts/Airspeed/SpawnerBarraAS.gd"
+SpawnerNumVerticalSpeed="*res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd"
 
 [physics]
 
