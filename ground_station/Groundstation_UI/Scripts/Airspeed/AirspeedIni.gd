@@ -11,7 +11,7 @@ onready var only_once : bool = true
 #func _ready():
 	#init = int(global.array2[13])
 	#as_init = init / 10
-func _on_Sprite_Leitura(array2,pinit): #esta funcao detecta o primeiro valor de altitude
+func _on_Sprite_Leitura(array2, pinit, init): #esta funcao detecta o primeiro valor de altitude
 	#if float(array2[13]) >= 0:
 	if estado == 1:
 		init = int(array2[13])

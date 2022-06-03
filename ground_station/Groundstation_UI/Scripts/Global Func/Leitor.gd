@@ -31,7 +31,7 @@ var pinit
 var pinit2
 var init2
 var linha = 1
-signal Leitura(array2,pinit)
+signal Leitura(array2,pinit,init)
 
 func _ready():
 	load_file(file)
@@ -59,9 +59,12 @@ func _physics_process(_delta):
 		if linha == 2:
 			init = int(Debug.x)#global.array2[9]
 			pinit = init / 10
+			#if(init%100 < 1000):
+			init = init%10 # retorna o último digito do primeiro valor lido, assim se pode corrigir a diferença no altimetro
+			#print(init%10)
 			#print(pinit)
 			estado +=1
 			estado2 +=1
 		linha +=1
 		if(estado2==2):
-			emit_signal("Leitura",array2,pinit)
+			emit_signal("Leitura",array2,pinit,init)

@@ -54,7 +54,13 @@ func criarNeg():
 	var caixaCC1 = Caixa1.instance()
 	aux3 = add_child_below_node(get_tree().get_root().get_node("PFD"), caixaCC1)
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
-func _on_Sprite_Leitura(array2,pinit):
+
+
+
+
+
+
+func _on_Sprite_Leitura(array2, pinit, init):
 	#print("condição 2 = ",pinit * 10 + -10 * (contN - 3))
 	#print(float(pinit))
 	if (float(Debug.x) >= (pinit * 10 + 10 * (contM -4))): #trocar valor inicial #array2[9]
@@ -69,6 +75,3 @@ func _on_Sprite_Leitura(array2,pinit):
 		contN +=1
 		criarNeg()
 		
-
-
-

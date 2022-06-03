@@ -11,7 +11,7 @@ func _ready():
 		self.add_child(t)
 		t.start()
 		yield(t, "timeout")
-		x -= 0.5
+		x += 0.5
 		#print(x)
 	while x1 <= 1300.0:
 		var t1 = Timer.new()

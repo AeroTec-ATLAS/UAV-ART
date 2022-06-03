@@ -5,7 +5,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _on_Sprite_Leitura(array2,pinit):
+func _on_Sprite_Leitura(array2, pinit, init):
 	var dialog = array2[9]
 	set_visible_characters(4)
 	set_bbcode(dialog)

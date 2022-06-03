@@ -47,7 +47,7 @@ func criarNeg():
 	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 	#slots += 1
 	#return caixaC
-func _on_Sprite_Leitura(array2,pinit):
+func _on_Sprite_Leitura(array2, pinit, init):
 	#print(Debug.x)
 	#print(5 * (contM1 -3))
 	if (float(Debug.x) >= (5 * (contM1 -3))): #trocar valor inicial #array2[13]
