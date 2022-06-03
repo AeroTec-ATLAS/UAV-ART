@@ -19,7 +19,7 @@
 [ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
 [ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
 [ext_resource path="res://Scripts/Altimetro/BarraGr2.gd" type="Script" id=19]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Altimetro/BarraGr3.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText1.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/Altimetro/SpawnNewNumber.gd" type="Script" id=23]
@@ -165,8 +165,13 @@ texture = ExtResource( 18 )
 offset = Vector2( 1.9, 0 )
 script = ExtResource( 19 )
 
-[node name="SpawnerBarra" type="Node2D" parent="Altitude"]
+[node name="BarraGr3" type="Sprite" parent="Altitude"]
+position = Vector2( -806.57, -1643 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
 script = ExtResource( 20 )
+
+[node name="SpawnerBarra" type="Node2D" parent="Altitude"]
 
 [node name="SpawnerNum" type="Node2D" parent="Altitude"]
 position = Vector2( -1156.57, 13.2539 )
@@ -1033,6 +1038,7 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Sprite/Horizonte_externo" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr2" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/SpawnerNum" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
@@ -1090,6 +1096,7 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa4" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa5" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/Velocidade Vertical Tempo Real" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/BarraGr3" method="_on_Sprite_Leitura"]
 [connection signal="AltIni" from="Altitude" to="Altitude/SpawnerNum" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9/TesteMostrador7" method="_on_Altitude_AltIni"]
 [connection signal="AltIni" from="Altitude" to="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8/TesteMostrador7" method="_on_Altitude_AltIni"]

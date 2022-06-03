@@ -1,6 +1,6 @@
 extends Node2D
 
-
+#SCRIPT DO SPAWN DAS BARRAS PRO ALTIMETRO
 #onready var pos_cima = $Cima
 #onready var pos_baixo = $Baixo
 var contBarraM = 1
@@ -21,7 +21,7 @@ func _process(_delta):
 	#print(contBarraM)
 	if(estado == 1):
 		if (float(Debug.x) >= (160.5 * (contBarraM-1))): #161.164 #por ajuste da alt ini
-			#print("criou1")
+			print("criou1")
 			var barra = preload("res://Scenes/Barra.tscn")
 			var barraC = barra.instance()
 			add_child_below_node(get_tree().get_root().get_node("PFD"), barraC)

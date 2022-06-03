@@ -1,5 +1,5 @@
 Time(s) pitch(rad) yaw(rad) roll(rad) pitchspeed(rad/s) yawspeed(rad/s) rollspeed(rad/s) lat(deg) lon(deg) alt[MSL](mm) vnorth[NED](cm/s) veast[NED](cm/s) vdown[NED](cm/s) IAS(m/s) AOA() Sideslip() RCch1() RCch2() RCch3() RCch4()
-0.0 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
+40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
 0.02 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
 0.04 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
 0.06 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
