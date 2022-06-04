@@ -58,6 +58,7 @@ func _physics_process(_delta):
 		array2 = linha_aux.split(" ", true,0)
 		if linha == 2:
 			init = int(Debug.x)#global.array2[9]
+			#print(init/10)
 			pinit = init / 10
 			#if(init%100 < 1000):
 			init = init%10 # retorna o último digito do primeiro valor lido, assim se 

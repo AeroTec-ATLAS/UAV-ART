@@ -22,4 +22,4 @@ func _process(_delta):
 	#if float(Debug.x)* 10 <= ( InitialAlt.pinit * 10 - SpawnerNum.contN * 10):
 	#position.y = (Most7.position.y) -25 - 49.3597*2 + 49.3597 * (aux2+3) + (49.3597/10.0 * float(Debug.x))
 	position.y = 49.3597/10 * float(Debug.x) - aux
-	print(position.y)
+	#print(position.y)

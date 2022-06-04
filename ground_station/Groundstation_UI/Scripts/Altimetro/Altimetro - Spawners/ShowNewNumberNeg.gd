@@ -7,7 +7,7 @@ var aux2 #salva o ultimo valor do contN
 func _ready():
 	aux1 = SpawnerNum.contM
 	aux2 = SpawnerNum.contN
-	print(InitialAlt.pinit * 10 -(aux2+1) * 10)
+	#print(InitialAlt.pinit * 10 -(aux2+1) * 10)
 	#print(SpawnerNum.contN)
 	#$Sprite.connect()
 	#SpawnNewNumber.aux3.connect("Leitura", self, "on_Sprite_Leitura")
