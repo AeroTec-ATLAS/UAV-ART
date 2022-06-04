@@ -9,7 +9,7 @@ func _on_Sprite_Leitura(array2, pinit, init):
 		position.y = -pinit*10 -3.76197*float(array2[9]) - 93 - 0.173999786*pinit*10 + 3.76199 * init
 		aux = position.y
 		estado +=1
-	position.y = 49.3597/10 * float(array2[9]) +aux #depois a posição corrigida é somada com a movimentação da barra
+	position.y = 3+ 49.3597/10 * float(array2[9]) +aux #depois a posição corrigida é somada com a movimentação da barra
 
 
 

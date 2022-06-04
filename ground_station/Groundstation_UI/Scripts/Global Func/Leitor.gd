@@ -47,7 +47,7 @@ func _physics_process(_delta): #aqui é realizada a leitura do ficheiro dos logs
 		linha_aux = f.get_line()
 		array2 = linha_aux.split(" ", true,0)
 		if linha == 2:
-			init = int(global.array2[9])
+			init = int(array2[9])
 			pinit = init / 10 #pinit é o valor da altitude inicial para configurar as barras
 			init = init%10 # retorna o último digito do primeiro valor lido, assim se 
 	#o primeiro valor lido for diferente do escrito na barra, possa ser feita a correção

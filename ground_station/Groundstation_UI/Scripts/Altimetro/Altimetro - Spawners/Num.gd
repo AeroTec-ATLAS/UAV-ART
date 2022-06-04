@@ -12,7 +12,7 @@ func _ready():
 	
 func _process(_delta): 
 	if estado ==1 : #mais um vez é utilizado estado para executar uma vez, e feita correção de parâmetros
-		position.y = 115+ 170 + 98.7194/20 * float(global.array2[9])
+		position.y = -3 +115+ 170 + 98.7194/20 * float(global.array2[9])
 		aux = position.y
 		estado +=1
 	position.y = 49.3597/10 * float(global.array2[9]) - aux
