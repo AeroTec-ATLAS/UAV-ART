@@ -1,78 +1,47 @@
 extends Node2D
 
 #Decide se é para spawnar novos números ou não
+#quando um número é dito positivo este é positivo em relação ao zero do referencial(altitude inicial)
+#o mesmo vale para os números negativos
 
+var contM = 9 #número de números que começam spawnadas para cima
+var contN = 5 #número de números que começam spawnadas para baixo
 
-var contM = 9
-var contN = 5
-var array_nodes = [] #array onde vao ser guardados os nodes
-var slots = 0
-var aux
+var aux #variaveis para auxiliar com a posição/número de spawns, etc
 var aux2
 var aux3
-#var aux = 9
-func _ready():
-	#if (float(global.array2[9]) >= (int(InitialAlt.pinit) * 10 + 10 * (contM -3))):
-	#	contM +=1
-	#aux = contM
-	#connect("AltIni",self,"_on_Alt_Ini")
-	pass
-func _process(_delta):
-	#aux = _on_Sprite_Leitura(delta)
-	#print(InitialAlt.pinit * 10 + 10 * (contM -3))
-	#print(global.pinit * 10 + 10 * (contM -4))
-	if (float(Debug.x) > (global.pinit * 10 + 10 * (contM -4))): #(global.array2[9])
-		#print("1 = ",global.pinit * 10 + 10 * (contM -4))
-		#criar()
-		contM += 1
-		
-		#print("dps de criar")
-		#contM += 1
-		#print(contM)
+
+func _process(_delta): #é preciso de dois ciclos que aumentam as variaveis que contam os números spawnados,
+#pois na cena do spawner, não é possível pegar o valor de uma variável dentro de um ciclo
+#que envolva um signal(função _on_Sprite_Leitura)
+#e utilizar o spawn por variáveis globais causa um imenso lag.
 	
-	if (float(Debug.x) < (global.pinit * 10 + -10 * (contN-4))): 
-		#print("bbbbb")
-		#print("primeiro = ",InitialAlt.pinit * 10 + -10 * (contN-3))
-		#print("contN = ",contN)
+	if (float(global.array2[9]) > (global.pinit * 10 + 10 * (contM -4))):
+		contM += 1
+	
+	if (float(global.array2[9]) < (global.pinit * 10 + -10 * (contN-4))): 
 		contN +=1
-	#	criar()
-		
-		
-		
-func criarPos():
-	#array_nodes.append([]) #necessário
-	#print("n")
+
+func criarPos(): #cria os números positivos,
+#pois se uma função faz os dois impossibilita o programa de funcionar para 
+#variações positivas e negativas dos parâmetros
+	
 	var Caixa = preload("res://Scenes/SpawnNum.tscn")
 	var caixaCC = Caixa.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaCC)
-	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
-	#slots += 1
-	#return caixaC
-func criarNeg():
-	#array_nodes.append([]) #necessário
-	#print("teste")
+	
+func criarNeg(): #cria os números negativos
 	var Caixa1 = preload("res://Scenes/SpawnNumNeg.tscn")
 	var caixaCC1 = Caixa1.instance()
 	aux3 = add_child_below_node(get_tree().get_root().get_node("PFD"), caixaCC1)
-	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
 
 
-
-
-
-
-func _on_Sprite_Leitura(array2, pinit, init):
-	#print("condição 2 = ",pinit * 10 + -10 * (contN - 3))
-	#print(float(pinit))
-	if (float(Debug.x) >= (pinit * 10 + 10 * (contM -4))): #trocar valor inicial #array2[9]
-		#print("2 = ",pinit * 10 + 10 * (contM -4))
+func _on_Sprite_Leitura(array2, pinit, init): #conforme dito acima são necessários dois ciclos que fazem o mesmo, mas apenas este faz o spawn
+	if (float(array2[9]) >= (pinit * 10 + 10 * (contM -4))): #array2[9]
 		contM += 1
 		criarPos()
 		
-	if (float(Debug.x) <= (pinit * 10 + -10 * (contN -4))): #trocar valor inicial
-		#print("aaaaaaa")
-		#print("segundo = ",pinit * 10 + -10 * (contN -3))
-		#print("contN = ",contN)
+	if (float(array2[9]) <= (pinit * 10 + -10 * (contN -4))): 
 		contN +=1
 		criarNeg()
-		
+

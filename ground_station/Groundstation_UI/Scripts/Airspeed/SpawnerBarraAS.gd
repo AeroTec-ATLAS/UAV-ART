@@ -1,4 +1,4 @@
-extends Node2D #ANTIGO SPAWNER DE BARRAS PRO AS
+"""extends Node2D #ANTIGO SPAWNER DE BARRAS PRO AS
 
 
 #onready var pos_cima = $Cima
@@ -94,3 +94,4 @@ func _process(_delta):
 	#var new_spawn = spawn_type.instance()
 	#add_child(new_spawn)
 	#new_spawn.global_position = spawn_position.global_position
+"""

@@ -2,29 +2,15 @@ extends Polygon2D
 
 var aux
 var estado = 1
-#func _ready():
-	#position.y = Leitor.pinit*-10 -3.76197*float(Debug.x)
 
 
 func _on_Sprite_Leitura(array2, pinit, init):
-	#position.y = 0
-	if estado ==1 :
-		#position.y = -pinit*10 -3.76197*float(Debug.x) + (49.3597/10 * float(Debug.x))
-		position.y = -pinit*10 -3.76197*float(Debug.x) - 93 - 0.173999786*pinit*10 + 3.76199 * init
-		#position.y = -pinit*10 -3.76197*float(Debug.x) - 93 - 0.173999786*pinit*10 + 3.76199 * init FUNCIONA
+	if estado ==1 : #o estado serve para o ajuste da posição do número (relativo a altitude inicial) seja feita apenas uma vez
+		position.y = -pinit*10 -3.76197*float(array2[9]) - 93 - 0.173999786*pinit*10 + 3.76199 * init
 		aux = position.y
 		estado +=1
-		#print(position.y)
-		#print(init)
-	position.y = 49.3597/10 * float(Debug.x) +aux
-	#print(position.y)
-	#print(position.y)
-	#print(position.y)
-	#print(Debug.x)
-		#position.y = -pinit*10 -87.0 + (49.3597/10 * float(Debug.x)) #array2[9])
-	#position.y = -87.0 + (49.3597/10 * float(Debug.x))
-	#print(position.y)
-	
+	position.y = 49.3597/10 * float(array2[9]) +aux #depois a posição corrigida é somada com a movimentação da barra
+
 
 
 

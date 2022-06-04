@@ -484,9 +484,6 @@ margin_left = -1156.57
 margin_top = 13.2539
 margin_right = -1116.57
 margin_bottom = 53.2539
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CaixaPositiva9" type="Polygon2D" parent="Airspeed/Airspeed - Caixas de Texto"]
 script = ExtResource( 38 )

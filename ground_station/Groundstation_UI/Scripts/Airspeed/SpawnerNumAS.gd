@@ -1,61 +1,35 @@
 extends Node2D
 
 #Decide se é para spawnar novos números ou não
-
+#esta função é extremamente semelhante ao script SpawnNewNumber, do altimetro que está melhor comentada
 
 var contM1 = 9
 var contN1 = 5
-var array_nodes = [] #array onde vao ser guardados os nodes
-var slots = 0
-#var aux = 9
-func _ready():
-	#if (float(global.array2[9]) >= (int(InitialAlt.pinit) * 10 + 10 * (contM -3))):
-	#	contM +=1
-	#aux = contM
-	pass
 
-#global.array2[9]
+
 func _process(_delta):
-	#print(Debug.x)
-	#aux = _on_Sprite_Leitura(delta)
-	#print(aux)
-	if (float(Debug.x) > ( 5 * (contM1 -3))): #global.array2[13]
-		#print("criou")
-		
-		#criar()
-		contM1 += 1
-		
-		#print("dps de criar")
-		#contM += 1
-		#print(contM)
 	
-	if (float(Debug.x) < (-5 * (contN1-3))): 
+	if (float(global.array2[13]) > ( 5 * (contM1 -3))): #5 * (contM1 -3) serve para que o número seja spawnado antes deste ser visto, dando a sensação de ser infinito
+		contM1 += 1
+	
+	if (float(global.array2[13]) < (-5 * (contN1-3))):  
 		contN1 +=1
-	#	criar()
-		
-		
-func criar():
-	#array_nodes.append([]) #necessário
+	
+func criar(): #cria números positivos
 	var caixa3 = preload("res://Scenes/SpawnNumAS.tscn")
 	var caixaC3 = caixa3.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC3)
-func criarNeg():
-	#array_nodes.append([]) #necessário
+	
+func criarNeg(): #cria números negativos
 	var caixa = preload("res://Scenes/SpawnNumASNeg.tscn")
 	var caixaC = caixa.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaC)
-	#array_nodes[slots].append(caixaC) #guarda os nodes criados num array
-	#slots += 1
-	#return caixaC
-func _on_Sprite_Leitura(array2, pinit, init):
-	#print(Debug.x)
-	#print(5 * (contM1 -3))
-	if (float(Debug.x) >= (5 * (contM1 -3))): #trocar valor inicial #array2[13]
-		#print("aaaaaaa")
-		contM1 += 1
-		criar() #array2[9]
-		#print("criou")
 	
-	if (float(Debug.x) <= (-5 * (contN1-3))): #trocar valor inicial
+func _on_Sprite_Leitura(array2, pinit, init):
+	if (float(array2[13]) >= (5 * (contM1 -3))):
+		contM1 += 1
+		criar() 
+
+	if (float(array2[13]) <= (-5 * (contN1-3))): 
 		criarNeg()
 		contN1 +=1
