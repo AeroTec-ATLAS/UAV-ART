@@ -7,7 +7,8 @@ var aux2 #salva o ultimo valor do contN
 func _ready():
 	aux1 = SpawnerNum.contM
 	aux2 = SpawnerNum.contN
-	print(SpawnerNum.contN)
+	print(InitialAlt.pinit * 10 -(aux2+1) * 10)
+	#print(SpawnerNum.contN)
 	#$Sprite.connect()
 	#SpawnNewNumber.aux3.connect("Leitura", self, "on_Sprite_Leitura")
 	#$Sprite.connect("Leitura", self, "on_Sprite_Leitura",["array2","pinit"])
@@ -25,6 +26,7 @@ func _process(_delta):
 	#	set_bbcode(dialog)
 	#if float(Debug.x)* 10 < ( InitialAlt.pinit * 10 - 4 * 10):
 	var dialog = str(InitialAlt.pinit * 10 -(aux2+1) * 10)
+	#print(InitialAlt.pinit * 10 -(aux2+1) * 10)
 	set_visible_characters(5)
 	set_bbcode(dialog)
 	#print(InitialAlt.pinit * 10 -(aux2+1) * 10)

@@ -60,7 +60,8 @@ func _physics_process(_delta):
 			init = int(Debug.x)#global.array2[9]
 			pinit = init / 10
 			#if(init%100 < 1000):
-			init = init%10 # retorna o último digito do primeiro valor lido, assim se pode corrigir a diferença no altimetro
+			init = init%10 # retorna o último digito do primeiro valor lido, assim se 
+	#o primeiro valor lido for diferente do escrito na barra, possa ser feita a correção
 			#print(init%10)
 			#print(pinit)
 			estado +=1

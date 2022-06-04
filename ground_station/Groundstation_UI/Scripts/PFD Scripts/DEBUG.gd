@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var x: float = 1000
+var x: float = 1000.01
 var x1: float = 0
 func _ready():
 	while x <= 12000.0:
