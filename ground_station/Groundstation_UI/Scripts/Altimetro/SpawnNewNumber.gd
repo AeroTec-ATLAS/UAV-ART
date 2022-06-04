@@ -20,9 +20,9 @@ func _ready():
 func _process(_delta):
 	#aux = _on_Sprite_Leitura(delta)
 	#print(InitialAlt.pinit * 10 + 10 * (contM -3))
-	#print(float(InitialAlt.pinit))
-	if (float(Debug.x) > (InitialAlt.pinit * 10 + 10 * (contM -4))): #(global.array2[9])
-		#print("criou")
+	#print(global.pinit * 10 + 10 * (contM -4))
+	if (float(Debug.x) > (global.pinit * 10 + 10 * (contM -4))): #(global.array2[9])
+		#print("1 = ",global.pinit * 10 + 10 * (contM -4))
 		#criar()
 		contM += 1
 		
@@ -30,7 +30,7 @@ func _process(_delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(Debug.x) < (InitialAlt.pinit * 10 + -10 * (contN-3))): 
+	if (float(Debug.x) < (global.pinit * 10 + -10 * (contN-4))): 
 		#print("bbbbb")
 		#print("primeiro = ",InitialAlt.pinit * 10 + -10 * (contN-3))
 		#print("contN = ",contN)
@@ -41,6 +41,7 @@ func _process(_delta):
 		
 func criarPos():
 	#array_nodes.append([]) #necessário
+	#print("n")
 	var Caixa = preload("res://Scenes/SpawnNum.tscn")
 	var caixaCC = Caixa.instance()
 	add_child_below_node(get_tree().get_root().get_node("PFD"), caixaCC)
@@ -64,11 +65,11 @@ func _on_Sprite_Leitura(array2, pinit, init):
 	#print("condição 2 = ",pinit * 10 + -10 * (contN - 3))
 	#print(float(pinit))
 	if (float(Debug.x) >= (pinit * 10 + 10 * (contM -4))): #trocar valor inicial #array2[9]
-		#print("AAAAAAAAAAA")
+		#print("2 = ",pinit * 10 + 10 * (contM -4))
 		contM += 1
 		criarPos()
 		
-	if (float(Debug.x) <= (pinit * 10 + -10 * (contN -3))): #trocar valor inicial
+	if (float(Debug.x) <= (pinit * 10 + -10 * (contN -4))): #trocar valor inicial
 		#print("aaaaaaa")
 		#print("segundo = ",pinit * 10 + -10 * (contN -3))
 		#print("contN = ",contN)

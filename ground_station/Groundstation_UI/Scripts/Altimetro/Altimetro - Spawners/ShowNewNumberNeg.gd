@@ -18,6 +18,7 @@ func _ready():
 	#var aux = get_tree().get_root().get_node("PFD")
 	#aux.connect("Leitura",self,"on_Sprite_Leitura")
 	#InitialAlt.connect("AltIni",self,"_Alt_Ini")
+	#print("aux2 = ",aux2)
 	
 func _process(_delta): 
 	#if float(Debug.x) * 10 > ( InitialAlt.pinit * 10 + 9 * 10):
@@ -25,7 +26,7 @@ func _process(_delta):
 	#	set_visible_characters(5)
 	#	set_bbcode(dialog)
 	#if float(Debug.x)* 10 < ( InitialAlt.pinit * 10 - 4 * 10):
-	var dialog = str(InitialAlt.pinit * 10 -(aux2+1) * 10)
+	var dialog = str(global.pinit * 10 -(aux2+1) * 10)
 	#print(InitialAlt.pinit * 10 -(aux2+1) * 10)
 	set_visible_characters(5)
 	set_bbcode(dialog)

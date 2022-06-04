@@ -113,6 +113,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Sprite2" type="Sprite" parent="Horizonte"]
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Sprite" type="Sprite" parent="Horizonte"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -124,12 +130,6 @@ position = Vector2( -0.144226, 0.264832 )
 scale = Vector2( 1.17, 1.17 )
 texture = ExtResource( 1 )
 script = ExtResource( 7 )
-
-[node name="Sprite2" type="Sprite" parent="Horizonte"]
-texture = ExtResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Light2D" type="Light2D" parent="Horizonte"]
 position = Vector2( 0.303711, 0.0978394 )

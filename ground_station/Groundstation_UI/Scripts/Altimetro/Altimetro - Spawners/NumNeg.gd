@@ -14,7 +14,7 @@ func _ready():
 func _process(_delta): 
 	if estado ==1 :
 		#position.y = -pinit*10 -3.76197*float(Debug.x) + (49.3597/10 * float(Debug.x))
-		position.y = -284.999786 + 120 + 98.7194/20 * float(Debug.x)#InitialAlt.pinit* -10 #-3.76197*float(Debug.x)
+		position.y = -284.999786 + 120 + 98.7194/20 * float(Debug.x) - 49.3597#InitialAlt.pinit* -10 #-3.76197*float(Debug.x)
 		aux = position.y
 		estado +=1
 	#if float(Debug.x) * 10 >= ( InitialAlt.pinit * 10 + SpawnerNum.contM * 10):

@@ -11,6 +11,7 @@ func _ready():
 	position.y = 0
 	#print("ContM = ",SpawnerNum.contM)
 	#print("ContN = ", SpawnerNum.contN)
+	#print("ssssssss")
 
 func _process(_delta): 
 	if estado ==1 :
@@ -18,7 +19,6 @@ func _process(_delta):
 		position.y = 115+ 170 + 98.7194/20 * float(Debug.x)#InitialAlt.pinit* -10 #-3.76197*float(Debug.x)
 		aux = position.y
 		estado +=1
-		
 	position.y = 49.3597/10 * float(Debug.x) - aux #+ aux
 	#print(position.y)
 	#if float(Debug.x) * 10 >= ( InitialAlt.pinit * 10 + SpawnerNum.contM * 10):
