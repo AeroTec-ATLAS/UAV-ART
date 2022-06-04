@@ -12,6 +12,6 @@ func _on_Sprite_Leitura(array2, pinit, init):
 	#if(float(Debug.x) <= -65):
 		#position.y = -621
 	#else:
-	position.y = -4.5 +29.5 + (49.3597/2.0 * float(array2[10])) 
+	position.y = -4.5 +29.5 + (49.3597/2.0 * float(Debug.x)) 
 	#-249 + (48.0/10 * float(array2[9]))
 #34

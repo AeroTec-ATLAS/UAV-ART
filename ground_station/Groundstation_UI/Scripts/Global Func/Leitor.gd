@@ -15,14 +15,14 @@ var p9
 var altitude
 var p11
 var p12
-var p13
+var vel_vertical
 var p15
 var p16
 var p17
 var p18
 var p19
 var p20
-var array2 = PoolRealArray([p1,ang1,ang2,ang3,p5,p6,p7,p8,p9,altitude,p11,p12,p13,velocidade,p15,p16,p17,p18,p19,p20])
+var array2 = PoolRealArray([p1,ang1,ang2,ang3,p5,p6,p7,p8,p9,altitude,p11,p12,vel_vertical,velocidade,p15,p16,p17,p18,p19,p20])
 var linha_aux
 var estado = 1
 var estado2 = 1

@@ -21,5 +21,5 @@ func _process(_delta):
 		#print(position.x)
 		#position.y = (Most7.position.y) -22 - 53 + -50 * (aux1 - 6) + (49.3597/5.0 * float(Debug.x)) 
 	#if float(global.array2[10]) * 2  <= ( - SpawnerNumVerticalSpeed.contN1 * 2):
-		position.y = -29 - 100 + 49.3597 * (aux2+3) + (49.3597/2.0 * float(global.array2[10])) 
+		position.y = -29 - 100 + 49.3597 * (aux2+3) + (49.3597/2.0 * float(Debug.x)) +16
 

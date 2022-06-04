@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Images/Externo.png" type="Texture" id=1]
 [ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
@@ -55,9 +55,9 @@
 [ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador6.gd" type="Script" id=53]
 [ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=54]
 [ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=55]
-[ext_resource path="res://Scripts/Airspeed/SpawnerBarraAS.gd" type="Script" id=56]
+[ext_resource path="res://Scripts/Airspeed/BarraGr3.gd" type="Script" id=56]
 [ext_resource path="res://Scripts/VerticalSpeed/BarraGrVerticalSpeed.gd" type="Script" id=57]
-[ext_resource path="res://Scripts/VerticalSpeed/SpawnerBarraVerticalSpeed.gd" type="Script" id=58]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGr2.gd" type="Script" id=58]
 [ext_resource path="res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd" type="Script" id=59]
 [ext_resource path="res://Scripts/VerticalSpeed/CaixasDeTextoVerticalSpeed.gd" type="Script" id=60]
 [ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador0VerticalSpeed.gd" type="Script" id=61]
@@ -76,6 +76,8 @@
 [ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg4.gd" type="Script" id=74]
 [ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg5.gd" type="Script" id=75]
 [ext_resource path="res://Scripts/VerticalSpeed/Velocidade Vertical Tempo Real.gd" type="Script" id=76]
+[ext_resource path="res://Scripts/Airspeed/BarraGr2.gd" type="Script" id=77]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGr3.gd" type="Script" id=78]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -438,11 +440,7 @@ margin_bottom = 272.0
 bbcode_enabled = true
 bbcode_text = "Altimeter Real 
    Value (m):"
-text = "Altimeter Real 
-   Value (m):"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Altimeter (m):"
 
 [node name="Airspeed" type="Control" parent="."]
 margin_left = 446.473
@@ -461,9 +459,20 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
 script = ExtResource( 55 )
 
+[node name="BarraGr2" type="Sprite" parent="Airspeed"]
+position = Vector2( -806.57, -1643.72 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+script = ExtResource( 77 )
+
+[node name="BarraGr3" type="Sprite" parent="Airspeed"]
+position = Vector2( -806.57, 1643.28 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+script = ExtResource( 56 )
+
 [node name="SpawnerBarra" type="Node2D" parent="Airspeed"]
 position = Vector2( -806.57, 0 )
-script = ExtResource( 56 )
 
 [node name="SpawnerNum" type="Node2D" parent="Airspeed"]
 position = Vector2( -1156.57, 13.2539 )
@@ -734,8 +743,7 @@ margin_bottom = 272.0
 bbcode_enabled = true
 bbcode_text = "Airspeed Real 
   Value (m/s):"
-text = "Airspeed Real 
-  Value (m/s):"
+text = "Airspeed (m/s):"
 
 [node name="VerticalSpeed" type="Control" parent="."]
 margin_left = 1250.0
@@ -753,9 +761,20 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 18 )
 script = ExtResource( 57 )
 
+[node name="BarraGr2" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -806.57, -1643.57 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+script = ExtResource( 58 )
+
+[node name="BarraGr3" type="Sprite" parent="VerticalSpeed"]
+position = Vector2( -806.57, 1642.43 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+script = ExtResource( 78 )
+
 [node name="SpawnerBarra" type="Node2D" parent="VerticalSpeed"]
 position = Vector2( -806.57, 0 )
-script = ExtResource( 58 )
 
 [node name="SpawnerNum" type="Node2D" parent="VerticalSpeed"]
 position = Vector2( -1156.57, 13.2539 )
@@ -1023,8 +1042,8 @@ margin_bottom = 272.0
 bbcode_enabled = true
 bbcode_text = "Airspeed Real 
   Value (m/s):"
-text = "Airspeed Real 
-  Value (m/s):"
+text = "Vertical Speed
+      (cm/s):"
 __meta__ = {
 "_editor_description_": "Vertical Speed
  Real Value (m/s):"
@@ -1074,6 +1093,8 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Altitude/Altitude Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/BarraGr2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/BarraGr3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/SpawnerNum" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Airspeed - Caixas de Texto/CaixaPositiva8" method="_on_Sprite_Leitura"]
@@ -1093,6 +1114,8 @@ script = ExtResource( 14 )
 [connection signal="Leitura" from="Horizonte/Sprite" to="Airspeed/Air Speed Tempo Real" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr" method="_on_Leitor_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr2" method="_on_Sprite_Leitura"]
+[connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/BarraGr3" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/SpawnerBarra" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/SpawnerNum" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva9" method="_on_Sprite_Leitura"]

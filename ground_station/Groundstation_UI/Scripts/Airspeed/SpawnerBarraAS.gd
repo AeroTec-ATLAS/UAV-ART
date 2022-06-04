@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D #ANTIGO SPAWNER DE BARRAS PRO AS
 
 
 #onready var pos_cima = $Cima

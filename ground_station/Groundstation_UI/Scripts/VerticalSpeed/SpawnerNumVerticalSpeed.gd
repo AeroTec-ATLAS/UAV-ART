@@ -18,9 +18,9 @@ func _ready():
 func _process(_delta):
 	#print(Debug.x)
 	#aux = _on_Sprite_Leitura(delta)
-	#print(aux)
-	if (float(global.array2[10]) > ( 2 * (contM1 -3))): #global.array2[13]
-		#print("criou")
+	#print("1 = ",2 * (contM1 -3))
+	if (float(Debug.x) > ( 2 * (contM1 -4))): #global.array2[12]
+		#print("aaaa")
 		
 		#criar()
 		contM1 += 1
@@ -29,7 +29,7 @@ func _process(_delta):
 		#contM += 1
 		#print(contM)
 	
-	if (float(global.array2[10]) < (-2 * (contN1-3))): 
+	if (float(Debug.x) < (-2 * (contN1-4))): 
 		contN1 +=1
 	##	criar()
 		
@@ -48,15 +48,16 @@ func criarNeg():
 	
 func _on_Sprite_Leitura(array2, pinit, init):
 	#print(array2[10])
-	#print(contM1)
-	#print(5 * (contM1 -3))
-	if (float(array2[10]) >= (2 * (contM1 -3))): #trocar valor inicial #array2[13]
+	#print(array2[12])
+	#print(2 * (contM1 -4))
+	if (float(Debug.x) >= (2 * (contM1 -4))): #trocar valor inicial #array2[12]
 		#print("aaaaaaa")
-		
-		criarPos() #array2[9]
 		contM1 += 1
+		criarPos() #array2[9]
+		
 		#print("criou")
 	
-	if (float(array2[10]) <= (-2 * (contN1-3))): #trocar valor inicial
-		criarNeg()
+	if (float(Debug.x) <= (-2 * (contN1-4))): #trocar valor inicial
 		contN1 +=1
+		criarNeg()
+		

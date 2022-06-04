@@ -6,7 +6,7 @@ func _ready():
 
 
 func _on_Sprite_Leitura(array2, pinit, init):
-	var dialog = array2[10]
+	var dialog = array2[12]
 	set_visible_characters(4)
 	set_bbcode(dialog)
 	#if (float(Debug.x) <= -65): #array2[13]
