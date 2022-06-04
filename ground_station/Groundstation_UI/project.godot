@@ -15,9 +15,21 @@ config/icon="res://icon.png"
 
 [autoload]
 
-global="*res://Leitor.gd"
-InitialAlt="*res://Scripts/InitialAlt.gd"
-SpawnerNum="*res://Scripts/SpawnerNum.gd"
+global="*res://Scripts/Global Func/Leitor.gd"
+InitialAlt="*res://Scripts/Altimetro/InitialAlt.gd"
+SpawnerNum="*res://Scripts/Altimetro/SpawnNewNumber.gd"
+Most7="*res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd"
+SpawnerNumAs="*res://Scripts/Airspeed/SpawnerNumAS.gd"
+Debug="*res://Scripts/PFD Scripts/DEBUG.gd"
+BarraSpawnada="*res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada.gd"
+SpawnerBarra="*res://Scripts/Altimetro/Altimetro - Spawners/SpawnerBarra.gd"
+BarraSpawnada2="*res://Scripts/Altimetro/Altimetro - Spawners/BarraSpawnada2.gd"
+AirspeedIni="*res://Scripts/Airspeed/AirspeedIni.gd"
+CaixasTextoAirspeed="*res://Scripts/Airspeed/CaixasTextoAirspeed.gd"
+SpawnNewNumber="*res://Scripts/Altimetro/SpawnNewNumber.gd"
+SpawnerBarraAS="*res://Scripts/Airspeed/SpawnerBarraAS.gd"
+SpawnerNumVerticalSpeed="*res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd"
+Leitor="*res://Scripts/Global Func/Leitor.gd"
 
 [physics]
 

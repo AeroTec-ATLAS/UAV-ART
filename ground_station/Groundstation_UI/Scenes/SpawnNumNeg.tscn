@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/NumNeg.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Spawners/ShowNewNumberNeg.gd" type="Script" id=2]
+
+[node name="SpawnNumNeg" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Polygon2D"]
+margin_right = 82.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
