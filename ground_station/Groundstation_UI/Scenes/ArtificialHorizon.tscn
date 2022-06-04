@@ -174,6 +174,7 @@ texture = ExtResource( 18 )
 script = ExtResource( 20 )
 
 [node name="SpawnerBarra" type="Node2D" parent="Altitude"]
+visible = false
 
 [node name="SpawnerNum" type="Node2D" parent="Altitude"]
 position = Vector2( -1156.57, 13.2539 )
@@ -438,8 +439,7 @@ margin_top = 225.0
 margin_right = -750.0
 margin_bottom = 272.0
 bbcode_enabled = true
-bbcode_text = "Altimeter Real 
-   Value (m):"
+bbcode_text = "Altimeter (m):"
 text = "Altimeter (m):"
 
 [node name="Airspeed" type="Control" parent="."]
@@ -472,6 +472,7 @@ texture = ExtResource( 18 )
 script = ExtResource( 56 )
 
 [node name="SpawnerBarra" type="Node2D" parent="Airspeed"]
+visible = false
 position = Vector2( -806.57, 0 )
 
 [node name="SpawnerNum" type="Node2D" parent="Airspeed"]
@@ -741,8 +742,7 @@ margin_top = 225.0
 margin_right = -750.0
 margin_bottom = 272.0
 bbcode_enabled = true
-bbcode_text = "Airspeed Real 
-  Value (m/s):"
+bbcode_text = "Airspeed (m/s):"
 text = "Airspeed (m/s):"
 
 [node name="VerticalSpeed" type="Control" parent="."]
@@ -774,6 +774,7 @@ texture = ExtResource( 18 )
 script = ExtResource( 78 )
 
 [node name="SpawnerBarra" type="Node2D" parent="VerticalSpeed"]
+visible = false
 position = Vector2( -806.57, 0 )
 
 [node name="SpawnerNum" type="Node2D" parent="VerticalSpeed"]
@@ -1040,8 +1041,8 @@ margin_top = 225.0
 margin_right = -750.0
 margin_bottom = 272.0
 bbcode_enabled = true
-bbcode_text = "Airspeed Real 
-  Value (m/s):"
+bbcode_text = "Vertical Speed
+      (cm/s):"
 text = "Vertical Speed
       (cm/s):"
 __meta__ = {
