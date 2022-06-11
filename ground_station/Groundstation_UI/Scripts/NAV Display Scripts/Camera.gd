@@ -13,10 +13,9 @@ var _zoom_level := 1.0 setget _set_zoom_level
 
 # We store a reference to the scene's tween node.
 onready var tween: Tween = $Tween
-
-
-var _previousPosition: Vector2 = Vector2(0, 0);
-var _moveCamera: bool = false;
+var mouse_start_pos
+var screen_start_position
+var dragging = false
 
 func _set_zoom_level(value: float) -> void:
 	# We limit the value between `min_zoom` and `max_zoom`
@@ -35,24 +34,21 @@ func _set_zoom_level(value: float) -> void:
 	)
 	tween.start()
 	
-func _unhandled_input(event: InputEvent):
+func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
 		# Inside a given class, we need to either write `self._zoom_level = ...` or explicitly
 		# call the setter function to use it.
 		_set_zoom_level(_zoom_level - zoom_factor)
 	if event.is_action_pressed("zoom_out"):
 		_set_zoom_level(_zoom_level + zoom_factor)
-		
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
-		get_tree().set_input_as_handled()
+
+func _input(event):
+	if event is InputEventMouseButton:
 		if event.is_pressed():
-			_previousPosition = event.position
-			_moveCamera = true
+			mouse_start_pos = event.position
+			screen_start_position = position
+			dragging = true
 		else:
-			_moveCamera = false
-	elif event is InputEventMouseMotion && _moveCamera:
-		get_tree().set_input_as_handled()
-		position += (_previousPosition - event.position)
-		_previousPosition = event.position
-
-
+			dragging = false
+	elif event is InputEventMouseMotion and dragging:
+		position = zoom * (mouse_start_pos - event.position) + screen_start_position
