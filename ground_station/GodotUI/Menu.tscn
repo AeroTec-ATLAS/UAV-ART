@@ -53,9 +53,9 @@ resizable = true
 mode_overrides_title = false
 mode = 0
 access = 2
-current_dir = "/Users/Pedro/Desktop/MEAer/UAV/repo/UAV-ART/ground_station/GodotUI"
+current_dir = "/Users/Arthur/Desktop/UAV-ART/ground_station/GodotUI"
 current_file = "volta"
-current_path = "/Users/Pedro/Desktop/MEAer/UAV/repo/UAV-ART/ground_station/GodotUI/volta"
+current_path = "/Users/Arthur/Desktop/UAV-ART/ground_station/GodotUI/volta"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -72,6 +72,7 @@ anims/rot = SubResource( 1 )
 [node name="Camera" type="Camera" parent="Spatial"]
 transform = Transform( 0.997977, 0, -0.0635744, 0, 1, 0, 0.0635744, 0, 0.997977, -6.803, 5.142, 22.254 )
 fov = 50.0
+
 [connection signal="pressed" from="log" to="." method="_on_log_pressed"]
 [connection signal="pressed" from="realtime" to="." method="_on_realtime_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Navigation Display/Camera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Mapa Ponte de Sor.png" type="Texture" id=3]
+
+[node name="Navigation Display" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="Mapa Ponte de Sor" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 3 )
+
+[node name="ZoomingCamera2D" parent="KinematicBody2D" instance=ExtResource( 1 )]

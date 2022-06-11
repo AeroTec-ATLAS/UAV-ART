@@ -1,83 +1,83 @@
 [gd_scene load_steps=79 format=2]
 
-[ext_resource path="res://Images/Externo.png" type="Texture" id=1]
-[ext_resource path="res://Images/roda interna.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/PFD Scripts/Movimento_interno.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/PFD Scripts/Movimento_seta.gd" type="Script" id=4]
-[ext_resource path="res://Images/Seta.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Global Func/Leitor.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/PFD Scripts/Horizonte_externo.gd" type="Script" id=7]
-[ext_resource path="res://Images/SetaCentral.png" type="Texture" id=8]
-[ext_resource path="res://Images/Branco.png" type="Texture" id=9]
-[ext_resource path="res://Scripts/Airspeed/SpawnerNumAS.gd" type="Script" id=10]
-[ext_resource path="res://Images/Moldura.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/Airspeed/AirspeedIni.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText9.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/PFD Scripts/DEBUG.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/Altimetro/BarraInicialAlt.gd" type="Script" id=15]
-[ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=16]
-[ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=17]
-[ext_resource path="res://Images/BarraGr.png" type="Texture" id=18]
-[ext_resource path="res://Scripts/Altimetro/BarraGr2.gd" type="Script" id=19]
-[ext_resource path="res://Scripts/Altimetro/BarraGr3.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/VerticalSpeed/Velocidade Vertical Tempo Real.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador6.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador7.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGr3.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg3.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg5.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Airspeed/BarraGr2.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg2.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg1.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador9.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador8.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg4.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Altimetro/BarraGr2.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Altimetro/BarraGr3.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText0.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg3.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg4.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/PFD Scripts/Movimento_seta.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/PFD Scripts/Horizonte_externo.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/PFD Scripts/VelText.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText1.gd" type="Script" id=21]
-[ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=22]
-[ext_resource path="res://Scripts/Altimetro/SpawnNewNumber.gd" type="Script" id=23]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd" type="Script" id=24]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText0.gd" type="Script" id=25]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg1.gd" type="Script" id=26]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg2.gd" type="Script" id=27]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg3.gd" type="Script" id=28]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg4.gd" type="Script" id=29]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText2.gd" type="Script" id=30]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText8.gd" type="Script" id=31]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText7.gd" type="Script" id=32]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText3.gd" type="Script" id=33]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText5.gd" type="Script" id=34]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText4.gd" type="Script" id=35]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText6.gd" type="Script" id=36]
-[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg5.gd" type="Script" id=37]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg1.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg2.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText9.gd" type="Script" id=24]
+[ext_resource path="res://Scripts/Altimetro/BarraInicialAlt.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/PFD Scripts/Movimento_interno.gd" type="Script" id=26]
+[ext_resource path="res://Images/Seta.png" type="Texture" id=27]
+[ext_resource path="res://Images/Externo.png" type="Texture" id=28]
+[ext_resource path="res://Images/SetaCentral.png" type="Texture" id=29]
+[ext_resource path="res://Images/roda interna.png" type="Texture" id=30]
+[ext_resource path="res://Scripts/Global Func/Leitor.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/Altimetro/InitialAlt.gd" type="Script" id=32]
+[ext_resource path="res://Scripts/Altimetro/SpawnNewNumber.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/Airspeed/SpawnerNumAS.gd" type="Script" id=34]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/ParentCaixasTexto.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/Airspeed/AirspeedIni.gd" type="Script" id=36]
+[ext_resource path="res://Scripts/PFD Scripts/DEBUG.gd" type="Script" id=37]
 [ext_resource path="res://Scripts/Airspeed/CaixasTextoAirspeed.gd" type="Script" id=38]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador9.gd" type="Script" id=39]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador8.gd" type="Script" id=40]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador4.gd" type="Script" id=41]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg3.gd" type="Script" id=42]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador2.gd" type="Script" id=43]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador3.gd" type="Script" id=44]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg1.gd" type="Script" id=45]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg2.gd" type="Script" id=46]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador0.gd" type="Script" id=47]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg4.gd" type="Script" id=48]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg5.gd" type="Script" id=49]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador.gd" type="Script" id=50]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador5.gd" type="Script" id=51]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador7.gd" type="Script" id=52]
-[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador6.gd" type="Script" id=53]
-[ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=54]
-[ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=55]
-[ext_resource path="res://Scripts/Airspeed/BarraGr3.gd" type="Script" id=56]
-[ext_resource path="res://Scripts/VerticalSpeed/BarraGrVerticalSpeed.gd" type="Script" id=57]
-[ext_resource path="res://Scripts/VerticalSpeed/BarraGr2.gd" type="Script" id=58]
-[ext_resource path="res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd" type="Script" id=59]
-[ext_resource path="res://Scripts/VerticalSpeed/CaixasDeTextoVerticalSpeed.gd" type="Script" id=60]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador0VerticalSpeed.gd" type="Script" id=61]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorVerticalSpeed.gd" type="Script" id=62]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador2.gd" type="Script" id=63]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador3.gd" type="Script" id=64]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador4.gd" type="Script" id=65]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador5.gd" type="Script" id=66]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador6.gd" type="Script" id=67]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador7.gd" type="Script" id=68]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador8.gd" type="Script" id=69]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador9.gd" type="Script" id=70]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg1.gd" type="Script" id=71]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg2.gd" type="Script" id=72]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg3.gd" type="Script" id=73]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg4.gd" type="Script" id=74]
-[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorNeg5.gd" type="Script" id=75]
-[ext_resource path="res://Scripts/VerticalSpeed/Velocidade Vertical Tempo Real.gd" type="Script" id=76]
-[ext_resource path="res://Scripts/Airspeed/BarraGr2.gd" type="Script" id=77]
-[ext_resource path="res://Scripts/VerticalSpeed/BarraGr3.gd" type="Script" id=78]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText2.gd" type="Script" id=39]
+[ext_resource path="res://Scripts/VerticalSpeed/SpawnerNumVerticalSpeed.gd" type="Script" id=40]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador3.gd" type="Script" id=41]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador6.gd" type="Script" id=42]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador2.gd" type="Script" id=43]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador5.gd" type="Script" id=44]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg5.gd" type="Script" id=45]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGrVerticalSpeed.gd" type="Script" id=46]
+[ext_resource path="res://Scripts/VerticalSpeed/BarraGr2.gd" type="Script" id=47]
+[ext_resource path="res://Scripts/Airspeed/Air Speed Tempo Real.gd" type="Script" id=48]
+[ext_resource path="res://Scripts/Airspeed/BarraGr3.gd" type="Script" id=49]
+[ext_resource path="res://Scripts/VerticalSpeed/CaixasDeTextoVerticalSpeed.gd" type="Script" id=50]
+[ext_resource path="res://Scripts/Airspeed/BarraGrAirSpeed.gd" type="Script" id=51]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador0VerticalSpeed.gd" type="Script" id=52]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostradorVerticalSpeed.gd" type="Script" id=53]
+[ext_resource path="res://Scripts/VerticalSpeed/TesteMostrador4.gd" type="Script" id=54]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador.gd" type="Script" id=55]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador5.gd" type="Script" id=56]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador7.gd" type="Script" id=57]
+[ext_resource path="res://Images/Moldura.png" type="Texture" id=58]
+[ext_resource path="res://Images/BarraGr.png" type="Texture" id=59]
+[ext_resource path="res://Images/Seta2PFD.png" type="Texture" id=60]
+[ext_resource path="res://Images/Branco.png" type="Texture" id=61]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador2.gd" type="Script" id=62]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText7.gd" type="Script" id=63]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg3.gd" type="Script" id=64]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText3.gd" type="Script" id=65]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText5.gd" type="Script" id=66]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltTextNeg5.gd" type="Script" id=67]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador9.gd" type="Script" id=68]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador3.gd" type="Script" id=69]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg2.gd" type="Script" id=70]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg4.gd" type="Script" id=71]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText4.gd" type="Script" id=72]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText8.gd" type="Script" id=73]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador8.gd" type="Script" id=74]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador4.gd" type="Script" id=75]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostradorNeg1.gd" type="Script" id=76]
+[ext_resource path="res://Scripts/Airspeed/TestesMostrador/TesteMostrador0.gd" type="Script" id=77]
+[ext_resource path="res://Scripts/Altimetro/Altimetro - Caixas de Texto/AltText6.gd" type="Script" id=78]
 
 [node name="PFD" type="Node2D"]
 position = Vector2( 510.943, 306.566 )
@@ -99,30 +99,30 @@ __meta__ = {
 [node name="Roda_interna" type="Sprite" parent="Horizonte"]
 light_mask = 1024
 position = Vector2( -0.4, 0.25 )
-texture = ExtResource( 2 )
+texture = ExtResource( 30 )
 offset = Vector2( -7.75, -2.5 )
-script = ExtResource( 3 )
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Seta" type="Sprite" parent="Horizonte"]
 position = Vector2( -0.5, 2 )
-texture = ExtResource( 5 )
+texture = ExtResource( 27 )
 offset = Vector2( 0.5, -80 )
-script = ExtResource( 4 )
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite2" type="Sprite" parent="Horizonte"]
-texture = ExtResource( 8 )
+texture = ExtResource( 29 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="Horizonte"]
-script = ExtResource( 6 )
+script = ExtResource( 31 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -130,13 +130,13 @@ __meta__ = {
 [node name="Horizonte_externo" type="Sprite" parent="Horizonte/Sprite"]
 position = Vector2( -0.144226, 0.264832 )
 scale = Vector2( 1.17, 1.17 )
-texture = ExtResource( 1 )
-script = ExtResource( 7 )
+texture = ExtResource( 28 )
+script = ExtResource( 19 )
 
 [node name="Light2D" type="Light2D" parent="Horizonte"]
 position = Vector2( 0.303711, 0.0978394 )
 scale = Vector2( 17, 17 )
-texture = ExtResource( 9 )
+texture = ExtResource( 61 )
 mode = 3
 range_item_cull_mask = 1024
 __meta__ = {
@@ -148,7 +148,7 @@ margin_left = 1156.57
 margin_top = -13.2539
 margin_right = 1196.57
 margin_bottom = 26.7461
-script = ExtResource( 22 )
+script = ExtResource( 32 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -157,28 +157,28 @@ __meta__ = {
 [node name="BarraGr" type="Sprite" parent="Altitude"]
 position = Vector2( -806.57, 0 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 15 )
+texture = ExtResource( 59 )
+script = ExtResource( 25 )
 
 [node name="BarraGr2" type="Sprite" parent="Altitude"]
 position = Vector2( -807.513, 1643.69 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
+texture = ExtResource( 59 )
 offset = Vector2( 1.9, 0 )
-script = ExtResource( 19 )
+script = ExtResource( 13 )
 
 [node name="BarraGr3" type="Sprite" parent="Altitude"]
 position = Vector2( -806.57, -1643 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 20 )
+texture = ExtResource( 59 )
+script = ExtResource( 14 )
 
 [node name="SpawnerBarra" type="Node2D" parent="Altitude"]
 visible = false
 
 [node name="SpawnerNum" type="Node2D" parent="Altitude"]
 position = Vector2( -1156.57, 13.2539 )
-script = ExtResource( 23 )
+script = ExtResource( 33 )
 
 [node name="Altimetro - Caixas de Texto" type="Control" parent="Altitude"]
 margin_left = -1156.57
@@ -187,7 +187,7 @@ margin_right = -1116.57
 margin_bottom = 53.2539
 
 [node name="CaixaPositiva9" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva9"]
 margin_left = 313.0
@@ -196,14 +196,14 @@ margin_right = 383.0
 margin_bottom = -368.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 13 )
+script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva8" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva8"]
 margin_left = 313.0
@@ -212,14 +212,14 @@ margin_right = 383.0
 margin_bottom = -318.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 31 )
+script = ExtResource( 73 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva7" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador7" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva7"]
 margin_left = 313.0
@@ -228,14 +228,14 @@ margin_right = 383.0
 margin_bottom = -268.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 32 )
+script = ExtResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva6" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador6" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva6"]
 margin_left = 313.0
@@ -244,14 +244,14 @@ margin_right = 383.0
 margin_bottom = -220.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 36 )
+script = ExtResource( 78 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva5" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador5" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva5"]
 margin_left = 313.0
@@ -260,14 +260,14 @@ margin_right = 383.0
 margin_bottom = -172.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 34 )
+script = ExtResource( 66 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva4" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador4" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva4"]
 margin_left = 313.0
@@ -276,35 +276,35 @@ margin_right = 383.0
 margin_bottom = -121.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 35 )
+script = ExtResource( 72 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva3" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador3" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva3"]
 margin_left = 313.0
 margin_top = -89.0
 margin_right = 383.0
 margin_bottom = -72.0
-script = ExtResource( 33 )
+script = ExtResource( 65 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva2" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva2"]
 margin_left = 313.0
 margin_top = -38.0
 margin_right = 383.0
 margin_bottom = -21.0
-script = ExtResource( 30 )
+script = ExtResource( 39 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -313,7 +313,7 @@ __meta__ = {
 [node name="CaixaPositiva1" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
 position = Vector2( 1586.16, -139.6 )
 scale = Vector2( 0.921697, 0.921697 )
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaPositiva1"]
 margin_left = -1381.0
@@ -327,83 +327,83 @@ __meta__ = {
 }
 
 [node name="Caixa0" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/Caixa0"]
 margin_left = 313.0
 margin_top = 61.0
 margin_right = 383.0
 margin_bottom = 78.0
-script = ExtResource( 25 )
+script = ExtResource( 15 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa1" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa1"]
 margin_left = 313.0
 margin_top = 105.0
 margin_right = 383.0
 margin_bottom = 122.0
-script = ExtResource( 26 )
+script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa2" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa2"]
 margin_left = 313.0
 margin_top = 155.0
 margin_right = 383.0
 margin_bottom = 172.0
-script = ExtResource( 27 )
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa3" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa3"]
 margin_left = 313.0
 margin_top = 206.0
 margin_right = 383.0
 margin_bottom = 223.0
-script = ExtResource( 28 )
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa4" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa4"]
 margin_left = 313.0
 margin_top = 257.0
 margin_right = 383.0
 margin_bottom = 274.0
-script = ExtResource( 29 )
+script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa5" type="Polygon2D" parent="Altitude/Altimetro - Caixas de Texto"]
-script = ExtResource( 24 )
+script = ExtResource( 35 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="Altitude/Altimetro - Caixas de Texto/CaixaNegativa5"]
 margin_left = 313.0
 margin_top = 307.0
 margin_right = 383.0
 margin_bottom = 324.0
-script = ExtResource( 37 )
+script = ExtResource( 67 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -413,17 +413,17 @@ __meta__ = {
 position = Vector2( -870, 0 )
 rotation = -6.28319
 scale = Vector2( 0.180873, 0.180873 )
-texture = ExtResource( 17 )
+texture = ExtResource( 60 )
 
 [node name="Moldura" type="Sprite" parent="Altitude"]
 position = Vector2( -803.513, 286.688 )
 scale = Vector2( 0.325397, 2.42697 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Moldura2" type="Sprite" parent="Altitude"]
 position = Vector2( -812.404, -293.312 )
 scale = Vector2( 0.325397, 2.60674 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Altitude Tempo Real" type="RichTextLabel" parent="Altitude"]
 margin_left = -820.0
@@ -431,7 +431,7 @@ margin_top = 260.0
 margin_right = -740.0
 margin_bottom = 307.0
 bbcode_enabled = true
-script = ExtResource( 16 )
+script = ExtResource( 20 )
 
 [node name="Título" type="RichTextLabel" parent="Altitude"]
 margin_left = -850.0
@@ -447,7 +447,7 @@ margin_left = 446.473
 margin_top = -13.8449
 margin_right = 486.473
 margin_bottom = 26.1551
-script = ExtResource( 12 )
+script = ExtResource( 36 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -456,20 +456,20 @@ __meta__ = {
 [node name="BarraGr" type="Sprite" parent="Airspeed"]
 position = Vector2( -806.57, 0 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 55 )
+texture = ExtResource( 59 )
+script = ExtResource( 51 )
 
 [node name="BarraGr2" type="Sprite" parent="Airspeed"]
 position = Vector2( -806.57, -1643.72 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 77 )
+texture = ExtResource( 59 )
+script = ExtResource( 7 )
 
 [node name="BarraGr3" type="Sprite" parent="Airspeed"]
 position = Vector2( -806.57, 1643.28 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 56 )
+texture = ExtResource( 59 )
+script = ExtResource( 49 )
 
 [node name="SpawnerBarra" type="Node2D" parent="Airspeed"]
 visible = false
@@ -477,7 +477,7 @@ position = Vector2( -806.57, 0 )
 
 [node name="SpawnerNum" type="Node2D" parent="Airspeed"]
 position = Vector2( -1156.57, 13.2539 )
-script = ExtResource( 10 )
+script = ExtResource( 34 )
 
 [node name="Airspeed - Caixas de Texto" type="Control" parent="Airspeed"]
 margin_left = -1156.57
@@ -495,7 +495,7 @@ margin_right = 383.0
 margin_bottom = -368.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 39 )
+script = ExtResource( 68 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
@@ -511,7 +511,7 @@ margin_right = 383.0
 margin_bottom = -318.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 40 )
+script = ExtResource( 74 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
@@ -527,7 +527,7 @@ margin_right = 383.0
 margin_bottom = -268.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 52 )
+script = ExtResource( 57 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
@@ -543,7 +543,7 @@ margin_right = 383.0
 margin_bottom = -220.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 53 )
+script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
@@ -559,7 +559,7 @@ margin_right = 383.0
 margin_bottom = -172.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 51 )
+script = ExtResource( 56 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -575,7 +575,7 @@ margin_right = 383.0
 margin_bottom = -121.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 41 )
+script = ExtResource( 75 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -589,7 +589,7 @@ margin_left = 313.0
 margin_top = -89.0
 margin_right = 383.0
 margin_bottom = -72.0
-script = ExtResource( 44 )
+script = ExtResource( 69 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -603,7 +603,7 @@ margin_left = 313.0
 margin_top = -38.0
 margin_right = 383.0
 margin_bottom = -21.0
-script = ExtResource( 43 )
+script = ExtResource( 62 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -619,7 +619,7 @@ margin_left = -1381.0
 margin_top = 13.0
 margin_right = -1303.0
 margin_bottom = 34.0
-script = ExtResource( 50 )
+script = ExtResource( 55 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -633,7 +633,7 @@ margin_left = 313.0
 margin_top = 61.0
 margin_right = 383.0
 margin_bottom = 78.0
-script = ExtResource( 47 )
+script = ExtResource( 77 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -647,7 +647,7 @@ margin_left = 313.0
 margin_top = 112.0
 margin_right = 383.0
 margin_bottom = 129.0
-script = ExtResource( 45 )
+script = ExtResource( 76 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -661,7 +661,7 @@ margin_left = 313.0
 margin_top = 162.0
 margin_right = 383.0
 margin_bottom = 179.0
-script = ExtResource( 46 )
+script = ExtResource( 70 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -675,7 +675,7 @@ margin_left = 313.0
 margin_top = 213.0
 margin_right = 383.0
 margin_bottom = 230.0
-script = ExtResource( 42 )
+script = ExtResource( 64 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -689,7 +689,7 @@ margin_left = 313.0
 margin_top = 264.0
 margin_right = 383.0
 margin_bottom = 281.0
-script = ExtResource( 48 )
+script = ExtResource( 71 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -703,7 +703,7 @@ margin_left = 313.0
 margin_top = 314.0
 margin_right = 383.0
 margin_bottom = 331.0
-script = ExtResource( 49 )
+script = ExtResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -713,17 +713,17 @@ __meta__ = {
 position = Vector2( -745, 0 )
 rotation = 3.14159
 scale = Vector2( 0.180873, 0.180873 )
-texture = ExtResource( 17 )
+texture = ExtResource( 60 )
 
 [node name="Moldura" type="Sprite" parent="Airspeed"]
 position = Vector2( -803.513, 286.688 )
 scale = Vector2( 0.325397, 2.42697 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Moldura2" type="Sprite" parent="Airspeed"]
 position = Vector2( -812.404, -293.312 )
 scale = Vector2( 0.325397, 2.60674 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Air Speed Tempo Real" type="RichTextLabel" parent="Airspeed"]
 margin_left = -820.0
@@ -731,7 +731,7 @@ margin_top = 260.0
 margin_right = -740.0
 margin_bottom = 307.0
 bbcode_enabled = true
-script = ExtResource( 54 )
+script = ExtResource( 48 )
 
 [node name="Título" type="RichTextLabel" parent="Airspeed"]
 margin_left = -850.0
@@ -755,20 +755,20 @@ __meta__ = {
 [node name="BarraGr" type="Sprite" parent="VerticalSpeed"]
 position = Vector2( -806.57, 0 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 57 )
+texture = ExtResource( 59 )
+script = ExtResource( 46 )
 
 [node name="BarraGr2" type="Sprite" parent="VerticalSpeed"]
 position = Vector2( -806.57, -1643.57 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 58 )
+texture = ExtResource( 59 )
+script = ExtResource( 47 )
 
 [node name="BarraGr3" type="Sprite" parent="VerticalSpeed"]
 position = Vector2( -806.57, 1642.43 )
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 18 )
-script = ExtResource( 78 )
+texture = ExtResource( 59 )
+script = ExtResource( 4 )
 
 [node name="SpawnerBarra" type="Node2D" parent="VerticalSpeed"]
 visible = false
@@ -776,7 +776,7 @@ position = Vector2( -806.57, 0 )
 
 [node name="SpawnerNum" type="Node2D" parent="VerticalSpeed"]
 position = Vector2( -1156.57, 13.2539 )
-script = ExtResource( 59 )
+script = ExtResource( 40 )
 
 [node name="VerticalSpeed - Caixas de Texto" type="Control" parent="VerticalSpeed"]
 margin_left = -1156.57
@@ -788,7 +788,7 @@ __meta__ = {
 }
 
 [node name="CaixaPositiva9" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador9" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva9"]
 margin_left = 313.0
@@ -797,14 +797,14 @@ margin_right = 383.0
 margin_bottom = -368.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 70 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva8" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador8" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva8"]
 margin_left = 313.0
@@ -813,14 +813,14 @@ margin_right = 383.0
 margin_bottom = -318.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 69 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva7" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador7" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva7"]
 margin_left = 313.0
@@ -829,14 +829,14 @@ margin_right = 383.0
 margin_bottom = -268.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 68 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva6" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador6" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva6"]
 margin_left = 313.0
@@ -845,14 +845,14 @@ margin_right = 383.0
 margin_bottom = -220.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 67 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva5" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador5" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva5"]
 margin_left = 313.0
@@ -861,14 +861,14 @@ margin_right = 383.0
 margin_bottom = -172.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 66 )
+script = ExtResource( 44 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva4" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador4" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva4"]
 margin_left = 313.0
@@ -877,34 +877,34 @@ margin_right = 383.0
 margin_bottom = -121.0
 bbcode_text = "1000"
 text = "1000"
-script = ExtResource( 65 )
+script = ExtResource( 54 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva3" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador3" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva3"]
 margin_left = 313.0
 margin_top = -89.0
 margin_right = 383.0
 margin_bottom = -72.0
-script = ExtResource( 64 )
+script = ExtResource( 41 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CaixaPositiva2" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador2" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva2"]
 margin_left = 313.0
 margin_top = -38.0
 margin_right = 383.0
 margin_bottom = -21.0
-script = ExtResource( 63 )
+script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -913,96 +913,96 @@ __meta__ = {
 [node name="CaixaPositiva1" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
 position = Vector2( 1586.16, -139.6 )
 scale = Vector2( 0.921697, 0.921697 )
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaPositiva1"]
 margin_left = -1381.0
 margin_top = 13.0
 margin_right = -1303.0
 margin_bottom = 34.0
-script = ExtResource( 62 )
+script = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="Caixa0" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostrador0" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/Caixa0"]
 margin_left = 313.0
 margin_top = 61.0
 margin_right = 383.0
 margin_bottom = 78.0
-script = ExtResource( 61 )
+script = ExtResource( 52 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa1" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostradorNeg1" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa1"]
 margin_left = 313.0
 margin_top = 112.0
 margin_right = 383.0
 margin_bottom = 129.0
-script = ExtResource( 71 )
+script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa2" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostradorNeg2" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa2"]
 margin_left = 313.0
 margin_top = 162.0
 margin_right = 383.0
 margin_bottom = 179.0
-script = ExtResource( 72 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa3" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostradorNeg3" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa3"]
 margin_left = 313.0
 margin_top = 213.0
 margin_right = 383.0
 margin_bottom = 230.0
-script = ExtResource( 73 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa4" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostradorNeg4" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa4"]
 margin_left = 313.0
 margin_top = 264.0
 margin_right = 383.0
 margin_bottom = 281.0
-script = ExtResource( 74 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="CaixaNegativa5" type="Polygon2D" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto"]
-script = ExtResource( 60 )
+script = ExtResource( 50 )
 
 [node name="TesteMostradorNeg5" type="RichTextLabel" parent="VerticalSpeed/VerticalSpeed - Caixas de Texto/CaixaNegativa5"]
 margin_left = 313.0
 margin_top = 314.0
 margin_right = 383.0
 margin_bottom = 331.0
-script = ExtResource( 75 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -1012,17 +1012,17 @@ __meta__ = {
 position = Vector2( -745, 0 )
 rotation = 3.14159
 scale = Vector2( 0.180873, 0.180873 )
-texture = ExtResource( 17 )
+texture = ExtResource( 60 )
 
 [node name="Moldura" type="Sprite" parent="VerticalSpeed"]
 position = Vector2( -785.728, 286.688 )
 scale = Vector2( 0.254822, 2.42697 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Moldura2" type="Sprite" parent="VerticalSpeed"]
 position = Vector2( -812.404, -293.312 )
 scale = Vector2( 0.325397, 2.60674 )
-texture = ExtResource( 11 )
+texture = ExtResource( 58 )
 
 [node name="Velocidade Vertical Tempo Real" type="RichTextLabel" parent="VerticalSpeed"]
 margin_left = -820.0
@@ -1030,7 +1030,7 @@ margin_top = 260.0
 margin_right = -740.0
 margin_bottom = 307.0
 bbcode_enabled = true
-script = ExtResource( 76 )
+script = ExtResource( 1 )
 
 [node name="Título" type="RichTextLabel" parent="VerticalSpeed"]
 margin_left = -850.0
@@ -1048,7 +1048,7 @@ __meta__ = {
 }
 
 [node name="DEBUG" type="Node2D" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 37 )
 
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Roda_interna" method="_on_Sprite_Leitura"]
 [connection signal="Leitura" from="Horizonte/Sprite" to="Horizonte/Seta" method="_on_Sprite_Leitura"]
