@@ -52,3 +52,11 @@ func _input(event):
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
 		position = zoom * (mouse_start_pos - event.position) + screen_start_position
+
+"""
+func _input(event):
+	if event is InputEventKey:
+		if event.is_pressed():
+			if event.is_action_pressed("ui_right"):
+				position.x += 10 
+"""
