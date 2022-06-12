@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Viewport.gd" type="Script" id=1]
+[ext_resource path="res://Mapa Ponte de Sor.png" type="Texture" id=2]
+
+[node name="ViewportContainer" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+handle_input_locally = false
+render_target_update_mode = 3
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="wp" type="Control" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="modal_closed" from="Viewport/TextureRect" to="Viewport" method="_on_TextureRect_modal_closed"]
+[connection signal="mouse_entered" from="Viewport/TextureRect" to="Viewport" method="_on_TextureRect_mouse_entered"]

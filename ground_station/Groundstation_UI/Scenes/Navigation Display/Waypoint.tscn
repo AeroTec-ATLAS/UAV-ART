@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( -20, 0, 20, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+rotation = 1.5708
+points = PoolVector2Array( -20, 0, 20, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "0"
