@@ -2,10 +2,11 @@ extends Viewport
 
 var mode = false
 var id = 0
-
+#onready var t = $Sprite
 func _ready():
 	var s = $TextureRect.get_texture().get_size()
 	set_size(s)
+	#$Sprite.connect()
 
 
 func _on_TextureRect_mouse_entered():
@@ -14,7 +15,7 @@ func _on_TextureRect_mouse_entered():
 func _on_TextureRect_modal_closed():
 	mode = false
 	
-func _input(event):
+func _input(event): 
 	if event is InputEventKey and mode:
 		if event.is_pressed():
 			if event.is_action_pressed("Space_bar"):
@@ -25,14 +26,7 @@ func _input(event):
 				#wp.set_anchor(MARGIN_LEFT,anc.x)
 				#wp.set_anchor(MARGIN_TOP,anc.y)
 				#var vector_from_mouse_to_global_position = self.global_position - get_global_mouse_position()
-				var pos = MousePos.position #get_mouse_position() 
-				
+				var pos = (MousePos.position_mouse) 
 				wp.set_position(pos)
 				$wp.add_child(wp)
-				print("id = ",id," position = ",pos)
-				print("mouse position = ",get_mouse_position())
 				id +=1
-
-
-#func _on_Sprite_frame_changed():
-	#pass # Replace with function body.

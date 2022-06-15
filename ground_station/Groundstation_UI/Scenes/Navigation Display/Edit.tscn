@@ -11,11 +11,6 @@ anchor_bottom = 5.845
 margin_right = -3936.26
 margin_bottom = -2907.0
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 2480, 1753 )
-script = ExtResource( 4 )
-
 [node name="Edit" type="Viewport" parent="."]
 size = Vector2( 4960, 3507 )
 size_override_stretch = true
@@ -32,9 +27,14 @@ texture = ExtResource( 2 )
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="ZoomingCamera2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 513, 300 )
+[node name="Sprite" type="Sprite" parent="Edit"]
+visible = false
+position = Vector2( 2480, 1753 )
+script = ExtResource( 4 )
 
-[connection signal="frame_changed" from="Sprite" to="Edit" method="_on_Sprite_frame_changed"]
+[node name="ZoomingCamera2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2480, 1753 )
+
 [connection signal="modal_closed" from="Edit/TextureRect" to="Edit" method="_on_TextureRect_modal_closed"]
 [connection signal="mouse_entered" from="Edit/TextureRect" to="Edit" method="_on_TextureRect_mouse_entered"]
+[connection signal="frame_changed" from="Edit/Sprite" to="Edit" method="_on_Sprite_frame_changed"]
