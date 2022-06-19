@@ -9,15 +9,18 @@ export var zoom_factor := 0.1
 export var zoom_duration := 0.2
 
 # The camera's target zoom level.
-var _zoom_level := 1.0 setget _set_zoom_level
-
+#var _zoom_level := 1.0 setget _set_zoom_level
+var zoom_min = Vector2(0.5,0.5)
+var zoom_max = Vector2(2.2,2.2)
+var zoom_speed = Vector2(.1,.1)
+var des_zoom = zoom
 # We store a reference to the scene's tween node.
 onready var tween: Tween = $Tween
 var mouse_start_pos
 var screen_start_position
 var dragging = false
-
-func _set_zoom_level(value: float) -> void:
+var zoom_step = 1.1
+"""func _set_zoom_level(value: float) -> void:
 	# We limit the value between `min_zoom` and `max_zoom`
 	_zoom_level = clamp(value, min_zoom, max_zoom)
 	# Then, we ask the tween node to animate the camera's `zoom` property from its current value
@@ -40,11 +43,21 @@ func _unhandled_input(event):
 		# call the setter function to use it.
 		_set_zoom_level(_zoom_level - zoom_factor)
 	if event.is_action_pressed("zoom_out"):
-		_set_zoom_level(_zoom_level + zoom_factor)
-
+		_set_zoom_level(_zoom_level + zoom_factor) """
+func _process(delta):
+	zoom = lerp(zoom,des_zoom,.2)
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
+			
+			if event.button_index == BUTTON_WHEEL_UP:
+				if des_zoom > zoom_min:
+					des_zoom -= zoom_speed
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				if des_zoom < zoom_max:
+					des_zoom +=zoom_speed
+			
+			
 			mouse_start_pos = event.position
 			screen_start_position = position
 			dragging = true

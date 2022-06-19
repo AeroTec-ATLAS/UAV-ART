@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Viewport.gd" type="Script" id=1]
-[ext_resource path="res://Mapa Ponte de Sor.png" type="Texture" id=2]
+[ext_resource path="res://224553_2022-06-16_16-14_ponte-de-sor-a3-clean.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Navigation Display/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MousePos.gd" type="Script" id=4]
 
@@ -21,6 +21,7 @@ script = ExtResource( 1 )
 [node name="TextureRect" type="TextureRect" parent="Edit"]
 margin_right = 4960.0
 margin_bottom = 3507.0
+rect_rotation = 0.5
 texture = ExtResource( 2 )
 
 [node name="wp" type="Control" parent="Edit"]
@@ -33,7 +34,7 @@ position = Vector2( 2480, 1753 )
 script = ExtResource( 4 )
 
 [node name="ZoomingCamera2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2480, 1753 )
+position = Vector2( 2352, 1744 )
 
 [connection signal="modal_closed" from="Edit/TextureRect" to="Edit" method="_on_TextureRect_modal_closed"]
 [connection signal="mouse_entered" from="Edit/TextureRect" to="Edit" method="_on_TextureRect_mouse_entered"]
