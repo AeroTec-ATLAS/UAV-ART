@@ -2,8 +2,8 @@ extends Camera2D
 
 class_name ZoomingCamera2D
 
-var zoom_min = Vector2(0.5,0.5)
-var zoom_max = Vector2(2.2,2.2)
+var zoom_min = Vector2(0.1,0.1) #0.5
+var zoom_max = Vector2(2.4,2.4)
 var zoom_speed = Vector2(.1,.1)
 var des_zoom = zoom
 var mouse_start_pos

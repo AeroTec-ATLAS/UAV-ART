@@ -1,15 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Viewport.gd" type="Script" id=1]
-[ext_resource path="res://224553_2022-06-16_16-14_ponte-de-sor-a3-clean.jpg" type="Texture" id=2]
+[ext_resource path="res://Scenes/Navigation Display/grid.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Navigation Display/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MousePos.gd" type="Script" id=4]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/224554_2022-06-16_16-14_ponte-de-sor-a3-grid.jpg-60927faac0e080fdb7b2d3c851394fc1.stex"
 
 [node name="ViewportContainer" type="ViewportContainer"]
 anchor_right = 4.844
 anchor_bottom = 5.845
 margin_right = -3936.26
 margin_bottom = -2907.0
+
+[node name="Grid" type="Sprite" parent="."]
+visible = false
+position = Vector2( 2496, 1872 )
+scale = Vector2( 3.06766, 1.73187 )
+texture = ExtResource( 2 )
 
 [node name="Edit" type="Viewport" parent="."]
 size = Vector2( 4960, 3507 )
@@ -21,8 +31,8 @@ script = ExtResource( 1 )
 [node name="TextureRect" type="TextureRect" parent="Edit"]
 margin_right = 4960.0
 margin_bottom = 3507.0
-rect_rotation = 0.5
-texture = ExtResource( 2 )
+rect_rotation = -0.6
+texture = SubResource( 1 )
 
 [node name="wp" type="Control" parent="Edit"]
 margin_right = 40.0

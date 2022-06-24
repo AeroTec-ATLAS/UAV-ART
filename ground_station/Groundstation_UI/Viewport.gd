@@ -40,9 +40,17 @@ func _input(event):
 
 func converter(pos_x,pos_y):
 	#print(pos_x," ", pos_y)
-	coord_y =  aux_y + 0.00002817110266 * (1872.997437 - pos_y)
-	coord_x = aux_x -0.00003561506 * (2286.000977 - pos_x)
-	#print("aux_y = ",aux_y)
+	#coord_y =  aux_y + 0.00002817110266 * (1872.997437 - pos_y)
+	#coord_x = aux_x -0.00003561506 * (2286.000977 - pos_x)
+	print("pos_y = ",pos_y," pos_x = ",pos_x)
 	#print(pos_y)
-	print(coord_y," ",coord_x)
+	#print(coord_y," ",coord_x)
 	#coord_x = pos.Position2D.x
+	#novo coord_y pra uma dist maior
+	#coord_y = 39.204206 + 0.00011851699855345 * (3507.0 - pos_y)
+	#coord_x = -8.057659 + 0.00019261856421903 * (4960.0 - pos_x)#(2383.840088 - pos_x)
+	coord_y = 39.292701 + 0.000056330421808076 * (278.132843 - pos_y)
+	coord_x = -8.179168 - 0.000067340310025321 * (533.211487 - pos_x)#(2383.840088 - pos_x)
+	print(coord_y," ",coord_x)
+	#39.292701, -8.179168 parte esquerda cruzamento y = 278.132843 x =533.211487
+	#39.245161, -8.030861 rotunda y = 1122.081787 x = 2735.5625
