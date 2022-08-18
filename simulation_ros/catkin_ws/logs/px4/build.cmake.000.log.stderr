@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: No module named menuconfig
+[31m[1mCMake Error[0m at /home/pedrorsmartins/catkin_ws/src/PX4-Autopilot/cmake/kconfig.cmake:6 (message):
+  kconfiglib is not installed or not in PATH
+
+  please install using "pip3 install kconfiglib"
+
+[36mCall Stack (most recent call first):[0m
+  CMakeLists.txt:174 (include)
+
+

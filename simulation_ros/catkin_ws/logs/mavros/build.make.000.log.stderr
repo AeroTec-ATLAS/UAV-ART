@@ -1,0 +1,261 @@
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/enum_sensor_orientation.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/enum_to_string.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/uas_data.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/uas_stringify.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros.h:24[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/mavros.cpp:15[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/lib/uas_timesync.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/gcs_bridge.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros.h:24[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/mavros_node.cpp:14[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/3dr_radio.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/dummy.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/actuator_control.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/ftp.cpp:20[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/altitude.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/command.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mission_protocol_base.h:27[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/geofence.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/global_position.cpp:20[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/hil.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/home_position.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/imu.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/local_position.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/manual_control.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mission_protocol_base.h:27[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/mission_protocol_base.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_accel.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/nav_controller_output.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/param.cpp:19[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mission_protocol_base.h:27[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/rallypoint.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/rc_io.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/safety_area.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_attitude.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_position.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_raw.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_velocity.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/setpoint_trajectory.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/sys_status.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/sys_time.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/vfr_hud.cpp:18[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mission_protocol_base.h:27[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/waypoint.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/utils.h:22:0[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_uas.h:30[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/include/mavros/mavros_plugin.h:25[m[K,
+                 from [01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros/src/plugins/wind_estimation.cpp:17[m[K:
+[01m[K/home/pedrorsmartins/catkin_ws/src/mavros/mavros_msgs/include/mavros_msgs/mavlink_convert.h:45:32:[m[K [01;35m[Kwarning: [m[Kunknown option after ‘[01m[K#pragma GCC diagnostic[m[K’ kind [[01;35m[K-Wpragmas[m[K]
+ #pragma GCC diagnostic ignored [01;35m[K"-Waddress-of-packed-member"[m[K
+                                [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/pedrorsmartins/catkin_ws/devel/.private/test_mavros/setup.sh

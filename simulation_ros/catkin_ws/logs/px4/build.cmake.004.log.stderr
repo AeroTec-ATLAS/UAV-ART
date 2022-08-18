@@ -1,0 +1,14 @@
+[31m[1mCMake Error[0m at /home/pedrorsmartins/catkin_ws/src/PX4-Autopilot/CMakeLists.txt:144 (include):
+  include could not find load file:
+
+    /home/pedrorsmartins/catkin_ws/src/PX4-Autopilot/boards/px4/sitl/default.px4board
+
+
+[31m[1mCMake Error[0m at /home/pedrorsmartins/catkin_ws/src/PX4-Autopilot/CMakeLists.txt:148 (if):
+  if given arguments:
+
+    "STREQUAL" "posix"
+
+  Unknown arguments specified
+
+
